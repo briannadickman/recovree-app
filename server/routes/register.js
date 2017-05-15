@@ -101,6 +101,7 @@ var Registration = mongoose.model('registration', RegistrationSchema, 'recovree'
 
 router.post("/registration", function(req,res){
   var registration = req.body;
+  console.log(req.body);
   var newForm = new Registration({
     state : registration.state,
     county : registration.county,

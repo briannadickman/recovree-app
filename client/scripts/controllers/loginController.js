@@ -31,7 +31,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
       } else {
         console.log('sending to server...', $scope.user);
         $http.post('/register', $scope.user).then(function(response) {
-          console.log('success');
+          console.log('success saving member');
           $location.path('/login');
         },
         function(response) {
@@ -44,7 +44,10 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
   // SENDS USER DEMOGRAPHIC INFO TO SERVER (No username or password)
 
     $scope.userDemographics = function(){
-      console.log($scope.registration);
+      console.log('sending to server...', $scope.registration);
+      $http.post('/register/registration', $scope.registration).then(function(response) {
+        console.log('success saving demographic info');
+        $location.path('/login');
     };
 
   // REGISTRATION FORM
