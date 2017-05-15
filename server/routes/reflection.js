@@ -10,10 +10,12 @@ var RecovreeSchema = mongoose.Schema({});
 
 var ReflectionSchema = mongoose.Schema({
   feelings: {type: Array},
+  feelingsWhy: {type: String},
   drugAlcoholIntake: {type: Boolean},
   medication: {type: Boolean},
   sleep: {type: Number},
   dream: {type: Boolean},
+  whatDream: {type: String},
   exercise: {type: Number},
   food: {type: Number},
   spnsrMntrConnect: {type: Boolean},
@@ -45,14 +47,33 @@ router.get('/', function (req, res) {
   });
 });
 
-router.post('/', function(req,res){
 
+router.post('/', function(req,res){
   var reflection = req.body;
   var newReflection = new Reflection({
     id : req.user._id,
     date: reflection.reflectionDate,
     // time: reflection.reflectionTime,
     feelings : reflection.feelings,
+    feelingsWhy: reflection.feelingsWhy,
+    drugAlcoholIntake: reflection.drugAlcoholIntake,
+    medication: reflection.medication,
+    sleep: reflection.sleep,
+    dream: reflection.dream,
+    whatDream: reflection.whatDream,
+    exercise: reflection.exercise,
+    food: reflection.food,
+    spnsrMntrConnect: reflection.spnsrMntrConnect,
+    groupMeet: reflection.groupMeet,
+    commntyService: reflection.commntyService,
+    stressors: reflection.stressors,
+    selfishDishonest: reflection.selfishDishonest,
+    howSelfshDishnt: reflection.howSelfshDishnt,
+    tomorrowGoal: reflection.tomorrowGoal,
+    dailyGoal: reflection.dailyGoal,
+    gratitude: reflection.gratitude,
+    peerSupport: reflection.peerSupport,
+    counselor: reflection.counselor
   });
 
   console.log('----NEW REFLECTION---', newReflection);
@@ -71,6 +92,7 @@ router.post('/', function(req,res){
 router.put('/', function (req, res) {
   console.log('----PUT---', req.body);
   console.log('id in put: ', req.body._id);
+
 
   var reflectionUpdate = req.body;
   reflection.findOne({'_id' : req.body._id}, function(err, curReflection){
@@ -109,6 +131,7 @@ router.put('/', function (req, res) {
   });
 });
   //edit an employee
+
     // var foundReflection = new Reflection(){
     //
     // }
