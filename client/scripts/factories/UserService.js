@@ -174,7 +174,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     $location.path('/reflection-form/reflect-'+reflectionObject.formPosition);
   }//ends advanceReflectionForm
 
-<<<<<<< HEAD
   function returnHomeButton(){
     //clears out reflectionObject
     console.log("clearing out this:", reflectionObject);
@@ -186,28 +185,23 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     $location.path('/home');
   }
 
-=======
-
   function getReflections() {
     if (userObject.id) {
       console.log('GET', userObject.id);
-      $http.get('/').then(function(response) {
+      $http.get('/reflection').then(function(response) {
         console.log('GOTTEN REFLECTIONS', response);
       });
     }
   }
 
   function getRegistrationInfo() {
-    if (userObject.id) {
       console.log('GET', userObject.id);
       $http.get('/registration').then(function(response) {
-        console.log('GOTTEN REFLECTIONS', response);
+        console.log('GOTTEN REGISTRATIONS', response);
       });
-    }
   }
 
 
->>>>>>> develop
   //return out of UserService Factory
   return {
     userObject : userObject,
@@ -217,12 +211,8 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     getuser : getuser,
     logout: logout,
     reflectionFormNextButton: reflectionFormNextButton,
-<<<<<<< HEAD
-    returnHomeButton: returnHomeButton
-=======
+    returnHomeButton: returnHomeButton,
     getReflections: getReflections,
     getRegistrationInfo: getRegistrationInfo
->>>>>>> develop
-
   };
 }]);

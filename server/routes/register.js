@@ -97,13 +97,14 @@ var RegistrationSchema = mongoose.Schema({
 
 var Registration = mongoose.model('registration', RegistrationSchema);
 
+////get registration information from database
 router.get('/registration', function(req, res){
-  Recovree.find({}, function(err, registration){
+  Recovree.find({}, function(err, registrations){
     if(err){
       console.log("Mongo Error: ", err);
       res.send(500);
     }
-    res.send(registration);
+    res.send(registrations);
   });
 });
 
