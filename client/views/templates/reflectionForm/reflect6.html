@@ -1,6 +1,7 @@
 <div class = 'wrapper'>
 
   <p>Did you connect with your sponsor/mentor today</p>
+<<<<<<< HEAD
   <md-switch ng-model="reflectionObject.spnsrMntrConnect">
     Switch 1: {{ reflectionObject.spnsrMntrConnect }}
   </md-switch>
@@ -18,5 +19,38 @@
   {{ reflectionObject }}
   <br>
   <md-button ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
+=======
+  <div layout = 'row' layout-align = 'center'>
+    <span>No</span>
+    <md-switch class = 'md-primary' ng-model="reflectionObject.spnsrMntrConnect">
+    </md-switch>
+    <span>Yes</span>
+  </div>
+
+  <p>How many group meetings did you attend today?</p>
+  <md-input-container layout = 'row' layout-align = 'center'>
+    <label>Number of Meetings</label>
+    <md-select ng-model="reflectionObject.groupMeet">
+        <md-option ng-value = "0">0</md-option>
+        <md-option ng-value = "1">1</md-option>
+        <md-option ng-value = "2">2</md-option>
+        <md-option ng-value = "3">3</md-option>
+        <md-option ng-value = "4">4</md-option>
+        <md-option ng-value = "5">5</md-option>
+    </md-select>
+  </md-input-container>
+
+  <p>Did you engage in any service or community work today?</p>
+  <div layout = 'row' layout-align = 'center'>
+    <span>No</span>
+    <md-switch class = 'md-primary' ng-model="reflectionObject.commntyService">
+    </md-switch>
+    <span>Yes</span>
+  </div>
+
+  <!-- {{ reflectionObject }} -->
+  <br>
+  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
+>>>>>>> d23a6442b3ead79c53d08182114963a6fd60df6a
 </div>
 <!-- ends wrapper -->

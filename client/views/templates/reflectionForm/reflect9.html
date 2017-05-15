@@ -5,6 +5,7 @@
     <textarea ng-model="reflectionObject.tomorrowGoal" md-maxlength="150" rows="5" md-select-on-focus></textarea>
   </md-input-container>
 
+<<<<<<< HEAD
   <p>Display daily goal from yesterday here. This will require some logic.
   I think the best solution will be to add a couple of properties to the
   reflectionObject when the user gets to the home page we check if user takes
@@ -19,5 +20,21 @@
   {{ reflectionObject }}
   <br>
   <md-button ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
+=======
+  <p>Display daily goal from yesterday here.</p>
+
+  <p>Did you complete your daily goal from yesterday?</p>
+  <div layout = 'row' layout-align = 'center'>
+    <span>No</span>
+    <md-switch class = 'md-primary' ng-model="reflectionObject.dailyGoal">
+    </md-switch>
+    <span>Yes</span>
+  </div>
+
+
+  <!-- {{ reflectionObject }} -->
+  <br>
+  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
+>>>>>>> d23a6442b3ead79c53d08182114963a6fd60df6a
 </div>
 <!-- ends wrapper -->

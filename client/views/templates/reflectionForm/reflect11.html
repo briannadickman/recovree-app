@@ -1,6 +1,7 @@
 <div class = 'wrapper'>
 
   <p>If available today, would you connect to an online peer support group to engage with others in recovery?</p>
+<<<<<<< HEAD
   <md-switch class = 'md-primary' ng-model="reflectionObject.peerSupport">
     Switch 1: {{ reflectionObject.peerSupport }}
   </md-switch>
@@ -13,5 +14,24 @@
   {{ reflectionObject }}
   <br>
   <md-button ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
+=======
+  <div layout = 'row' layout-align = 'center'>
+    <span>No</span>
+    <md-switch class = 'md-primary' ng-model="reflectionObject.peerSupport">
+    </md-switch>
+    <span>Yes</span>
+  </div>
+
+  <p>If available today, would you connect to an online peer support group to engage with others in recovery?</p>
+  <div layout = 'row' layout-align = 'center'>
+    <span>No</span>
+    <md-switch class = 'md-primary' ng-model="reflectionObject.counselor">
+    </md-switch>
+    <span>Yes</span>
+  </div>
+
+  <br>
+  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
+>>>>>>> d23a6442b3ead79c53d08182114963a6fd60df6a
 </div>
 <!-- ends wrapper -->

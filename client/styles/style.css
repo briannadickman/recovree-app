@@ -1,3 +1,5 @@
+
+
 .instructions .container h1 {
     font-size: 24px;
     font-weight: 700;
@@ -58,6 +60,23 @@
 
 
 /*keith*/
+<<<<<<< HEAD
+=======
+*{
+  padding: 0;
+  margin:0;
+  font-family: 'Questrial', sans-serif;
+}
+
+h1{
+  font-family: 'Lato', sans-serif;
+}
+
+.header{
+    text-align: center;
+}
+
+>>>>>>> d23a6442b3ead79c53d08182114963a6fd60df6a
 .login-container{
   padding: 20px;
   text-align: center;
@@ -74,6 +93,7 @@
   background-color: gainsboro;
 }
 
+<<<<<<< HEAD
 .selectedTrue{
   background-color: lightyellow;
 }
@@ -90,4 +110,9 @@ button.feeling-button{
 .md-button{
   font-size: 10px;
   min-width: 75px;
+=======
+.md-button{
+  font-size: 12px;
+  min-width: 100px;
+>>>>>>> d23a6442b3ead79c53d08182114963a6fd60df6a
 }

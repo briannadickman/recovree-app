@@ -1,17 +1,31 @@
 <div class = 'wrapper'>
 
   <p>Have you been selfish or dishonest with yourself or others today?</p>
+<<<<<<< HEAD
   <md-switch ng-model="reflectionObject.selfishDishonest">
     Switch 1: {{ reflectionObject.selfishDishonest }}
   </md-switch>
+=======
+  <div layout = 'row' layout-align = 'center'>
+    <span>No</span>
+    <md-switch ng-model="reflectionObject.selfishDishonest">
+    </md-switch>
+    <span>Yes</span>
+  </div>
+>>>>>>> d23a6442b3ead79c53d08182114963a6fd60df6a
 
   <md-input-container class="md-block">
     <label>If yes, how?</label>
     <textarea ng-model="reflectionObject.howSelfshDishnt" md-maxlength="150" rows="5" md-select-on-focus></textarea>
   </md-input-container>
+<<<<<<< HEAD
   {{reflectionObject.howSelfshDishnt}}
   {{ reflectionObject }}
   <br>
   <md-button ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
+=======
+  <br>
+  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
+>>>>>>> d23a6442b3ead79c53d08182114963a6fd60df6a
 </div>
 <!-- ends wrapper -->
