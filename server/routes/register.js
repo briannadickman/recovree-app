@@ -4,7 +4,6 @@ var passport = require('passport');
 var nodemailer = require('nodemailer');
 var Users = require('../models/user');
 var path = require('path');
-var gv = require('../variables/variables');
 
 var mongoose = require("mongoose");
 
