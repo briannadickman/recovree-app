@@ -24,20 +24,21 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
     };
 
     $scope.registerUser = function() {
-      if($scope.user.username === '' || $scope.user.password === '') {
-        $scope.message = "Choose a username and password!";
-      } else {
-        console.log('sending to server...', $scope.user);
-        $http.post('/register', $scope.user).then(function(response) {
-          console.log('success');
-          $location.path('/login');
-        },
-        function(response) {
-          console.log('error');
-          $scope.message = "Please try again."
-        });
-      }
-    }
+      console.log($scope.user);
+      // if($scope.user.username === '' || $scope.user.password === '') {
+      //   $scope.message = "Choose a username and password!";
+      // } else {
+      //   console.log('sending to server...', $scope.user);
+      //   $http.post('/register', $scope.user).then(function(response) {
+      //     console.log('success');
+      //     $location.path('/login');
+      //   },
+      //   function(response) {
+      //     console.log('error');
+      //     $scope.message = "Please try again.";
+      //   });
+      // }
+    };
 
   // REGISTRATION FORM
 
@@ -55,10 +56,19 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
        });
 
      // Generate Birth Year Dropdown Options
-     var comma = ',';
-     $scope.years = ('Female,Male,Trans,Other,Prefer Not to Answer').split(comma).map(function(year) {
-         return {gender: gender};
-      });
+        $scope.years = [];
+
+        $scope.getYearDropdown = function(){
+        var currentYear = new Date().getFullYear();
+        console.log(currentYear);
+        for(var i = 0; i < 100; i++){
+          $scope.years.push(currentYear - i);
+        }
+        console.log($scope.years);
+        return $scope.years;
+      }
+
+      // getYearDropdown();
 
      // Generate Drugs of Choice Dropdown Options
      var comma = ',';
@@ -75,4 +85,6 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
     // Capture Into MemberSchema
 
     // Capture Into RegistrationSchema
+
+
 }]);
