@@ -43,7 +43,7 @@ router.get('/', function (req, res) {
       console.log("Mongo Error: ", err);
       res.send(500);
     }
-    res.send(listings);
+    res.send(reflections);
   });
 });
 

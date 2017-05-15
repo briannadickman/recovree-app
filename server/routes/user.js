@@ -9,11 +9,12 @@ router.get('/', function(req, res) {
   // check if logged in
   if(req.isAuthenticated()) {
     // send back user object from database
-    console.log('logged in');
+    console.log('logged in', req.user);
     var userInfo = {
       username : req.user.username,
       password : req.user.password,
-      id: req.user._id
+      id: req.user._id,
+      memberID: req.user.memberID
     };
     res.send(userInfo);
   } else {
