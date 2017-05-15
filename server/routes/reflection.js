@@ -47,14 +47,33 @@ router.get('/', function (req, res) {
   });
 });
 
-router.post('/', function(req,res){
 
+router.post('/', function(req,res){
   var reflection = req.body;
   var newReflection = new Reflection({
     id : req.user._id,
     date: reflection.reflectionDate,
     // time: reflection.reflectionTime,
     feelings : reflection.feelings,
+    feelingsWhy: reflection.feelingsWhy,
+    drugAlcoholIntake: reflection.drugAlcoholIntake,
+    medication: reflection.medication,
+    sleep: reflection.sleep,
+    dream: reflection.dream,
+    whatDream: reflection.whatDream,
+    exercise: reflection.exercise,
+    food: reflection.food,
+    spnsrMntrConnect: reflection.spnsrMntrConnect,
+    groupMeet: reflection.groupMeet,
+    commntyService: reflection.commntyService,
+    stressors: reflection.stressors,
+    selfishDishonest: reflection.selfishDishonest,
+    howSelfshDishnt: reflection.howSelfshDishnt,
+    tomorrowGoal: reflection.tomorrowGoal,
+    dailyGoal: reflection.dailyGoal,
+    gratitude: reflection.gratitude,
+    peerSupport: reflection.peerSupport,
+    counselor: reflection.counselor
   });
 
   console.log('----NEW REFLECTION---', newReflection);
