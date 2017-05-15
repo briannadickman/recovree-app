@@ -95,17 +95,21 @@ router.put('/', function (req, res) {
 
 
   var reflectionUpdate = req.body;
-  reflection.findOne({'_id' : req.body._id}, function(err, curReflection){
+  Reflection.findOne({'_id' : req.body._id}, function(err, curReflection){
     if (err) {
       console.log('reflection put err: ', err);
       res.sendStatus(500);
     }
     console.log('curRefliction in reflection put: ', curReflection);
 
+    curReflection.date = reflectionUpdate.reflectionDate || curReflection.date;
+    curReflection.feelings = reflectionUpdate.feelings || curReflection.feelings;
+    curReflection.feelingsWhy = reflectionUpdate.feelingsWhy || curReflection.feelingsWhy;
     curReflection.drugAlcoholIntake = reflectionUpdate.drugAlcoholIntake || curReflection.drugAlcoholIntake;
     curReflection.medication =  reflectionUpdate.medication || curReflection.medication;
     curReflection.sleep = reflectionUpdate.sleep || curReflection.sleep;
     curReflection.dream = reflectionUpdate.dream || curReflection.dream;
+    curReflection.whatDream = reflectionUpdate.whatDream || curReflection.whatDream;
     curReflection.exercise = reflectionUpdate.exercise || curReflection.exercise;
     curReflection.food = reflectionUpdate.food || curReflection.food;
     curReflection.spnsrMntrConnect = reflectionUpdate.spnsrMntrConnect || curReflection.spnsrMntrConnect;
@@ -149,7 +153,7 @@ router.put('/', function (req, res) {
     //   });
     // });
 
-});
+// });
 
 
 
