@@ -4,13 +4,12 @@
   <form name="dailyStressorsForm" novalidate>
 
       <ng-form name="stressForm" class="form-group" ng-repeat="stress in reflectionObject.stressors">
-          <button class = 'feeling-button' type="button" ng-class = "{selectedTrue:(stress.value === true)}" ng-click = 'toggleFeeling(stress)' >
+          <md-button class = 'md-raised' ng-class = "{'md-primary':(stress.value === true)}" ng-click = 'toggleFeeling(stress)' >
             {{stress.name}}
-          </button>
+          </md-button>
       </ng-form>
   </form>
 
-  {{ reflectionObject }}
 
   <br>
   <md-button ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
