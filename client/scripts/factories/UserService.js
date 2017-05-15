@@ -108,23 +108,30 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     if (userObject.id) {
       console.log('FEELINGS SAVED TO DB - NEW REFLECTION POSTED');
       $http.post('/reflection', reflectionObject).then(function(response) {
+        reflectionObject._id = response.data._id;
+        console.log('reflectionObject._id: ', reflectionObject._id);
       });
     }
   }//ends postToReflectionForm
 
   function updateReflectionForm(reflectionObject){
     console.log("$http.put:", reflectionObject);
+    console.log('_id in put request: ', reflectionObject._id);
+
     //this funciton will need to update the database
     //find by id and date then update
     //beacuse of async we will need to .then take the response set the
     //reflectionObject = response and then pass reflectionObject into the
     //advance to next function
+    $http.put('/reflection', reflectionObject).then(function(response){
+      console.log('updateReflectionForm response: ', response.data);
+    });
 
     advanceReflectionForm(reflectionObject);
     if (userObject.id) {
       console.log('TODAYS REFLECTION UPDATED IN DB');
-      $http.put('/reflection', reflectionObject).then(function(response) {
-      });
+      // $http.put('/reflection', reflectionObject).then(function(response) {
+      // });
     }
   }//ends updateReflectionForm
 
