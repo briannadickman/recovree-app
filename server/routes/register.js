@@ -81,7 +81,6 @@ router.post('/', function(req, res, next) {
 
 
 //SAVE ALL OTHER REGISTRATION DATA FROM REGISTER VIEW
-var RecovreeSchema = mongoose.Schema({});
 
 var RegistrationSchema = mongoose.Schema({
   state: {type: String},
@@ -93,14 +92,14 @@ var RegistrationSchema = mongoose.Schema({
   programPayment: {type: String},
   medication: {type: Boolean},
   termsAgreement: {type: Boolean},
-  // memberID: {type: Schema.ObjectId, ref: 'User'}
+  memberID: {type: Number}
 });
 
-var Recovree = mongoose.model('recovree', RecovreeSchema, 'recovree');
-var Registration = mongoose.model('registration', RegistrationSchema, 'recovree');
+var Registration = mongoose.model('registration', RegistrationSchema);
 
 router.post("/registration", function(req,res){
   var registration = req.body;
+  console.log(req.body);
   var newForm = new Registration({
     state : registration.state,
     county : registration.county,
@@ -111,7 +110,7 @@ router.post("/registration", function(req,res){
     programPayment : registration.programPayment,
     medication : registration.medication,
     termsAgreement : registration.termsAgreement,
-    memberID: registration.memberID
+    // memberID: user.memberID
   });
 
   newForm.save(newForm, function(err, savedRegistration){

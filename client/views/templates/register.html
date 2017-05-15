@@ -20,7 +20,7 @@
   <!-- Captures Info into RegistrationSchema -->
     <md-input-container>
         <label for="state">State:</label>
-        <md-select ng-model="user.state">
+        <md-select ng-model="registration.state">
             <md-option ng-repeat="state in states" value="{{state.abbrev}}">
               {{state.abbrev}}
             </md-option>
@@ -29,12 +29,12 @@
 
     <md-input-container>
         <label for="county">County:</label>
-        <input type="text" ng-model="user.county" />
+        <input type="text" ng-model="registration.county" />
     </md-input-container>
 
     <md-input-container>
         <label for="gender">Gender:</label>
-        <md-select ng-model="user.gender">
+        <md-select ng-model="registration.gender">
             <md-option ng-repeat="gender in genders" value="{{gender.gender}}">
               {{gender.gender}}
             </md-option>
@@ -43,16 +43,16 @@
 
     <md-input-container>
         <label for="birthYear">Birth Year:</label>
-        <md-select ng-model="user.birthYear">
-            <md-option ng-repeat="year in years" value="{{year.year}}">
-              {{year.year}}
+        <md-select ng-model="registration.birthYear" ng-click='getYearDropdown()'>
+            <md-option ng-repeat="year in years" value="{{year}}">
+              {{year}}
             </md-option>
         </md-select>
     </md-input-container>
 
     <md-input-container>
         <label for="drugChoice">Drugs of Choice:</label>
-        <md-select ng-model="user.drugChoice">
+        <md-select ng-model="registration.drugChoice">
             <md-option ng-repeat="drug in drugs" value="{{drug.drug}}">
               {{drug.drug}}
             </md-option>
@@ -61,28 +61,32 @@
 
     <md-input-container>
         <label for="sobrietyDate">Sobriety Date:</label>
-        <md-datepicker md-hide-icons="calendar" md-open-on-focus ng-model="user.sobrietyDate"></md-datepicker>
+        <md-datepicker md-hide-icons="calendar" md-open-on-focus ng-model="registration.sobrietyDate"></md-datepicker>
     </md-input-container>
 
     <md-input-container>
         <label for="programPayment">How did you pay for your treatment services?</label>
-        <md-select ng-model="user.programPayment">
+        <md-select ng-model="registration.programPayment">
             <md-option ng-repeat="payment in payments" value="{{payment.payment}}">
               {{payment.payment}}
             </md-option>
         </md-select>
     </md-input-container>
 
-    <md-input-container>
-        <label for="medication">Are you currently taking prescription medication?</label>
-        <input type="text" ng-model="user.medication" />
-    </md-input-container>
+        <p>Are you currently taking prescription medication?</p>
+        <md-radio-group ng-model="registration.medication" layout='row' layout-align='center center'>
+
+          <md-radio-button value="Yes" class="md-primary">Yes</md-radio-button>
+          <md-radio-button value="No">No</md-radio-button>
+
+        </md-radio-group>
 
     <md-input-container>
-        <md-checkbox ng-model="user.termsAgreement" required>I agree to the <a ng-href='#/terms'>Terms of Use</a></md-checkbox>
+        <md-checkbox ng-model="registration.termsAgreement" required>I agree to the <a ng-href='#/terms'>Terms of Use</a></md-checkbox>
     </md-input-container>
 
-    <input class="btn btn-default" type="submit" name="submit" value="Register" />
+    <!-- <input class="btn btn-default" type="submit" name="submit" value="Register" /> -->
+    <md-button ng-click='registerUser(user); userDemographics(registration)'>Register</md-button>
     <a href="#login">Cancel</a>
 
   </form>
