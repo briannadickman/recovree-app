@@ -12,6 +12,7 @@ myApp.controller('ReflectionFormController', ['$scope', '$http', '$location', 'U
 
   //from factory functions
   $scope.reflectionFormNextButton = UserService.reflectionFormNextButton;
+  $scope.returnHomeButton = UserService.returnHomeButton;
 
   //from controller
   $scope.toggleFeeling = toggleFeeling;

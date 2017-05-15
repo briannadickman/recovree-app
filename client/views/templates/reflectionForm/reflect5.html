@@ -1,14 +1,28 @@
 <div class = 'wrapper'>
-  <p>Did you exercise today?</p>
-  <md-slider flex class="md-primary" md-discrete ng-model="reflectionObject.exercise" step="1" min="1" max="5" aria-label="rating">
-  </md-slider>
 
-  <p>Rate your food consumption and access for today</p>
-  <md-slider flex class="md-primary" md-discrete ng-model="reflectionObject.food" step="1" min="1" max="5" aria-label="rating">
-  </md-slider>
+  <p layout = 'column'>Did you exercise today?</p>
+  <md-slider-container layout = 'row'>
+    <span>No Activity</span>
+    <md-slider flex class="md-primary" md-discrete ng-model="reflectionObject.exercise" step="1" min="1" max="5" aria-label="rating">
+    </md-slider>
+    <span>High Activity</span>
+  </md-slider-container>
 
-  {{ reflectionObject }}
   <br>
-  <md-button ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
+
+  <p layout = 'column'>Rate your food consumption and access for today</p>
+  <md-slider-container layout = 'row'>
+    <span>Not Healthy</span>
+    <md-slider flex class="md-primary" md-discrete ng-model="reflectionObject.food" step="1" min="1" max="5" aria-label="rating">
+    </md-slider>
+    <span>Very Healthy</span>
+  </md-slider-container>
+
+<!--
+  {{ reflectionObject }} -->
+  <div layout = 'row'>
+    <br>
+    <md-button layout = 'row' class = 'md-raised' ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
+  </div>
 </div>
 <!-- ends wrapper -->
