@@ -135,6 +135,15 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     $location.path('/reflection-form/reflect-'+reflectionObject.formPosition);
   }//ends advanceReflectionForm
 
+  function returnHomeButton(){
+    //clears out reflectionObject
+    console.log("clearing out this:", reflectionObject);
+
+    console.log("should be empty:", reflectionObject);
+    //moves participant back to home screen
+    $location.path('/home');
+  }
+
   //return out of UserService Factory
   return {
     userObject : userObject,
@@ -144,6 +153,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     getuser : getuser,
     logout: logout,
     reflectionFormNextButton: reflectionFormNextButton,
+    returnHomeButton: returnHomeButton
 
   };
 }]);
