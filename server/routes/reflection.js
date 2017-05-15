@@ -10,10 +10,12 @@ var RecovreeSchema = mongoose.Schema({});
 
 var ReflectionSchema = mongoose.Schema({
   feelings: {type: Array},
+  feelingsWhy: {type: String},
   drugAlcoholIntake: {type: Boolean},
   medication: {type: Boolean},
   sleep: {type: Number},
   dream: {type: Boolean},
+  whatDream: {type: String},
   exercise: {type: Number},
   food: {type: Number},
   spnsrMntrConnect: {type: Boolean},
