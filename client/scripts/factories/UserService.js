@@ -1,6 +1,11 @@
 myApp.factory('UserService', ['$http', '$location', function($http, $location){
   console.log('User Service Loaded');
 
+  // created dailyReflectObject
+  var dailyReflectObject = {
+    data: ''
+  };
+
   //created userObject
   var userObject = {};
 
@@ -189,7 +194,9 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     if (userObject.id) {
       console.log('GET', userObject.id);
       $http.get('/reflection').then(function(response) {
-        console.log('GOTTEN REFLECTIONS', response);
+        console.log('GOTTEN REFLECTIONS', response.data);
+        dailyReflectObject.data = response.data;
+        console.log('object is: ', dailyReflectObject);
       });
     }
   }
@@ -204,6 +211,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     logout: logout,
     reflectionFormNextButton: reflectionFormNextButton,
     returnHomeButton: returnHomeButton,
-    getReflections: getReflections
+    getReflections: getReflections,
+    dailyReflectObject : dailyReflectObject
   };
 }]);
