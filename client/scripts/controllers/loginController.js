@@ -25,19 +25,26 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
 
     $scope.registerUser = function() {
       console.log($scope.user);
-      // if($scope.user.username === '' || $scope.user.password === '') {
-      //   $scope.message = "Choose a username and password!";
-      // } else {
-      //   console.log('sending to server...', $scope.user);
-      //   $http.post('/register', $scope.user).then(function(response) {
-      //     console.log('success');
-      //     $location.path('/login');
-      //   },
-      //   function(response) {
-      //     console.log('error');
-      //     $scope.message = "Please try again.";
-      //   });
-      // }
+
+      if($scope.user.username === '' || $scope.user.password === '') {
+        $scope.message = "Choose a username and password!";
+      } else {
+        console.log('sending to server...', $scope.user);
+        $http.post('/register', $scope.user).then(function(response) {
+          console.log('success');
+          $location.path('/login');
+        },
+        function(response) {
+          console.log('error');
+          $scope.message = "Please try again.";
+        });
+      }
+    };
+
+  // SENDS USER DEMOGRAPHIC INFO TO SERVER (No username or password)
+
+    $scope.userDemographics = function(){
+      console.log($scope.registration);
     };
 
   // REGISTRATION FORM
@@ -56,6 +63,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
        });
 
      // Generate Birth Year Dropdown Options
+
         $scope.years = [];
 
         $scope.getYearDropdown = function(){
@@ -67,8 +75,6 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
         console.log($scope.years);
         return $scope.years;
       }
-
-      // getYearDropdown();
 
      // Generate Drugs of Choice Dropdown Options
      var comma = ',';
@@ -85,6 +91,5 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
     // Capture Into MemberSchema
 
     // Capture Into RegistrationSchema
-
 
 }]);
