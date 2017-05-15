@@ -1,14 +1,16 @@
 <div class = 'wrapper'>
   <p>How are you feeling today?</p>
 
-  <form name="dailyFeelingsForm"  novalidate>
+  <div layout = 'row' layout-align = 'center'>
+    <form name="dailyFeelingsForm"  novalidate>
 
-      <ng-form name="feelingForm" class="form-group" ng-repeat="feeling in reflectionObject.feelings">
-          <md-button class = 'md-raised' ng-class = "{'md-primary':(feeling.value === true)}" ng-click = 'toggleFeeling(feeling)' >
-            {{feeling.name}}
-          </md-button>
-      </ng-form>
-  </form>
+        <ng-form name="feelingForm" class="form-group" ng-repeat="feeling in reflectionObject.feelings">
+            <md-button class = 'md-raised' ng-class = "{'md-primary':(feeling.value === true)}" ng-click = 'toggleFeeling(feeling)' >
+              {{feeling.name}}
+            </md-button>
+        </ng-form>
+    </form>
+  </div>
 
   <!-- {{ reflectionObject }} -->
   <md-input-container class="md-block">
