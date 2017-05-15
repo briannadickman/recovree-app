@@ -194,14 +194,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     }
   }
 
-  function getRegistrationInfo() {
-      console.log('GET', userObject.id);
-      $http.get('/register/registration').then(function(response) {
-        console.log('GOTTEN REGISTRATIONS', response);
-      });
-  }
-
-
   //return out of UserService Factory
   return {
     userObject : userObject,
@@ -212,7 +204,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     logout: logout,
     reflectionFormNextButton: reflectionFormNextButton,
     returnHomeButton: returnHomeButton,
-    getReflections: getReflections,
-    getRegistrationInfo: getRegistrationInfo
+    getReflections: getReflections
   };
 }]);

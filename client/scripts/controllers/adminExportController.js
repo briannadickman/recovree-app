@@ -1,14 +1,14 @@
-myApp.controller('AdminExportController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
+myApp.controller('AdminExportController', ['$scope', '$http', '$location', 'AdminService', function($scope, $http, $location, AdminService) {
   console.log('AdminExportController sourced!');
 
   $scope.demographicExport = function(){
     console.log('demographicExport button clicked!');
-    UserService.getRegistrationInfo();
+    AdminService.getRegistrationInfo();
   };
 
   $scope.reflectionExport = function(){
     console.log('reflectionExport button clicked!');
-    UserService.getReflections();
+    AdminService.getReflections();
 
   };
 
