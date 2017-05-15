@@ -37,6 +37,7 @@ return newId;
 };
 
 
+
 // Handles POST request with new user data
 router.post('/', function(req, res, next) {
   var newId = randomIdGenerator();
@@ -95,6 +96,17 @@ var RegistrationSchema = mongoose.Schema({
 });
 
 var Registration = mongoose.model('registration', RegistrationSchema);
+
+////get registration information from database
+router.get('/registration', function(req, res){
+  Registration.find({}, function(err, registrations){
+    if(err){
+      console.log("Mongo Error: ", err);
+      res.send(500);
+    }
+    res.send(registrations);
+  });
+});
 
 router.post("/registration", function(req,res){
   var registration = req.body;
