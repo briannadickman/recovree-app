@@ -3,10 +3,13 @@ myApp.controller('AdminExportController', ['$scope', '$http', '$location', 'User
 
   $scope.demographicExport = function(){
     console.log('demographicExport button clicked!');
+    UserService.getRegistrationInfo();
   };
 
   $scope.reflectionExport = function(){
     console.log('reflectionExport button clicked!');
+    UserService.getReflections();
+
   };
 
 }]);

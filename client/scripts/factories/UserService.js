@@ -98,6 +98,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
             // user has a curret session on the server
             userObject.userName = response.data.username;
             userObject.id = response.data.id;
+            userObject.memberID = response.data.memberID;
             // console.log('User Data: ', userObject.userName, userObject.id);
         } else {
             // user has no session, bounce them back to the login page
@@ -173,6 +174,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     $location.path('/reflection-form/reflect-'+reflectionObject.formPosition);
   }//ends advanceReflectionForm
 
+<<<<<<< HEAD
   function returnHomeButton(){
     //clears out reflectionObject
     console.log("clearing out this:", reflectionObject);
@@ -184,6 +186,28 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     $location.path('/home');
   }
 
+=======
+
+  function getReflections() {
+    if (userObject.id) {
+      console.log('GET', userObject.id);
+      $http.get('/').then(function(response) {
+        console.log('GOTTEN REFLECTIONS', response);
+      });
+    }
+  }
+
+  function getRegistrationInfo() {
+    if (userObject.id) {
+      console.log('GET', userObject.id);
+      $http.get('/registration').then(function(response) {
+        console.log('GOTTEN REFLECTIONS', response);
+      });
+    }
+  }
+
+
+>>>>>>> develop
   //return out of UserService Factory
   return {
     userObject : userObject,
@@ -193,7 +217,12 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     getuser : getuser,
     logout: logout,
     reflectionFormNextButton: reflectionFormNextButton,
+<<<<<<< HEAD
     returnHomeButton: returnHomeButton
+=======
+    getReflections: getReflections,
+    getRegistrationInfo: getRegistrationInfo
+>>>>>>> develop
 
   };
 }]);
