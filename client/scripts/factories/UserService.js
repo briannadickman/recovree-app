@@ -4,12 +4,35 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   //created userObject
   var userObject = {};
 
-  //create sessionObject
-  // var sessionObject = {};
-  // sessionObject.numberOfDays = numberOfDays();
-  // sessionObject.reflectionCompleted = getReflectionCompleted();
-  // sessionObject.takingMeds = getTakingMeds();
-  // sessionObject.yesterdaysGoal = getYesterdaysGoal();
+  // create sessionObject
+  var sessionObject = {};
+  sessionObject.numberOfDays = getNumberOfDays();
+  sessionObject.reflectionCompleted = getReflectionCompleted();
+  sessionObject.takingMeds = getTakingMeds();
+  sessionObject.yesterdaysGoal = getYesterdaysGoal();
+
+    function getNumberOfDays(){
+      console.log("inside getNumberOfDays");
+      //$http.get - logic happens on the server side
+      //
+
+    }//ends numberOfDays
+
+    function getReflectionCompleted(){
+      console.log("inside getReflectionCompleted");
+
+    }//ends getReflectionCompleted
+
+    function getTakingMeds(){
+      console.log("inside getTakingMeds");
+
+    }//ends getTakingMeds
+
+    function getYesterdaysGoal(){
+      console.log("inside getYesterdaysGoal");
+
+
+    }//ends getYesterdaysGoal
 
 
   //builds reflectionObject

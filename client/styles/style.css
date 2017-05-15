@@ -69,6 +69,11 @@
 h1{
   font-family: 'Lato', sans-serif;
 }
+
+.header{
+    text-align: center;
+}
+
 .login-container{
   padding: 20px;
   text-align: center;
