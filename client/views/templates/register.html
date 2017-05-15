@@ -43,7 +43,11 @@
 
     <md-input-container>
         <label for="birthYear">Birth Year:</label>
-        <input type="text" ng-model="user.birthYear" />
+        <md-select ng-model="user.birthYear">
+            <md-option ng-repeat="year in years" value="{{year.year}}">
+              {{year.year}}
+            </md-option>
+        </md-select>
     </md-input-container>
 
     <md-input-container>
