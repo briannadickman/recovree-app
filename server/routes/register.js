@@ -96,8 +96,8 @@ var RegistrationSchema = mongoose.Schema({
   // memberID: {type: Schema.ObjectId, ref: 'User'}
 });
 
-var Recovree = mongoose.model('recovree', RecovreeSchema, 'recovree');
-var Registration = mongoose.model('registration', RegistrationSchema, 'recovree');
+// var Recovree = mongoose.model('recovree', RecovreeSchema, 'recovree');
+var Registration = mongoose.model('registration', RegistrationSchema);
 
 router.post("/registration", function(req,res){
   var registration = req.body;
