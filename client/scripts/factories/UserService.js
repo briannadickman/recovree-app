@@ -121,8 +121,8 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     advanceReflectionForm(reflectionObject);
     if (userObject.id) {
       console.log('TODAYS REFLECTION UPDATED IN DB');
-      $http.put('/reflection', reflectionObject).then(function(response) {
-      });
+      // $http.put('/reflection', reflectionObject).then(function(response) {
+      // });
     }
   }//ends updateReflectionForm
 
