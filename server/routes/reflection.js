@@ -102,7 +102,6 @@ router.put('/', function (req, res) {
     }
     console.log('curRefliction in reflection put: ', curReflection);
 
-    curReflection.date = reflectionUpdate.reflectionDate || curReflection.date;
     curReflection.feelings = reflectionUpdate.feelings || curReflection.feelings;
     curReflection.feelingsWhy = reflectionUpdate.feelingsWhy || curReflection.feelingsWhy;
     curReflection.drugAlcoholIntake = reflectionUpdate.drugAlcoholIntake || curReflection.drugAlcoholIntake;
