@@ -81,7 +81,6 @@ router.post('/', function(req, res, next) {
 
 
 //SAVE ALL OTHER REGISTRATION DATA FROM REGISTER VIEW
-var RecovreeSchema = mongoose.Schema({});
 
 var RegistrationSchema = mongoose.Schema({
   state: {type: String},
@@ -96,8 +95,7 @@ var RegistrationSchema = mongoose.Schema({
   memberID: {type: Number}
 });
 
-// var Recovree = mongoose.model('recovree', RecovreeSchema, 'recovree');
-var Registration = mongoose.model('registration', RegistrationSchema, 'recovree');
+var Registration = mongoose.model('registration', RegistrationSchema);
 
 router.post("/registration", function(req,res){
   var registration = req.body;
@@ -112,7 +110,7 @@ router.post("/registration", function(req,res){
     programPayment : registration.programPayment,
     medication : registration.medication,
     termsAgreement : registration.termsAgreement,
-    memberID: user.memberID
+    // memberID: user.memberID
   });
 
   newForm.save(newForm, function(err, savedRegistration){
