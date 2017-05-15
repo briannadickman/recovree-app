@@ -196,7 +196,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
   function getRegistrationInfo() {
       console.log('GET', userObject.id);
-      $http.get('/registration').then(function(response) {
+      $http.get('/register/registration').then(function(response) {
         console.log('GOTTEN REGISTRATIONS', response);
       });
   }
