@@ -98,6 +98,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
             // user has a curret session on the server
             userObject.userName = response.data.username;
             userObject.id = response.data.id;
+            userObject.memberID = response.data.memberID;
             // console.log('User Data: ', userObject.userName, userObject.id);
         } else {
             // user has no session, bounce them back to the login page
@@ -184,6 +185,15 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     $location.path('/home');
   }
 
+  function getReflections() {
+    if (userObject.id) {
+      console.log('GET', userObject.id);
+      $http.get('/reflection').then(function(response) {
+        console.log('GOTTEN REFLECTIONS', response);
+      });
+    }
+  }
+
   //return out of UserService Factory
   return {
     userObject : userObject,
@@ -193,7 +203,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     getuser : getuser,
     logout: logout,
     reflectionFormNextButton: reflectionFormNextButton,
-    returnHomeButton: returnHomeButton
-
+    returnHomeButton: returnHomeButton,
+    getReflections: getReflections
   };
 }]);

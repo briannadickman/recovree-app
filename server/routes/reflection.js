@@ -37,13 +37,15 @@ var ReflectionSchema = mongoose.Schema({
 
 var Reflection = mongoose.model('reflection', ReflectionSchema);
 
+///get reflections from database
 router.get('/', function (req, res) {
-  Recovree.find({}, function(err, recovree){
+  Reflection.find({}, function(err, reflections){
     if(err){
       console.log("Mongo Error: ", err);
       res.send(500);
     }
-    res.send(listings);
+    console.log(reflections);
+    res.send(reflections);
   });
 });
 
