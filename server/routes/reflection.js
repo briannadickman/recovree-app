@@ -92,28 +92,6 @@ router.post('/', function(req,res){
 router.put('/', function (req, res) {
   console.log('----PUT---', req.body);
 
-  // var reflection = req.body;
-  // var newReflection = new Reflection({
-  //   drugAlcoholIntake: reflection.drugAlcoholIntake,
-  //   medication: reflection.medication,
-  //   sleep: reflection.sleep,
-  //   dream: reflection.dream,
-  //   exercise: reflection.exercise,
-  //   food: reflection.food,
-  //   spnsrMntrConnect: reflection.spnsrMntrConnect,
-  //   groupMeet: reflection.groupMeet,
-  //   commntyService: reflection.commntyService,
-  //   stressors: reflection.stressors,
-  //   selfishDishonest: reflection.selfishDishonest,
-  //   howSelfshDishnt: reflection.howSelfshDishnt,
-  //   tomorrowGoal: reflection.tomorrowGoal,
-  //   dailyGoal: reflection.dailyGoal,
-  //   gratitude: reflection.gratitude,
-  //   peerSupport: reflection.peerSupport,
-  //   counselor: reflection.counselor,
-  //   // memberID: users.memberID
-  // });
-  //edit an employee
     var reflection = req.body;
     // var foundReflection = new Reflection(){
     //
