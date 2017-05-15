@@ -32,7 +32,7 @@ var ReflectionSchema = mongoose.Schema({
   // reflectionDate: {type: String},
   // reflectionTime: {type: String},
   reflectionDate: {type: Date, default: Date.now},
-  // memberID: {type: Schema.ObjectId, ref: 'Registration'} //references Registration Schema
+  memberID: {type: Number}
 });
 
 var Reflection = mongoose.model('reflection', ReflectionSchema);
@@ -75,7 +75,8 @@ router.post('/', function(req,res){
     dailyGoal: reflection.dailyGoal,
     gratitude: reflection.gratitude,
     peerSupport: reflection.peerSupport,
-    counselor: reflection.counselor
+    counselor: reflection.counselor,
+    memberID: req.user.memberID
   });
 
   console.log('----NEW REFLECTION---', newReflection);
