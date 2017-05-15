@@ -4,7 +4,7 @@
 }
 
 .instructions {
-    background-color: #333333;
+    background-color: #000000;
     color: #DDDDDD;
 }
 
@@ -38,4 +38,56 @@
 
 .btn-danger{
     margin-left: 10px;
+}
+
+#navFooter {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #000000;
+}
+
+#navFooter ul {
+  list-style: none;
+}
+
+#navFooter li {
+  display: inline-flex;
+}
+
+
+/*keith*/
+.login-container{
+  padding: 20px;
+  text-align: center;
+}
+
+.wrapper{
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.grey{
+  background-color: gainsboro;
+}
+
+.selectedTrue{
+  background-color: lightyellow;
+}
+
+button.feeling-button{
+  background-color: gainsboro;
+  border-radius: 5px;
+  display: inline-flex;
+
+  /*font-size: 75px;*/
+  /*min-width: 550px;*/
+}
+
+.md-button{
+  font-size: 10px;
+  min-width: 75px;
 }
