@@ -108,6 +108,18 @@ router.get('/registration', function(req, res){
   });
 });
 
+router.get('/meds/:id', function(req, res){
+  console.log("req.params.id",req.params.id);
+  var id = req.params.id;
+  Registration.findById({'_id': id}, function(err, registrations){
+    if(err){
+      console.log("Mongo Error: ", err);
+      res.send(500);
+    }
+    res.send(registrations);
+  });
+});
+
 router.post("/registration", function(req,res){
   var registration = req.body;
   console.log(req.body);

@@ -6,5 +6,8 @@ myApp.controller('HomeController', ['$scope', '$http', '$location', 'UserService
   };
 
   $scope.sessionObject = UserService.sessionObject;
+  $scope.onHome = UserService.onHome;
+
+  $scope.onHome();
 
 }]);

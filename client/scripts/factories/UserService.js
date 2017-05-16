@@ -1,15 +1,18 @@
 myApp.factory('UserService', ['$http', '$location', function($http, $location){
   console.log('User Service Loaded');
 
-  //created userObject
   var userObject = {};
-
-  // create sessionObject
   var sessionObject = {};
-  getSessionObject(sessionObject);
+  var reflectionObject = {};
 
+  function onHome(){
+    getSessionObject(sessionObject);
+    resetReflectionObject(reflectionObject);
+  }//ends onHome
+
+  //builds sessionObject
   function getSessionObject(sessionObject){
-    sessionObject.numberOfDays = getNumberOfDays();
+    sessionObject.numberOfDays = getStreak();
     sessionObject.reflectionCompleted = getReflectionCompleted();
     sessionObject.takingMeds = getTakingMeds();
     sessionObject.yesterdaysGoal = getYesterdaysGoal();
@@ -17,8 +20,8 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }//ends getSessionObject
 
   //sessionObject related functions
-    function getNumberOfDays(){
-      console.log("inside getNumberOfDays");
+    function getStreak(){
+      console.log("inside getStreak");
       //$http.get which retrieves
 
       //for testing purposes
@@ -35,7 +38,14 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     function getTakingMeds(){
       console.log("inside getTakingMeds");
 
-      ////for testing purposes
+      console.log("userObject", userObject, userObject.userName);
+      var id = userObject.id;
+      console.log("id",id);
+
+      $http.get('/register/meds/' + id).then(function(response) {
+          console.log('GOTTEN REFLECTIONS', response);
+        });
+
       return false;
     }//ends getTakingMeds
 
@@ -48,9 +58,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
 
   //builds reflectionObject
-  var reflectionObject = {};
-  resetReflectionObject(reflectionObject);
-
   function resetReflectionObject(reflectionObject){
     //creates feelings array
     var listOfFeelings = ['angry','anxious','depressed', 'distant', 'discerning',
@@ -120,7 +127,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
             // console.log('User Data: ', userObject.userName, userObject.id);
         } else {
             // user has no session, bounce them back to the login page
-            $location.path("/home");
+            $location.path("/login");
         }
     });
   }
@@ -210,6 +217,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     sessionObject: sessionObject,
     getuser : getuser,
     logout: logout,
+    onHome: onHome,
     reflectionFormNextButton: reflectionFormNextButton,
     returnHomeButton: returnHomeButton,
     getReflections: getReflections
