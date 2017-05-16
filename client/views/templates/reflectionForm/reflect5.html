@@ -3,7 +3,7 @@
   <p layout = 'column'>Did you exercise today?</p>
   <md-slider-container layout = 'row'>
     <span>No Activity</span>
-    <md-slider flex class="md-primary" md-discrete ng-model="reflectionObject.exercise" step="1" min="1" max="5" aria-label="rating">
+    <md-slider aria-label = 'Did you exercise today? 1 = no activity, 5 = high' flex class="md-primary" md-discrete ng-model="reflectionObject.exercise" step="1" min="1" max="5" aria-label="rating">
     </md-slider>
     <span>High Activity</span>
   </md-slider-container>
@@ -13,7 +13,7 @@
   <p layout = 'column'>Rate your food consumption and access for today</p>
   <md-slider-container layout = 'row'>
     <span>Not Healthy</span>
-    <md-slider flex class="md-primary" md-discrete ng-model="reflectionObject.food" step="1" min="1" max="5" aria-label="rating">
+    <md-slider aria-label = 'Rate your food consumption and access for today. 1 = Not Healthy, 5 = Very Healthy'flex class="md-primary" md-discrete ng-model="reflectionObject.food" step="1" min="1" max="5" aria-label="rating">
     </md-slider>
     <span>Very Healthy</span>
   </md-slider-container>
