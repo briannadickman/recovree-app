@@ -204,7 +204,17 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     if (userObject.id) {
       console.log('GET', userObject.id);
       $http.get('/reflection').then(function(response) {
-        console.log('GOTTEN REFLECTIONS', response);
+        console.log('GOTTEN REFLECTIONS', response.data);
+        dailyReflectObject.data = response.data;
+        console.log('object is: ', dailyReflectObject);
+
+        for (var i = 0; i < dailyReflectObject.data.length; i++) {
+          console.log(dailyReflectObject.data[i].reflectionDate);
+         if (dailyReflectObject.data[i].reflectionDate) {
+           dailyReflectObject.data[i].reflectionDate = moment(dailyReflectObject.data[i].reflectionDate).format('L');
+         }
+         console.log(dailyReflectObject.data[i].reflectionDate);
+       }
       });
     }
   }
@@ -219,6 +229,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     onHome: onHome,
     reflectionFormNextButton: reflectionFormNextButton,
     returnHomeButton: returnHomeButton,
-    getReflections: getReflections
+    getReflections: getReflections,
+    dailyReflectObject : dailyReflectObject
   };
 }]);

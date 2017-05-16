@@ -133,7 +133,7 @@ router.post("/registration", function(req,res){
     programPayment : registration.programPayment,
     medication : registration.medication,
     termsAgreement : registration.termsAgreement,
-    // memberID: user.memberID
+    memberID: req.user.memberID
   });
 
   newForm.save(newForm, function(err, savedRegistration){
