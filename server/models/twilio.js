@@ -10,7 +10,7 @@ var authToken = '53cc7f44e80416d531c093f2b934c849';   //need to keep this hidden
 var client = new twilio(accountSid, authToken);
 
 
-var phoneNumbers = ['9522155883', '6123233908', '6122050534'];
+var phoneNumbers = ['6122050534', '9522155883', '6123233908', '6122050534'];
 var twilioNumber = '+17634529159';
 var messageAlerts = [ 'This is a friendly reminder to complete your daily Recovree (insert link)',
                       'Find a moment to reflect and complete your daily Recovree (insert link)',
