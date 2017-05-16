@@ -6,7 +6,7 @@ var cronJob = require('cron').CronJob;
 //TWILIO
 var accountSid = 'AC610eb58033f94d50da2b6a1d43946025';
 var authToken = '53cc7f44e80416d531c093f2b934c849';   //need to keep this hidden and gitignore
-var client = new twilio(accountSid, authToken);
+// var client = new twilio(accountSid, authToken);
 
 var phoneNumbers = ['6122050534', '9522155883', '7014294214', '6513997345'];
 var twilioNumber = '+17634529159';
@@ -33,15 +33,23 @@ var textJob = new cronJob( '* * * * *', function(){ // send SMS message every mi
 
 
 
+
+var LookupsClient = require('twilio').LookupsClient;
+console.log(LookupsClient);
+var lookupsClient = new LookupsClient(accountSid, authToken);
+var phoneNumbers = lookupsClient.phoneNumbers(phoneNumber);
+
+
+
 // var client = new twilio.LookupsClient(accountSid, authToken);
-//not doing anything.....
-function verify(phoneNumber) {
-  return client.phoneNumbers('6122050534').get().then(function (numberData) {
-    return true;
-  }, function (err) {
-    return false;
-  });
-}
+// //not doing anything.....
+// function verify(phoneNumber) {
+//   return client.phoneNumbers('6122050534').get().then(function (numberData) {
+//     return true;
+//   }, function (err) {
+//     return false;
+//   });
+// }
 
 
 
