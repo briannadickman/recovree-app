@@ -10,39 +10,54 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   var userObject = {};
 
   // create sessionObject
-  var sessionObject = {};
-  sessionObject.numberOfDays = getNumberOfDays();
-  sessionObject.reflectionCompleted = getReflectionCompleted();
-  sessionObject.takingMeds = getTakingMeds();
-  sessionObject.yesterdaysGoal = getYesterdaysGoal();
+  var sessionObject = getSessionObject();
 
+  function getSessionObject(){
+    var newSessionObject = {};
+    newSessionObject.numberOfDays = getNumberOfDays();
+    newSessionObject.reflectionCompleted = getReflectionCompleted();
+    newSessionObject.takingMeds = getTakingMeds();
+    newSessionObject.yesterdaysGoal = getYesterdaysGoal();
+
+    return newSessionObject;
+  }//ends getSessionObject
+
+  //sessionObject related functions
     function getNumberOfDays(){
       console.log("inside getNumberOfDays");
-      //$http.get - logic happens on the server side
-      //
+      //$http.get which retrieves
 
+      //for testing purposes
+      return 14;
     }//ends numberOfDays
 
     function getReflectionCompleted(){
       console.log("inside getReflectionCompleted");
 
+      //for testing purposes
+      return false;
     }//ends getReflectionCompleted
 
     function getTakingMeds(){
       console.log("inside getTakingMeds");
 
+      ////for testing purposes
+      return false;
     }//ends getTakingMeds
 
     function getYesterdaysGoal(){
       console.log("inside getYesterdaysGoal");
 
-
+      //for testing purposes
+      return "To meditate for at least 10 minutes";
     }//ends getYesterdaysGoal
 
 
   //builds reflectionObject
-  var reflectionObject = {};
+  var reflectionObject = getReflectionObject();
 
+  function getReflectionObject(){
+    var newReflectionObject = {};
     //creates feelings array
     var listOfFeelings = ['angry','anxious','depressed', 'distant', 'discerning',
       'discouraged', 'excited', 'frustrated', 'grateful', 'guilty', 'happy', 'hopeful',
@@ -55,47 +70,52 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
       'housing','legal issues','no me time','partner','physical pain','school','transportation'];
     var stressorsArray = buildArray(listOfStressors);
 
-    //builds an array of objects based on a list of values
-    function buildArray(list){
-      var newArray = [];
-      for (var i = 0; i < list.length; i++){
-        var newObject = {};
-        newObject.name = list[i];
-        newObject.value = false;
-        newArray.push(newObject);
-      }//ends loop
-      return newArray;
-    }
-
+    //gets date information
     var today = new Date();
     var date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
     // assigns key value pairs
-    reflectionObject.feelings = feelingsArray;
-    reflectionObject.feelingsWhy = '';
-    reflectionObject.drugAlcoholIntake = false;
-    reflectionObject.medication = false;
-    reflectionObject.sleep = 0;
-    reflectionObject.dream = false;
-    reflectionObject.whatDream = '';
-    reflectionObject.exercise = 0;
-    reflectionObject.food = 0;
-    reflectionObject.spnsrMntrConnect = false;
-    reflectionObject.groupMeet = false;
-    reflectionObject.commntyService = false;
-    reflectionObject.stressors = stressorsArray;
-    reflectionObject.selfishDishonest = false;
-    reflectionObject.howSelfshDishnt = '';
-    reflectionObject.tomorrowGoal = '';
-    reflectionObject.dailyGoal = false;
-    reflectionObject.gratitude = '';
-    reflectionObject.peerSupport = false;
-    reflectionObject.counselor = false;
-    reflectionObject.reflectionDate = '';
-    // reflectionObject.reflectionTime = time;
-    reflectionObject.userObject = userObject;
-    reflectionObject.formPosition = 1;
-  //finishes building reflectionObject
+    newReflectionObject.feelings = feelingsArray;
+    newReflectionObject.feelingsWhy = '';
+    newReflectionObject.drugAlcoholIntake = false;
+    newReflectionObject.medication = false;
+    newReflectionObject.sleep = 0;
+    newReflectionObject.dream = false;
+    newReflectionObject.whatDream = '';
+    newReflectionObject.exercise = 0;
+    newReflectionObject.food = 0;
+    newReflectionObject.spnsrMntrConnect = false;
+    newReflectionObject.groupMeet = false;
+    newReflectionObject.commntyService = false;
+    newReflectionObject.stressors = stressorsArray;
+    newReflectionObject.selfishDishonest = false;
+    newReflectionObject.howSelfshDishnt = '';
+    newReflectionObject.tomorrowGoal = '';
+    newReflectionObject.dailyGoal = false;
+    newReflectionObject.gratitude = '';
+    newReflectionObject.peerSupport = false;
+    newReflectionObject.counselor = false;
+    newReflectionObject.reflectionDate = date;
+    newReflectionObject.reflectionTime = time;
+    newReflectionObject.userObject = userObject;
+    newReflectionObject.formPosition = 1;
+  //finishes building newReflectionObject
+
+    return newReflectionObject;
+  }//ends getReflectionObject
+
+  //builds an array of objects based on a list of values
+  function buildArray(list){
+    var newArray = [];
+    for (var i = 0; i < list.length; i++){
+      var newObject = {};
+      newObject.name = list[i];
+      newObject.value = false;
+      newArray.push(newObject);
+    }//ends loop
+    return newArray;
+  }//ends buildArray
 
   function getuser(){
     $http.get('/user').then(function(response) {
@@ -120,9 +140,14 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }
 
   // takes reflectionObject and either posts it or updates it then advances to the next screen
-  function reflectionFormNextButton(reflectionObject){
-    console.log("you clicked the next button");
-    console.log("reflectionObject from NEXT Btn:", reflectionObject);
+  function reflectionFormNextButton(sessionObject, reflectionObject){
+    console.log("sessionObject, reflectionObject", sessionObject, reflectionObject);
+    //check to see if we need to skip meds formPosition
+    var medsForm = 3; //number of the form which asks about medication
+    var takesMeds = sessionObject.takingMeds;
+    if (reflectionObject.formPosition === (medsForm-1) && takesMeds === false){
+      reflectionObject.formPosition += 1; //skips past meds form
+    }
 
     if (reflectionObject.formPosition === 1){
       //makes intial post to database
@@ -135,18 +160,13 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }//ends reflectionFormNextButton
 
   function postToReflectionForm(reflectionObject){
-    console.log("$http.post:", reflectionObject);
-    //this funciton will need to post to the database
-    //posts date, id, and feelings
-    //beacuse of async we will need to .then take the response set the
-    //reflectionObject = response and then pass reflectionObject into the
-    //advance to next function
-    advanceReflectionForm(reflectionObject);
+    // advanceReflectionForm(reflectionObject);
     if (userObject.id) {
       console.log('FEELINGS SAVED TO DB - NEW REFLECTION POSTED');
       $http.post('/reflection', reflectionObject).then(function(response) {
         reflectionObject._id = response.data._id;
         console.log('reflectionObject._id: ', reflectionObject._id);
+        advanceReflectionForm(reflectionObject);
       });
     }
   }//ends postToReflectionForm
@@ -155,37 +175,26 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     console.log("$http.put:", reflectionObject);
     console.log('_id in put request: ', reflectionObject._id);
 
-    //this funciton will need to update the database
-    //find by id and date then update
-    //beacuse of async we will need to .then take the response set the
-    //reflectionObject = response and then pass reflectionObject into the
-    //advance to next function
     $http.put('/reflection', reflectionObject).then(function(response){
       console.log('updateReflectionForm response: ', response.data);
+      advanceReflectionForm(reflectionObject);
     });
-
-    advanceReflectionForm(reflectionObject);
-    if (userObject.id) {
-      console.log('TODAYS REFLECTION UPDATED IN DB');
-      // $http.put('/reflection', reflectionObject).then(function(response) {
-      // });
-    }
   }//ends updateReflectionForm
 
   function advanceReflectionForm(reflectionObject){
     //moves on to the next question
     reflectionObject.formPosition += 1;
-    console.log("formPosition",reflectionObject.formPosition);
     $location.path('/reflection-form/reflect-'+reflectionObject.formPosition);
   }//ends advanceReflectionForm
 
-  function returnHomeButton(){
+  function returnHomeButton(reflectionObject){
     //clears out reflectionObject
     console.log("clearing out this:", reflectionObject);
-
+    reflectionObject = getReflectionObject();
     console.log("should be empty:", reflectionObject);
     //sets sessionObject property completed to true
     console.log("set sessionObject property to true");
+    sessionObject = getSessionObject();
     //moves participant back to home screen
     $location.path('/home');
   }
@@ -213,8 +222,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   return {
     userObject : userObject,
     reflectionObject: reflectionObject,
-    date: date,
-    time: time,
+    sessionObject: sessionObject,
     getuser : getuser,
     logout: logout,
     reflectionFormNextButton: reflectionFormNextButton,

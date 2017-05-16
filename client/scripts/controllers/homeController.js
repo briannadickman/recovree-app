@@ -5,4 +5,6 @@ myApp.controller('HomeController', ['$scope', '$http', '$location', 'UserService
     $location.path('/reflection-form/reflect-1');
   };
 
+  $scope.sessionObject = UserService.sessionObject;
+
 }]);

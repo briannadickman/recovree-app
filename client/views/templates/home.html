@@ -1,13 +1,23 @@
 <div class = 'wrapper'>
   <p>This is Home view</p>
+  <a href='#/admin-export'>Admin View</a>
+  <br>
+  <span>Number of Days: {{sessionObject.numberOfDays}}</span>
+  <br>
+  <span>Fancy Dynamic Image Goes Here</span>
+  <br>
+  <div>
+    <md-button class = 'md-raised' ng-click = 'launchReflection()'>Reflect</md-button>
+  </div>
 
 <a href='#/admin-export'>Admin View</a>
 <br>
 <a href="#reflection-form/reflect-1">Reflect</a>
 
   <md-button class = 'md-raised' ng-click = 'launchReflection()'>Reflect</md-button>
-</div>
 
+</div>
+<!-- end of wrapper -->
 
 
 <footer class='navMenu' ng-include="'/views/partials/nav.html'"></footer>
