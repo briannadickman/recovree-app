@@ -1,50 +1,71 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var json2csv = require('json2csv');
+var fs = require('fs');
 var Users = require('../models/user');
+var Reflection = require('../models/reflection');
 var path = require('path');
 
 var mongoose = require("mongoose");
 
 var RecovreeSchema = mongoose.Schema({});
 
-var ReflectionSchema = mongoose.Schema({
-  feelings: {type: Array},
-  feelingsWhy: {type: String},
-  drugAlcoholIntake: {type: Boolean},
-  medication: {type: Boolean},
-  sleep: {type: Number},
-  dream: {type: Boolean},
-  whatDream: {type: String},
-  exercise: {type: Number},
-  food: {type: Number},
-  spnsrMntrConnect: {type: Boolean},
-  groupMeet: {type: Number},
-  commntyService: {type: Boolean},
-  stressors: {type: Array},
-  selfishDishonest: {type: Boolean},
-  howSelfshDishnt: {type: String},
-  tomorrowGoal: {type: String},
-  dailyGoal: {type: Boolean},
-  gratitude: {type: String},
-  peerSupport: {type: Boolean},
-  counselor: {type: Boolean},
-  // reflectionDate: {type: String},
-  // reflectionTime: {type: String},
-  reflectionDate: {type: Date, default: Date.now},
-  // memberID: {type: Schema.ObjectId, ref: 'Registration'} //references Registration Schema
-});
-
-var Reflection = mongoose.model('reflection', ReflectionSchema);
+// var ReflectionSchema = mongoose.Schema({
+//   feelings: {type: Array},
+//   feelingsWhy: {type: String},
+//   drugAlcoholIntake: {type: Boolean},
+//   medication: {type: Boolean},
+//   sleep: {type: Number},
+//   dream: {type: Boolean},
+//   whatDream: {type: String},
+//   exercise: {type: Number},
+//   food: {type: Number},
+//   spnsrMntrConnect: {type: Boolean},
+//   groupMeet: {type: Number},
+//   commntyService: {type: Boolean},
+//   stressors: {type: Array},
+//   selfishDishonest: {type: Boolean},
+//   howSelfshDishnt: {type: String},
+//   tomorrowGoal: {type: String},
+//   dailyGoal: {type: Boolean},
+//   gratitude: {type: String},
+//   peerSupport: {type: Boolean},
+//   counselor: {type: Boolean},
+//   // reflectionDate: {type: String},
+//   // reflectionTime: {type: String},
+//   reflectionDate: {type: Date, default: Date.now},
+//   // memberID: {type: Schema.ObjectId, ref: 'Registration'} //references Registration Schema
+// });
+//
+// var Reflection = mongoose.model('reflection', ReflectionSchema);
+// module.exports = Reflection;
 
 ///get reflections from database
 router.get('/', function (req, res) {
-  Reflection.find({}, function(err, reflections){
+  Reflection.find().lean().exec(function(err, reflections){
     if(err){
       console.log("Mongo Error: ", err);
       res.send(500);
     }
-    console.log(reflections);
+    // var reflectionsJSON = JSON.stringify(reflections);
+    // console.log('reflectionsJSON: ', reflectionsJSON);
+    // var fields = ['feelings.name', 'feelings.value',
+    //               'feelingsWhy', 'drugAlcoholIntake', 'medication',
+    //               'sleep', 'dream', 'whatDream', 'exercise', 'food', 'spnsrMntrConnect',
+    //               'groupMeet', 'commntyService', 'stressors.name', 'stressors.value',
+    //               'selfishDishonest', 'howSelfshDishnt', 'tomorrowGoal', 'dailyGoal', 'gratitude',
+    //               'peerSupport', 'counselor'];
+    // var data = reflectionsJSON;
+    // var csv = json2csv({data : data, fields: fields, unwindPath: [reflections.feelings, reflections.stressors]});
+    // fs.writeFile('recoveree-reflections.csv', csv, function(err){
+    //   if (err){
+    //     console.log('csv save error: ', err);
+    //   }
+    //   console.log('csv saved: ', csv);
+    // });
+
+    // console.log(reflections, reflectionsJSON);
     res.send(reflections);
   });
 });

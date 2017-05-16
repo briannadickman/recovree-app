@@ -13,6 +13,7 @@ var index = require('./routes/index');
 var user = require('./routes/user');
 var register = require('./routes/register');
 var reflection = require('./routes/reflection');
+var csvExport = require('./routes/csvExport');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -35,6 +36,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
+app.use('/csvExport', csvExport);
 app.use('/reflection', reflection);
 app.use('/register', register);
 app.use('/user', user);
