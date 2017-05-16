@@ -4,7 +4,6 @@ var passport = require('passport');
 var nodemailer = require('nodemailer');
 var Users = require('../models/user');
 var path = require('path');
-var gv = require('../variables/variables');
 
 var mongoose = require("mongoose");
 
@@ -36,6 +35,7 @@ var randomIdGenerator = function(){
   });
 return newId;
 };
+
 
 
 // Handles POST request with new user data
@@ -97,6 +97,17 @@ var RegistrationSchema = mongoose.Schema({
 
 var Registration = mongoose.model('registration', RegistrationSchema);
 
+////get registration information from database
+router.get('/registration', function(req, res){
+  Registration.find({}, function(err, registrations){
+    if(err){
+      console.log("Mongo Error: ", err);
+      res.send(500);
+    }
+    res.send(registrations);
+  });
+});
+
 router.post("/registration", function(req,res){
   var registration = req.body;
   console.log(req.body);
@@ -110,7 +121,7 @@ router.post("/registration", function(req,res){
     programPayment : registration.programPayment,
     medication : registration.medication,
     termsAgreement : registration.termsAgreement,
-    // memberID: user.memberID
+    memberID: req.user.memberID
   });
 
   newForm.save(newForm, function(err, savedRegistration){

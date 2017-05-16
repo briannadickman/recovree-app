@@ -1,6 +1,11 @@
 myApp.factory('UserService', ['$http', '$location', function($http, $location){
   console.log('User Service Loaded');
 
+  // created dailyReflectObject
+  var dailyReflectObject = {
+    data: ''
+  };
+
   //created userObject
   var userObject = {};
 
@@ -98,6 +103,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
             // user has a curret session on the server
             userObject.userName = response.data.username;
             userObject.id = response.data.id;
+            userObject.memberID = response.data.memberID;
             // console.log('User Data: ', userObject.userName, userObject.id);
         } else {
             // user has no session, bounce them back to the login page
@@ -184,6 +190,25 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     $location.path('/home');
   }
 
+  function getReflections() {
+    if (userObject.id) {
+      console.log('GET', userObject.id);
+      $http.get('/reflection').then(function(response) {
+        console.log('GOTTEN REFLECTIONS', response.data);
+        dailyReflectObject.data = response.data;
+        console.log('object is: ', dailyReflectObject);
+
+        for (var i = 0; i < dailyReflectObject.data.length; i++) {
+          console.log(dailyReflectObject.data[i].reflectionDate);
+         if (dailyReflectObject.data[i].reflectionDate) {
+           dailyReflectObject.data[i].reflectionDate = moment(dailyReflectObject.data[i].reflectionDate).format('L');
+         }
+         console.log(dailyReflectObject.data[i].reflectionDate);
+       }
+      });
+    }
+  }
+
   //return out of UserService Factory
   return {
     userObject : userObject,
@@ -193,7 +218,8 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     getuser : getuser,
     logout: logout,
     reflectionFormNextButton: reflectionFormNextButton,
-    returnHomeButton: returnHomeButton
-
+    returnHomeButton: returnHomeButton,
+    getReflections: getReflections,
+    dailyReflectObject : dailyReflectObject
   };
 }]);
