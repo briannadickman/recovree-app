@@ -76,7 +76,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
         }
         console.log($scope.years);
         return $scope.years;
-      }
+      };
 
      // Generate Drugs of Choice Dropdown Options
      var comma = ',';

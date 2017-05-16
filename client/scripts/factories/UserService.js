@@ -5,6 +5,22 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   var sessionObject = {};
   var reflectionObject = {};
 
+  function getuser(){
+    $http.get('/user').then(function(response) {
+        if(response.data.id) {
+            // user has a curret session on the server
+            userObject.userName = response.data.username;
+            userObject.id = response.data.id;
+            userObject.memberID = response.data.memberID;
+            // console.log('User Data: ', userObject.userName, userObject.id);
+            console.log("userObject inside getUser after get", userObject);
+        } else {
+            // user has no session, bounce them back to the login page
+            $location.path("/login");
+        }
+    });
+  }
+
   function onHome(){
     getSessionObject(sessionObject);
     resetReflectionObject(reflectionObject);
@@ -37,8 +53,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
     function getTakingMeds(){
       console.log("inside getTakingMeds");
-
-      console.log("userObject", userObject, userObject.userName);
+      console.log("userObject", userObject, userObject.id);
       var id = userObject.id;
       console.log("id",id);
 
@@ -117,20 +132,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     return newArray;
   }//ends buildArray
 
-  function getuser(){
-    $http.get('/user').then(function(response) {
-        if(response.data.id) {
-            // user has a curret session on the server
-            userObject.userName = response.data.username;
-            userObject.id = response.data.id;
-            userObject.memberID = response.data.memberID;
-            // console.log('User Data: ', userObject.userName, userObject.id);
-        } else {
-            // user has no session, bounce them back to the login page
-            $location.path("/login");
-        }
-    });
-  }
+
 
    function logout() {
       $http.get('/user/logout').then(function(response) {
@@ -190,13 +192,10 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   function returnHomeButton(sessionObject,reflectionObject){
     //clears out reflectionObject
     resetReflectionObject(reflectionObject);
-
     //updates sessionObject
     getSessionObject(sessionObject);
-
       //for testing purposes remove once getSessionObject actually does something
       sessionObject.reflectionCompleted = true;
-
     //moves participant back to home screen
     $location.path('/home');
   }
