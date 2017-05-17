@@ -71,6 +71,12 @@ module.exports = function(grunt){
               'angular-animate.min.js',
               'angular-animate.min.js.map'],
         dest: 'server/public/vendors/angular-animate/'
+      },
+      chart: {
+        expand: true,
+        cwd: 'node_modules/chart.js/dist/',
+        src: ['Chart.min.js'],
+        dest: 'server/public/vendors/chartJS/'
       }
     },
     watch: {

@@ -15,9 +15,8 @@
 	      <script type="text/javascript" src="vendors/angular-animate/angular-animate.js"></script>
 	      <script type="text/javascript" src="vendors/angular-material/angular-material.js"></script>
 
-        <script type="text/javascript" src="vendors/Chart.min.js"></script>
+        <script type="text/javascript" src="vendors/chartJS/Chart.min.js"></script>
 
-        <script type="text/javascript" src="scripts/client.min.js"></script>
     </head>
 
     <body ng-app="myApp">
@@ -28,6 +27,9 @@
       <md-content flex layout="column" flex style="overflow: scroll;" id='main-content'>
         <main ng-view></main>
       </md-content>
+
+      <!--  Needs to source in last for chart to work-->
+      <script type="text/javascript" src="scripts/client.min.js"></script>
 
     </body>
     <!-- <footer class='navMenu' ng-include="'/views/partials/nav.html'"></footer> -->
