@@ -4,6 +4,10 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   var userObject = {};
   var sessionObject = {};
   var reflectionObject = {};
+  // created dailyReflectObject
+  var dailyReflectObject = {
+    data: ''
+  };
 
   function getuser(){
     $http.get('/user').then(function(response) {
@@ -14,6 +18,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
             userObject.memberID = response.data.memberID;
             // console.log('User Data: ', userObject.userName, userObject.id);
             console.log("userObject inside getUser after get", userObject);
+            onHome();
         } else {
             // user has no session, bounce them back to the login page
             $location.path("/login");
