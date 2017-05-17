@@ -64,6 +64,10 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
         function getStreak(){
           console.log("inside getStreak");
           //$http.get which retrieves
+          $http.get('/register/streak').then(function(response){
+            console.log("I've returned from the other side, and I have this:");
+            console.log("response",response);
+          });
 
           //for testing purposes
           return 14;
@@ -220,15 +224,16 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
       $http.get('/reflection').then(function(response) {
         console.log('GOTTEN REFLECTIONS', response.data);
         dailyReflectObject.data = response.data;
-        console.log('object is: ', dailyReflectObject);
+        console.log('dailyReflectObject is: ', dailyReflectObject);
+        // console.log('dayArray is: ', dailyReflectObject.data.length);
 
-        for (var i = 0; i < dailyReflectObject.data.length; i++) {
-          console.log(dailyReflectObject.data[i].reflectionDate);
-         if (dailyReflectObject.data[i].reflectionDate) {
-           dailyReflectObject.data[i].reflectionDate = moment(dailyReflectObject.data[i].reflectionDate).format('L');
-         }
-         console.log(dailyReflectObject.data[i].reflectionDate);
-       }
+      //   for (var i = 0; i < dailyReflectObject.data.length; i++) {
+      //     console.log(dailyReflectObject.data[i].reflectionDate);
+      //    if (dailyReflectObject.data[i].reflectionDate) {
+      //      dailyReflectObject.data[i].reflectionDate = moment(dailyReflectObject.data[i].reflectionDate).format('L');
+      //    }
+      //    console.log(dailyReflectObject.data[i].reflectionDate);
+      //  }
       });
     }
   }

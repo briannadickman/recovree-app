@@ -36,6 +36,9 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
         $http.post('/register', $scope.user).then(function(response) {
           console.log('success saving member');
           console.log('response',response);
+          console.log('response.data.memberID', response.data.memberID);
+          $scope.registration.memberID = response.data.memberID;
+          $scope.userDemographics($scope.registration);
           $location.path('/login');
         },
         function(response) {
@@ -50,7 +53,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
     $scope.userDemographics = function(){
       console.log('sending demographics', $scope.registration);
       $http.post('/register/registration', $scope.registration).then(function(response) {
-        console.log('success saving demographic info');
+        console.log('success saving demographic info', response);
         $location.path('/login');
       });
     };
