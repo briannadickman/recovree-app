@@ -16,12 +16,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
             userObject.userName = response.data.username;
             userObject.id = response.data.id;
             userObject.memberID = response.data.memberID;
-<<<<<<< HEAD
-=======
-            // console.log('User Data: ', userObject.userName, userObject.id);
-            console.log("userObject inside getUser after get", userObject);
-            onHome();
->>>>>>> 9924b9b801a09c80d8a2e30f9c3b119dd6fc7432
         } else {
             // user has no session, bounce them back to the login page
             $location.path("/login");
