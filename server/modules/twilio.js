@@ -20,8 +20,6 @@ var randomIndex = Math.floor(Math.random() * messageAlerts.length);
 var randomMessage = messageAlerts[randomIndex];
 console.log(randomMessage);
 
-//twilio requires phone numbers to be verified before sending a message
-
 
 var textJob = new cronJob( '* * * * *', function(){ // send SMS message every minute
   // for (var i = 0; i < phoneNumbers.length; i++) {
@@ -31,14 +29,14 @@ var textJob = new cronJob( '* * * * *', function(){ // send SMS message every mi
   console.log('CRON PORTION OF CODE');
 },  null, true );
 
-
+//able to send schedule text alerts with twilio and cron, however need to verify numbers before sending text
+//twilio requires phone numbers to be verified before sending a message - unable to do so in node.js because lookupsClient is undefined
 
 
 // var LookupsClient = require('twilio').LookupsClient;
 // console.log(LookupsClient);
 // var lookupsClient = new LookupsClient(accountSid, authToken);
 // var phoneNumbers = lookupsClient.phoneNumbers(phoneNumber);
-
 
 
 // var client = new twilio.LookupsClient(accountSid, authToken);
