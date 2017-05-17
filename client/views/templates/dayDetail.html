@@ -1,3 +1,66 @@
-<p>This is DayDetail view</p>
+<div ng-repeat='dailyData in dailyReflectObject.data'>
 
+<div layout='column' layout-align='center center'>
+<p class='md-headline'>Daily Summary for {{dailyData.reflectionDate | date:'MM/dd/yyyy'}}</p>
+
+    <p class='md-title'>Feeling:</p>
+      <p class='md-body-1'>
+        <span ng-repeat='feeling in dailyData.feelings | filter: { value: true }'>{{feeling.name}} </span>
+      </p>
+
+    <p class='md-title'>You felt this way because:</p>
+    <p class='md-body-1'>{{dailyData.feelingsWhy}}</p>
+    <hr />
+    <p class='md-title'>Last night you slept:</p>
+    <p class='md-body-1'>{{dailyData.sleep}}</p>
+    <hr />
+    <p class='md-title'>Your exercise level was:</p>
+    <p class='md-body-1'>{{dailyData.exercise}}</p>
+    <hr />
+    <p class='md-title'>Your food consumption was:</p>
+    <p class='md-body-1'>{{dailyData.food}}</p>
+    <hr />
+    <p class='md-title'>Used drugs or alcohol:</p>
+    <p class='md-body-1'>{{dailyData.drugAlcoholIntake}}</p>
+    <hr />
+    <p class='md-title'>Took your medication:</p>
+    <p class='md-body-1'>{{dailyData.medication}}</p>
+    <hr />
+    <p class='md-title'>Had a using dream last night:</p>
+    <p class='md-body-1'>{{dailyData.dream}}</p>
+    <hr />
+    <p class='md-title'>Your dream was:</p>
+    <p class='md-body-1'>{{dailyData.whatDream}}</p>
+    <hr />
+    <p class='md-title'>Connected with a sponsor/mentor:</p>
+    <p class='md-body-1'>{{dailyData.spnsrMntrConnect}}</p>
+    <hr />
+    <p class='md-title'>Number of group meetings you attended:</p>
+    <p class='md-body-1'>{{dailyData.groupMeet}}</p>
+    <hr />
+    <p class='md-title'>Engaged in service or community work:</p>
+    <p class='md-body-1'>{{dailyData.commntyService}}</p>
+    <hr />
+    <p class='md-title'>Your stressors today:</p>
+    <p class='md-body-1'>
+      <span ng-repeat='stressor in dailyData.stressors | filter: { value: true }'>{{stressor.name}} </span>
+    </p>
+    <hr />
+    <p class='md-title'>Selfish or dishonest today:</p>
+    <p class='md-body-1'>{{dailyData.selfishDishonest}}</p>
+    <hr />
+    <p class='md-title'>How I was selfish or dishonest:</p>
+    <p class='md-body-1'>{{dailyData.howSelfshDishnt}}</p>
+    <hr />
+    <p class='md-title'>Your daily goal was:</p>
+    <p class='md-body-1'>{{dailyData.tomorrowGoal}}</p>
+    <hr />
+    <p class='md-title'>You completed yesterday's goal:</p>
+    <p class='md-body-1'>{{dailyData.dailyGoal}}</p>
+    <hr />
+    <p class='md-title'>You were thankful for:</p>
+    <p class='md-body-1'>{{dailyData.gratitude}}</p>
+    <hr />
+  </div>
+</div>
 <footer class='navMenu' ng-include="'/views/partials/nav.html'"></footer>

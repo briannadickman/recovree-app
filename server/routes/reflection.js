@@ -30,7 +30,7 @@ var ReflectionSchema = mongoose.Schema({
   peerSupport: {type: Boolean},
   counselor: {type: Boolean},
   // reflectionDate: {type: String},
-  // reflectionTime: {type: String},
+  reflectionTime: {type: String},
   reflectionDate: {type: Date, default: Date.now},
   memberID: {type: Number}
 });
@@ -51,6 +51,7 @@ router.get('/', function (req, res) {
 
 
 router.post('/', function(req,res){
+  console.log(req.user.memberID);
   var reflection = req.body;
   var newReflection = new Reflection({
     id : req.user._id,

@@ -5,12 +5,13 @@
     <textarea ng-model="reflectionObject.tomorrowGoal" md-maxlength="150" rows="5" md-select-on-focus></textarea>
   </md-input-container>
 
-  <p>Display daily goal from yesterday here.</p>
+  <p>Yesterdays Goal: {{sessionObject.yesterdaysGoal}}</p>
+  <p>Need to ng-if this stuff</p>
 
   <p>Did you complete your daily goal from yesterday?</p>
   <div layout = 'row' layout-align = 'center'>
     <span>No</span>
-    <md-switch class = 'md-primary' ng-model="reflectionObject.dailyGoal">
+    <md-switch aria-label = 'Did you complete your daily goal from yesterday?' class = 'md-primary' ng-model="reflectionObject.dailyGoal">
     </md-switch>
     <span>Yes</span>
   </div>
@@ -18,6 +19,6 @@
 
   <!-- {{ reflectionObject }} -->
   <br>
-  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
+  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
 </div>
 <!-- ends wrapper -->

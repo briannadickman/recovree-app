@@ -3,13 +3,13 @@
   <p>Did you connect with your sponsor/mentor today</p>
   <div layout = 'row' layout-align = 'center'>
     <span>No</span>
-    <md-switch class = 'md-primary' ng-model="reflectionObject.spnsrMntrConnect">
+    <md-switch aria-label = 'Did you connect with your sponsor today?' class = 'md-primary' ng-model="reflectionObject.spnsrMntrConnect">
     </md-switch>
     <span>Yes</span>
   </div>
 
   <p>How many group meetings did you attend today?</p>
-  <md-input-container layout = 'row' layout-align = 'center'>
+  <md-input-container aria-label = 'How many group meetings did you attend today?' layout = 'row' layout-align = 'center'>
     <label>Number of Meetings</label>
     <md-select ng-model="reflectionObject.groupMeet">
         <md-option ng-value = "0">0</md-option>
@@ -24,13 +24,13 @@
   <p>Did you engage in any service or community work today?</p>
   <div layout = 'row' layout-align = 'center'>
     <span>No</span>
-    <md-switch class = 'md-primary' ng-model="reflectionObject.commntyService">
+    <md-switch  aria-label = 'Did you engage in any service or community work today?' class = 'md-primary' ng-model="reflectionObject.commntyService">
     </md-switch>
     <span>Yes</span>
   </div>
 
   <!-- {{ reflectionObject }} -->
   <br>
-  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
+  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
 </div>
 <!-- ends wrapper -->
