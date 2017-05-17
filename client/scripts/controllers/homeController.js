@@ -8,10 +8,10 @@ myApp.controller('HomeController', ['$scope', '$http', '$location', 'UserService
 
   var userObject = UserService.userObject;
   var onHome = UserService.onHome;
-
-  console.log("userObject", userObject);
-  console.log("userObject.id", userObject.id);
-  console.log("userObject.memberID",userObject.memberID);
-  console.log("userObject.userName",userObject.userName);
-  onHome();
+  //
+  // console.log("userObject", userObject);
+  // console.log("userObject.id", userObject.id);
+  // console.log("userObject.memberID",userObject.memberID);
+  // console.log("userObject.userName",userObject.userName);
+  // onHome();
 }]);
