@@ -35,6 +35,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
         console.log('sending to server...', $scope.user);
         $http.post('/register', $scope.user).then(function(response) {
           console.log('success saving member');
+          console.log('response',response);
           $location.path('/login');
         },
         function(response) {
