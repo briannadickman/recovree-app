@@ -6,8 +6,13 @@ myApp.controller('HomeController', ['$scope', '$http', '$location', 'UserService
   };
   $scope.sessionObject = UserService.sessionObject;
 
+<<<<<<< HEAD
   var userObject = UserService.userObject;
   var onHome = UserService.onHome;
+=======
+  // var userObject = UserService.userObject;
+  // var onHome = UserService.onHome;
+>>>>>>> 9924b9b801a09c80d8a2e30f9c3b119dd6fc7432
   //
   // console.log("userObject", userObject);
   // console.log("userObject.id", userObject.id);
