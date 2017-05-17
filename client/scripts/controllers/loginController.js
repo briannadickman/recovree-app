@@ -4,6 +4,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
       password: ''
     };
     $scope.message = '';
+    onHome = UserService.onHome;
 
     $scope.login = function() {
       if($scope.user.username === '' || $scope.user.password === '') {
@@ -13,6 +14,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
         $http.post('/', $scope.user).then(function(response) {
           if(response.data.username) {
             console.log('success: ', response.data);
+            onHome();
             // location works with SPA (ng-route)
             $location.path('/home');
           } else {
@@ -79,13 +81,11 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
       };
 
      // Generate Drugs of Choice Dropdown Options
-     var comma = ',';
      $scope.drugs = ('Alcohol,Amphetamine,Benzodiazepines,Cocaine,Crack,Ecstasy,Heroin,Inhalants,Marijuana-Hashish,Methamphetamine,Opiates,PCP,Synthetics,Other').split(comma).map(function(drug) {
          return {drug: drug};
       });
 
       // Generate Program Payment Options
-      var comma = ',';
       $scope.payments = ('Personal Financing,Insurance,Public Assistance,Treatment Program Scholarships').split(comma).map(function(payment) {
           return {payment: payment};
        });
