@@ -7,6 +7,7 @@ var db = require("./models/db");
 
 var passport = require('./strategies/userStrategy');
 var session = require('express-session');
+var twilio = require('./models/twilio.js');
 
 // Route includes
 var index = require('./routes/index');
