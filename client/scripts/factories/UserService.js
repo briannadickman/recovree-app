@@ -1,30 +1,48 @@
 myApp.factory('UserService', ['$http', '$location', function($http, $location){
   console.log('User Service Loaded');
 
+  var userObject = {};
+  var sessionObject = {};
+  var reflectionObject = {};
   // created dailyReflectObject
   var dailyReflectObject = {
     data: ''
   };
 
-  //created userObject
-  var userObject = {};
+  function getuser(){
+    $http.get('/user').then(function(response) {
+        if(response.data.id) {
+            // user has a curret session on the server
+            userObject.userName = response.data.username;
+            userObject.id = response.data.id;
+            userObject.memberID = response.data.memberID;
+            // console.log('User Data: ', userObject.userName, userObject.id);
+            console.log("userObject inside getUser after get", userObject);
+            onHome();
+        } else {
+            // user has no session, bounce them back to the login page
+            $location.path("/login");
+        }
+    });
+  }
 
-  // create sessionObject
-  var sessionObject = getSessionObject();
+  function onHome(){
+    getSessionObject(sessionObject);
+    resetReflectionObject(reflectionObject);
+  }//ends onHome
 
-  function getSessionObject(){
-    var newSessionObject = {};
-    newSessionObject.numberOfDays = getNumberOfDays();
-    newSessionObject.reflectionCompleted = getReflectionCompleted();
-    newSessionObject.takingMeds = getTakingMeds();
-    newSessionObject.yesterdaysGoal = getYesterdaysGoal();
-
-    return newSessionObject;
+  //builds sessionObject
+  function getSessionObject(sessionObject){
+    sessionObject.numberOfDays = getStreak();
+    sessionObject.reflectionCompleted = getReflectionCompleted();
+    sessionObject.takingMeds = getTakingMeds();
+    sessionObject.yesterdaysGoal = getYesterdaysGoal();
+    sessionObject.todaysDate = Date.now();
   }//ends getSessionObject
 
   //sessionObject related functions
-    function getNumberOfDays(){
-      console.log("inside getNumberOfDays");
+    function getStreak(){
+      console.log("inside getStreak");
       //$http.get which retrieves
 
       //for testing purposes
@@ -40,8 +58,14 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
     function getTakingMeds(){
       console.log("inside getTakingMeds");
+      console.log("userObject", userObject, userObject.id);
+      var id = userObject.id;
+      console.log("id",id);
 
-      ////for testing purposes
+      $http.get('/register/meds/' + id).then(function(response) {
+          console.log('GOTTEN REFLECTIONS', response);
+        });
+
       return false;
     }//ends getTakingMeds
 
@@ -54,10 +78,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
 
   //builds reflectionObject
-  var reflectionObject = getReflectionObject();
-
-  function getReflectionObject(){
-    var newReflectionObject = {};
+  function resetReflectionObject(reflectionObject){
     //creates feelings array
     var listOfFeelings = ['angry','anxious','depressed', 'distant', 'discerning',
       'discouraged', 'excited', 'frustrated', 'grateful', 'guilty', 'happy', 'hopeful',
@@ -76,34 +97,33 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
     // assigns key value pairs
-    newReflectionObject.feelings = feelingsArray;
-    newReflectionObject.feelingsWhy = '';
-    newReflectionObject.drugAlcoholIntake = false;
-    newReflectionObject.medication = false;
-    newReflectionObject.sleep = 0;
-    newReflectionObject.dream = false;
-    newReflectionObject.whatDream = '';
-    newReflectionObject.exercise = 0;
-    newReflectionObject.food = 0;
-    newReflectionObject.spnsrMntrConnect = false;
-    newReflectionObject.groupMeet = false;
-    newReflectionObject.commntyService = false;
-    newReflectionObject.stressors = stressorsArray;
-    newReflectionObject.selfishDishonest = false;
-    newReflectionObject.howSelfshDishnt = '';
-    newReflectionObject.tomorrowGoal = '';
-    newReflectionObject.dailyGoal = false;
-    newReflectionObject.gratitude = '';
-    newReflectionObject.peerSupport = false;
-    newReflectionObject.counselor = false;
-    newReflectionObject.reflectionDate = date;
-    newReflectionObject.reflectionTime = time;
-    newReflectionObject.userObject = userObject;
-    newReflectionObject.formPosition = 1;
-  //finishes building newReflectionObject
+    reflectionObject.feelings = feelingsArray;
+    reflectionObject.feelingsWhy = '';
+    reflectionObject.drugAlcoholIntake = false;
+    reflectionObject.medication = false;
+    reflectionObject.sleep = 0;
+    reflectionObject.dream = false;
+    reflectionObject.whatDream = '';
+    reflectionObject.exercise = 0;
+    reflectionObject.food = 0;
+    reflectionObject.spnsrMntrConnect = false;
+    reflectionObject.groupMeet = false;
+    reflectionObject.commntyService = false;
+    reflectionObject.stressors = stressorsArray;
+    reflectionObject.selfishDishonest = false;
+    reflectionObject.howSelfshDishnt = '';
+    reflectionObject.tomorrowGoal = '';
+    reflectionObject.dailyGoal = false;
+    reflectionObject.gratitude = '';
+    reflectionObject.peerSupport = false;
+    reflectionObject.counselor = false;
+    reflectionObject.reflectionDate = date;
+    reflectionObject.reflectionTime = time;
+    reflectionObject.userObject = userObject;
+    reflectionObject.formPosition = 1;
+  //finishes building reflectionObject
 
-    return newReflectionObject;
-  }//ends getReflectionObject
+  }//ends resetReflectionObject
 
   //builds an array of objects based on a list of values
   function buildArray(list){
@@ -117,20 +137,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     return newArray;
   }//ends buildArray
 
-  function getuser(){
-    $http.get('/user').then(function(response) {
-        if(response.data.id) {
-            // user has a curret session on the server
-            userObject.userName = response.data.username;
-            userObject.id = response.data.id;
-            userObject.memberID = response.data.memberID;
-            // console.log('User Data: ', userObject.userName, userObject.id);
-        } else {
-            // user has no session, bounce them back to the login page
-            $location.path("/home");
-        }
-    });
-  }
+
 
    function logout() {
       $http.get('/user/logout').then(function(response) {
@@ -187,14 +194,13 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     $location.path('/reflection-form/reflect-'+reflectionObject.formPosition);
   }//ends advanceReflectionForm
 
-  function returnHomeButton(reflectionObject){
+  function returnHomeButton(sessionObject,reflectionObject){
     //clears out reflectionObject
-    console.log("clearing out this:", reflectionObject);
-    reflectionObject = getReflectionObject();
-    console.log("should be empty:", reflectionObject);
-    //sets sessionObject property completed to true
-    console.log("set sessionObject property to true");
-    sessionObject = getSessionObject();
+    resetReflectionObject(reflectionObject);
+    //updates sessionObject
+    getSessionObject(sessionObject);
+      //for testing purposes remove once getSessionObject actually does something
+      sessionObject.reflectionCompleted = true;
     //moves participant back to home screen
     $location.path('/home');
   }
@@ -225,6 +231,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     sessionObject: sessionObject,
     getuser : getuser,
     logout: logout,
+    onHome: onHome,
     reflectionFormNextButton: reflectionFormNextButton,
     returnHomeButton: returnHomeButton,
     getReflections: getReflections,

@@ -3,7 +3,7 @@
 
   <md-slider-container>
     <span>Terrible</span>
-    <md-slider flex class="md-primary" md-discrete ng-model="reflectionObject.sleep" step="1" min="1" max="5" aria-label="rating">
+    <md-slider aria-label = 'How did you sleep last night? 1 = terrible 5 = great' flex class="md-primary" md-discrete ng-model="reflectionObject.sleep" step="1" min="1" max="5" aria-label="rating">
     </md-slider>
     <span>Great</span>
   </md-slider-container>
@@ -12,7 +12,7 @@
   <p>Did you have a using dream?</p>
   <div layout = 'row' layout-align = 'center'>
     <span>No</span>
-    <md-switch ng-model="reflectionObject.dream">
+    <md-switch aria-label = 'Did you have a using dream"' ng-model="reflectionObject.dream">
     </md-switch>
     <span>Yes</span>
   </div>
