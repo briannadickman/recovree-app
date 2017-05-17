@@ -24,6 +24,19 @@ router.get('/', function (req, res) {
   });
 });
 
+router.get('/streak/:memberID', function(req, res){
+  console.log('memberID in streak: ', memberID);
+  Reflection.findOne({memberID: memberID})
+    .sort({date: -1})
+    .exec(function(err, lastReflection){
+      if (err){
+        console.log('error in streak determination: ', err);
+        res.sendStatus(500);
+      }
+      console.log('lastReflection: ', lastReflection);
+    });
+});
+
 
 router.post('/', function(req,res){
   console.log(req.user.memberID);
