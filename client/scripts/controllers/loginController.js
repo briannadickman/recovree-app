@@ -4,6 +4,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
       password: ''
     };
     $scope.message = '';
+    var userObject = UserService.userObject;
 
 
     $scope.login = function() {
@@ -14,7 +15,9 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
         $http.post('/', $scope.user).then(function(response) {
           if(response.data.username) {
             console.log('success: ', response.data);
-
+            userObject.userName = response.data.username;
+            userObject.id = response.data.id;
+            userObject.memberID = response.data.memberID;
             // location works with SPA (ng-route)
             $location.path('/home');
           } else {

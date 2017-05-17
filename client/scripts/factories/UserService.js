@@ -27,12 +27,14 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   function logout() {
       $http.get('/user/logout').then(function(response) {
         console.log('logged out');
-        $location.path("/home");
+        $location.path("/login");
       });
   }//ends logout
 
   //onHome
   function onHome(){
+            // getSessionObject(sessionObject);
+            // getReflectionObject(reflectionObject);
     $http.get('/user').then(function(response) {
         if(response.data.id) {
             // user has a curret session on the server
