@@ -4,7 +4,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
       password: ''
     };
     $scope.message = '';
-    onHome = UserService.onHome;
+
 
     $scope.login = function() {
       if($scope.user.username === '' || $scope.user.password === '') {
@@ -14,7 +14,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
         $http.post('/', $scope.user).then(function(response) {
           if(response.data.username) {
             console.log('success: ', response.data);
-            onHome();
+
             // location works with SPA (ng-route)
             $location.path('/home');
           } else {

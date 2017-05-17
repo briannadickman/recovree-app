@@ -33,8 +33,20 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
   //onHome
   function onHome(){
-    getSessionObject(sessionObject);
-    getReflectionObject(reflectionObject);
+    $http.get('/user').then(function(response) {
+        if(response.data.id) {
+            // user has a curret session on the server
+            userObject.userName = response.data.username;
+            userObject.id = response.data.id;
+            userObject.memberID = response.data.memberID;
+            getSessionObject(sessionObject);
+            getReflectionObject(reflectionObject);
+        } else {
+            // user has no session, bounce them back to the login page
+            $location.path("/login");
+        }
+    });
+
   }//ends onHome
 
     //builds sessionObject
