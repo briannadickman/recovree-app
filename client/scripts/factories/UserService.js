@@ -64,6 +64,10 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
         function getStreak(){
           console.log("inside getStreak");
           //$http.get which retrieves
+          $http.get('/register/streak').then(function(response){
+            console.log("I've returned from the other side, and I have this:");
+            console.log("response",response);
+          });
 
           //for testing purposes
           return 14;
