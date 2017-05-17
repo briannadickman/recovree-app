@@ -3,7 +3,7 @@
   <p>Have you been selfish or dishonest with yourself or others today?</p>
   <div layout = 'row' layout-align = 'center'>
     <span>No</span>
-    <md-switch ng-model="reflectionObject.selfishDishonest">
+    <md-switch aria-label = 'Have you been selfish or dishonest with yourself or others today?' ng-model="reflectionObject.selfishDishonest">
     </md-switch>
     <span>Yes</span>
   </div>
@@ -13,6 +13,6 @@
     <textarea ng-model="reflectionObject.howSelfshDishnt" md-maxlength="150" rows="5" md-select-on-focus></textarea>
   </md-input-container>
   <br>
-  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
+  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
 </div>
 <!-- ends wrapper -->
