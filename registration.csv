@@ -1,3 +1,4 @@
 "State","County","Gender","Birth Year","Drug(s) of Choice","Sobriety Date","Form of Program Payment","Medication?","Terms of Agreement?"
 "MN","Hennepin","Other",1983,"Benzodiazepines","""2017-05-03T05:00:00.000Z""","Public Assistance",true,true
 "MN","HPN","Male",2015,"Crack","""2017-04-04T05:00:00.000Z""","Treatment Program Scholarships",true,true
+"MN","Hennepin","Other",1983,"Amphetamine","""2017-01-02T06:00:00.000Z""","Personal Financing",true,true
