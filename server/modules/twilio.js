@@ -22,7 +22,6 @@ console.log(randomMessage);
 
 //twilio requires phone numbers to be verified before sending a message
 
-
 var textJob = new cronJob( '* * * * *', function(){ // send SMS message every minute
   // for (var i = 0; i < phoneNumbers.length; i++) {
   //   client.messages.create( { to: phoneNumbers[i], from: twilioNumber, body: randomMessage}, function( err, data ) {});
