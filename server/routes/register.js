@@ -115,7 +115,7 @@ router.post('/', function(req, res, next) {
     // userType: newUser.userType
   });
   console.log("userToSave", userToSave);
-  userToSave.create(userToSave, function(err, post) {
+  userToSave.save(userToSave, function(err, post) {
     if (err) {
       // next() here would continue on and route to routes/index.js
       next(err);
