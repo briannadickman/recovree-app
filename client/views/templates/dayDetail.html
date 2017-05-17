@@ -1,11 +1,14 @@
-<div ng-repeat='dailyData in dailyReflectObject.data'>
+<!-- <div ng-repeat='dailyData in dailyReflectObject.data' ng-if='$last'> -->
+  <!-- <div ng-if="day_index == $index"> -->
+
 <md-content>
+  <div ng-repeat='dailyData in dailyReflectObject.data' ng-if="$index == (dailyReflectObject.data.length - 1)">
     <div layout='column' layout-align='center center'>
     <p class='md-headline'>Daily Summary for {{dailyData.reflectionDate | date:'MM/dd/yyyy'}}</p>
 
         <p class='md-title'>Feeling:</p>
           <p class='md-body-1'>
-            <span ng-repeat='feeling in dailyData.feelings | filter: { value: true }'>{{feeling.name}} </span>
+            <span ng-repeat='feeling in dailyData.feelings | filter: { value: true }' >{{feeling.name}} </span>
           </p>
 
         <p class='md-title'>You felt this way because:</p>
@@ -63,5 +66,13 @@
         <hr />
       </div>
     </div>
+  <!-- </div> -->
+
+
+    <!-- <button ng-click="next()">Prev</button> -->
+
+</div>
+
+
 </md-content>
 <footer class='navMenu' ng-include="'/views/partials/nav.html'"></footer>

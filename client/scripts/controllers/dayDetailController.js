@@ -3,7 +3,17 @@ myApp.controller('DayDetailController', ['$scope', '$http', '$location', 'UserSe
 
 $scope.dailyReflectObject = UserService.dailyReflectObject;
 UserService.getReflections();
-console.log(UserService.dailyReflectObject);
 
+// $scope.day_index = 0;
+console.log('dailyReflectObject is: ', $scope.dailyReflectObject);
+//
+// $scope.next = function() {
+//     if ($scope.day_index >= $scope.dailyReflectObject.data.length - 1) {
+//         $scope.day_index = 0;
+//     }
+//     else {
+//         $scope.day_index ++;
+//     }
+// };
 
 }]);
