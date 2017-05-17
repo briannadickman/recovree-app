@@ -52,7 +52,7 @@
 
     <md-input-container>
         <label for="drugChoice">Drugs of Choice:</label>
-        <md-select ng-model="registration.drugChoice">
+        <md-select multiple ng-model="registration.drugChoice">
             <md-option ng-repeat="drug in drugs" value="{{drug.drug}}">
               {{drug.drug}}
             </md-option>
