@@ -33,11 +33,7 @@ var textJob = new cronJob( '* * * * *', function(){ // send SMS message every mi
 
 
 
-<<<<<<< HEAD
 
-=======
-// 
->>>>>>> develop
 // var LookupsClient = require('twilio').LookupsClient;
 // console.log(LookupsClient);
 // var lookupsClient = new LookupsClient(accountSid, authToken);

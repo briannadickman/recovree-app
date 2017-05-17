@@ -1,50 +1,25 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var json2csv = require('json2csv');
+var fs = require('fs');
 var Users = require('../models/user');
+var Reflection = require('../models/reflection');
 var path = require('path');
 
 var mongoose = require("mongoose");
 
 var RecovreeSchema = mongoose.Schema({});
 
-var ReflectionSchema = mongoose.Schema({
-  feelings: {type: Array},
-  feelingsWhy: {type: String},
-  drugAlcoholIntake: {type: Boolean},
-  medication: {type: Boolean},
-  sleep: {type: Number},
-  dream: {type: Boolean},
-  whatDream: {type: String},
-  exercise: {type: Number},
-  food: {type: Number},
-  spnsrMntrConnect: {type: Boolean},
-  groupMeet: {type: Number},
-  commntyService: {type: Boolean},
-  stressors: {type: Array},
-  selfishDishonest: {type: Boolean},
-  howSelfshDishnt: {type: String},
-  tomorrowGoal: {type: String},
-  dailyGoal: {type: Boolean},
-  gratitude: {type: String},
-  peerSupport: {type: Boolean},
-  counselor: {type: Boolean},
-  // reflectionDate: {type: String},
-  reflectionTime: {type: String},
-  reflectionDate: {type: Date, default: Date.now},
-  memberID: {type: Number}
-});
 
-var Reflection = mongoose.model('reflection', ReflectionSchema);
 
 ///get reflections from database
 router.get('/', function (req, res) {
-  Reflection.find({}, function(err, reflections){
+  Reflection.find().lean().exec(function(err, reflections){
     if(err){
       console.log("Mongo Error: ", err);
       res.send(500);
     }
-    console.log(reflections);
     res.send(reflections);
   });
 });
