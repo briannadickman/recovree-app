@@ -4,6 +4,7 @@ var passport = require('passport');
 var nodemailer = require('nodemailer');
 var Users = require('../models/user');
 var path = require('path');
+var Registration = require('../models/registration');
 
 var mongoose = require("mongoose");
 
@@ -77,25 +78,6 @@ router.post('/', function(req, res, next) {
     }
   });
 });
-
-
-
-//SAVE ALL OTHER REGISTRATION DATA FROM REGISTER VIEW
-
-var RegistrationSchema = mongoose.Schema({
-  state: {type: String},
-  county: {type: String},
-  gender: {type: String},
-  birthYear: {type: Number},
-  drugChoice: {type: String},
-  sobrietyDate: {type: Date},
-  programPayment: {type: String},
-  medication: {type: Boolean},
-  termsAgreement: {type: Boolean},
-  memberID: {type: Number}
-});
-
-var Registration = mongoose.model('registration', RegistrationSchema);
 
 ////get registration information from database
 router.get('/registration', function(req, res){
