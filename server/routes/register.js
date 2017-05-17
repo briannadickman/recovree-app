@@ -79,28 +79,21 @@ router.post('/', function(req, res, next) {
   });
 });
 
-
-
-//SAVE ALL OTHER REGISTRATION DATA FROM REGISTER VIEW
-//
-// var RegistrationSchema = mongoose.Schema({
-//   state: {type: String},
-//   county: {type: String},
-//   gender: {type: String},
-//   birthYear: {type: Number},
-//   drugChoice: {type: String},
-//   sobrietyDate: {type: Date},
-//   programPayment: {type: String},
-//   medication: {type: Boolean},
-//   termsAgreement: {type: Boolean},
-//   memberID: {type: Number}
-// });
-//
-// var Registration = mongoose.model('registration', RegistrationSchema);
-
 ////get registration information from database
 router.get('/registration', function(req, res){
   Registration.find({}, function(err, registrations){
+    if(err){
+      console.log("Mongo Error: ", err);
+      res.send(500);
+    }
+    res.send(registrations);
+  });
+});
+
+router.get('/meds/:id', function(req, res){
+  console.log("req.params.id",req.params.id);
+  var id = req.params.id;
+  Registration.findById({'_id': id}, function(err, registrations){
     if(err){
       console.log("Mongo Error: ", err);
       res.send(500);
@@ -122,7 +115,7 @@ router.post("/registration", function(req,res){
     programPayment : registration.programPayment,
     medication : registration.medication,
     termsAgreement : registration.termsAgreement,
-    // memberID: user.memberID
+    memberID: req.user.memberID
   });
 
   newForm.save(newForm, function(err, savedRegistration){

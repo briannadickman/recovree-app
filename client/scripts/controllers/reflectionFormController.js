@@ -8,6 +8,7 @@ myApp.controller('ReflectionFormController', ['$scope', '$http', '$location', 'U
 
   //from factory objects
   $scope.userObject = UserService.userObject;
+  $scope.sessionObject = UserService.sessionObject;
   $scope.reflectionObject = UserService.reflectionObject;
 
   //from factory functions
