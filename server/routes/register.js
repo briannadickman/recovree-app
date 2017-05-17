@@ -4,6 +4,7 @@ var passport = require('passport');
 var nodemailer = require('nodemailer');
 var Users = require('../models/user');
 var path = require('path');
+var Registration = require('../models/registration');
 
 var mongoose = require("mongoose");
 
@@ -35,6 +36,7 @@ var randomIdGenerator = function(){
   });
 return newId;
 };
+
 
 //SAVE ALL OTHER REGISTRATION DATA FROM REGISTER VIEW
 
