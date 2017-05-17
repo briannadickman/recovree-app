@@ -194,7 +194,7 @@ myApp.config(['$routeProvider', '$locationProvider',
 
 //graph summary
     .when('/graph-summary', {
-      templateUrl: '/views/templates/Weeklygraphs.html',
+      templateUrl: '/views/templates/weeklyGraphs.html',
       controller: 'GraphsController',
       resolve: {
         getuser : ['UserService', function(UserService){
