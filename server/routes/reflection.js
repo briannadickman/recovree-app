@@ -3,6 +3,8 @@ var router = express.Router();
 var passport = require('passport');
 var json2csv = require('json2csv');
 var fs = require('fs');
+var moment = require('moment');
+moment().format();
 var Users = require('../models/user');
 var Reflection = require('../models/reflection');
 var path = require('path');
@@ -40,14 +42,28 @@ router.get('/', function (req, res) {
 router.get('/session/:memberID', function(req, res){
   console.log('memberID in session: ', req.params.memberID);
   Reflection.find({'memberID': req.params.memberID})
-    // .sort({date: -1})
-    .exec(function(err, lastReflection){
+    .sort({'reflectionDate': -1})
+    .exec(function(err, allReflections){
       if (err){
-        console.log('error in streak determination: ', err);
+        console.log('error in find most recent reflection: ', err);
         // res.sendStatus(500);
       }
-      console.log('lastReflection: ', lastReflection);
-      res.send(lastReflection);
+      var dateNow = moment();
+      var todayStart = dateNow.clone().startOf('day');
+      console.log('todayStart: ', todayStart);
+      var lastReflection = allReflections[0];
+      var lastReflectionStart = moment(lastReflection.reflectionDate).startOf('day');
+      console.log('lastReflectionStart: ', lastReflectionStart);
+      if (todayStart.clone().diff(lastReflectionStart) === 0){
+        console.log('bing bong');
+      } else {
+        console.log('u fucked up');
+      }
+
+
+      console.log('most recent reflection: ', allReflections[0]);
+      console.log('mostRecentReflection: ', allReflections);
+      res.send(allReflections);
     });
 });
 
