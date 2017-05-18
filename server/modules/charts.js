@@ -1,11 +1,9 @@
 var express = require('express');
 
 var Chart = require('chart.js');
-// var myChart = new Chart({...});
-
-var ctx = document.getElementById("myChart");
 
 
+//Can implement charts.js on the back end. However, will do it on the front end for now
 
 
 
@@ -14,10 +12,4 @@ var ctx = document.getElementById("myChart");
 
 
 
-
-
-
-
-
-
-module.exports = chart;
+module.exports = exampleChart;
