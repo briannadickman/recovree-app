@@ -53,7 +53,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
     //builds sessionObject
     function getSessionObject(sessionObject){
-      sessionObject.numberOfDays = getStreak();
+      // sessionObject.numberOfDays = getStreak();
       sessionObject.reflectionCompleted = getReflectionCompleted();
       sessionObject.takingMeds = getTakingMeds();
       sessionObject.yesterdaysGoal = getYesterdaysGoal();
@@ -61,17 +61,17 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     }//ends getSessionObject
 
       //sessionObject related functions
-        function getStreak(){
-          console.log("inside getStreak");
-          //$http.get which retrieves
-          $http.get('/register/streak').then(function(response){
-            console.log("I've returned from the other side, and I have this:");
-            console.log("response",response);
-          });
-
-          //for testing purposes
-          return 14;
-        }//ends numberOfDays
+        // function getStreak(){
+        //   console.log("inside getStreak");
+        //   //$http.get which retrieves
+        //   $http.get('/register/streak').then(function(response){
+        //     console.log("I've returned from the other side, and I have this:");
+        //     console.log("response",response);
+        //   });
+        //
+        //   //for testing purposes
+        //   return 14;
+        // }//ends numberOfDays
 
         function getReflectionCompleted(){
           console.log("inside getReflectionCompleted");
@@ -87,7 +87,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
           console.log("id",id);
 
           $http.get('/register/meds/' + id).then(function(response) {
-              console.log('GOTTEN REFLECTIONS', response);
+              console.log('GET MEDS', response);
             });
 
           return false;
@@ -222,7 +222,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     if (userObject.id) {
       console.log('GET', userObject.id);
       $http.get('/reflection').then(function(response) {
-        console.log('GOTTEN REFLECTIONS', response.data);
+        console.log('GOTTEN REFLECTIONS', response.data);  //this is an empty object, why
         dailyReflectObject.data = response.data;
         console.log('dailyReflectObject is: ', dailyReflectObject);
         // console.log('dayArray is: ', dailyReflectObject.data.length);
