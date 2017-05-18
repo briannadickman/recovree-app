@@ -14,12 +14,15 @@ var RecovreeSchema = mongoose.Schema({});
 
 
 ///get reflections from database
-router.get('/', function (req, res) {
-  Reflection.find().lean().exec(function(err, reflections){
+router.get('/:memberID', function (req, res) {
+  var id = req.params.memberID;
+  console.log("id",id);
+  Reflection.findOne({memberID: id}, function(err, reflections){
     if(err){
       console.log("Mongo Error: ", err);
       res.send(500);
     }
+    console.log("reflections", reflections);
     res.send(reflections);
   });
 });

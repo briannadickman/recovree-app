@@ -193,7 +193,7 @@ myApp.config(['$routeProvider', '$locationProvider',
     })
 
 //graph summary
-    .when('/graph-summary', {
+    .when('/weekly-graphs', {
       templateUrl: '/views/templates/weeklyGraphs.html',
       controller: 'GraphsController',
       resolve: {

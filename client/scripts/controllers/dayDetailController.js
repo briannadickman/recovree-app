@@ -2,18 +2,8 @@ myApp.controller('DayDetailController', ['$scope', '$http', '$location', 'UserSe
   console.log('DayDetailController sourced!');
 
 $scope.dailyReflectObject = UserService.dailyReflectObject;
-UserService.getReflections();
+var getReflections = UserService.getReflections;
+getReflections();
 
-// $scope.day_index = 0;
-console.log('dailyReflectObject is: ', $scope.dailyReflectObject);
-//
-// $scope.next = function() {
-//     if ($scope.day_index >= $scope.dailyReflectObject.data.length - 1) {
-//         $scope.day_index = 0;
-//     }
-//     else {
-//         $scope.day_index ++;
-//     }
-// };
 
 }]);
