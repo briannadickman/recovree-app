@@ -44,7 +44,7 @@ router.get('/session/:memberID', function(req, res){
     .exec(function(err, lastReflection){
       if (err){
         console.log('error in streak determination: ', err);
-        res.sendStatus(500);
+        // res.sendStatus(500);
       }
       console.log('lastReflection: ', lastReflection);
       res.send(lastReflection);
