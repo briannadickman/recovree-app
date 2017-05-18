@@ -185,11 +185,11 @@ myApp.config(['$routeProvider', '$locationProvider',
     .when('/day-detail', {
       templateUrl: '/views/templates/dayDetail.html',
       controller: 'DayDetailController',
-      // resolve: {
-      //   getuser : ['UserService', function(UserService){
-      //     return UserService.getuser();
-      //   }]
-      // }
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
     })
 
 //graph summary
