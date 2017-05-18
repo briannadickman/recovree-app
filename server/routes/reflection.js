@@ -17,7 +17,7 @@ var RecovreeSchema = mongoose.Schema({});
 router.get('/:memberID', function (req, res) {
   var id = req.params.memberID;
   console.log("id",id);
-  Reflection.findOne({memberID: id}, function(err, reflections){
+  Reflection.find({memberID: id}, function(err, reflections){
     if(err){
       console.log("Mongo Error: ", err);
       res.send(500);
