@@ -63,11 +63,12 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
       //sessionObject related functions
         function getStreak(){
           console.log("inside getStreak");
+          console.log("userObject", userObject);
           //$http.get which retrieves
-          $http.get('/register/streak').then(function(response){
-            console.log("I've returned from the other side, and I have this:");
-            console.log("response",response);
-          });
+          // $http.get('/register/streak').then(function(response){
+          //   console.log("I've returned from the other side, and I have this:");
+          //   console.log("response",response);
+          // });
 
           //for testing purposes
           return 14;
@@ -169,8 +170,23 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     }
     //post to database if it is the fist reflection form view
     if (reflectionObject.formPosition === 1){
-      //makes intial post to database
-      postToReflectionForm(reflectionObject);
+      $http.get('/user').then(function(response) {
+          if(response.data.id) {
+              // user has a curret session on the server
+              // userObject.userName = response.data.username;
+              // userObject.id = response.data.id;
+              // userObject.memberID = response.data.memberID;
+              // getSessionObject(sessionObject);
+              // getReflectionObject(reflectionObject);
+              //makes intial post to database
+              reflectionObject.memberID = response.data.memberID;
+              console.log("reflectionObject", reflectionObject);
+              postToReflectionForm(reflectionObject);
+          } else {
+              // user has no session, bounce them back to the login page
+              $location.path("/login");
+          }
+      });
     }
     //put to database if it is any subsequent reflection form views
     else{
@@ -180,15 +196,14 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }//ends reflectionFormNextButton
 
     function postToReflectionForm(reflectionObject){
-      // advanceReflectionForm(reflectionObject);
-      if (userObject.id) {
-        console.log('FEELINGS SAVED TO DB - NEW REFLECTION POSTED');
-        $http.post('/reflection', reflectionObject).then(function(response) {
-          reflectionObject._id = response.data._id;
-          console.log('reflectionObject._id: ', reflectionObject._id);
-          advanceReflectionForm(reflectionObject);
-        });
-      }
+
+      console.log('FEELINGS SAVED TO DB - NEW REFLECTION POSTED', reflectionObject);
+      $http.post('/reflection', reflectionObject).then(function(response) {
+        reflectionObject._id = response.data._id;
+        console.log('reflectionObject._id: ', reflectionObject._id);
+        advanceReflectionForm(reflectionObject);
+      });
+
     }//ends postToReflectionForm
 
     function updateReflectionForm(reflectionObject){
