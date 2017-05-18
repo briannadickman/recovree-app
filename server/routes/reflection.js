@@ -40,6 +40,7 @@ router.get('/streak/:memberID', function(req, res){
 
 router.post('/', function(req,res){
   console.log(req.user.memberID);
+  var memID = req.user.memberID;
   var reflection = req.body;
   var newReflection = new Reflection({
     id : req.user._id,
@@ -65,7 +66,7 @@ router.post('/', function(req,res){
     gratitude: reflection.gratitude,
     peerSupport: reflection.peerSupport,
     counselor: reflection.counselor,
-    memberID: req.user.memberID
+    memberID: memID
   });
 
   console.log('----NEW REFLECTION---', newReflection);
