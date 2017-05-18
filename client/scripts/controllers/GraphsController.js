@@ -1,6 +1,16 @@
 myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
   console.log('GraphsController sourced!');
 
+UserService.getReflections();
+
+//get reflectionObj data
+$scope.allReflections = UserService.dailyReflectObject;
+
+//unable to access data property of the object, but can acess object it self
+console.log('Reflection Object in Graph Controller', $scope.allReflections);
+
+
+//format and reflect on
 
   var ctx = document.getElementById("myChart");
   var myChart = new Chart(ctx, {

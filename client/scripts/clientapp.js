@@ -185,15 +185,15 @@ myApp.config(['$routeProvider', '$locationProvider',
     .when('/day-detail', {
       templateUrl: '/views/templates/dayDetail.html',
       controller: 'DayDetailController',
-      // resolve: {
-      //   getuser : ['UserService', function(UserService){
-      //     return UserService.getuser();
-      //   }]
-      // }
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
     })
 
 //graph summary
-    .when('/graph-summary', {
+    .when('/weekly-graphs', {
       templateUrl: '/views/templates/weeklyGraphs.html',
       controller: 'GraphsController',
       resolve: {
