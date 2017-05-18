@@ -47,6 +47,7 @@ router.get('/session/:memberID', function(req, res){
         res.sendStatus(500);
       }
       console.log('lastReflection: ', lastReflection);
+      res.send(lastReflection);
     });
 });
 
