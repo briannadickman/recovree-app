@@ -41,7 +41,8 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
             userObject.userName = response.data.username;
             userObject.id = response.data.id;
             userObject.memberID = response.data.memberID;
-            getSessionObject(sessionObject);
+            console.log('memberID: ', userObject.memberID);
+            getSessionObject(userObject.memberID);
             getReflectionObject(reflectionObject);
         } else {
             // user has no session, bounce them back to the login page
@@ -52,13 +53,19 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }//ends onHome
 
     //builds sessionObject
-    function getSessionObject(sessionObject){
-      sessionObject.numberOfDays = getStreak();
-      sessionObject.reflectionCompleted = getReflectionCompleted();
-      sessionObject.takingMeds = getTakingMeds();
-      sessionObject.yesterdaysGoal = getYesterdaysGoal();
+    function getSessionObject(memberID){
+      $http({
+        method: 'GET',
+        url: '/reflection/session/' + memberID,
+      }).then(function(response){
+        console.log('response in getSessionObject:', response);
+      });
+      // sessionObject.numberOfDays = getStreak();
+      // sessionObject.reflectionCompleted = getReflectionCompleted();
+      // sessionObject.takingMeds = getTakingMeds();
+      // sessionObject.yesterdaysGoal = getYesterdaysGoal();
       // sessionObject.todaysReflectObject = getTodaysReflectObject();
-      getTodaysReflectObject();
+      // getTodaysReflectObject();
       sessionObject.todaysDate = Date.now();
     }//ends getSessionObject
 

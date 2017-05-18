@@ -14,23 +14,33 @@ var RecovreeSchema = mongoose.Schema({});
 
 
 ///get reflections from database
-router.get('/:memberID', function (req, res) {
-  var id = req.params.memberID;
-  console.log("id",id);
-  Reflection.find({memberID: id}, function(err, reflections){
+router.get('/', function (req, res) {
+  Reflection.find().lean().exec(function(err, reflections){
     if(err){
       console.log("Mongo Error: ", err);
       res.send(500);
     }
-    console.log("reflections", reflections);
     res.send(reflections);
   });
 });
 
-router.get('/streak/:memberID', function(req, res){
-  console.log('memberID in streak: ', memberID);
-  Reflection.findOne({memberID: memberID})
-    .sort({date: -1})
+// router.get('/streak/:memberID', function(req, res){
+//   console.log('memberID in streak: ', memberID);
+//   Reflection.findOne({memberID: memberID})
+//     .sort({date: -1})
+//     .exec(function(err, lastReflection){
+//       if (err){
+//         console.log('error in streak determination: ', err);
+//         res.sendStatus(500);
+//       }
+//       console.log('lastReflection: ', lastReflection);
+//     });
+// });
+
+router.get('/session/:memberID', function(req, res){
+  console.log('memberID in session: ', req.params.memberID);
+  Reflection.find({'memberID': req.params.memberID})
+    // .sort({date: -1})
     .exec(function(err, lastReflection){
       if (err){
         console.log('error in streak determination: ', err);
@@ -71,7 +81,7 @@ router.post('/', function(req,res){
     counselor: reflection.counselor,
     memberID: memID
   });
-
+  console.log(newReflection.memberID);
   console.log('----NEW REFLECTION---', newReflection);
 
   newReflection.save(newReflection, function(err, savedReflection){
