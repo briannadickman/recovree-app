@@ -234,27 +234,39 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }
 
   function getReflections() {
+    $http.get('/user').then(function(response) {
+        if(response.data.id) {
+          var memberID = response.data.memberID;
+          $http.get('/reflection/'+memberID).then(function(response){
+            console.log("response from get /reflection", response);
 
-    
-    console.log("userObject", userObject);
-    if (userObject.id) {
-      console.log('GET', userObject.id);
-      $http.get('/reflection').then(function(response) {
-        console.log('GOTTEN REFLECTIONS', response.data);  //this is an empty object, why
-        dailyReflectObject.data = response.data;
-        console.log('dailyReflectObject is: ', dailyReflectObject);
-        // console.log('dayArray is: ', dailyReflectObject.data.length);
 
-      //   for (var i = 0; i < dailyReflectObject.data.length; i++) {
-      //     console.log(dailyReflectObject.data[i].reflectionDate);
-      //    if (dailyReflectObject.data[i].reflectionDate) {
-      //      dailyReflectObject.data[i].reflectionDate = moment(dailyReflectObject.data[i].reflectionDate).format('L');
-      //    }
-      //    console.log(dailyReflectObject.data[i].reflectionDate);
-      //  }
-      });
-    }
-  }
+          });//ends http.get/reflection
+        } else {
+            $location.path("/login");
+        }
+    });
+  }//ends getReflections
+
+      // console.log("userObject", userObject);
+      // if (userObject.id) {
+      //   console.log('GET', userObject.id);
+      //   $http.get('/reflection').then(function(response) {
+      //     console.log('GOTTEN REFLECTIONS', response.data);  //this is an empty object, why
+      //     dailyReflectObject.data = response.data;
+      //     console.log('dailyReflectObject is: ', dailyReflectObject);
+      //     // console.log('dayArray is: ', dailyReflectObject.data.length);
+      //
+      //   //   for (var i = 0; i < dailyReflectObject.data.length; i++) {
+      //   //     console.log(dailyReflectObject.data[i].reflectionDate);
+      //   //    if (dailyReflectObject.data[i].reflectionDate) {
+      //   //      dailyReflectObject.data[i].reflectionDate = moment(dailyReflectObject.data[i].reflectionDate).format('L');
+      //   //    }
+      //   //    console.log(dailyReflectObject.data[i].reflectionDate);
+      //   //  }
+      //   });
+      // }
+
 
   //return out of UserService Factory
   return {
