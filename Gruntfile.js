@@ -77,7 +77,7 @@ module.exports = function(grunt){
         cwd: 'node_modules/chart.js/dist/',
         src: ['Chart.min.js'],
         dest: 'server/public/vendors/chartJS/'
-      }
+      },
     },
     watch: {
       files: [

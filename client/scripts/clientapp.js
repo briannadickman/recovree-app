@@ -1,9 +1,21 @@
 var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial']);
 
 /// Routes ///
-myApp.config(['$routeProvider', '$locationProvider',
-      function($routeProvider, $locationProvider) {
+myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
+      function($routeProvider, $locationProvider, $mdThemingProvider) {
   $locationProvider.hashPrefix('');
+
+  // Color Theme
+  $mdThemingProvider.theme('default')
+    .primaryPalette('grey', {
+      'default': '800',
+      'hue-1' : '600',
+      'hue-2' : '400',
+      'hue-3' : '900',
+    })
+    .accentPalette('green', {
+      'default' : '500'
+    });
 
   $routeProvider
 //login
@@ -185,15 +197,15 @@ myApp.config(['$routeProvider', '$locationProvider',
     .when('/day-detail', {
       templateUrl: '/views/templates/dayDetail.html',
       controller: 'DayDetailController',
-      // resolve: {
-      //   getuser : ['UserService', function(UserService){
-      //     return UserService.getuser();
-      //   }]
-      // }
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
     })
 
 //graph summary
-    .when('/graph-summary', {
+    .when('/weekly-graphs', {
       templateUrl: '/views/templates/weeklyGraphs.html',
       controller: 'GraphsController',
       resolve: {

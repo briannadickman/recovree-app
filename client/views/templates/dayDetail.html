@@ -1,71 +1,71 @@
-<!-- <div ng-repeat='dailyData in dailyReflectObject.data' ng-if='$last'> -->
+<!-- <div ng-repeat='sessionObject.todaysReflectObject in dailyReflectObject.data' ng-if='$last'> -->
   <!-- <div ng-if="day_index == $index"> -->
-
 <md-content>
-  <div ng-repeat='dailyData in dailyReflectObject.data' ng-if="$index == (dailyReflectObject.data.length - 1)">
+  <!-- <div ng-repeat='sessionObject.todaysReflectObject in sessionObject.todaysReflectObject' ng-if="$index == (dailyReflectObject.data.length - 1)"> -->
+  <!-- <div ng-repeat='sessionObject.todaysReflectObject in sessionObject.todaysReflectObject'> -->
     <div layout='column' layout-align='center center'>
-    <p class='md-headline'>Daily Summary for {{dailyData.reflectionDate | date:'MM/dd/yyyy'}}</p>
+    <p class='md-headline'>Daily Summary for {{sessionObject.todaysReflectObject.reflectionDate | date:'MM/dd/yyyy'}}</p>
 
         <p class='md-title'>Feeling:</p>
           <p class='md-body-1'>
-            <span ng-repeat='feeling in dailyData.feelings | filter: { value: true }' >{{feeling.name}} </span>
+            <span ng-repeat='feeling in sessionObject.todaysReflectObject.feelings | filter: { value: true }' >{{feeling.name}} </span>
           </p>
 
         <p class='md-title'>You felt this way because:</p>
-        <p class='md-body-1'>{{dailyData.feelingsWhy}}</p>
+        <p class='md-body-1'>{{sessionObject.todaysReflectObject.feelingsWhy}}</p>
         <hr />
         <p class='md-title'>Last night you slept:</p>
-        <p class='md-body-1'>{{dailyData.sleep}}</p>
+        <p class='md-body-1'>{{sessionObject.todaysReflectObject.sleep}}</p>
         <hr />
         <p class='md-title'>Your exercise level was:</p>
-        <p class='md-body-1'>{{dailyData.exercise}}</p>
+        <p class='md-body-1'>{{sessionObject.todaysReflectObject.exercise}}</p>
         <hr />
         <p class='md-title'>Your food consumption was:</p>
-        <p class='md-body-1'>{{dailyData.food}}</p>
+        <p class='md-body-1'>{{sessionObject.todaysReflectObject.food}}</p>
         <hr />
         <p class='md-title'>Used drugs or alcohol:</p>
-        <p class='md-body-1'>{{dailyData.drugAlcoholIntake}}</p>
+        <p class='md-body-1'>{{sessionObject.todaysReflectObject.drugAlcoholIntake}}</p>
         <hr />
         <p class='md-title'>Took your medication:</p>
-        <p class='md-body-1'>{{dailyData.medication}}</p>
+        <p class='md-body-1'>{{sessionObject.todaysReflectObject.medication}}</p>
         <hr />
         <p class='md-title'>Had a using dream last night:</p>
-        <p class='md-body-1'>{{dailyData.dream}}</p>
+        <p class='md-body-1'>{{sessionObject.todaysReflectObject.dream}}</p>
         <hr />
         <p class='md-title'>Your dream was:</p>
-        <p class='md-body-1'>{{dailyData.whatDream}}</p>
+        <p class='md-body-1'>{{sessionObject.todaysReflectObject.whatDream}}</p>
         <hr />
         <p class='md-title'>Connected with a sponsor/mentor:</p>
-        <p class='md-body-1'>{{dailyData.spnsrMntrConnect}}</p>
+        <p class='md-body-1'>{{sessionObject.todaysReflectObject.spnsrMntrConnect}}</p>
         <hr />
         <p class='md-title'>Number of group meetings you attended:</p>
-        <p class='md-body-1'>{{dailyData.groupMeet}}</p>
+        <p class='md-body-1'>{{sessionObject.todaysReflectObject.groupMeet}}</p>
         <hr />
         <p class='md-title'>Engaged in service or community work:</p>
-        <p class='md-body-1'>{{dailyData.commntyService}}</p>
+        <p class='md-body-1'>{{sessionObject.todaysReflectObject.commntyService}}</p>
         <hr />
         <p class='md-title'>Your stressors today:</p>
         <p class='md-body-1'>
-          <span ng-repeat='stressor in dailyData.stressors | filter: { value: true }'>{{stressor.name}} </span>
+          <span ng-repeat='stressor in sessionObject.todaysReflectObject.stressors | filter: { value: true }'>{{stressor.name}} </span>
         </p>
         <hr />
         <p class='md-title'>Selfish or dishonest today:</p>
-        <p class='md-body-1'>{{dailyData.selfishDishonest}}</p>
+        <p class='md-body-1'>{{sessionObject.todaysReflectObject.selfishDishonest}}</p>
         <hr />
         <p class='md-title'>How I was selfish or dishonest:</p>
-        <p class='md-body-1'>{{dailyData.howSelfshDishnt}}</p>
+        <p class='md-body-1'>{{sessionObject.todaysReflectObject.howSelfshDishnt}}</p>
         <hr />
         <p class='md-title'>Your daily goal was:</p>
-        <p class='md-body-1'>{{dailyData.tomorrowGoal}}</p>
+        <p class='md-body-1'>{{sessionObject.todaysReflectObject.tomorrowGoal}}</p>
         <hr />
         <p class='md-title'>You completed yesterday's goal:</p>
-        <p class='md-body-1'>{{dailyData.dailyGoal}}</p>
+        <p class='md-body-1'>{{sessionObject.todaysReflectObject.dailyGoal}}</p>
         <hr />
         <p class='md-title'>You were thankful for:</p>
-        <p class='md-body-1'>{{dailyData.gratitude}}</p>
+        <p class='md-body-1'>{{sessionObject.todaysReflectObject.gratitude}}</p>
         <hr />
       </div>
-    </div>
+    <!-- </div> -->
   <!-- </div> -->
 
 
