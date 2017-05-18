@@ -7,7 +7,7 @@ UserService.getReflections();
 $scope.allReflections = UserService.dailyReflectObject;
 
 //unable to access data property of the object, but can acess object it self
-console.log('Reflection Object in Graph Controller', $scope.allReflections);
+console.log('Reflection Object in Graph Controller', $scope.allReflections.data[0]);
 
 
 //format and reflect on
