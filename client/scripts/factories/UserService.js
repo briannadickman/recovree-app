@@ -41,7 +41,11 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
             userObject.userName = response.data.username;
             userObject.id = response.data.id;
             userObject.memberID = response.data.memberID;
+<<<<<<< HEAD
             getSessionObject(sessionObject);
+=======
+            getSessionObject(userObject.memberID);
+>>>>>>> a132d07f64f5865ca20d2d04816eb8f0c246367d
             getReflectionObject(reflectionObject);
         } else {
             // user has no session, bounce them back to the login page
@@ -52,6 +56,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }//ends onHome
 
     //builds sessionObject
+<<<<<<< HEAD
     function getSessionObject(sessionObject){
       // sessionObject.numberOfDays = getStreak();
       sessionObject.reflectionCompleted = getReflectionCompleted();
@@ -101,6 +106,28 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
         }//ends getYesterdaysGoal
 
 
+=======
+    function getSessionObject(memberID){
+      $http({
+        method: 'GET',
+        url: '/reflection/session/' + memberID,
+      }).then(function(response){
+        console.log('response in getSessionObject:', response);
+        sessionObject.streak = response.data.streakCount;
+        sessionObject.allReflections = response.data.allReflectionsNewToOld;
+        sessionObject.reflectionCompleted = response.data.reflectionCompleted;
+        if (sessionObject.reflectionCompleted === true){
+          sessionObject.todaysReflectObject = response.data.todaysReflection;
+        }
+        else{
+          sessionObject.todaysReflectObject = {};
+        }
+        sessionObject.yesterdaysGoal = response.data.yesterdaysGoal;
+        sessionObject.takingMeds = response.data.takingMeds;
+      });
+    }//ends getSessionObject
+
+>>>>>>> a132d07f64f5865ca20d2d04816eb8f0c246367d
     //builds reflectionObject
     function getReflectionObject(reflectionObject){
       //creates feelings array
@@ -169,8 +196,20 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     }
     //post to database if it is the fist reflection form view
     if (reflectionObject.formPosition === 1){
+<<<<<<< HEAD
       //makes intial post to database
       postToReflectionForm(reflectionObject);
+=======
+      $http.get('/user').then(function(response) {
+          if(response.data.id) {
+              reflectionObject.memberID = response.data.memberID;
+              postToReflectionForm(reflectionObject);
+          } else {
+              // user has no session, bounce them back to the login page
+              $location.path("/login");
+          }
+      });
+>>>>>>> a132d07f64f5865ca20d2d04816eb8f0c246367d
     }
     //put to database if it is any subsequent reflection form views
     else{
@@ -180,6 +219,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }//ends reflectionFormNextButton
 
     function postToReflectionForm(reflectionObject){
+<<<<<<< HEAD
       // advanceReflectionForm(reflectionObject);
       if (userObject.id) {
         console.log('FEELINGS SAVED TO DB - NEW REFLECTION POSTED');
@@ -189,12 +229,16 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
           advanceReflectionForm(reflectionObject);
         });
       }
+=======
+      $http.post('/reflection', reflectionObject).then(function(response) {
+        reflectionObject._id = response.data._id;
+        console.log('reflectionObject._id: ', reflectionObject._id);
+        advanceReflectionForm(reflectionObject);
+      });
+>>>>>>> a132d07f64f5865ca20d2d04816eb8f0c246367d
     }//ends postToReflectionForm
 
     function updateReflectionForm(reflectionObject){
-      console.log("$http.put:", reflectionObject);
-      console.log('_id in put request: ', reflectionObject._id);
-
       $http.put('/reflection', reflectionObject).then(function(response){
         console.log('updateReflectionForm response: ', response.data);
         advanceReflectionForm(reflectionObject);
@@ -218,6 +262,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     $location.path('/home');
   }
 
+<<<<<<< HEAD
   function getReflections() {
     if (userObject.id) {
       console.log('GET', userObject.id);
@@ -238,6 +283,8 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     }
   }
 
+=======
+>>>>>>> a132d07f64f5865ca20d2d04816eb8f0c246367d
   //return out of UserService Factory
   return {
     userObject : userObject,
@@ -247,8 +294,12 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     logout: logout,
     onHome: onHome,
     reflectionFormNextButton: reflectionFormNextButton,
+<<<<<<< HEAD
     returnHomeButton: returnHomeButton,
     getReflections: getReflections,
     dailyReflectObject : dailyReflectObject
+=======
+    returnHomeButton: returnHomeButton
+>>>>>>> a132d07f64f5865ca20d2d04816eb8f0c246367d
   };
 }]);

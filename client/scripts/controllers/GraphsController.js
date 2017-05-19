@@ -1,14 +1,19 @@
 myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
   console.log('GraphsController sourced!');
 
-UserService.getReflections();
+var onHome = UserService.onHome;
+onHome();
 
 //get reflectionObj data
+<<<<<<< HEAD
 $scope.allReflections = UserService.dailyReflectObject;
 
 //unable to access data property of the object, but can acess object it self
 console.log('Reflection Object in Graph Controller', $scope.allReflections.data[0]);
 
+=======
+$scope.sessionObject = UserService.sessionObject;
+>>>>>>> a132d07f64f5865ca20d2d04816eb8f0c246367d
 
 //format and reflect on
 
