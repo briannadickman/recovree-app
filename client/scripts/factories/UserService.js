@@ -41,7 +41,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
             userObject.userName = response.data.username;
             userObject.id = response.data.id;
             userObject.memberID = response.data.memberID;
-
             getSessionObject(userObject.memberID);
             getReflectionObject(reflectionObject);
         } else {
@@ -73,6 +72,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
         sessionObject.takingMeds = response.data.takingMeds;
       });
     }//ends getSessionObject
+
 
     //builds reflectionObject
     function getReflectionObject(reflectionObject){
@@ -133,6 +133,12 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
       }//ends buildArray
 
 
+//launchReflection
+  function launchReflection(){
+      $location.path('/reflection-form/reflect-1');
+  }
+
+//reflection From functions
   function reflectionFormNextButton(sessionObject, reflectionObject){
     var medsForm = 3; //number of the form which asks about medication
     var takesMeds = sessionObject.takingMeds;
@@ -153,6 +159,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }//ends reflectionFormNextButton
 
     function postToReflectionForm(reflectionObject){
+
       $http.post('/reflection', reflectionObject).then(function(response) {
         reflectionObject._id = response.data._id;
         console.log('reflectionObject._id: ', reflectionObject._id);
@@ -178,6 +185,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     $location.path('/home');
   }
 
+
   //return out of UserService Factory
   return {
     userObject : userObject,
@@ -186,6 +194,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     getuser : getuser,
     logout: logout,
     refreshSessionObject: refreshSessionObject,
+    launchReflection: launchReflection,
     reflectionFormNextButton: reflectionFormNextButton,
     returnHomeButton: returnHomeButton
 
