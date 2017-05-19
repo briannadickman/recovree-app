@@ -127,14 +127,14 @@
         </div>
 
         <div ng-if = 'sessionObject.todaysReflectObject.tomorrowGoal !== ""'>
-          <p class='md-title' >Your daily goal was:</p>
+          <p class='md-title' >Your daily goal is:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.tomorrowGoal}}</p>
           <hr />
         </div>
 
-        <div>
-          <p class='md-title'>You completed yesterday's goal:</p>
-          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.dailyGoal}}</p>
+        <div ng-if = 'sessionObject.todaysReflectObject.dailyGoal == false'>
+          <p class='md-title'>You completed yesterday's goal of:</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.yesterdaysGoal}}</p>
           <hr />
         </div>
 
