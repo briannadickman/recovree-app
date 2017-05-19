@@ -63,7 +63,6 @@ router.get('/session/:memberID', function(req, res){
       // defines the start of yesterday using moment js
       var yesterdayStart = dateNow.clone().subtract(1, 'day').startOf('day');
       console.log('todayStart: ' + todayStart + '   yesterdayStart: ' + yesterdayStart);
-<<<<<<< HEAD
       console.log(allReflections);
       if (allReflections.length >= 1){
         //defines the most recent reflection as lastReflection
@@ -97,34 +96,6 @@ router.get('/session/:memberID', function(req, res){
             serverSessionObject.streakCount = 1;
             console.log('you did not do it, but you can start again!');
           }
-=======
-      //defines the start of the day for the most current reflection
-      var lastReflectionStart = moment(lastReflection.reflectionDate).startOf('day');
-      console.log('lastReflectionStart: ', lastReflectionStart);
-      //if the start of the day today is the same as the start of the day for the most recent reflection, it must have happened today
-      if (todayStart.clone().diff(lastReflectionStart) === 0){
-        console.log('last reflection is today!');
-        //so todays reflection has been completed
-        serverSessionObject.reflectionCompleted = true;
-        //it just so happens to be the most recent reflection
-        serverSessionObject.todaysReflection = lastReflection;
-        //tomorrows goal yesterday is yesterdays goal today - paul mccartney
-        // serverSessionObject.yesterdaysGoal = allReflections[1].tomorrowGoal;
-        //Note Note Note ***** if reflections can be completed twice in a day, the above needs to be changed
-        console.log('yesterdays goal', serverSessionObject.yesterdaysGoal);
-      }
-      //if the most recent reflection did not happen today
-      if(serverSessionObject.todaysReflection !== lastReflection){
-        //this checks to see if the start of yesterday is the same as the start of the day for the most recent reflection
-        if (yesterdayStart.clone().diff(lastReflectionStart) === 0){
-          //in which case they have completed reflections two days in a row and thus the streak goes up by one
-          serverSessionObject.streakCount++;
-          console.log('u did it!', serverSessionObject.streak);
-        } else {
-          //if the most recent reflection happened before yesterday, today's completed reflection starts a new streak at one
-          serverSessionObject.streakCount = 1;
-          console.log('you did not do it, but you can start again!');
->>>>>>> bfa688f19421d3e57ff27ce66d2aa7dfe04f260d
         }
       }
       console.log(serverSessionObject);
