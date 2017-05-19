@@ -1,8 +1,8 @@
 myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
   console.log('GraphsController sourced!');
 
-var onHome = UserService.onHome;
-onHome();
+var refreshSessionObject = UserService.refreshSessionObject;
+refreshSessionObject();
 
 //get reflectionObj data
 $scope.allReflections = UserService.dailyReflectObject;
