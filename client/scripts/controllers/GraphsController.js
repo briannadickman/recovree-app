@@ -99,5 +99,4 @@ console.log('Sleep Array', sleepArray );
 
 
 
-
 }]); //end of controller
