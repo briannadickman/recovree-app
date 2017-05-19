@@ -14,14 +14,15 @@
           <p class='md-headline'>Daily Summary for {{sessionObject.todaysReflectObject.reflectionDate | date:'MM/dd/yyyy'}}</p>
       </div>
       <div>
-        <p class='md-title'>Feeling:</p>
-          <p class='md-body-1'>
-            <span ng-repeat='feeling in sessionObject.todaysReflectObject.feelings | filter: { value: true }' >{{feeling.name}} </span>
+          <p class='md-title'>Feelings:</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>
+            <p ng-repeat='feeling in sessionObject.todaysReflectObject.feelings | filter: { value: true }' >{{feeling.name}} </p>
           </p>
+          <hr />
       </div>
 
         <div>
-          <p class='md-title'>You felt this way because:</p>
+          <p class='md-title' ng-if = 'sessionObject.todaysReflectObject.feelingsWhy !== ""'>You felt this way because:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.feelingsWhy}}</p>
           <hr />
         </div>
@@ -63,7 +64,7 @@
         </div>
 
         <div>
-          <p class='md-title'>Your dream was:</p>
+          <p class='md-title' ng-if = 'sessionObject.todaysReflectObject.whatDream !== ""'>Your dream was:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.whatDream}}</p>
           <hr />
         </div>
@@ -89,7 +90,7 @@
         <div>
           <p class='md-title'>Your stressors today:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>
-            <span ng-repeat='stressor in sessionObject.todaysReflectObject.stressors | filter: { value: true }'>{{stressor.name}} </span>
+            <p ng-repeat='stressor in sessionObject.todaysReflectObject.stressors | filter: { value: true }'>{{stressor.name}} </p>
           </p>
           <hr />
         </div>
@@ -107,7 +108,7 @@
         </div>
 
         <div>
-          <p class='md-title'>Your daily goal was:</p>
+          <p class='md-title' ng-if = 'sessionObject.todaysReflectObject.tomorrowGoal !== ""'>Your daily goal was:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.tomorrowGoal}}</p>
           <hr />
         </div>
@@ -119,7 +120,7 @@
         </div>
 
         <div>
-          <p class='md-title'>You were thankful for:</p>
+          <p class='md-title' ng-if = 'sessionObject.todaysReflectObject.gratitude !== ""'>You were thankful for:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.gratitude}}</p>
           <hr />
         </div>
