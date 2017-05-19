@@ -1,21 +1,35 @@
 myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
   console.log('GraphsController sourced!');
 
-var refreshSessionObject = UserService.refreshSessionObject;
-refreshSessionObject();
+var userObject = UserService.userObject;
+UserService.refreshSessionObject();
 
-//get reflectionObj data
-$scope.allReflections = UserService.dailyReflectObject;
 
-//get/refresh sessionObject data
-var refreshSessionObject = UserService.refreshSessionObject;
-refreshSessionObject();
+//all the REFLECTIONS data
 $scope.sessionObject = UserService.sessionObject;
+var reflections = $scope.sessionObject.allReflections;
+console.log('ALL REFLECTIONS',reflections);
 
-//unable to access data property of the object, but can acess object it self
-console.log('Reflection Object in Graph Controller', $scope.allReflections);
 
-//format and reflect on
+//LOOP THROUGH THE REFLECTION ARRAY AND GET DATA FOR FEELINGS, SLEEP, EXERCISE, AND FOOD
+for (var i = 0; i < reflections.length; i++) {
+  // console.log('EACH REFLECTIONS IN DB',reflections[i]);
+
+  var feelings = reflections[i].feelings;
+  // console.log('FEELINGS ARRAY',feelings);
+
+  var exercise = reflections[i].exercise;
+  console.log('EXERCISE',exercise);
+
+  var food = reflections[i].food;
+  console.log('FOOD',food);
+
+  var sleep = reflections[i].sleep;
+  console.log('SLEEP',sleep);
+
+}
+
+
 
   var ctx = document.getElementById("myChart");
   var myChart = new Chart(ctx, {
