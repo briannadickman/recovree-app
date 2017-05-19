@@ -7,8 +7,6 @@
 </md-content>
 
 <md-content ng-if = '((sessionObject.reflectionCompleted) === true)'>
-  <!-- <div ng-repeat='sessionObject.todaysReflectObject in sessionObject.todaysReflectObject' ng-if="$index == (dailyReflectObject.data.length - 1)"> -->
-  <!-- <div ng-repeat='sessionObject.todaysReflectObject in sessionObject.todaysReflectObject'> -->
     <div layout='column' layout-align='center center'>
       <div>
           <p class='md-headline'>Daily Summary for {{sessionObject.todaysReflectObject.reflectionDate | date:'MM/dd/yyyy'}}</p>
@@ -21,28 +19,49 @@
           <hr />
       </div>
 
-        <div>
-          <p class='md-title' ng-if = 'sessionObject.todaysReflectObject.feelingsWhy !== ""'>You felt this way because:</p>
+        <div ng-if = 'sessionObject.todaysReflectObject.feelingsWhy !== ""'>
+          <p class='md-title' >You felt this way because:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.feelingsWhy}}</p>
           <hr />
         </div>
 
-        <div>
+        <div ng>
           <p class='md-title'>Last night you slept:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.sleep}}</p>
+          <div ng-switch on = sessionObject.todaysReflectObject.sleep>
+               <p layout = 'row' layout-align = 'center center' ng-switch-when = "1">beginner</p>
+               <p layout = 'row' layout-align = 'center center' ng-switch-when = "2">moderate</p>
+               <p layout = 'row' layout-align = 'center center' ng-switch-when = "3">expert</p>
+               <p layout = 'row' layout-align = 'center center' ng-switch-when = "4">silly nonsense</p>
+               <p layout = 'row' layout-align = 'center center' ng-switch-when = "5">serious nonsense</p>
+           </div>
           <hr />
         </div>
 
         <div>
           <p class='md-title'>Your exercise level was:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.exercise}}</p>
+          <div ng-switch on = sessionObject.todaysReflectObject.exercise>
+            <p layout = 'row' layout-align = 'center center' ng-switch-when = "1">beginner</p>
+            <p layout = 'row' layout-align = 'center center' ng-switch-when = "2">moderate</p>
+            <p layout = 'row' layout-align = 'center center' ng-switch-when = "3">expert</p>
+            <p layout = 'row' layout-align = 'center center' ng-switch-when = "4">silly nonsense</p>
+            <p layout = 'row' layout-align = 'center center' ng-switch-when = "5">serious nonsense</p>
+           </div>
           <hr />
         </div>
 
         <div>
           <p class='md-title'>Your food consumption was:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.food}}</p>
-          <hr />
+          <div ng-switch on = sessionObject.todaysReflectObject.food>
+            <p layout = 'row' layout-align = 'center center' ng-switch-when = "1">beginner</p>
+            <p layout = 'row' layout-align = 'center center' ng-switch-when = "2">moderate</p>
+            <p layout = 'row' layout-align = 'center center' ng-switch-when = "3">expert</p>
+            <p layout = 'row' layout-align = 'center center' ng-switch-when = "4">silly nonsense</p>
+            <p layout = 'row' layout-align = 'center center' ng-switch-when = "5">serious nonsense</p>
+           </div>
+           <hr />
         </div>
 
         <div>
@@ -63,8 +82,8 @@
           <hr />
         </div>
 
-        <div>
-          <p class='md-title' ng-if = 'sessionObject.todaysReflectObject.whatDream !== ""'>Your dream was:</p>
+        <div ng-if = 'sessionObject.todaysReflectObject.whatDream !== ""'>
+          <p class='md-title' >Your dream was:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.whatDream}}</p>
           <hr />
         </div>
@@ -107,8 +126,8 @@
           <hr />
         </div>
 
-        <div>
-          <p class='md-title' ng-if = 'sessionObject.todaysReflectObject.tomorrowGoal !== ""'>Your daily goal was:</p>
+        <div ng-if = 'sessionObject.todaysReflectObject.tomorrowGoal !== ""'>
+          <p class='md-title' >Your daily goal was:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.tomorrowGoal}}</p>
           <hr />
         </div>
@@ -126,11 +145,6 @@
         </div>
 
       </div>
-    <!-- </div> -->
-  <!-- </div> -->
-
-
-    <!-- <button ng-click="next()">Prev</button> -->
 
 </div>
 
