@@ -187,7 +187,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     // getSessionObject(sessionObject);
     //   //for testing purposes remove once getSessionObject actually does something
     //   sessionObject.reflectionCompleted = true;
-    // //moves participant back to home screen
+
     $location.path('/home');
   }
 
