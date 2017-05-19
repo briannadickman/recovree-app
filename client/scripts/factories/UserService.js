@@ -5,7 +5,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   var userObject = {};
   var sessionObject = {};
   var reflectionObject = {};
-  var dailyReflectObject = {};
+  var dailyReflectObject = { data: '' };
 
   //getuser
   function getuser(){
@@ -41,6 +41,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
             userObject.userName = response.data.username;
             userObject.id = response.data.id;
             userObject.memberID = response.data.memberID;
+
             getSessionObject(userObject.memberID);
             getReflectionObject(reflectionObject);
         } else {
@@ -52,6 +53,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }//ends refreshSessionObject
 
     //builds sessionObject
+
     function getSessionObject(memberID){
       $http({
         method: 'GET',
@@ -131,8 +133,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
       }//ends buildArray
 
 
-
-//reflection From functions
   function reflectionFormNextButton(sessionObject, reflectionObject){
     var medsForm = 3; //number of the form which asks about medication
     var takesMeds = sessionObject.takingMeds;
@@ -142,15 +142,8 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     }
     //post to database if it is the fist reflection form view
     if (reflectionObject.formPosition === 1){
-      $http.get('/user').then(function(response) {
-          if(response.data.id) {
-              reflectionObject.memberID = response.data.memberID;
-              postToReflectionForm(reflectionObject);
-          } else {
-              // user has no session, bounce them back to the login page
-              $location.path("/login");
-          }
-      });
+      //makes intial post to database
+      postToReflectionForm(reflectionObject);
     }
     //put to database if it is any subsequent reflection form views
     else{
@@ -165,6 +158,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
         console.log('reflectionObject._id: ', reflectionObject._id);
         advanceReflectionForm(reflectionObject);
       });
+
     }//ends postToReflectionForm
 
     function updateReflectionForm(reflectionObject){
@@ -181,13 +175,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }//ends advanceReflectionForm
 
   function returnHomeButton(sessionObject,reflectionObject){
-    // //clears out reflectionObject
-    // getReflectionObject(reflectionObject);
-    // //updates sessionObject
-    // getSessionObject(sessionObject);
-    //   //for testing purposes remove once getSessionObject actually does something
-    //   sessionObject.reflectionCompleted = true;
-
     $location.path('/home');
   }
 
@@ -201,5 +188,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     refreshSessionObject: refreshSessionObject,
     reflectionFormNextButton: reflectionFormNextButton,
     returnHomeButton: returnHomeButton
+
   };
 }]);
