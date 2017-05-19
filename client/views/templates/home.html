@@ -1,15 +1,18 @@
-<div class = 'column' layout-align='center center'>
-  <p>This is Home view</p>
-  <span>Number of Days: {{sessionObject.streak}}</span>
-  <br>
-  <span>Fancy Dynamic Image Goes Here</span>
-  <br>
+<div class = 'wrapper'>
+  <div class = 'column' layout-align='center center'>
+    <p>This is Home view</p>
+    <span>Number of Days: {{sessionObject.streak}}</span>
+    <br>
+    <span>Fancy Dynamic Image Goes Here</span>
+    <br>
 
-<a href='#/admin-export'>Admin View</a>
-<br>
-  <md-button class = 'md-raised' ng-click = 'launchReflection()'>Reflect</md-button>
-</div>
+  <a href='#/admin-export'>Admin View</a>
+  <br>
+    <md-button class = 'md-raised' ng-click = 'launchReflection()'>Reflect</md-button>
+  </div>
+</div>  
 <!-- end of wrapper -->
+
 
 
 <footer class='navMenu' ng-include="'/views/partials/nav.html'"></footer>
