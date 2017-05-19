@@ -1,5 +1,11 @@
 <div class = 'wrapper'>
-  <p>How are you feeling today?</p>
+  <h4 class='md-subhead'>How are you feeling today?</h4>
+
+<!-- Floating Next Button -->
+  <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
+    <!-- <i class="material-icons" id='addButton'>add</i> -->
+    <span class='md-subhead' id='formNextButton'> > </span>
+  </md-button>
 
   <div layout = 'row' layout-align = 'center'>
     <form name="dailyFeelingsForm"  novalidate>
@@ -19,7 +25,7 @@
   </md-input-container>
 
   <br>
-  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
+  <!-- <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button> -->
   </form>
   <!-- ends feelingsForm -->
 </div>
