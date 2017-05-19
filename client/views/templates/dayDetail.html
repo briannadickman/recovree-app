@@ -1,6 +1,12 @@
 <!-- <div ng-repeat='sessionObject.todaysReflectObject in dailyReflectObject.data' ng-if='$last'> -->
   <!-- <div ng-if="day_index == $index"> -->
-<md-content>
+
+<md-content ng-if = '((sessionObject.reflectionCompleted) === false)'>
+  <p>Hey buddy you haven't filled this out yet today.</p>
+  <md-button class = 'md-raised' ng-click = 'launchReflection()'>Reflect</md-button>
+</md-content>
+
+<md-content ng-if = '((sessionObject.reflectionCompleted) === true)'>
   <!-- <div ng-repeat='sessionObject.todaysReflectObject in sessionObject.todaysReflectObject' ng-if="$index == (dailyReflectObject.data.length - 1)"> -->
   <!-- <div ng-repeat='sessionObject.todaysReflectObject in sessionObject.todaysReflectObject'> -->
     <div layout='column' layout-align='center center'>
