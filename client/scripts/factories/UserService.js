@@ -5,7 +5,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   var userObject = {};
   var sessionObject = {};
   var reflectionObject = {};
-  var dailyReflectObject = {};
+  var dailyReflectObject = { data: '' };
 
   //getuser
   function getuser(){
@@ -72,6 +72,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
       });
     }//ends getSessionObject
 
+
     //builds reflectionObject
     function getReflectionObject(reflectionObject){
       //creates feelings array
@@ -131,7 +132,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
       }//ends buildArray
 
 
-
 //launchReflection
   function launchReflection(){
       $location.path('/reflection-form/reflect-1');
@@ -147,15 +147,8 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     }
     //post to database if it is the fist reflection form view
     if (reflectionObject.formPosition === 1){
-      $http.get('/user').then(function(response) {
-          if(response.data.id) {
-              reflectionObject.memberID = response.data.memberID;
-              postToReflectionForm(reflectionObject);
-          } else {
-              // user has no session, bounce them back to the login page
-              $location.path("/login");
-          }
-      });
+      //makes intial post to database
+      postToReflectionForm(reflectionObject);
     }
     //put to database if it is any subsequent reflection form views
     else{
@@ -165,6 +158,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }//ends reflectionFormNextButton
 
     function postToReflectionForm(reflectionObject){
+
       $http.post('/reflection', reflectionObject).then(function(response) {
         reflectionObject._id = response.data._id;
         console.log('reflectionObject._id: ', reflectionObject._id);
@@ -186,15 +180,9 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }//ends advanceReflectionForm
 
   function returnHomeButton(sessionObject,reflectionObject){
-    // //clears out reflectionObject
-    // getReflectionObject(reflectionObject);
-    // //updates sessionObject
-    // getSessionObject(sessionObject);
-    //   //for testing purposes remove once getSessionObject actually does something
-    //   sessionObject.reflectionCompleted = true;
-
     $location.path('/home');
   }
+
 
   //return out of UserService Factory
   return {
@@ -207,5 +195,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     launchReflection: launchReflection,
     reflectionFormNextButton: reflectionFormNextButton,
     returnHomeButton: returnHomeButton
+
   };
 }]);
