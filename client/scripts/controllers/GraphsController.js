@@ -4,31 +4,37 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   var userObject = UserService.userObject;
   UserService.refreshSessionObject();
 
-
   //all the REFLECTIONS data
   $scope.sessionObject = UserService.sessionObject;
   var reflections = $scope.sessionObject.allReflections;
   console.log('ALL REFLECTIONS', reflections);
 
+  var feelingsArray = [];
+  var exerciseArray = [];
+  var foodArray = [];
+  var sleepArray = [];
 
   //LOOP THROUGH THE REFLECTION ARRAY AND GET DATA FOR FEELINGS, SLEEP, EXERCISE, AND FOOD
   for (var i = 0; i < reflections.length; i++) {
-    // console.log('EACH REFLECTIONS IN DB',reflections[i]);
-
     var feelings = reflections[i].feelings;
     // console.log('FEELINGS ARRAY',feelings);
-
+    //store feelings were value is true in new array
+    // if (true) {
+    //
+    // }
     var exercise = reflections[i].exercise;
-    console.log('EXERCISE', exercise);
+    exerciseArray.push(exercise);
 
     var food = reflections[i].food;
-    console.log('FOOD', food);
+    foodArray.push(food);
 
     var sleep = reflections[i].sleep;
-    console.log('SLEEP', sleep);
-
+    sleepArray.push(sleep);
   }
 
+console.log('Exrcise Array', exerciseArray );
+console.log('Food Array', foodArray );
+console.log('Sleep Array', sleepArray );
 
 
   //line chart for food, sleep, exercise
@@ -40,32 +46,35 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
       datasets: [{
           label: "Exercise",
           fill: false,
+          borderColor: "rgba(215, 141, 141,1)",
           pointBackgroundColor: "rgba(215, 141, 141,1)",
           pointBorderColor: "rgba(215,141,141,1)",
           pointBorderWidth: 1,
           pointHoverRadius: 5,
-          pointRadius: 1,
-          data: [2, 1, 5, 4, 2, 3]
+          pointRadius: 4,
+          data: exerciseArray
         },
         {
           label: 'Food',
           fill: false,
+          borderColor: "rgba(151,187,205,1)",
           pointBackgroundColor: "rgba(151,187,205,1)",
           pointBorderColor: "rgba(151,187,205,1)",
           pointBorderWidth: 1,
           pointHoverRadius: 5,
-          pointRadius: 1,
-          data: [0, 1, 1, 2, 3, 5]
+          pointRadius: 4,
+          data: foodArray
         },
         {
           label: 'Sleep',
           fill: false,
+          borderColor: "rgba(178, 221, 158, 1)",
           pointBackgroundColor: "rgba(178, 221, 158, 1)",
           pointBorderColor: "rgba(178,221,158,1)",
           pointBorderWidth: 1,
           pointHoverRadius: 5,
-          pointRadius: 1,
-          data: [0, 5, 1, 4, 3, 4]
+          pointRadius: 4,
+          data: sleepArray
         }
       ]
     },
