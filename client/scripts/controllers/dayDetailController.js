@@ -3,11 +3,8 @@ myApp.controller('DayDetailController', ['$scope', '$http', '$location', 'UserSe
 
 var onHome = UserService.onHome;
 onHome();
-// $scope.dailyReflectObject = UserService.dailyReflectObject;
 $scope.sessionObject = UserService.sessionObject;
-// console.log("$scope.sessionObject",$scope.sessionObject.todaysReflectObject);
-// var getReflections = UserService.getReflections;
-// getReflections();
+
 
 
 }]);

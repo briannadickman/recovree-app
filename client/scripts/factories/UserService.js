@@ -41,7 +41,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
             userObject.userName = response.data.username;
             userObject.id = response.data.id;
             userObject.memberID = response.data.memberID;
-            console.log('memberID: ', userObject.memberID);
             getSessionObject(userObject.memberID);
             getReflectionObject(reflectionObject);
         } else {
@@ -59,67 +58,19 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
         url: '/reflection/session/' + memberID,
       }).then(function(response){
         console.log('response in getSessionObject:', response);
+        sessionObject.streak = response.data.streakCount;
+        sessionObject.allReflections = response.data.allReflectionsNewToOld;
+        sessionObject.reflectionCompleted = response.data.reflectionCompleted;
+        if (sessionObject.reflectionCompleted === true){
+          sessionObject.todaysReflectObject = response.data.todaysReflection;
+        }
+        else{
+          sessionObject.todaysReflectObject = {};
+        }
+        sessionObject.yesterdaysGoal = response.data.yesterdaysGoal;
+        sessionObject.takingMeds = response.data.takingMeds;
       });
-      // sessionObject.numberOfDays = getStreak();
-      // sessionObject.reflectionCompleted = getReflectionCompleted();
-      // sessionObject.takingMeds = getTakingMeds();
-      // sessionObject.yesterdaysGoal = getYesterdaysGoal();
-      // sessionObject.todaysReflectObject = getTodaysReflectObject();
-      // getTodaysReflectObject();
-      sessionObject.todaysDate = Date.now();
     }//ends getSessionObject
-
-      //sessionObject related functions
-
-        function getStreak(){
-          console.log("inside getStreak");
-          //$http.get which retrieves
-          // $http.get('/register/streak').then(function(response){
-          //   console.log("I've returned from the other side, and I have this:");
-          //   console.log("response",response);
-          // });
-
-          //for testing purposes
-          return 14;
-        }//ends numberOfDays
-
-        function getReflectionCompleted(){
-          console.log("inside getReflectionCompleted");
-
-          //for testing purposes
-          return false;
-        }//ends getReflectionCompleted
-
-        function getTakingMeds(){
-          console.log("inside getTakingMeds");
-          console.log("userObject", userObject, userObject.id);
-          var id = userObject.id;
-          console.log("id",id);
-
-          // $http.get('/register/meds/' + id).then(function(response) {
-          //     console.log('GET MEDS', response);
-          //   });
-
-          return false;
-        }//ends getTakingMeds
-
-        function getYesterdaysGoal(){
-          console.log("inside getYesterdaysGoal");
-
-          //for testing purposes
-          return "To meditate for at least 10 minutes";
-        }//ends getYesterdaysGoal
-
-        function getTodaysReflectObject() {
-          var memberID = userObject.memberID;
-          $http.get('/reflection/'+memberID).then(function(response){
-            console.log("response from get /reflection", response);
-            sessionObject.todaysReflectObject = response.data;
-            console.log("sessionObject.todaysReflectObject",sessionObject.todaysReflectObject);
-          });//ends http.get/reflection
-        }//ends getTodaysReflectObject
-
-
 
     //builds reflectionObject
     function getReflectionObject(reflectionObject){
@@ -193,15 +144,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     if (reflectionObject.formPosition === 1){
       $http.get('/user').then(function(response) {
           if(response.data.id) {
-              // user has a curret session on the server
-              // userObject.userName = response.data.username;
-              // userObject.id = response.data.id;
-              // userObject.memberID = response.data.memberID;
-              // getSessionObject(sessionObject);
-              // getReflectionObject(reflectionObject);
-              //makes intial post to database
               reflectionObject.memberID = response.data.memberID;
-              console.log("reflectionObject", reflectionObject);
               postToReflectionForm(reflectionObject);
           } else {
               // user has no session, bounce them back to the login page
@@ -217,20 +160,14 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }//ends reflectionFormNextButton
 
     function postToReflectionForm(reflectionObject){
-
-      console.log('FEELINGS SAVED TO DB - NEW REFLECTION POSTED', reflectionObject);
       $http.post('/reflection', reflectionObject).then(function(response) {
         reflectionObject._id = response.data._id;
         console.log('reflectionObject._id: ', reflectionObject._id);
         advanceReflectionForm(reflectionObject);
       });
-
     }//ends postToReflectionForm
 
     function updateReflectionForm(reflectionObject){
-      console.log("$http.put:", reflectionObject);
-      console.log('_id in put request: ', reflectionObject._id);
-
       $http.put('/reflection', reflectionObject).then(function(response){
         console.log('updateReflectionForm response: ', response.data);
         advanceReflectionForm(reflectionObject);
@@ -254,9 +191,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     $location.path('/home');
   }
 
-
-
-
   //return out of UserService Factory
   return {
     userObject : userObject,
@@ -266,7 +200,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     logout: logout,
     onHome: onHome,
     reflectionFormNextButton: reflectionFormNextButton,
-    returnHomeButton: returnHomeButton,
-    dailyReflectObject : dailyReflectObject
+    returnHomeButton: returnHomeButton
   };
 }]);
