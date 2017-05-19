@@ -37,7 +37,43 @@ console.log('Food Array', foodArray );
 console.log('Sleep Array', sleepArray );
 
 
-  //line chart for food, sleep, exercise
+//chart for feelings
+var ctx1 = document.getElementById("feelingsChart");
+var areaChart = new Chart (ctx1, {
+  type: 'polarArea',
+  data: {
+    datasets: [{
+        data: [
+            11,
+            16,
+            7,
+            3,
+            14
+        ],
+        backgroundColor: [
+            "#FF6384",
+            "#4BC0C0",
+            "#FFCE56",
+            "#E7E9ED",
+            "#36A2EB"
+        ],
+        label: 'My dataset' // for legend
+    }],
+    labels: [
+        "Red",
+        "Green",
+        "Yellow",
+        "Grey",
+        "Blue"
+    ]
+
+  },
+  // options:
+
+}); //end polar area chart
+
+
+//line chart for food, sleep, exercise
   var ctx2 = document.getElementById("lineChart");
   var lineChart = new Chart(ctx2, {
     type: 'line',
@@ -91,7 +127,6 @@ console.log('Sleep Array', sleepArray );
       }
     }
   }); //end line chart
-
 
 
 
