@@ -1,15 +1,16 @@
-<div class = 'column' layout-align='center center'>
-  <p>This is Home view</p>
-  <span>Number of Days: {{sessionObject.streak}}</span>
-  <br>
-  <span>Fancy Dynamic Image Goes Here</span>
-  <br>
 
-<a href='#/admin-export'>Admin View</a>
-<br>
-  <md-button class = 'md-raised' ng-click = 'launchReflection()'>Reflect</md-button>
+<div layout='column' layout-align='center center'>
+  <h1 class='md-headline'>Welcome Back!</h1>
+  <div id='chainGraphic'>Chain Graphic Goes Here w/ Number of Days: {{sessionObject.streak}}</div>
+  <h3 class='md-subhead'>Recovree Days In A Row!</h3>
 </div>
-<!-- end of wrapper -->
+
+<div layout='column' layout-align='end center'>
+  <md-button class='md-raised md-hue-3' ng-click = 'launchReflection()'>Reflect</md-button>
+  <a href='#/admin-export'>Admin View</a>
+</div>
+
+
 
 
 <footer class='navMenu' ng-include="'/views/partials/nav.html'"></footer>

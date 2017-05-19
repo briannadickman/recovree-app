@@ -5,17 +5,54 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
       function($routeProvider, $locationProvider, $mdThemingProvider) {
   $locationProvider.hashPrefix('');
 
-  // Color Theme
+  // COLOR THEME
+  $mdThemingProvider.definePalette('black', {
+    '50': '000000',
+    '100': 'FFFFFF', //white
+    '200': '000000',
+    '300': '000000',
+    '400': '000000',
+    '500': '454B49', //grey
+    '600': '000000',
+    '700': '000000',
+    '800': '000000',
+    '900': '000000', //black
+    'A100': '000000',
+    'A200': '000000',
+    'A400': '000000',
+    'A700': '000000',
+    'contrastDefaultColor': 'light'
+  });
+  $mdThemingProvider.definePalette('accent', {
+    '50': 'ffffff',
+    '100': 'ffffff',
+    '200': 'ffffff',
+    '300': 'ffffff',
+    '400': 'ffffff',
+    '500': 'e62832', //accent-warning-orange
+    '600': 'ffffff',
+    '700': 'ffffff',
+    '800': 'ffffff',
+    '900': 'fb1789', //accent-indigo
+    'A100': 'ffffff',
+    'A200': 'ffffff',
+    'A400': 'ffffff',
+    'A700': 'ffffff',
+    'contrastDefaultColor': 'dark'
+  });
+
   $mdThemingProvider.theme('default')
-    .primaryPalette('grey', {
-      'default': '800',
-      'hue-1' : '600',
-      'hue-2' : '400',
-      'hue-3' : '900',
+    .primaryPalette('black', {
+      'default': '900', //black
+      'hue-1' : '100', //white
+      'hue-2' : '500', //grey
+      // 'hue-3' : '900',
     })
-    .accentPalette('green', {
-      'default' : '500'
+    .accentPalette('accent', {
+      'default' : '900', // accent-indigo
+      'hue-3': '500' //accent-warning-orange
     });
+
 
   $routeProvider
 //login
