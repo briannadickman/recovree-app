@@ -10,16 +10,21 @@
   <!-- <div ng-repeat='sessionObject.todaysReflectObject in sessionObject.todaysReflectObject' ng-if="$index == (dailyReflectObject.data.length - 1)"> -->
   <!-- <div ng-repeat='sessionObject.todaysReflectObject in sessionObject.todaysReflectObject'> -->
     <div layout='column' layout-align='center center'>
-    <p class='md-headline'>Daily Summary for {{sessionObject.todaysReflectObject.reflectionDate | date:'MM/dd/yyyy'}}</p>
-
+      <div>
+          <p class='md-headline'>Daily Summary for {{sessionObject.todaysReflectObject.reflectionDate | date:'MM/dd/yyyy'}}</p>
+      </div>
+      <div>
         <p class='md-title'>Feeling:</p>
           <p class='md-body-1'>
             <span ng-repeat='feeling in sessionObject.todaysReflectObject.feelings | filter: { value: true }' >{{feeling.name}} </span>
           </p>
+      </div>
 
-        <p class='md-title'>You felt this way because:</p>
-        <p class='md-body-1'>{{sessionObject.todaysReflectObject.feelingsWhy}}</p>
-        <hr />
+        <div>
+          <p class='md-title'>You felt this way because:</p>
+          <p class='md-body-1'>{{sessionObject.todaysReflectObject.feelingsWhy}}</p>
+          <hr />
+        </div>
         <p class='md-title'>Last night you slept:</p>
         <p class='md-body-1'>{{sessionObject.todaysReflectObject.sleep}}</p>
         <hr />
@@ -29,35 +34,47 @@
         <p class='md-title'>Your food consumption was:</p>
         <p class='md-body-1'>{{sessionObject.todaysReflectObject.food}}</p>
         <hr />
-        <p class='md-title'>Used drugs or alcohol:</p>
-        <p class='md-body-1'>{{sessionObject.todaysReflectObject.drugAlcoholIntake}}</p>
-        <hr />
-        <p class='md-title'>Took your medication:</p>
-        <p class='md-body-1'>{{sessionObject.todaysReflectObject.medication}}</p>
-        <hr />
-        <p class='md-title'>Had a using dream last night:</p>
-        <p class='md-body-1'>{{sessionObject.todaysReflectObject.dream}}</p>
-        <hr />
+        <div>
+          <p class='md-title'>Used drugs or alcohol:</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.drugAlcoholIntake ? 'Yes':'No'}}</p>
+          <hr />
+        </div>
+        <div>
+          <p class='md-title'>Took your medication:</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.medication ? 'Yes':'No'}}</p>
+          <hr />
+        </div>
+        <div>
+          <p class='md-title'>Had a using dream last night:</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.dream ? 'Yes':'No'}}</p>
+          <hr />
+        </div>
         <p class='md-title'>Your dream was:</p>
         <p class='md-body-1'>{{sessionObject.todaysReflectObject.whatDream}}</p>
         <hr />
-        <p class='md-title'>Connected with a sponsor/mentor:</p>
-        <p class='md-body-1'>{{sessionObject.todaysReflectObject.spnsrMntrConnect}}</p>
-        <hr />
+        <div>
+          <p class='md-title'>Connected with a sponsor/mentor:</p>
+          <p class='md-body-1'  layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.spnsrMntrConnect ? 'Yes':'No'}}</p>
+          <hr />
+        </div>
         <p class='md-title'>Number of group meetings you attended:</p>
         <p class='md-body-1'>{{sessionObject.todaysReflectObject.groupMeet}}</p>
         <hr />
-        <p class='md-title'>Engaged in service or community work:</p>
-        <p class='md-body-1'>{{sessionObject.todaysReflectObject.commntyService}}</p>
-        <hr />
+        <div>
+          <p class='md-title'>Engaged in service or community work:</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.commntyService ? 'Yes':'No'}}</p>
+          <hr />
+        </div>
         <p class='md-title'>Your stressors today:</p>
         <p class='md-body-1'>
           <span ng-repeat='stressor in sessionObject.todaysReflectObject.stressors | filter: { value: true }'>{{stressor.name}} </span>
         </p>
         <hr />
-        <p class='md-title'>Selfish or dishonest today:</p>
-        <p class='md-body-1'>{{sessionObject.todaysReflectObject.selfishDishonest}}</p>
-        <hr />
+        <div>
+          <p class='md-title'>Selfish or dishonest today:</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.selfishDishonest ? 'Yes':'No'}}</p>
+          <hr />
+        </div>
         <div ng-if = 'sessionObject.todaysReflectObject.howSelfshDishnt !== ""'>
           <p class='md-title'>How I was selfish or dishonest:</p>
           <p class='md-body-1'>{{sessionObject.todaysReflectObject.howSelfshDishnt}}</p>
