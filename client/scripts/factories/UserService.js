@@ -31,8 +31,8 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
       });
   }//ends logout
 
-  //onHome
-  function onHome(){
+  //refreshes session object on each navigation page load
+  function refreshSessionObject(){
             // getSessionObject(sessionObject);
             // getReflectionObject(reflectionObject);
     $http.get('/user').then(function(response) {
@@ -53,7 +53,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
         }
     });
 
-  }//ends onHome
+  }//ends refreshSessionObject
 
     //builds sessionObject
 <<<<<<< HEAD
@@ -252,13 +252,13 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }//ends advanceReflectionForm
 
   function returnHomeButton(sessionObject,reflectionObject){
-    //clears out reflectionObject
-    getReflectionObject(reflectionObject);
-    //updates sessionObject
-    getSessionObject(sessionObject);
-      //for testing purposes remove once getSessionObject actually does something
-      sessionObject.reflectionCompleted = true;
-    //moves participant back to home screen
+    // //clears out reflectionObject
+    // getReflectionObject(reflectionObject);
+    // //updates sessionObject
+    // getSessionObject(sessionObject);
+    //   //for testing purposes remove once getSessionObject actually does something
+    //   sessionObject.reflectionCompleted = true;
+    // //moves participant back to home screen
     $location.path('/home');
   }
 
@@ -292,7 +292,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     sessionObject: sessionObject,
     getuser : getuser,
     logout: logout,
-    onHome: onHome,
+    refreshSessionObject: refreshSessionObject,
     reflectionFormNextButton: reflectionFormNextButton,
 <<<<<<< HEAD
     returnHomeButton: returnHomeButton,
