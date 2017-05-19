@@ -22,73 +22,108 @@
 
         <div>
           <p class='md-title'>You felt this way because:</p>
-          <p class='md-body-1'>{{sessionObject.todaysReflectObject.feelingsWhy}}</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.feelingsWhy}}</p>
           <hr />
         </div>
-        <p class='md-title'>Last night you slept:</p>
-        <p class='md-body-1'>{{sessionObject.todaysReflectObject.sleep}}</p>
-        <hr />
-        <p class='md-title'>Your exercise level was:</p>
-        <p class='md-body-1'>{{sessionObject.todaysReflectObject.exercise}}</p>
-        <hr />
-        <p class='md-title'>Your food consumption was:</p>
-        <p class='md-body-1'>{{sessionObject.todaysReflectObject.food}}</p>
-        <hr />
+
+        <div>
+          <p class='md-title'>Last night you slept:</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.sleep}}</p>
+          <hr />
+        </div>
+
+        <div>
+          <p class='md-title'>Your exercise level was:</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.exercise}}</p>
+          <hr />
+        </div>
+
+        <div>
+          <p class='md-title'>Your food consumption was:</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.food}}</p>
+          <hr />
+        </div>
+
         <div>
           <p class='md-title'>Used drugs or alcohol:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.drugAlcoholIntake ? 'Yes':'No'}}</p>
           <hr />
         </div>
+
         <div>
           <p class='md-title'>Took your medication:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.medication ? 'Yes':'No'}}</p>
           <hr />
         </div>
+
         <div>
           <p class='md-title'>Had a using dream last night:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.dream ? 'Yes':'No'}}</p>
           <hr />
         </div>
-        <p class='md-title'>Your dream was:</p>
-        <p class='md-body-1'>{{sessionObject.todaysReflectObject.whatDream}}</p>
-        <hr />
+
+        <div>
+          <p class='md-title'>Your dream was:</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.whatDream}}</p>
+          <hr />
+        </div>
+
         <div>
           <p class='md-title'>Connected with a sponsor/mentor:</p>
           <p class='md-body-1'  layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.spnsrMntrConnect ? 'Yes':'No'}}</p>
           <hr />
         </div>
-        <p class='md-title'>Number of group meetings you attended:</p>
-        <p class='md-body-1'>{{sessionObject.todaysReflectObject.groupMeet}}</p>
-        <hr />
+
+        <div>
+          <p class='md-title'>Number of group meetings you attended:</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.groupMeet}}</p>
+          <hr />
+        </div>
+
         <div>
           <p class='md-title'>Engaged in service or community work:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.commntyService ? 'Yes':'No'}}</p>
           <hr />
         </div>
-        <p class='md-title'>Your stressors today:</p>
-        <p class='md-body-1'>
-          <span ng-repeat='stressor in sessionObject.todaysReflectObject.stressors | filter: { value: true }'>{{stressor.name}} </span>
-        </p>
-        <hr />
+
+        <div>
+          <p class='md-title'>Your stressors today:</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>
+            <span ng-repeat='stressor in sessionObject.todaysReflectObject.stressors | filter: { value: true }'>{{stressor.name}} </span>
+          </p>
+          <hr />
+        </div>
+
         <div>
           <p class='md-title'>Selfish or dishonest today:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.selfishDishonest ? 'Yes':'No'}}</p>
           <hr />
         </div>
+
         <div ng-if = 'sessionObject.todaysReflectObject.howSelfshDishnt !== ""'>
           <p class='md-title'>How I was selfish or dishonest:</p>
-          <p class='md-body-1'>{{sessionObject.todaysReflectObject.howSelfshDishnt}}</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.howSelfshDishnt}}</p>
           <hr />
         </div>
-        <p class='md-title'>Your daily goal was:</p>
-        <p class='md-body-1'>{{sessionObject.todaysReflectObject.tomorrowGoal}}</p>
-        <hr />
-        <p class='md-title'>You completed yesterday's goal:</p>
-        <p class='md-body-1'>{{sessionObject.todaysReflectObject.dailyGoal}}</p>
-        <hr />
-        <p class='md-title'>You were thankful for:</p>
-        <p class='md-body-1'>{{sessionObject.todaysReflectObject.gratitude}}</p>
-        <hr />
+
+        <div>
+          <p class='md-title'>Your daily goal was:</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.tomorrowGoal}}</p>
+          <hr />
+        </div>
+
+        <div>
+          <p class='md-title'>You completed yesterday's goal:</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.dailyGoal}}</p>
+          <hr />
+        </div>
+
+        <div>
+          <p class='md-title'>You were thankful for:</p>
+          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.gratitude}}</p>
+          <hr />
+        </div>
+
       </div>
     <!-- </div> -->
   <!-- </div> -->
