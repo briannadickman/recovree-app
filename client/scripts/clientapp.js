@@ -53,6 +53,7 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
       'hue-3': '500' //accent-warning-orange
     });
 
+
   $routeProvider
 //login
     .when('/login', {

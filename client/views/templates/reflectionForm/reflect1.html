@@ -1,10 +1,9 @@
 <div class = 'wrapper'>
-  <h4 class='md-subhead'>How are you feeling today?</h4>
+  <h3 class='md-subhead'>How are you feeling today?</h3>
 
 <!-- Floating Next Button -->
   <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
-    <!-- <i class="material-icons" id='addButton'>add</i> -->
-    <span class='md-subhead' id='formNextButton'> > </span>
+    <i class="material-icons" id='formNextButton'>navigate_next</i>
   </md-button>
 
   <div layout = 'row' layout-align = 'center'>
@@ -23,9 +22,6 @@
     <label>Why?</label>
     <textarea ng-model="reflectionObject.feelingsWhy" md-maxlength="150" rows="5" md-select-on-focus></textarea>
   </md-input-container>
-
-  <br>
-  <!-- <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button> -->
   </form>
   <!-- ends feelingsForm -->
 </div>
