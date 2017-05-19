@@ -78,7 +78,7 @@ router.get('/session/:memberID', function(req, res){
         //it just so happens to be the most recent reflection
         serverSessionObject.todaysReflection = lastReflection;
         //tomorrows goal yesterday is yesterdays goal today - paul mccartney
-        // *****// serverSessionObject.yesterdaysGoal = allReflections[1].tomorrowGoal;
+        serverSessionObject.yesterdaysGoal = allReflections[1].tomorrowGoal;
         //Note Note Note ***** if reflections can be completed twice in a day, the above needs to be changed
         console.log('yesterdays goal', serverSessionObject.yesterdaysGoal);
       }
