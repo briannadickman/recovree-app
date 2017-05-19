@@ -181,12 +181,12 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }//ends advanceReflectionForm
 
   function returnHomeButton(sessionObject,reflectionObject){
-    //clears out reflectionObject
-    getReflectionObject(reflectionObject);
-    //updates sessionObject
-    getSessionObject(sessionObject);
-      //for testing purposes remove once getSessionObject actually does something
-      sessionObject.reflectionCompleted = true;
+    // //clears out reflectionObject
+    // getReflectionObject(reflectionObject);
+    // //updates sessionObject
+    // getSessionObject(sessionObject);
+    //   //for testing purposes remove once getSessionObject actually does something
+    //   sessionObject.reflectionCompleted = true;
     //moves participant back to home screen
     $location.path('/home');
   }
