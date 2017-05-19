@@ -6,7 +6,7 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
   $locationProvider.hashPrefix('');
 
   // COLOR THEME
-  $mdThemingProvider.definePalette('black', {
+  $mdThemingProvider.definePalette('primary', {
     '50': '000000',
     '100': 'FFFFFF', //white
     '200': '000000',
@@ -33,7 +33,7 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
     '600': 'ffffff',
     '700': 'ffffff',
     '800': 'ffffff',
-    '900': 'fb1789', //accent-indigo
+    '900': '813172', //accent-indigo
     'A100': 'ffffff',
     'A200': 'ffffff',
     'A400': 'ffffff',
@@ -42,7 +42,7 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
   });
 
   $mdThemingProvider.theme('default')
-    .primaryPalette('black', {
+    .primaryPalette('primary', {
       'default': '900', //black
       'hue-1' : '100', //white
       'hue-2' : '500', //grey

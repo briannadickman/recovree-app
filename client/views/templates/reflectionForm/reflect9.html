@@ -5,15 +5,15 @@
     <i class="material-icons" id='formNextButton'>navigate_next</i>
   </md-button>
 
-  <h3 class='md-subhead'>What is your goal for tomorrow?</h3>
+  <h3 class='md-subhead'>What is a goal for tomorrow?</h3>
 
   <md-input-container class="md-block">
     <!-- <label>What is your goal for tomorrow?</label> -->
     <textarea ng-model="reflectionObject.tomorrowGoal" md-maxlength="150" rows="5" md-select-on-focus></textarea>
   </md-input-container>
 
+<div ng-if='sessionObject.yesterdaysGoal !== ""'>
   <p>Yesterdays Goal: {{sessionObject.yesterdaysGoal}}</p>
-  <p>Need to ng-if this stuff</p>
 
   <h3 class='md-subhead'>Did you complete your daily goal from yesterday?</h3>
   <div layout = 'row' layout-align = 'center'>
@@ -22,7 +22,7 @@
     </md-switch>
     <span>Yes</span>
   </div>
-
+</div>
   <!-- {{ reflectionObject }} -->
 </div>
 <!-- ends wrapper -->

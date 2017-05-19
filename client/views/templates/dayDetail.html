@@ -7,7 +7,7 @@
 </md-content>
 
 <md-content ng-if = '((sessionObject.reflectionCompleted) === true)'>
-    <div layout='column' layout-align='center center'>
+    <div layout='row' layout-align='center center'>
       <div>
           <h1 class='md-headline'>Daily Summary for {{sessionObject.todaysReflectObject.reflectionDate | date:'MM/dd/yyyy'}}</h1>
       </div>
@@ -26,27 +26,27 @@
         </div>
 
         <div ng>
-          <p class='md-title'>Last night you slept:</p>
+          <h3 class='md-subhead'>Last night you slept:</h3>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.sleep}}</p>
           <div ng-switch on = sessionObject.todaysReflectObject.sleep>
                <p layout = 'row' layout-align = 'center center' ng-switch-when = "1">Terrible</p>
                <p layout = 'row' layout-align = 'center center' ng-switch-when = "2">Not So Great</p>
                <p layout = 'row' layout-align = 'center center' ng-switch-when = "3">Okay</p>
-               <p layout = 'row' layout-align = 'center center' ng-switch-when = "4">Pretty Good</p>
+               <p layout = 'row' layout-align = 'center center' ng-switch-when = "4">Good</p>
                <p layout = 'row' layout-align = 'center center' ng-switch-when = "5">Great</p>
            </div>
           <hr />
         </div>
 
         <div>
-          <p class='md-title'>Your exercise level was:</p>
+          <h3 class='md-subhead'>Your exercise level was:</p>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.exercise}}</p>
           <div ng-switch on = sessionObject.todaysReflectObject.exercise>
-            <p layout = 'row' layout-align = 'center center' ng-switch-when = "1">No Activity</p>
-            <p layout = 'row' layout-align = 'center center' ng-switch-when = "2">Little Activity</p>
-            <p layout = 'row' layout-align = 'center center' ng-switch-when = "3">Average Amount of Activity</p>
-            <p layout = 'row' layout-align = 'center center' ng-switch-when = "4">Good Amount of Activity</p>
-            <p layout = 'row' layout-align = 'center center' ng-switch-when = "5">High Level of Activity</p>
+            <p layout = 'row' layout-align = 'center center' ng-switch-when = "1">Not Active</p>
+            <p layout = 'row' layout-align = 'center center' ng-switch-when = "2">Slightly Active</p>
+            <p layout = 'row' layout-align = 'center center' ng-switch-when = "3">Moderately Active</p>
+            <p layout = 'row' layout-align = 'center center' ng-switch-when = "4">Active</p>
+            <p layout = 'row' layout-align = 'center center' ng-switch-when = "5">Very Active</p>
            </div>
           <hr />
         </div>
@@ -58,7 +58,7 @@
             <p layout = 'row' layout-align = 'center center' ng-switch-when = "1">Not Healthy</p>
             <p layout = 'row' layout-align = 'center center' ng-switch-when = "2">A Little Healthy</p>
             <p layout = 'row' layout-align = 'center center' ng-switch-when = "3">Somewhat Healthy</p>
-            <p layout = 'row' layout-align = 'center center' ng-switch-when = "4">Pretty Healthy</p>
+            <p layout = 'row' layout-align = 'center center' ng-switch-when = "4">Healthy</p>
             <p layout = 'row' layout-align = 'center center' ng-switch-when = "5">Very Healthy</p>
            </div>
            <hr />
