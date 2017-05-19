@@ -31,8 +31,8 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
       });
   }//ends logout
 
-  //onHome
-  function onHome(){
+  //refreshes session object on each navigation page load
+  function refreshSessionObject(){
             // getSessionObject(sessionObject);
             // getReflectionObject(reflectionObject);
     $http.get('/user').then(function(response) {
@@ -50,7 +50,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
         }
     });
 
-  }//ends onHome
+  }//ends refreshSessionObject
 
     //builds sessionObject
     function getSessionObject(memberID){
@@ -264,7 +264,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     sessionObject: sessionObject,
     getuser : getuser,
     logout: logout,
-    onHome: onHome,
+    refreshSessionObject: refreshSessionObject,
     reflectionFormNextButton: reflectionFormNextButton,
     returnHomeButton: returnHomeButton,
     dailyReflectObject : dailyReflectObject

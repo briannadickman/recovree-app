@@ -2,8 +2,8 @@ myApp.controller('HomeController', ['$scope', '$http', '$location', 'UserService
   console.log('HomeController sourced!');
   var userObject = UserService.userObject;
   console.log("userObject");
-  var onHome = UserService.onHome;
-  onHome();
+  var refreshSessionObject = UserService.refreshSessionObject;
+  refreshSessionObject();
   $scope.sessionObject = UserService.sessionObject;
 
   $scope.launchReflection = function(){

@@ -6,6 +6,11 @@ UserService.getReflections();
 //get reflectionObj data
 $scope.allReflections = UserService.dailyReflectObject;
 
+//get/refresh sessionObject data
+var refreshSessionObject = UserService.refreshSessionObject;
+refreshSessionObject();
+$scope.sessionObject = UserService.sessionObject;
+
 //unable to access data property of the object, but can acess object it self
 console.log('Reflection Object in Graph Controller', $scope.allReflections);
 
