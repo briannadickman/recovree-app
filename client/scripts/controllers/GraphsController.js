@@ -13,17 +13,16 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   var exerciseArray = [];
   var foodArray = [];
   var sleepArray = [];
+  var count = 0;
 
   //LOOP THROUGH THE REFLECTION ARRAY AND GET DATA FOR FEELINGS, SLEEP, EXERCISE, AND FOOD
   for (var i = 0; i < reflections.length; i++) {
     var feelings = reflections[i].feelings;
-    // console.log('FEELINGS ARRAY',feelings);
     for (var x = 0; x < feelings.length; x++) {
-      // console.log('FEELINGS OBJECTS', feelings[x]);
-
       //if value fo feeling is true, then store feeling name into feelingsArray
       if (feelings[x].value === true) {
-        console.log(feelings[x].name);
+        var allFeelings = feelings[x].name;
+        feelingsArray.push(allFeelings);
       }
     }
 
@@ -36,10 +35,13 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
     var sleep = reflections[i].sleep;
     sleepArray.push(sleep);
   }
+  console.log('Feeling Array', feelingsArray );
+
 
 // console.log('Exrcise Array', exerciseArray );
 // console.log('Food Array', foodArray );
 // console.log('Sleep Array', sleepArray );
+
 
 
 //chart for feelings
@@ -49,11 +51,11 @@ var areaChart = new Chart (ctx1, {
   data: {
     datasets: [{
         data: [
-            11,
-            16,
-            7,
             3,
-            14
+            7,
+            2,
+            4,
+            5
         ],
         backgroundColor: [
             "#FF6384",
@@ -65,15 +67,19 @@ var areaChart = new Chart (ctx1, {
         label: 'My dataset' // for legend
     }],
     labels: [
-        "Red",
-        "Green",
-        "Yellow",
-        "Grey",
-        "Blue"
+        "Sad",
+        "Happy",
+        "Dissapointed",
+        "Optimistic",
+        "Distant"
     ]
 
   },
-  // options:
+  options: {
+    scales: {
+
+    }
+  }
 
 }); //end polar area chart
 
