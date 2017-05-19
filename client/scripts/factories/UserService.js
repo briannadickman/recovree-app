@@ -132,6 +132,11 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
 
 
+//launchReflection
+  function launchReflection(){
+      $location.path('/reflection-form/reflect-1');
+  }
+
 //reflection From functions
   function reflectionFormNextButton(sessionObject, reflectionObject){
     var medsForm = 3; //number of the form which asks about medication
@@ -199,6 +204,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     getuser : getuser,
     logout: logout,
     refreshSessionObject: refreshSessionObject,
+    launchReflection: launchReflection,
     reflectionFormNextButton: reflectionFormNextButton,
     returnHomeButton: returnHomeButton
   };
