@@ -93,6 +93,16 @@ html {
     min-width: 24px;
 }
 
+#headerTitle {
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  margin: 0;
+}
+
+.md-toolbar-tools > .md-button:last-child {
+    margin-right: -60px;
+}
+
 /*keith*/
 *{
   padding: 0;

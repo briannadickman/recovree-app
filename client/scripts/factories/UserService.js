@@ -5,7 +5,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   var userObject = {};
   var sessionObject = {};
   var reflectionObject = {};
-  var dailyReflectObject = {};
+  var dailyReflectObject = { data: '' };
 
   //getuser
   function getuser(){
@@ -41,7 +41,11 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
             userObject.userName = response.data.username;
             userObject.id = response.data.id;
             userObject.memberID = response.data.memberID;
+<<<<<<< HEAD
+            getSessionObject(sessionObject);
+=======
             getSessionObject(userObject.memberID);
+>>>>>>> a132d07f64f5865ca20d2d04816eb8f0c246367d
             getReflectionObject(reflectionObject);
         } else {
             // user has no session, bounce them back to the login page
@@ -52,6 +56,57 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }//ends refreshSessionObject
 
     //builds sessionObject
+<<<<<<< HEAD
+    function getSessionObject(sessionObject){
+      // sessionObject.numberOfDays = getStreak();
+      sessionObject.reflectionCompleted = getReflectionCompleted();
+      sessionObject.takingMeds = getTakingMeds();
+      sessionObject.yesterdaysGoal = getYesterdaysGoal();
+      sessionObject.todaysDate = Date.now();
+    }//ends getSessionObject
+
+      //sessionObject related functions
+        // function getStreak(){
+        //   console.log("inside getStreak");
+        //   //$http.get which retrieves
+        //   $http.get('/register/streak').then(function(response){
+        //     console.log("I've returned from the other side, and I have this:");
+        //     console.log("response",response);
+        //   });
+        //
+        //   //for testing purposes
+        //   return 14;
+        // }//ends numberOfDays
+
+        function getReflectionCompleted(){
+          console.log("inside getReflectionCompleted");
+
+          //for testing purposes
+          return false;
+        }//ends getReflectionCompleted
+
+        function getTakingMeds(){
+          console.log("inside getTakingMeds");
+          console.log("userObject", userObject, userObject.id);
+          var id = userObject.id;
+          console.log("id",id);
+
+          $http.get('/register/meds/' + id).then(function(response) {
+              console.log('GET MEDS', response);
+            });
+
+          return false;
+        }//ends getTakingMeds
+
+        function getYesterdaysGoal(){
+          console.log("inside getYesterdaysGoal");
+
+          //for testing purposes
+          return "To meditate for at least 10 minutes";
+        }//ends getYesterdaysGoal
+
+
+=======
     function getSessionObject(memberID){
       $http({
         method: 'GET',
@@ -72,6 +127,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
       });
     }//ends getSessionObject
 
+>>>>>>> a132d07f64f5865ca20d2d04816eb8f0c246367d
     //builds reflectionObject
     function getReflectionObject(reflectionObject){
       //creates feelings array
@@ -131,8 +187,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
       }//ends buildArray
 
 
-
-//reflection From functions
   function reflectionFormNextButton(sessionObject, reflectionObject){
     var medsForm = 3; //number of the form which asks about medication
     var takesMeds = sessionObject.takingMeds;
@@ -142,6 +196,10 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     }
     //post to database if it is the fist reflection form view
     if (reflectionObject.formPosition === 1){
+<<<<<<< HEAD
+      //makes intial post to database
+      postToReflectionForm(reflectionObject);
+=======
       $http.get('/user').then(function(response) {
           if(response.data.id) {
               reflectionObject.memberID = response.data.memberID;
@@ -151,6 +209,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
               $location.path("/login");
           }
       });
+>>>>>>> a132d07f64f5865ca20d2d04816eb8f0c246367d
     }
     //put to database if it is any subsequent reflection form views
     else{
@@ -160,11 +219,23 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }//ends reflectionFormNextButton
 
     function postToReflectionForm(reflectionObject){
+<<<<<<< HEAD
+      // advanceReflectionForm(reflectionObject);
+      if (userObject.id) {
+        console.log('FEELINGS SAVED TO DB - NEW REFLECTION POSTED');
+        $http.post('/reflection', reflectionObject).then(function(response) {
+          reflectionObject._id = response.data._id;
+          console.log('reflectionObject._id: ', reflectionObject._id);
+          advanceReflectionForm(reflectionObject);
+        });
+      }
+=======
       $http.post('/reflection', reflectionObject).then(function(response) {
         reflectionObject._id = response.data._id;
         console.log('reflectionObject._id: ', reflectionObject._id);
         advanceReflectionForm(reflectionObject);
       });
+>>>>>>> a132d07f64f5865ca20d2d04816eb8f0c246367d
     }//ends postToReflectionForm
 
     function updateReflectionForm(reflectionObject){
@@ -191,6 +262,29 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     $location.path('/home');
   }
 
+<<<<<<< HEAD
+  function getReflections() {
+    if (userObject.id) {
+      console.log('GET', userObject.id);
+      $http.get('/reflection').then(function(response) {
+        console.log('GOTTEN REFLECTIONS', response.data);  //this is an empty object, why
+        dailyReflectObject.data = response.data;
+        console.log('dailyReflectObject is: ', dailyReflectObject);
+        // console.log('dayArray is: ', dailyReflectObject.data.length);
+
+      //   for (var i = 0; i < dailyReflectObject.data.length; i++) {
+      //     console.log(dailyReflectObject.data[i].reflectionDate);
+      //    if (dailyReflectObject.data[i].reflectionDate) {
+      //      dailyReflectObject.data[i].reflectionDate = moment(dailyReflectObject.data[i].reflectionDate).format('L');
+      //    }
+      //    console.log(dailyReflectObject.data[i].reflectionDate);
+      //  }
+      });
+    }
+  }
+
+=======
+>>>>>>> a132d07f64f5865ca20d2d04816eb8f0c246367d
   //return out of UserService Factory
   return {
     userObject : userObject,
@@ -200,6 +294,12 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     logout: logout,
     refreshSessionObject: refreshSessionObject,
     reflectionFormNextButton: reflectionFormNextButton,
+<<<<<<< HEAD
+    returnHomeButton: returnHomeButton,
+    getReflections: getReflections,
+    dailyReflectObject : dailyReflectObject
+=======
     returnHomeButton: returnHomeButton
+>>>>>>> a132d07f64f5865ca20d2d04816eb8f0c246367d
   };
 }]);
