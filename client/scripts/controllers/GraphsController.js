@@ -18,10 +18,15 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   for (var i = 0; i < reflections.length; i++) {
     var feelings = reflections[i].feelings;
     // console.log('FEELINGS ARRAY',feelings);
-    //store feelings were value is true in new array
-    // if (true) {
-    //
-    // }
+    for (var x = 0; x < feelings.length; x++) {
+      // console.log('FEELINGS OBJECTS', feelings[x]);
+
+      //if value fo feeling is true, then store feeling name into feelingsArray
+      if (feelings[x].value === true) {
+        console.log(feelings[x].name);
+      }
+    }
+
     var exercise = reflections[i].exercise;
     exerciseArray.push(exercise);
 
@@ -32,9 +37,9 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
     sleepArray.push(sleep);
   }
 
-console.log('Exrcise Array', exerciseArray );
-console.log('Food Array', foodArray );
-console.log('Sleep Array', sleepArray );
+// console.log('Exrcise Array', exerciseArray );
+// console.log('Food Array', foodArray );
+// console.log('Sleep Array', sleepArray );
 
 
 //chart for feelings
