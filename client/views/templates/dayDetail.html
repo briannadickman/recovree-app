@@ -1,5 +1,3 @@
-<!-- <div ng-repeat='sessionObject.todaysReflectObject in dailyReflectObject.data' ng-if='$last'> -->
-  <!-- <div ng-if="day_index == $index"> -->
 
 <md-content ng-if = '((sessionObject.reflectionCompleted) === false)'>
   <div layout =' column' layout-align = 'center center'
@@ -60,9 +58,11 @@
         <p class='md-title'>Selfish or dishonest today:</p>
         <p class='md-body-1'>{{sessionObject.todaysReflectObject.selfishDishonest}}</p>
         <hr />
-        <p class='md-title'>How I was selfish or dishonest:</p>
-        <p class='md-body-1'>{{sessionObject.todaysReflectObject.howSelfshDishnt}}</p>
-        <hr />
+        <div ng-if = 'sessionObject.todaysReflectObject.howSelfshDishnt !== ""'>
+          <p class='md-title'>How I was selfish or dishonest:</p>
+          <p class='md-body-1'>{{sessionObject.todaysReflectObject.howSelfshDishnt}}</p>
+          <hr />
+        </div>
         <p class='md-title'>Your daily goal was:</p>
         <p class='md-body-1'>{{sessionObject.todaysReflectObject.tomorrowGoal}}</p>
         <hr />
