@@ -63,7 +63,7 @@ router.get('/session/:memberID', function(req, res){
       // defines the start of yesterday using moment js
       var yesterdayStart = dateNow.clone().subtract(1, 'day').startOf('day');
       console.log('todayStart: ' + todayStart + '   yesterdayStart: ' + yesterdayStart);
-      console.log(allReflections);
+      console.log(allReflections, allReflections.length, "all refelctions in session get");
       if (allReflections.length >= 1){
         //defines the most recent reflection as lastReflection
         var lastReflection = allReflections[0];
@@ -80,7 +80,9 @@ router.get('/session/:memberID', function(req, res){
           //it just so happens to be the most recent reflection
           serverSessionObject.todaysReflection = lastReflection;
           //tomorrows goal yesterday is yesterdays goal today - paul mccartney
+          if (allReflections.length > 1){
           serverSessionObject.yesterdaysGoal = allReflections[1].tomorrowGoal;
+          }
           //Note Note Note ***** if reflections can be completed twice in a day, the above needs to be changed
           console.log('yesterdays goal', serverSessionObject.yesterdaysGoal);
         }
