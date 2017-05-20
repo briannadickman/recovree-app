@@ -13,10 +13,13 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   var foodAmount = [];
   var sleepAmount = [];
   var singleFeelings = [];
-  var feelingsCount = [], prev;
-  var countOfFeelings = {}, sortByCount, topFiveFeelings;
+  var feelingsCount = [],
+    prev;
+  var countOfFeelings = {},
+    sortByCount, topFiveFeelings;
+  var dates = [];
 
-//LOOP THROUGH THE REFLECTION ARRAY AND GET DATA FOR FEELINGS, SLEEP, EXERCISE, AND FOOD
+  //LOOP THROUGH THE REFLECTION ARRAY AND GET DATA FOR FEELINGS, SLEEP, EXERCISE, AND FOOD
   for (var i = 0; i < reflections.length; i++) {
     var feelings = reflections[i].feelings;
     for (var x = 0; x < feelings.length; x++) {
@@ -38,7 +41,7 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   }
 
 
-//count occurence of each feeling and save in new object
+  //count occurence of each feeling and save in new object
   function countFeelings(array) {
     for (var i = 0; i < array.length; ++i) {
       if (!countOfFeelings[array[i]])
@@ -62,22 +65,31 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
 
     //push feeling names into one array and feeling count into another array - will use for chart
     topFiveFeelings.forEach(function(item) {
-        singleFeelings.push(item.key);
-        feelingsCount.push(item.value);
+      singleFeelings.push(item.key);
+      feelingsCount.push(item.value);
     });
   }
 countFeelings(feelingNames);
 
 
-//FORMAT DATES FOR GRAPH DATA
-for (var z= 0; z < reflections.length; z++) {
-  var date = reflections[z].reflectionDate;
-  date = moment(date).format('dddd');
-  console.log(date);
-}
+  //FORMAT TIMESTAMP TO JUST DAY OF WEEK
+  function formatTimestamp() {
+    //order from last to most recent refleciton
+    reflections.reverse();
+    for (var z = 0; z < reflections.length; z++) {
+      var date = reflections[z].reflectionDate;
+      // date = moment(date).format('L');
+      date = moment(date).format('dddd');
+      console.log(date);
+      //push dates as dddd into array - will use for charts
+      dates.push(date);
+    }
+  }
+formatTimestamp();
 
 
-//chart for top five feelings
+
+  //chart for top five feelings
   var ctx1 = document.getElementById("feelingsChart");
   var areaChart = new Chart(ctx1, {
     type: 'polarArea',
@@ -104,12 +116,12 @@ for (var z= 0; z < reflections.length; z++) {
   }); //end polar area chart
 
 
-//line chart for food, sleep, exercise
+  //line chart for food, sleep, exercise
   var ctx2 = document.getElementById("lineChart");
   var lineChart = new Chart(ctx2, {
     type: 'line',
     data: {
-      labels: ['5/14', '5/15', '5/16', '5/17', '5/18', '5/19'], //replace with array, that has dates of actual reflections
+      labels: dates,
       datasets: [{
           label: "Exercise",
           fill: false,
