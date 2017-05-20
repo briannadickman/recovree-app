@@ -69,6 +69,14 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
 countFeelings(feelingNames);
 
 
+//FORMAT DATES FOR GRAPH DATA
+for (var z= 0; z < reflections.length; z++) {
+  var date = reflections[z].reflectionDate;
+  date = moment(date).format('dddd');
+  console.log(date);
+}
+
+
 //chart for top five feelings
   var ctx1 = document.getElementById("feelingsChart");
   var areaChart = new Chart(ctx1, {
