@@ -6,40 +6,58 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   //all the REFLECTIONS data
   $scope.sessionObject = UserService.sessionObject;
   var reflections = $scope.sessionObject.allReflections;
-  console.log('ALL REFLECTIONS', reflections);
+  // console.log('ALL REFLECTIONS', reflections);
 
-  var feelingsArray = [];
-  var exerciseArray = [];
-  var foodArray = [];
-  var sleepArray = [];
-  var count = 0;
+  var feelingNames = [];
+  var exerciseAmount = [];
+  var foodAmount = [];
+  var sleepAmount = [];
+  var singleFeelings = [];
+  var countOfFeelings = [], prev;
 
   //LOOP THROUGH THE REFLECTION ARRAY AND GET DATA FOR FEELINGS, SLEEP, EXERCISE, AND FOOD
   for (var i = 0; i < reflections.length; i++) {
     var feelings = reflections[i].feelings;
     for (var x = 0; x < feelings.length; x++) {
-      //if value fo feeling is true, then store feeling name into feelingsArray
+      //if value fo feeling is true, then store feeling name into feelingNames
       if (feelings[x].value === true) {
         var allFeelings = feelings[x].name;
-        feelingsArray.push(allFeelings);
+        feelingNames.push(allFeelings);
       }
     }
 
     var exercise = reflections[i].exercise;
-    exerciseArray.push(exercise);
+    exerciseAmount.push(exercise);
 
     var food = reflections[i].food;
-    foodArray.push(food);
+    foodAmount.push(food);
 
     var sleep = reflections[i].sleep;
-    sleepArray.push(sleep);
+    sleepAmount.push(sleep);
   }
-  console.log('Feeling Array', feelingsArray );
 
+// console.log('Feelings', feelingNames );
 
-// console.log('Exrcise Array', exerciseArray );
-// console.log('Food Array', foodArray );
-// console.log('Sleep Array', sleepArray );
+//count occurence of each feeling and save in new Array
+  function countFeelings(array) {
+    array.sort();
+    for ( var i = 0; i < array.length; i++ ) {
+        if ( array[i] !== prev ) {
+            singleFeelings.push(array[i]);
+            countOfFeelings.push(1);
+        } else {
+            countOfFeelings[countOfFeelings.length-1]++;
+        }
+        prev = array[i];
+    }
+    return [singleFeelings, countOfFeelings];
+}
+console.log([singleFeelings, countOfFeelings]);
+countFeelings(feelingNames);
+
+// console.log('Exrcise Array', exerciseAmount );
+// console.log('Food Array', foodAmount );
+// console.log('Sleep Array', sleepAmount );
 
 
 
@@ -49,14 +67,14 @@ var areaChart = new Chart (ctx1, {
   type: 'polarArea',
   data: {
     datasets: [{
-        data: [
+        data: [  //this should be the number of times eahc feeling has shown up for this weeks reflection
             3,
             7,
             2,
             4,
             5
         ],
-        backgroundColor: [
+        backgroundColor: [ //show only top 5 most occuring feelings
             "#FF6384",
             "#4BC0C0",
             "#FFCE56",
@@ -65,7 +83,7 @@ var areaChart = new Chart (ctx1, {
         ],
         label: 'My dataset' // for legend
     }],
-    labels: [
+    labels: [  //should be names and correspond to 'data' that shows scale of each feeling
         "Sad",
         "Happy",
         "Dissapointed",
@@ -98,7 +116,7 @@ var areaChart = new Chart (ctx1, {
           pointBorderWidth: 1,
           pointHoverRadius: 5,
           pointRadius: 4,
-          data: exerciseArray
+          data: exerciseAmount
         },
         {
           label: 'Food',
@@ -109,7 +127,7 @@ var areaChart = new Chart (ctx1, {
           pointBorderWidth: 1,
           pointHoverRadius: 5,
           pointRadius: 4,
-          data: foodArray
+          data: foodAmount
         },
         {
           label: 'Sleep',
@@ -120,7 +138,7 @@ var areaChart = new Chart (ctx1, {
           pointBorderWidth: 1,
           pointHoverRadius: 5,
           pointRadius: 4,
-          data: sleepArray
+          data: sleepAmount
         }
       ]
     },
