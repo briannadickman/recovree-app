@@ -12,15 +12,19 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   var exerciseArray = [];
   var foodArray = [];
   var sleepArray = [];
+  var count = 0;
 
   //LOOP THROUGH THE REFLECTION ARRAY AND GET DATA FOR FEELINGS, SLEEP, EXERCISE, AND FOOD
   for (var i = 0; i < reflections.length; i++) {
     var feelings = reflections[i].feelings;
-    // console.log('FEELINGS ARRAY',feelings);
-    //store feelings were value is true in new array
-    // if (true) {
-    //
-    // }
+    for (var x = 0; x < feelings.length; x++) {
+      //if value fo feeling is true, then store feeling name into feelingsArray
+      if (feelings[x].value === true) {
+        var allFeelings = feelings[x].name;
+        feelingsArray.push(allFeelings);
+      }
+    }
+
     var exercise = reflections[i].exercise;
     exerciseArray.push(exercise);
 
@@ -30,13 +34,56 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
     var sleep = reflections[i].sleep;
     sleepArray.push(sleep);
   }
-
-console.log('Exrcise Array', exerciseArray );
-console.log('Food Array', foodArray );
-console.log('Sleep Array', sleepArray );
+  console.log('Feeling Array', feelingsArray );
 
 
-  //line chart for food, sleep, exercise
+// console.log('Exrcise Array', exerciseArray );
+// console.log('Food Array', foodArray );
+// console.log('Sleep Array', sleepArray );
+
+
+
+//chart for feelings
+var ctx1 = document.getElementById("feelingsChart");
+var areaChart = new Chart (ctx1, {
+  type: 'polarArea',
+  data: {
+    datasets: [{
+        data: [
+            3,
+            7,
+            2,
+            4,
+            5
+        ],
+        backgroundColor: [
+            "#FF6384",
+            "#4BC0C0",
+            "#FFCE56",
+            "#E7E9ED",
+            "#36A2EB"
+        ],
+        label: 'My dataset' // for legend
+    }],
+    labels: [
+        "Sad",
+        "Happy",
+        "Dissapointed",
+        "Optimistic",
+        "Distant"
+    ]
+
+  },
+  options: {
+    scales: {
+
+    }
+  }
+
+}); //end polar area chart
+
+
+//line chart for food, sleep, exercise
   var ctx2 = document.getElementById("lineChart");
   var lineChart = new Chart(ctx2, {
     type: 'line',
@@ -90,7 +137,6 @@ console.log('Sleep Array', sleepArray );
       }
     }
   }); //end line chart
-
 
 
 
