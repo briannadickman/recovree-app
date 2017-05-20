@@ -1,24 +1,28 @@
 <div class = 'wrapper'>
 
+<!-- Floating Next Button -->
+  <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
+    <i class="material-icons" id='formNextButton'>navigate_next</i>
+  </md-button>
+
+  <h3 class='md-subhead'>What is a goal for tomorrow?</h3>
+
   <md-input-container class="md-block">
-    <label>What is your goal you would like to accomplish tomorrow?</label>
+    <!-- <label>What is your goal for tomorrow?</label> -->
     <textarea ng-model="reflectionObject.tomorrowGoal" md-maxlength="150" rows="5" md-select-on-focus></textarea>
   </md-input-container>
 
+<div ng-if='sessionObject.yesterdaysGoal !== ""'>
   <p>Yesterdays Goal: {{sessionObject.yesterdaysGoal}}</p>
-  <p>Need to ng-if this stuff</p>
 
-  <p>Did you complete your daily goal from yesterday?</p>
+  <h3 class='md-subhead'>Did you complete your daily goal from yesterday?</h3>
   <div layout = 'row' layout-align = 'center'>
     <span>No</span>
     <md-switch aria-label = 'Did you complete your daily goal from yesterday?' class = 'md-primary' ng-model="reflectionObject.dailyGoal">
     </md-switch>
     <span>Yes</span>
   </div>
-
-
+</div>
   <!-- {{ reflectionObject }} -->
-  <br>
-  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
 </div>
 <!-- ends wrapper -->
