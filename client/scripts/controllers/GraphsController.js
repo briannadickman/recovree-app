@@ -61,26 +61,16 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
 
     topFiveFeelings = sortByCount.slice(0, 5);
     console.log('TOP FIVE FEELINGS', topFiveFeelings);
+
+    //push feeling names into one array and feeling count into another array - will use for chart
+    topFiveFeelings.forEach(function(item) {
+        singleFeelings.push(item.key);
+        feelingsCount.push(item.value);
+    });
+      console.log('75',singleFeelings);
+      console.log('76',feelingsCount);
   }
   countFeelings(feelingNames);
-
-
-  // count occurence of each feeling and save in new Array
-  // function feelingCountArray(array) {
-  //   array.sort();
-  //   for (var i = 0; i < array.length; i++) {
-  //     if (array[i] !== prev) {
-  //       singleFeelings.push(array[i]);
-  //       feelingsCount.push(1);
-  //     } else {
-  //       feelingsCount[feelingsCount.length - 1]++;
-  //     }
-  //     prev = array[i];
-  //   }
-  //   console.log([singleFeelings, feelingsCount]);
-  //   return [singleFeelings, feelingsCount];
-  // }
-
 
 
   // console.log('Feelings', feelingNames );
