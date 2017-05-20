@@ -2,11 +2,8 @@ var express = require('express');
 var twilio = require('twilio');
 var cronJob = require('cron').CronJob;
 
-
 //TWILIO
-var accountSid = 'AC610eb58033f94d50da2b6a1d43946025';
-var authToken = '53cc7f44e80416d531c093f2b934c849';   //need to make this environmental variable
-var client = new twilio(accountSid, authToken);
+var client = new twilio(process.env.TWILIO_ACCOUNT_SID , process.env.TWILIO_AUTH_TOKEN);
 
 // var client = require('twilio')(accountSid, authToken);
 
