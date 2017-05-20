@@ -13,7 +13,10 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   var foodAmount = [];
   var sleepAmount = [];
   var singleFeelings = [];
-  var countOfFeelings = [], prev;
+  var feelingsCount = [],
+    prev;
+  var countOfFeelings = {},
+    sortByCount, topFiveFeelings;
 
   //LOOP THROUGH THE REFLECTION ARRAY AND GET DATA FOR FEELINGS, SLEEP, EXERCISE, AND FOOD
   for (var i = 0; i < reflections.length; i++) {
@@ -36,72 +39,98 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
     sleepAmount.push(sleep);
   }
 
-// console.log('Feelings', feelingNames );
 
-//count occurence of each feeling and save in new Array
+  //count occurence of each feeling and save in new object
   function countFeelings(array) {
-    array.sort();
-    for ( var i = 0; i < array.length; i++ ) {
-        if ( array[i] !== prev ) {
-            singleFeelings.push(array[i]);
-            countOfFeelings.push(1);
-        } else {
-            countOfFeelings[countOfFeelings.length-1]++;
-        }
-        prev = array[i];
+    for (var i = 0; i < array.length; ++i) {
+      if (!countOfFeelings[array[i]])
+        countOfFeelings[array[i]] = 0;
+      ++countOfFeelings[array[i]];
     }
-    return [singleFeelings, countOfFeelings];
-}
-console.log([singleFeelings, countOfFeelings]);
-countFeelings(feelingNames);
+    // //sorts values from largest to smallest count
+    sortByCount = Object.keys(countOfFeelings).map(function(key) {
+      return {
+        key: key,
+        value: this[key]
+      };
+    }, countOfFeelings);
 
-// console.log('Exrcise Array', exerciseAmount );
-// console.log('Food Array', foodAmount );
-// console.log('Sleep Array', sleepAmount );
+    sortByCount.sort(function(p1, p2) {
+      return p2.value - p1.value;
+    });
+
+    topFiveFeelings = sortByCount.slice(0, 5);
+    console.log('TOP FIVE FEELINGS', topFiveFeelings);
+  }
+  countFeelings(feelingNames);
+
+
+  // count occurence of each feeling and save in new Array
+  // function feelingCountArray(array) {
+  //   array.sort();
+  //   for (var i = 0; i < array.length; i++) {
+  //     if (array[i] !== prev) {
+  //       singleFeelings.push(array[i]);
+  //       feelingsCount.push(1);
+  //     } else {
+  //       feelingsCount[feelingsCount.length - 1]++;
+  //     }
+  //     prev = array[i];
+  //   }
+  //   console.log([singleFeelings, feelingsCount]);
+  //   return [singleFeelings, feelingsCount];
+  // }
 
 
 
-//chart for feelings
-var ctx1 = document.getElementById("feelingsChart");
-var areaChart = new Chart (ctx1, {
-  type: 'polarArea',
-  data: {
-    datasets: [{
-        data: [  //this should be the number of times eahc feeling has shown up for this weeks reflection
-            3,
-            7,
-            2,
-            4,
-            5
+  // console.log('Feelings', feelingNames );
+  // console.log('Exrcise Array', exerciseAmount );
+  // console.log('Food Array', foodAmount );
+  // console.log('Sleep Array', sleepAmount );
+
+
+
+  //chart for feelings
+  var ctx1 = document.getElementById("feelingsChart");
+  var areaChart = new Chart(ctx1, {
+    type: 'polarArea',
+    data: {
+      datasets: [{
+        data: [ //this should be the number of times eahc feeling has shown up for this weeks reflection
+          3,
+          7,
+          2,
+          4,
+          5
         ],
         backgroundColor: [ //show only top 5 most occuring feelings
-            "#FF6384",
-            "#4BC0C0",
-            "#FFCE56",
-            "#E7E9ED",
-            "#36A2EB"
+          "#FF6384",
+          "#4BC0C0",
+          "#FFCE56",
+          "#E7E9ED",
+          "#36A2EB"
         ],
         label: 'My dataset' // for legend
-    }],
-    labels: [  //should be names and correspond to 'data' that shows scale of each feeling
+      }],
+      labels: [ //should be names and correspond to 'data' that shows scale of each feeling
         "Sad",
         "Happy",
         "Dissapointed",
         "Optimistic",
         "Distant"
-    ]
+      ]
 
-  },
-  options: {
-    scales: {
+    },
+    options: {
+      scales: {
 
+      }
     }
-  }
 
-}); //end polar area chart
+  }); //end polar area chart
 
 
-//line chart for food, sleep, exercise
+  //line chart for food, sleep, exercise
   var ctx2 = document.getElementById("lineChart");
   var lineChart = new Chart(ctx2, {
     type: 'line',
