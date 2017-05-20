@@ -1,59 +1,59 @@
 
-<md-content ng-if = '((sessionObject.reflectionCompleted) === false)'>
-  <div layout =' column' layout-align = 'center center'
+<md-content ng-if = '((sessionObject.reflectionCompleted) === false)' layout = 'column' layout-align = 'center center'>
+  <div>
     <h3 class='md-subhead'>You haven't completed your daily Recovree</h3>
     <md-button class = 'md-raised' ng-click = 'launchReflection()'>Reflect</md-button>
   </div>
 </md-content>
 
 <md-content ng-if = '((sessionObject.reflectionCompleted) === true)'>
-    <div layout='row' layout-align='center center'>
-      <div>
+    <div>
+      <div layout = 'column' layout-align = 'center center'>
           <h1 class='md-headline'>Daily Summary for {{sessionObject.todaysReflectObject.reflectionDate | date:'MM/dd/yyyy'}}</h1>
       </div>
       <div>
           <h3 class='md-subhead'>Feelings:</h3>
-          <hr />
-          <p class='md-body-1' layout = 'row' layout-align = 'center center'>
+          <p class='md-body-1'>
             <p ng-repeat='feeling in sessionObject.todaysReflectObject.feelings | filter: { value: true }' >{{feeling.name}} </p>
           </p>
+          <hr />
       </div>
 
         <div ng-if = 'sessionObject.todaysReflectObject.feelingsWhy !== ""'>
-          <h3 class='md-subhead'>You felt this way because:</p>
+          <h3 class='md-subhead'>You felt this way because:</h3>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.feelingsWhy}}</p>
           <hr />
         </div>
 
-        <div ng>
+        <div>
           <h3 class='md-subhead'>Last night you slept:</h3>
-          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.sleep}}</p>
           <div ng-switch on = sessionObject.todaysReflectObject.sleep>
-               <p layout = 'row' layout-align = 'center center' ng-switch-when = "1">Terrible</p>
-               <p layout = 'row' layout-align = 'center center' ng-switch-when = "2">Not So Great</p>
-               <p layout = 'row' layout-align = 'center center' ng-switch-when = "3">Okay</p>
-               <p layout = 'row' layout-align = 'center center' ng-switch-when = "4">Good</p>
-               <p layout = 'row' layout-align = 'center center' ng-switch-when = "5">Great</p>
-           </div>
+               <span ng-switch-when = "1">Terrible</span>
+               <span ng-switch-when = "2">Not So Great</span>
+               <span ng-switch-when = "3">Okay</span>
+               <span ng-switch-when = "4">Good</span>
+               <span ng-switch-when = "5">Great</span>
+          <span class='md-body-1'> ({{sessionObject.todaysReflectObject.sleep}})</span>
+          </div>
           <hr />
         </div>
 
         <div>
           <h3 class='md-subhead'>Your exercise level was:</p>
-          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.exercise}}</p>
           <div ng-switch on = sessionObject.todaysReflectObject.exercise>
-            <p layout = 'row' layout-align = 'center center' ng-switch-when = "1">Not Active</p>
-            <p layout = 'row' layout-align = 'center center' ng-switch-when = "2">Slightly Active</p>
-            <p layout = 'row' layout-align = 'center center' ng-switch-when = "3">Moderately Active</p>
-            <p layout = 'row' layout-align = 'center center' ng-switch-when = "4">Active</p>
-            <p layout = 'row' layout-align = 'center center' ng-switch-when = "5">Very Active</p>
-           </div>
+               <span ng-switch-when = "1">Not Active</span>
+               <span ng-switch-when = "2">Slightly Active</span>
+               <span ng-switch-when = "3">Moderately Active</span>
+               <span ng-switch-when = "4">Active</span>
+               <span ng-switch-when = "5">Very Active</span>
+          <span class='md-body-1'> ({{sessionObject.todaysReflectObject.exercise}})</span>
+          </div>
           <hr />
         </div>
 
         <div>
           <p class='md-title'>Your food consumption was:</p>
-          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.food}}</p>
+          <p class='md-body-1'>{{sessionObject.todaysReflectObject.food}}</p>
           <div ng-switch on = sessionObject.todaysReflectObject.food>
             <p layout = 'row' layout-align = 'center center' ng-switch-when = "1">Not Healthy</p>
             <p layout = 'row' layout-align = 'center center' ng-switch-when = "2">A Little Healthy</p>
@@ -64,90 +64,89 @@
            <hr />
         </div>
 
-        <div>
+        <div layout = 'row' layout-align = 'center center'>
           <p class='md-title'>Used drugs or alcohol:</p>
-          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.drugAlcoholIntake ? 'Yes':'No'}}</p>
+          <p class='md-body-1'>{{sessionObject.todaysReflectObject.drugAlcoholIntake ? 'Yes':'No'}}</p>
           <hr />
         </div>
 
         <div>
           <p class='md-title'>Took your medication:</p>
-          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.medication ? 'Yes':'No'}}</p>
+          <p class='md-body-1'>{{sessionObject.todaysReflectObject.medication ? 'Yes':'No'}}</p>
           <hr />
         </div>
 
-        <div>
+        <div layout = 'row' layout-align = 'center center'>
           <p class='md-title'>Had a using dream last night:</p>
-          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.dream ? 'Yes':'No'}}</p>
+          <p class='md-body-1'>{{sessionObject.todaysReflectObject.dream ? 'Yes':'No'}}</p>
           <hr />
         </div>
 
-        <div ng-if = 'sessionObject.todaysReflectObject.whatDream !== ""'>
+        <div ng-if = 'sessionObject.todaysReflectObject.whatDream !== ""'  layout = 'row' layout-align = 'center center'>
           <p class='md-title' >Your dream was:</p>
-          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.whatDream}}</p>
+          <p class='md-body-1'>{{sessionObject.todaysReflectObject.whatDream}}</p>
           <hr />
         </div>
 
-        <div>
+        <div layout = 'row' layout-align = 'center center'>
           <p class='md-title'>Connected with a sponsor/mentor:</p>
-          <p class='md-body-1'  layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.spnsrMntrConnect ? 'Yes':'No'}}</p>
+          <p class='md-body-1'>{{sessionObject.todaysReflectObject.spnsrMntrConnect ? 'Yes':'No'}}</p>
           <hr />
         </div>
 
-        <div>
+        <div  layout = 'row' layout-align = 'center center'>
           <p class='md-title'>Number of group meetings you attended:</p>
-          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.groupMeet}}</p>
+          <p class='md-body-1'>{{sessionObject.todaysReflectObject.groupMeet}}</p>
           <hr />
         </div>
 
-        <div>
+        <div layout = 'row' layout-align = 'center center'>
           <p class='md-title'>Engaged in service or community work:</p>
-          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.commntyService ? 'Yes':'No'}}</p>
+          <p class='md-body-1'>{{sessionObject.todaysReflectObject.commntyService ? 'Yes':'No'}}</p>
           <hr />
         </div>
 
-        <div>
+        <div layout = 'row' layout-align = 'center center'>
           <p class='md-title'>Your stressors today:</p>
-          <p class='md-body-1' layout = 'row' layout-align = 'center center'>
+          <p class='md-body-1'>
             <p ng-repeat='stressor in sessionObject.todaysReflectObject.stressors | filter: { value: true }'>{{stressor.name}} </p>
           </p>
           <hr />
         </div>
 
-        <div>
+        <div layout = 'row' layout-align = 'center center'>
           <p class='md-title'>Selfish or dishonest today:</p>
-          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.selfishDishonest ? 'Yes':'No'}}</p>
+          <p class='md-body-1'>{{sessionObject.todaysReflectObject.selfishDishonest ? 'Yes':'No'}}</p>
           <hr />
         </div>
 
-        <div ng-if = 'sessionObject.todaysReflectObject.howSelfshDishnt !== ""'>
+        <div ng-if = 'sessionObject.todaysReflectObject.howSelfshDishnt !== ""'  layout = 'row' layout-align = 'center center'>
           <p class='md-title'>How I was selfish or dishonest:</p>
-          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.howSelfshDishnt}}</p>
+          <p class='md-body-1'>{{sessionObject.todaysReflectObject.howSelfshDishnt}}</p>
           <hr />
         </div>
 
-        <div ng-if = 'sessionObject.todaysReflectObject.tomorrowGoal !== ""'>
+        <div ng-if = 'sessionObject.todaysReflectObject.tomorrowGoal !== ""' layout = 'row' layout-align = 'center center'>
           <p class='md-title' >Your daily goal is:</p>
-          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.tomorrowGoal}}</p>
+          <p class='md-body-1'>{{sessionObject.todaysReflectObject.tomorrowGoal}}</p>
           <hr />
         </div>
 
-        <div ng-if = 'sessionObject.todaysReflectObject.dailyGoal == false'>
+        <div ng-if = 'sessionObject.todaysReflectObject.dailyGoal == false' layout = 'row' layout-align = 'center center'>
           <p class='md-title'>You completed yesterday's goal of:</p>
-          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.yesterdaysGoal}}</p>
+          <p class='md-body-1'>{{sessionObject.yesterdaysGoal}}</p>
           <hr />
         </div>
 
-        <div>
+        <div layout = 'row' layout-align = 'center center'>
           <p class='md-title' ng-if = 'sessionObject.todaysReflectObject.gratitude !== ""'>You were thankful for:</p>
-          <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.gratitude}}</p>
+          <p class='md-body-1'>{{sessionObject.todaysReflectObject.gratitude}}</p>
           <hr />
         </div>
 
       </div>
 
 </div>
-
 
 </md-content>
 <footer class='navMenu' ng-include="'/views/partials/nav.html'"></footer>

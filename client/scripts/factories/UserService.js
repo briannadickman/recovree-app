@@ -149,8 +149,15 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     //post to database if it is the fist reflection form view
     if (reflectionObject.formPosition === 1){
 
-      //makes intial post to database
-      postToReflectionForm(reflectionObject);
+      $http.get('/user').then(function(response) {
+          if(response.data.id) {
+              reflectionObject.memberID = response.data.memberID;
+              postToReflectionForm(reflectionObject);
+          } else {
+              // user has no session, bounce them back to the login page
+              $location.path("/login");
+          }
+      });
 
     }
     //put to database if it is any subsequent reflection form views
