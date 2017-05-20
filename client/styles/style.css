@@ -103,6 +103,13 @@ html {
     margin-right: -60px;
 }
 
+.graph_image {
+  background-color: grey;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+}
+
 /*keith*/
 *{
   padding: 0;
