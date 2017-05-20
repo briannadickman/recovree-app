@@ -6,6 +6,7 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
   $locationProvider.hashPrefix('');
 
   // COLOR THEME
+    // This defines the main color palette to use. The colors we are using are commented below and defined in the primary palette.
   $mdThemingProvider.definePalette('primary', {
     '50': '000000',
     '100': 'FFFFFF', //white
@@ -23,6 +24,8 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
     'A700': '000000',
     'contrastDefaultColor': 'light'
   });
+
+  // This defines the accent palette to use. The colors we are using are commented below and defined in the accent palette.
   $mdThemingProvider.definePalette('accent', {
     '50': 'ffffff',
     '100': 'ffffff',
