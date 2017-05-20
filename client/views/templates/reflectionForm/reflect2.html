@@ -1,5 +1,11 @@
-<div class = 'wrapper'>
-  <p>Did you use any drugs or alcohol today?</p>
+<div class = 'wrapper' layout='column' layout-align='center center'>
+
+<!-- Floating Next Button -->
+  <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
+    <i class="material-icons" id='formNextButton'>navigate_next</i>
+  </md-button>
+
+  <h3 class='md-subhead'>Did you use any drugs or alcohol today?</h3>
 
   <div layout = 'row' layout-align = 'center'>
     <span>No</span>
@@ -7,7 +13,5 @@
     </md-switch>
     <span>Yes</span>
   </div>
-  <br>
-  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
 </div>
 <!-- ends wrapper -->

@@ -1,5 +1,11 @@
 <div class = 'wrapper'>
-  <p>How did you sleep last night?</p>
+
+<!-- Floating Next Button -->
+  <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
+    <i class="material-icons" id='formNextButton'>navigate_next</i>
+  </md-button>
+
+  <h3 class='md-subhead'>How did you sleep last night?</h3>
 
   <md-slider-container>
     <span>Terrible</span>
@@ -23,7 +29,5 @@
   </md-input-container>
 
   <!-- {{ reflectionObject }} -->
-  <br>
-  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
 </div>
 <!-- ends wrapper -->

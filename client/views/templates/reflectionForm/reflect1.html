@@ -1,12 +1,12 @@
 <div class = 'wrapper'>
-  <h3 class='md-subhead'>How are you feeling today?</h3>
-
 <!-- Floating Next Button -->
   <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
     <i class="material-icons" id='formNextButton'>navigate_next</i>
   </md-button>
 
-  <div layout = 'row' layout-align = 'center'>
+  <h3 class='md-subhead'>How are you feeling today?</h3>
+
+  <div layout='column' layout-align='center center'>
     <form name="dailyFeelingsForm"  novalidate>
 
         <ng-form name="feelingForm" class="form-group" ng-repeat="feeling in reflectionObject.feelings">
@@ -18,11 +18,14 @@
   </div>
 
   <!-- {{ reflectionObject }} -->
+<div class='wrapper' layout='row'>
   <md-input-container class="md-block">
     <label>Why?</label>
     <textarea ng-model="reflectionObject.feelingsWhy" md-maxlength="150" rows="5" md-select-on-focus></textarea>
   </md-input-container>
   </form>
+</div>
   <!-- ends feelingsForm -->
+
 </div>
 <!-- ends wrapper -->
