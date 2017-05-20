@@ -67,8 +67,6 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
         singleFeelings.push(item.key);
         feelingsCount.push(item.value);
     });
-      console.log('75',singleFeelings);
-      console.log('76',feelingsCount);
   }
   countFeelings(feelingNames);
 
@@ -78,21 +76,13 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   // console.log('Food Array', foodAmount );
   // console.log('Sleep Array', sleepAmount );
 
-
-
-  //chart for feelings
+//chart for feelings
   var ctx1 = document.getElementById("feelingsChart");
   var areaChart = new Chart(ctx1, {
     type: 'polarArea',
     data: {
       datasets: [{
-        data: [ //this should be the number of times eahc feeling has shown up for this weeks reflection
-          3,
-          7,
-          2,
-          4,
-          5
-        ],
+        data: feelingsCount,
         backgroundColor: [ //show only top 5 most occuring feelings
           "#FF6384",
           "#4BC0C0",
@@ -102,14 +92,7 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
         ],
         label: 'My dataset' // for legend
       }],
-      labels: [ //should be names and correspond to 'data' that shows scale of each feeling
-        "Sad",
-        "Happy",
-        "Dissapointed",
-        "Optimistic",
-        "Distant"
-      ]
-
+      labels: singleFeelings
     },
     options: {
       scales: {
