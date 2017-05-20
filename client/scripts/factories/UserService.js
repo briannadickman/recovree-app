@@ -139,7 +139,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }
 
 //reflection From functions
-//reflection From functions
   function reflectionFormNextButton(sessionObject, reflectionObject){
     var medsForm = 3; //number of the form which asks about medication
     var takesMeds = sessionObject.takingMeds;
@@ -167,8 +166,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   }//ends reflectionFormNextButton
 
     function postToReflectionForm(reflectionObject){
-      console.log("posting to reflectionObject");
-      console.log("reflectionObject", reflectionObject);
+
       $http.post('/reflection', reflectionObject).then(function(response) {
         reflectionObject._id = response.data._id;
         console.log('reflectionObject._id: ', reflectionObject._id);
@@ -178,8 +176,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     }//ends postToReflectionForm
 
     function updateReflectionForm(reflectionObject){
-      console.log("putting to reflection Object");
-      console.log("reflectionObject", reflectionObject);
       $http.put('/reflection', reflectionObject).then(function(response){
         console.log('updateReflectionForm response: ', response.data);
         advanceReflectionForm(reflectionObject);
