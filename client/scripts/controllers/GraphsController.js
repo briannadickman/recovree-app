@@ -13,12 +13,10 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   var foodAmount = [];
   var sleepAmount = [];
   var singleFeelings = [];
-  var feelingsCount = [],
-    prev;
-  var countOfFeelings = {},
-    sortByCount, topFiveFeelings;
+  var feelingsCount = [], prev;
+  var countOfFeelings = {}, sortByCount, topFiveFeelings;
 
-  //LOOP THROUGH THE REFLECTION ARRAY AND GET DATA FOR FEELINGS, SLEEP, EXERCISE, AND FOOD
+//LOOP THROUGH THE REFLECTION ARRAY AND GET DATA FOR FEELINGS, SLEEP, EXERCISE, AND FOOD
   for (var i = 0; i < reflections.length; i++) {
     var feelings = reflections[i].feelings;
     for (var x = 0; x < feelings.length; x++) {
@@ -40,7 +38,7 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   }
 
 
-  //count occurence of each feeling and save in new object
+//count occurence of each feeling and save in new object
   function countFeelings(array) {
     for (var i = 0; i < array.length; ++i) {
       if (!countOfFeelings[array[i]])
@@ -68,15 +66,10 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
         feelingsCount.push(item.value);
     });
   }
-  countFeelings(feelingNames);
+countFeelings(feelingNames);
 
 
-  // console.log('Feelings', feelingNames );
-  // console.log('Exrcise Array', exerciseAmount );
-  // console.log('Food Array', foodAmount );
-  // console.log('Sleep Array', sleepAmount );
-
-//chart for feelings
+//chart for top five feelings
   var ctx1 = document.getElementById("feelingsChart");
   var areaChart = new Chart(ctx1, {
     type: 'polarArea',
@@ -103,7 +96,7 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   }); //end polar area chart
 
 
-  //line chart for food, sleep, exercise
+//line chart for food, sleep, exercise
   var ctx2 = document.getElementById("lineChart");
   var lineChart = new Chart(ctx2, {
     type: 'line',
