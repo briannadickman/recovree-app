@@ -8,6 +8,7 @@ var db = require("./modules/db");
 var passport = require('./strategies/userStrategy');
 var session = require('express-session');
 
+var dotenv = require('dotenv').config();
 
 // Route includes
 var index = require('./routes/index');
