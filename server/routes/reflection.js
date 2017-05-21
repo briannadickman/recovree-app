@@ -24,6 +24,7 @@ var generateSessionObject = require('../modules/sessionObject');
 
 
 
+
 ///get reflections from database
 router.get('/', function (req, res) {
   Reflection.find().lean().exec(function(err, reflections){
@@ -74,12 +75,14 @@ router.get('/session/:memberID', function(req, res){
       // console.log('in find medications - reflections: ', reflections);
       Registration.findOne({'memberID' : memberID})
       .select('medication')
-      .exec(function(err, sessionOutput){
+      .exec(function(err, hasMedication){
         if (err){
           console.log('error in find meds: ', err);
         }
-        console.log('hasMedication? ', sessionOutput);
+        console.log('hasMedication? ', hasMedication);
+        sessionOutput = hasMedication;
         callback(null, sessionOutput);
+
       });
     }
   ],

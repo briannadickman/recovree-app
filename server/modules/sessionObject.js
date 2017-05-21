@@ -1,5 +1,7 @@
 var moment = require('moment');
 moment().format();
+var Reflections = require('../models/reflection');
+var async = require('async');
 
 var generateSessionObject = function(allReflections, medication){
   var serverSessionObject = {
@@ -12,7 +14,7 @@ var generateSessionObject = function(allReflections, medication){
     todaysReflection : {},
     message : ''
   };
-
+  var newCount;
   var dateNow = moment(Date.now());
   //defines the start of the day using moment js
   var todayStart = dateNow.clone().startOf('day');
@@ -28,8 +30,8 @@ var generateSessionObject = function(allReflections, medication){
     //sets the serverSessionObject allReflectionsNewToOld property equal to all of the members reflections
     serverSessionObject.allReflectionsNewToOld = allReflections;
     //defines the current streak count based on the most recent reflection
-    allReflections[0].streakCount = 10;//delete me *****************
-    serverSessionObject.streakCount = allReflections[0].streakCount;
+    // allReflections[0].streakCount = 10;//delete me *****************
+    // serverSessionObject.streakCount = allReflections[0].streakCount;
     console.log('current streak count: ', serverSessionObject.streakCount);
     //defines the start of the day for the most current reflection
     var mostRecentReflectionStart = moment(mostRecentReflection.reflectionDate).startOf('day');
@@ -82,11 +84,32 @@ var generateSessionObject = function(allReflections, medication){
           return serverSessionObject;
         }
         //this catches new users that have completed their first reflection
-      } else {console.log('only one reflection exists'); return serverSessionObject;}
+      } else {
+        console.log('only one reflection exists');
+        serverSessionObject.streakCount++;
+        newCount = serverSessionObject.streakCount;
+
+        Reflections.findOneAndUpdate
+              ({'_id' : allReflections[0]._id},
+              {'streakCount' : newCount},
+              {new: true},
+              function(err, updatedReflection){
+                if (err) {
+                  console.log('streak count first reflection update error: ', err);
+                }
+                console.log('streak count blub blub: ', updatedReflection.streakCount);
+                serverSessionObject.streakCount = updatedReflection.streakCount;
+                newCount = 0;
+        });
+        return serverSessionObject;
+
+      }
+
+
     }
 
       //the reflection hasn't been completed today, so check to see if a reflection happened yesterday
-    if (yesterdayStart.clone().diff(mostRecentReflectionStart) === 0){
+    else if (yesterdayStart.clone().diff(mostRecentReflectionStart) === 0){
       //the streak does not need to restart, but we're going to wait until the reflection is completed to increase the streak
       serverSessionObject.yesterdayCompleted = true;
       if (mostRecentReflection.tomorrowGoal !== ''){
@@ -113,9 +136,10 @@ var generateSessionObject = function(allReflections, medication){
     }
 
 
-  }
+  } else if (allReflections[0] === undefined){
   serverSessionObject.message = "Welcome to Recovree!";
   return serverSessionObject;
+  }
 };
 
 module.exports = generateSessionObject;
