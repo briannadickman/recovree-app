@@ -67,7 +67,7 @@ var generateSessionObject = function(allReflections, medication){
             serverSessionObject.yesterdayGoal = nextMostRecent.tomorrowGoal;
 
           } else {
-            serverSessionObject.yesterdaysGoal = "No goal set yesterday";
+            serverSessionObject.yesterdaysGoal = "";
             console.log('reflections completed yesterday and today, but no goal was set yesterday!');
 
           }
