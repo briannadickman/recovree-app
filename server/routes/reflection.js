@@ -128,6 +128,7 @@ router.get('/session/:memberID', function(req, res){
 
 
 router.post('/', function(req,res){
+  //req.isAuthenticated do before all of this, also check User type
   console.log(req.user.memberID);
   var memID = req.user.memberID;
   var reflection = req.body;

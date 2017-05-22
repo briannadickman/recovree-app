@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./server/public'));
 
 // Passport Session Configuration //
-app.use(session({
+app.use(session({   //change secret, require https in cookie
    secret: 'secret',
    key: 'user', // this is the name of the req.variable. 'user' is convention, but not required
    resave: 'true',
