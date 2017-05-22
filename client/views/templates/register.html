@@ -9,12 +9,12 @@
   <div>
     <md-input-container layout-xs='row'>
         <label for="username">Phone Number:</label>
-        <input type="text" ng-model="user.username" />
+        <input type="text" ng-model="user.username" ng-pattern="/^[0-9]{10}$/" required/>
     </md-input-container>
 
     <md-input-container layout-xs='row'>
         <label for="password">Password:</label>
-        <input type="password" ng-model="user.password" />
+        <input type="password" ng-model="user.password" required/>
     </md-input-container>
   </div>
 
