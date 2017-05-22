@@ -1,15 +1,13 @@
 var mongoose = require("mongoose");
 var mongoURI = 'mongodb://localhost:27017/recovree';
-var MongoDB = mongoose.connect(mongoURI).connection;
-
 
 // process.env.MONGODB_URI will only be defined if you are running on Heroku
 if(process.env.MONGODB_URI) {
     mongoURI = process.env.MONGODB_URI;
 
-} else {
-    mongoURI = 'mongodb://localhost:27017/recovree';
 }
+
+var MongoDB = mongoose.connect(mongoURI).connection;
 
 //If there is an error connecting to the database, let us know!
 MongoDB.on("error", function(err){
