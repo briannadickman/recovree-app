@@ -1,9 +1,61 @@
 var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial']);
 
 /// Routes ///
-myApp.config(['$routeProvider', '$locationProvider',
-      function($routeProvider, $locationProvider) {
+myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
+      function($routeProvider, $locationProvider, $mdThemingProvider) {
   $locationProvider.hashPrefix('');
+
+  // COLOR THEME
+    // This defines the main color palette to use. The colors we are using are commented below and defined in the primary palette.
+  $mdThemingProvider.definePalette('primary', {
+    '50': '000000',
+    '100': 'FFFFFF', //white
+    '200': '000000',
+    '300': '000000',
+    '400': '000000',
+    '500': '454B49', //grey
+    '600': '000000',
+    '700': '000000',
+    '800': '000000',
+    '900': '000000', //black
+    'A100': '000000',
+    'A200': '000000',
+    'A400': '000000',
+    'A700': '000000',
+    'contrastDefaultColor': 'light'
+  });
+
+  // This defines the accent palette to use. The colors we are using are commented below and defined in the accent palette.
+  $mdThemingProvider.definePalette('accent', {
+    '50': 'ffffff',
+    '100': 'ffffff',
+    '200': 'ffffff',
+    '300': 'ffffff',
+    '400': 'ffffff',
+    '500': 'e62832', //accent-warning-orange
+    '600': 'ffffff',
+    '700': 'ffffff',
+    '800': 'ffffff',
+    '900': '813172', //accent-indigo
+    'A100': 'ffffff',
+    'A200': 'ffffff',
+    'A400': 'ffffff',
+    'A700': 'ffffff',
+    'contrastDefaultColor': 'dark'
+  });
+
+  $mdThemingProvider.theme('default')
+    .primaryPalette('primary', {
+      'default': '900', //black
+      'hue-1' : '100', //white
+      'hue-2' : '500', //grey
+      // 'hue-3' : '900',
+    })
+    .accentPalette('accent', {
+      'default' : '900', // accent-indigo
+      'hue-3': '500' //accent-warning-orange
+    });
+
 
   $routeProvider
 //login
@@ -185,17 +237,17 @@ myApp.config(['$routeProvider', '$locationProvider',
     .when('/day-detail', {
       templateUrl: '/views/templates/dayDetail.html',
       controller: 'DayDetailController',
-      // resolve: {
-      //   getuser : ['UserService', function(UserService){
-      //     return UserService.getuser();
-      //   }]
-      // }
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
     })
 
 //graph summary
-    .when('/graph-summary', {
-      templateUrl: '/views/templates/graphSummary.html',
-      controller: 'GraphSummaryController',
+    .when('/weekly-graphs', {
+      templateUrl: '/views/templates/weeklyGraphs.html',
+      controller: 'GraphsController',
       resolve: {
         getuser : ['UserService', function(UserService){
           return UserService.getuser();

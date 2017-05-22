@@ -1,6 +1,10 @@
 <div class = 'wrapper'>
-  <p>How are you feeling today?</p>
+<!-- Floating Next Button -->
+  <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
+    <i class="material-icons" id='formNextButton'>navigate_next</i>
+  </md-button>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   <form name="dailyFeelingsForm"  novalidate>
 
@@ -13,25 +17,30 @@
 =======
   <div layout = 'row' layout-align = 'center'>
     <form name="dailyFeelingsForm"  novalidate>
+=======
+>>>>>>> f673ab2c38838b2a7e18691de5a8fd4965b02dc8
 
-        <ng-form name="feelingForm" class="form-group" ng-repeat="feeling in reflectionObject.feelings">
-            <md-button class = 'md-raised' ng-class = "{'md-primary':(feeling.value === true)}" ng-click = 'toggleFeeling(feeling)' >
-              {{feeling.name}}
-            </md-button>
-        </ng-form>
-    </form>
+  <h3 class='md-title' layout='row' layout-align='center center'>How are you feeling today?</h3>
+
+  <div layout='row' layout-align='center center'>
+    <form name="dailyFeelingsForm"  novalidate>
+      <span flex></span>
+            <ng-form name="feelingForm" class="form-group" ng-repeat="feeling in reflectionObject.feelings">
+                <md-button class = 'md-raised' ng-class = "{'md-primary md-default':(feeling.value === true)}" ng-click = 'toggleFeeling(feeling)'>
+                  {{feeling.name}}
+                </md-button>
+            </ng-form>
+      <span flex></span>
   </div>
 >>>>>>> d23a6442b3ead79c53d08182114963a6fd60df6a
 
   <!-- {{ reflectionObject }} -->
-  <md-input-container class="md-block">
-    <label>Why?</label>
-    <textarea ng-model="reflectionObject.feelingsWhy" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-  </md-input-container>
-
-  <br>
-  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
-  </form>
+        <md-input-container class="md-block md-accent md-default">
+          <label>Why?</label>
+          <textarea ng-model="reflectionObject.feelingsWhy" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+    </form>
   <!-- ends feelingsForm -->
+
 </div>
 <!-- ends wrapper -->

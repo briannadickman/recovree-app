@@ -3,16 +3,23 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var path = require('path');
-var db = require("./models/db");
+var db = require("./modules/db");
 
 var passport = require('./strategies/userStrategy');
 var session = require('express-session');
+
+var dotenv = require('dotenv').config();
 
 // Route includes
 var index = require('./routes/index');
 var user = require('./routes/user');
 var register = require('./routes/register');
 var reflection = require('./routes/reflection');
+
+
+//modules
+var csvExport = require('./modules/csvExport');
+var twilio = require('./modules/twilio.js');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -35,6 +42,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
+app.use('/csvExport', csvExport);
 app.use('/reflection', reflection);
 app.use('/register', register);
 app.use('/user', user);

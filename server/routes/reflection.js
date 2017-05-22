@@ -1,11 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport');
-var Users = require('../models/user');
-var path = require('path');
 
+//node modules
+var passport = require('passport');
+var json2csv = require('json2csv');
+var fs = require('fs');
+var moment = require('moment');
+moment().format();
+var async = require('async');
+var path = require('path');
 var mongoose = require("mongoose");
 
+<<<<<<< HEAD
 var RecovreeSchema = mongoose.Schema({});
 
 var ReflectionSchema = mongoose.Schema({
@@ -33,20 +39,130 @@ var ReflectionSchema = mongoose.Schema({
   reflectionDate: {type: Date, default: Date.now},
   // memberID: {type: Schema.ObjectId, ref: 'Registration'} //references Registration Schema
 });
+=======
+//models
+var Users = require('../models/user');
+var Reflection = require('../models/reflection');
+var Registration = require('../models/registration');
 
-var Reflection = mongoose.model('reflection', ReflectionSchema);
+//our modules
+var generateSessionObject = require('../modules/sessionObject');
 
+
+>>>>>>> f673ab2c38838b2a7e18691de5a8fd4965b02dc8
+
+
+
+
+
+///get reflections from database
 router.get('/', function (req, res) {
-  Recovree.find({}, function(err, recovree){
+  Reflection.find().lean().exec(function(err, reflections){
     if(err){
       console.log("Mongo Error: ", err);
       res.send(500);
     }
-    res.send(listings);
+    res.send(reflections);
   });
 });
 
+<<<<<<< HEAD
+=======
+router.put('/streak', function(req, res){
+  console.log('memberID in streak: ', req.params.memberID);
+  memberID = req.params.memberID;
+  console.log('streak in reflection/streak: ', req.body.streak);
+  streakCount = req.body.streak;
+  Reflection.findOne({memberID: memberID})
+    .sort({date: -1})
+    .exec(function(err, lastReflection){
+      if (err){
+        console.log('error in streak determination: ', err);
+        res.sendStatus(500);
+      }
+      console.log('lastReflection: ', lastReflection);
+    });
+});
+
+router.get('/session/:memberID', function(req, res){
+  var reflections;
+  var medication;
+  console.log('memberID in session: ', req.params.memberID);
+  var memberID = req.params.memberID;
+  async.parallel([
+    function(callback){
+      Reflection.find({'memberID': req.params.memberID})
+      //orders allReflections from new to old
+        .sort({'reflectionDate': -1})
+        .exec(function(err, sessionOutput){
+          if (err){
+            console.log('error in find most recent reflection: ', err);
+            // res.sendStatus(500);
+          }
+          // var serverSessionObject = generateSessionObject(allReflections);
+          // console.log(serverSessionObject);
+          // res.send(serverSessionObject);
+          console.log('allReflections in session query: ', sessionOutput);
+          callback(null, sessionOutput);
+        });
+    },
+    function(callback, sessionOutput){
+      // console.log('in find medications - reflections: ', reflections);
+      Registration.findOne({'memberID' : memberID})
+      .select('medication')
+      .exec(function(err, hasMedication){
+        if (err){
+          console.log('error in find meds: ', err);
+        }
+        console.log('hasMedication? ', hasMedication);
+        sessionOutput = hasMedication;
+        callback(null, sessionOutput);
+
+      });
+    }
+  ],
+    function(err, sessionOutput){
+      console.log('reflections: ', sessionOutput[0]);
+      reflections = sessionOutput[0];
+      console.log('medication: ', sessionOutput[1]);
+      medication = sessionOutput[1].medication;
+      async.waterfall([
+        function(callback){
+          var serverSessionObject = generateSessionObject(reflections, medication);
+          console.log('streakCount: ', serverSessionObject.streakCount);
+          callback(null, serverSessionObject);
+        }],
+        function(err, results){
+          console.log('results: ', results);
+          var newCount = results.streakCount;
+          if (results.allReflectionsNewToOld[0]){
+            Reflection.findOne({'_id' : results.allReflectionsNewToOld[0]._id}, function(err, curReflection){
+                  if (err) {
+                    console.log('streak count first reflection update error: ', err);
+                  }
+                  curReflection.streakCount = newCount || curReflection.streakCount;
+                  console.log('streak count blub blub: ', curReflection.streakCount);
+                  res.send(results);
+            });
+          } else {
+            res.send(results);
+          }
+      });
+
+
+
+
+
+  });
+});
+
+
+
+
+>>>>>>> f673ab2c38838b2a7e18691de5a8fd4965b02dc8
 router.post('/', function(req,res){
+  console.log(req.user.memberID);
+  var memID = req.user.memberID;
   var reflection = req.body;
   var newReflection = new Reflection({
     id : req.user._id,
@@ -71,9 +187,10 @@ router.post('/', function(req,res){
     dailyGoal: reflection.dailyGoal,
     gratitude: reflection.gratitude,
     peerSupport: reflection.peerSupport,
-    counselor: reflection.counselor
+    counselor: reflection.counselor,
+    memberID: memID
   });
-
+  console.log(newReflection.memberID);
   console.log('----NEW REFLECTION---', newReflection);
 
   newReflection.save(newReflection, function(err, savedReflection){

@@ -1,6 +1,14 @@
 <div class = 'wrapper'>
 
+<!-- Floating Next Button -->
+  <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
+    <i class="material-icons" id='formNextButton'>navigate_next</i>
+  </md-button>
+
+  <h3 class='md-subhead'>What are you thankful for today and why?</h3>
+
   <md-input-container class="md-block">
+<<<<<<< HEAD
 <<<<<<< HEAD
     <label>What are you tankful for today and why?</label>
     <textarea ng-model="reflectionObject.gratitude" md-maxlength="150" rows="5" md-select-on-focus></textarea>
@@ -11,12 +19,18 @@
   <md-button ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
 =======
     <label>What are you thankful for today and why?</label>
+=======
+    <!-- <label>What are you thankful for today and why?</label> -->
+>>>>>>> f673ab2c38838b2a7e18691de5a8fd4965b02dc8
     <textarea ng-model="reflectionObject.gratitude" md-maxlength="150" rows="5" md-select-on-focus></textarea>
   </md-input-container>
 
   <!-- {{ reflectionObject }} -->
+<<<<<<< HEAD
   <br>
   <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
 >>>>>>> d23a6442b3ead79c53d08182114963a6fd60df6a
+=======
+>>>>>>> f673ab2c38838b2a7e18691de5a8fd4965b02dc8
 </div>
 <!-- ends wrapper -->

@@ -1,14 +1,19 @@
 <div class = 'wrapper'>
-  <p>How did you sleep last night?</p>
 
-  <md-slider-container>
-    <span>Terrible</span>
-    <md-slider flex class="md-primary" md-discrete ng-model="reflectionObject.sleep" step="1" min="1" max="5" aria-label="rating">
-    </md-slider>
-    <span>Great</span>
-  </md-slider-container>
+<!-- Floating Next Button -->
+  <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
+    <i class="material-icons" id='formNextButton'>navigate_next</i>
+  </md-button>
 
+  <div>
+      <h3 class='md-subhead' layout='row' layout-align='center center'>How did you sleep last night?</h3>
+      <md-slider-container>
+          <span>Terrible</span>
+              <md-slider aria-label = 'How did you sleep last night? 1 = terrible 5 = great' flex  class='md-accent md-default' md-discrete ng-model="reflectionObject.sleep" step="1" min="1" max="5" aria-label="rating">
+              </md-slider>
+          <span>Great</span>
 
+<<<<<<< HEAD
   <p>Did you have a using dream?</p>
 <<<<<<< HEAD
   <md-switch class = 'md-primary' ng-model="reflectionObject.dream">
@@ -20,16 +25,27 @@
     <md-switch ng-model="reflectionObject.dream">
     </md-switch>
     <span>Yes</span>
+=======
+      </md-slider-container>
+>>>>>>> f673ab2c38838b2a7e18691de5a8fd4965b02dc8
   </div>
 >>>>>>> d23a6442b3ead79c53d08182114963a6fd60df6a
 
-  <md-input-container class="md-block">
+  <div>
+    <h3 class='md-subhead' layout='row' layout-align='center center'>Did you have a using dream?</h3>
+        <div layout='row' layout-align='center center'>
+          <span>No</span>
+              <md-switch aria-label = 'Did you have a using dream"' ng-model="reflectionObject.dream">
+              </md-switch>
+          <span>Yes</span>
+        </div>
+  </div>
+
+  <md-input-container class="md-block md-accent md-default">
     <label>If yes, can you describe your dream?</label>
     <textarea ng-model="reflectionObject.whatDream" md-maxlength="150" rows="5" md-select-on-focus></textarea>
   </md-input-container>
 
   <!-- {{ reflectionObject }} -->
-  <br>
-  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
 </div>
 <!-- ends wrapper -->

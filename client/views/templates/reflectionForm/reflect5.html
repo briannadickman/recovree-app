@@ -13,30 +13,39 @@
   <md-button ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
 =======
 
-  <p layout = 'column'>Did you exercise today?</p>
+<!-- Floating Next Button -->
+  <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
+    <i class="material-icons" id='formNextButton'>navigate_next</i>
+  </md-button>
+
+  <h3 class='md-subhead' layout='row' layout-align='center center'>Did you exercise today?</h3>
+
   <md-slider-container layout = 'row'>
     <span>No Activity</span>
-    <md-slider flex class="md-primary" md-discrete ng-model="reflectionObject.exercise" step="1" min="1" max="5" aria-label="rating">
+    <md-slider aria-label = 'Did you exercise today? 1 = no activity, 5 = high' flex class='md-accent md-default' md-discrete ng-model="reflectionObject.exercise" step="1" min="1" max="5" aria-label="rating">
     </md-slider>
     <span>High Activity</span>
   </md-slider-container>
 
   <br>
 
-  <p layout = 'column'>Rate your food consumption and access for today</p>
-  <md-slider-container layout = 'row'>
-    <span>Not Healthy</span>
-    <md-slider flex class="md-primary" md-discrete ng-model="reflectionObject.food" step="1" min="1" max="5" aria-label="rating">
-    </md-slider>
-    <span>Very Healthy</span>
-  </md-slider-container>
+  <h3 class='md-subhead' layout='column' layout-align='center center'>Rate your food consumption and access for today</h3>
+    <md-slider-container layout = 'row'>
+      <span>Not Healthy</span>
+      <md-slider aria-label = 'Rate your food consumption and access for today. 1 = Not Healthy, 5 = Very Healthy' flex class='md-accent md-default' md-discrete ng-model="reflectionObject.food" step="1" min="1" max="5" aria-label="rating">
+      </md-slider>
+      <span>Very Healthy</span>
+    </md-slider-container>
 
 <!--
   {{ reflectionObject }} -->
+<<<<<<< HEAD
   <div layout = 'row'>
     <br>
     <md-button layout = 'row' class = 'md-raised' ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
   </div>
 >>>>>>> d23a6442b3ead79c53d08182114963a6fd60df6a
+=======
+>>>>>>> f673ab2c38838b2a7e18691de5a8fd4965b02dc8
 </div>
 <!-- ends wrapper -->
