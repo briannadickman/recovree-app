@@ -19,12 +19,12 @@ var randomMessage = messageAlerts[randomIndex];
 console.log(randomMessage);
 
 // Using Cron to send automated messages at desiredintervals
-var textJob = new cronJob( '* * * * *', function(){ // send SMS message every minute
-for (var i = 0; i < phoneNumbers.length; i++) {
-  client.messages.create( { to: phoneNumbers[i], from: twilioNumber, body: randomMessage}, function( err, data ) {});
-  console.log('Text Reminder Sent To: ', phoneNumbers[i]);
-}
-console.log('CRON PORTION OF CODE');
-},  null, true );
+// var textJob = new cronJob( '* * * * *', function(){ // send SMS message every minute
+// for (var i = 0; i < phoneNumbers.length; i++) {
+//   client.messages.create( { to: phoneNumbers[i], from: twilioNumber, body: randomMessage}, function( err, data ) {});
+//   console.log('Text Reminder Sent To: ', phoneNumbers[i]);
+// }
+// console.log('CRON PORTION OF CODE');
+// },  null, true );
 
 module.exports = client;
