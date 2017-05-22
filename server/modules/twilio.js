@@ -8,13 +8,6 @@ var client = new twilio(process.env.TWILIO_ACCOUNT_SID , process.env.TWILIO_AUTH
 // var client = require('twilio')(accountSid, authToken);
 
 
-//This is supposed to add a phone numbers to my list of caller ids, but it's not doing anything
-  client.outgoingCallerIds.each({phoneNumber: '+16122050534'},function (callerId) {
-    console.log(callerId);
-      return console.log(callerId.phoneNumber);
-  });
-
-
 
 //lookup phone number - this is supposed to get the phone number carrier information, but return null
 client.lookups.v1.phoneNumbers('6122050534').fetch().then(function (number) {
@@ -28,6 +21,7 @@ client.lookups.v1.phoneNumbers('6122050534').fetch().then(function (number) {
 //     console.log('MESSAGE DATA', data);
 //   });
 });
+
 
 
 
