@@ -5,6 +5,7 @@
   "main": "Gruntfile.js",
   "scripts": {
     "test": "nodemon server/app.js",
+    "postinstall": "grunt copy uglify",
     "start": "node server/app.js"
   },
   "author": "Scott Bromander, Kris Szafranski",
