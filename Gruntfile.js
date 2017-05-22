@@ -78,6 +78,12 @@ module.exports = function(grunt){
         src: ['Chart.min.js'],
         dest: 'server/public/vendors/chartJS/'
       },
+      moment: {
+        expand: true,
+        cwd: 'node_modules/moment/min/',
+        src: ['moment.min.js'],
+        dest: 'server/public/vendors/moment/'
+      },
     },
     watch: {
       files: [
