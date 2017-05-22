@@ -5,16 +5,16 @@
     <i class="material-icons" id='formNextButton'>navigate_next</i>
   </md-button>
 
-  <h3 class='md-subhead'>Have you been selfish or dishonest with yourself or others today?</h3>
+  <h3 class='md-subhead' layout='column' layout-align='center center'>Have you been selfish or dishonest with yourself or others today?</h3>
 
   <div layout = 'row' layout-align = 'center'>
     <span>No</span>
-    <md-switch aria-label = 'Have you been selfish or dishonest with yourself or others today?' ng-model="reflectionObject.selfishDishonest">
+    <md-switch aria-label = 'Have you been selfish or dishonest with yourself or others today?' ng-model="reflectionObject.selfishDishonest" class='md-accent md-default'>
     </md-switch>
     <span>Yes</span>
   </div>
 
-  <md-input-container class="md-block">
+  <md-input-container class="md-block md-accent md-default">
     <label>If yes, how?</label>
     <textarea ng-model="reflectionObject.howSelfshDishnt" md-maxlength="150" rows="5" md-select-on-focus></textarea>
   </md-input-container>
