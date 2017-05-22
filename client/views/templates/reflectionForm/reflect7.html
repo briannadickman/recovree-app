@@ -1,8 +1,13 @@
 <div class = 'wrapper'>
-  <p>Did any of the following create stress or anxitey today?</p>
+
+<!-- Floating Next Button -->
+  <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
+    <i class="material-icons" id='formNextButton'>navigate_next</i>
+  </md-button>
+
+  <h3 class='md-subhead' layout='column' layout-align='center center'>Did any of the following create stress or anxiety today?</h3>
 
   <form name="dailyStressorsForm" novalidate>
-
       <ng-form name="stressForm" class="form-group" ng-repeat="stress in reflectionObject.stressors">
           <md-button class = 'md-raised' ng-class = "{'md-primary':(stress.value === true)}" ng-click = 'toggleFeeling(stress)' >
             {{stress.name}}
@@ -10,10 +15,6 @@
       </ng-form>
   </form>
 
-
-  <br>
-  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
-  </form>
   <!-- ends feelingsForm -->
 </div>
 <!-- ends wrapper -->

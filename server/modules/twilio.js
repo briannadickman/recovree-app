@@ -27,7 +27,4 @@ for (var i = 0; i < phoneNumbers.length; i++) {
 console.log('CRON PORTION OF CODE');
 },  null, true );
 
-
-
-
 module.exports = client;

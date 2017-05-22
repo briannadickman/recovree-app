@@ -25,7 +25,7 @@ var ReflectionSchema = mongoose.Schema({
   // reflectionDate: {type: String},
   // reflectionTime: {type: String},
   reflectionDate: {type: Date, default: Date.now},
-  // memberID: {type: Schema.ObjectId, ref: 'Registration'} //references Registration Schema
+  memberID: {type: Number, ref: 'Registration'} //references Registration Schema
 });
 
 
