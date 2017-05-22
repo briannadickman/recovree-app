@@ -4,27 +4,26 @@
     <i class="material-icons" id='formNextButton'>navigate_next</i>
   </md-button>
 
-  <h3 class='md-subhead'>How are you feeling today?</h3>
 
-  <div layout='column' layout-align='center center'>
+  <h3 class='md-title' layout='row' layout-align='center center'>How are you feeling today?</h3>
+
+  <div layout='row' layout-align='center center'>
     <form name="dailyFeelingsForm"  novalidate>
-
-        <ng-form name="feelingForm" class="form-group" ng-repeat="feeling in reflectionObject.feelings">
-            <md-button class = 'md-raised' ng-class = "{'md-primary':(feeling.value === true)}" ng-click = 'toggleFeeling(feeling)' >
-              {{feeling.name}}
-            </md-button>
-        </ng-form>
-    </form>
+      <span flex></span>
+            <ng-form name="feelingForm" class="form-group" ng-repeat="feeling in reflectionObject.feelings">
+                <md-button class = 'md-raised' ng-class = "{'md-primary md-default':(feeling.value === true)}" ng-click = 'toggleFeeling(feeling)'>
+                  {{feeling.name}}
+                </md-button>
+            </ng-form>
+      <span flex></span>
   </div>
 
   <!-- {{ reflectionObject }} -->
-<div class='wrapper' layout='row'>
-  <md-input-container class="md-block">
-    <label>Why?</label>
-    <textarea ng-model="reflectionObject.feelingsWhy" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-  </md-input-container>
-  </form>
-</div>
+        <md-input-container class="md-block md-accent md-default">
+          <label>Why?</label>
+          <textarea ng-model="reflectionObject.feelingsWhy" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+    </form>
   <!-- ends feelingsForm -->
 
 </div>
