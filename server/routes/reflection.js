@@ -36,18 +36,21 @@ router.get('/', function (req, res) {
   });
 });
 
-// router.get('/streak/:memberID', function(req, res){
-//   console.log('memberID in streak: ', memberID);
-//   Reflection.findOne({memberID: memberID})
-//     .sort({date: -1})
-//     .exec(function(err, lastReflection){
-//       if (err){
-//         console.log('error in streak determination: ', err);
-//         res.sendStatus(500);
-//       }
-//       console.log('lastReflection: ', lastReflection);
-//     });
-// });
+router.put('/streak/:memberID', function(req, res){
+  console.log('memberID in streak: ', req.params.memberID);
+  memberID = req.params.memberID;
+  console.log('streak in reflection/streak: ', req.body.streak);
+  streakCount = req.body.streak;
+  Reflection.findOne({memberID: memberID})
+    .sort({date: -1})
+    .exec(function(err, lastReflection){
+      if (err){
+        console.log('error in streak determination: ', err);
+        res.sendStatus(500);
+      }
+      console.log('lastReflection: ', lastReflection);
+    });
+});
 
 router.get('/session/:memberID', function(req, res){
   var reflections;
