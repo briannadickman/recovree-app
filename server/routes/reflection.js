@@ -94,9 +94,32 @@ router.get('/session/:memberID', function(req, res){
       reflections = sessionOutput[0];
       console.log('medication: ', sessionOutput[1]);
       medication = sessionOutput[1].medication;
-      var serverSessionObject = generateSessionObject(reflections, medication);
-      console.log(serverSessionObject);
-      res.send(serverSessionObject);
+      async.waterfall([
+        function(callback){
+          var serverSessionObject = generateSessionObject(reflections, medication);
+          console.log('streakCount: ', serverSessionObject.streakCount);
+          callback(null, serverSessionObject);
+        }],
+        function(err, results){
+          console.log('results: ', results);
+          var newCount = results.streakCount;
+          if (results.allReflectionsNewToOld[0]){
+            Reflection.findOne({'_id' : results.allReflectionsNewToOld[0]._id}, function(err, curReflection){
+                  if (err) {
+                    console.log('streak count first reflection update error: ', err);
+                  }
+                  curReflection.streakCount = newCount || curReflection.streakCount;
+                  console.log('streak count blub blub: ', curReflection.streakCount);
+                  res.send(results);
+            });
+          } else {
+            res.send(results);
+          }
+      });
+
+
+
+
 
   });
 });

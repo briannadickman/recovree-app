@@ -22,7 +22,7 @@ var ReflectionSchema = mongoose.Schema({
   gratitude: {type: String},
   peerSupport: {type: Boolean},
   counselor: {type: Boolean},
-  streakCount : {type: Number},
+  streakCount : {type: Number, default: 0},
   // reflectionDate: {type: String},
   // reflectionTime: {type: String},
   reflectionDate: {type: Date, default: Date.now},

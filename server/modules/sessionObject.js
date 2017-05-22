@@ -1,6 +1,6 @@
 var moment = require('moment');
 moment().format();
-var Reflections = require('../models/reflection');
+var Reflection = require('../models/reflection');
 var async = require('async');
 
 var generateSessionObject = function(allReflections, medication){
@@ -31,7 +31,7 @@ var generateSessionObject = function(allReflections, medication){
     serverSessionObject.allReflectionsNewToOld = allReflections;
     //defines the current streak count based on the most recent reflection
     // allReflections[0].streakCount = 10;//delete me *****************
-    // serverSessionObject.streakCount = allReflections[0].streakCount;
+    serverSessionObject.streakCount = allReflections[0].streakCount;
     console.log('current streak count: ', serverSessionObject.streakCount);
     //defines the start of the day for the most current reflection
     var mostRecentReflectionStart = moment(mostRecentReflection.reflectionDate).startOf('day');
@@ -87,24 +87,11 @@ var generateSessionObject = function(allReflections, medication){
       } else {
         console.log('only one reflection exists');
         serverSessionObject.streakCount++;
-        // newCount = serverSessionObject.streakCount;
-
-        // Reflections.findOneAndUpdate
-        //       ({'_id' : allReflections[0]._id},
-        //       {'streakCount' : newCount},
-        //       {new: true},
-        //       function(err, updatedReflection){
-        //         if (err) {
-        //           console.log('streak count first reflection update error: ', err);
-        //         }
-        //         console.log('streak count blub blub: ', updatedReflection.streakCount);
-        //         newCount = 0;
-        //
-        // });
         return serverSessionObject;
+
+
+
       }
-
-
     }
 
       //the reflection hasn't been completed today, so check to see if a reflection happened yesterday
@@ -120,8 +107,8 @@ var generateSessionObject = function(allReflections, medication){
       }
 
       // *************Retrieve current streak ******************************************
-      console.log('get streak from most recent reflection - temporarily setting to 20');
-      serverSessionObject.streakCount = 20;
+
+      serverSessionObject.streakCount = mostRecentReflection.streakCount;
       return serverSessionObject;
 
       //if a reflection exists and it didn't happen today or yesterday
