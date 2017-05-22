@@ -5,10 +5,10 @@
   <h2 class='md-subhead'>Recovree Days In A Row!</h2>
 </div>
 
-<div layout='column' layout-align='end center' ng-if='sessionObject.reflectionCompleted == true'>
+<div layout='column' layout-align='end center' ng-if='sessionObject.reflectionCompleted == false'>
   <md-button class='md-raised md-hue-3' ng-click = 'launchReflection()'>Reflect</md-button>
 </div>
-<div layout='column' layout-align='end center' ng-if='sessionObject.reflectionCompleted == false'>
+<div layout='column' layout-align='end center' ng-if='sessionObject.reflectionCompleted == true'>
   <h2 class='md-title'>You have completed your Recovree for the day!</h2>
 </div>
 <a href='#/admin-export'>Admin View</a>
