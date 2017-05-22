@@ -36,7 +36,7 @@ router.get('/', function (req, res) {
   });
 });
 
-router.put('/streak/:memberID', function(req, res){
+router.put('/streak', function(req, res){
   console.log('memberID in streak: ', req.params.memberID);
   memberID = req.params.memberID;
   console.log('streak in reflection/streak: ', req.body.streak);

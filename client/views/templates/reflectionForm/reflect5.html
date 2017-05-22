@@ -1,6 +1,12 @@
 <div class = 'wrapper'>
 
-  <p layout = 'column'>Did you exercise today?</p>
+<!-- Floating Next Button -->
+  <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
+    <i class="material-icons" id='formNextButton'>navigate_next</i>
+  </md-button>
+
+  <h3 class='md-subhead' layout='column'>Did you exercise today?</h3>
+
   <md-slider-container layout = 'row'>
     <span>No Activity</span>
     <md-slider aria-label = 'Did you exercise today? 1 = no activity, 5 = high' flex class="md-primary" md-discrete ng-model="reflectionObject.exercise" step="1" min="1" max="5" aria-label="rating">
@@ -20,9 +26,5 @@
 
 <!--
   {{ reflectionObject }} -->
-  <div layout = 'row'>
-    <br>
-    <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
-  </div>
 </div>
 <!-- ends wrapper -->

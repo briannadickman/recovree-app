@@ -87,22 +87,21 @@ var generateSessionObject = function(allReflections, medication){
       } else {
         console.log('only one reflection exists');
         serverSessionObject.streakCount++;
-        newCount = serverSessionObject.streakCount;
+        // newCount = serverSessionObject.streakCount;
 
-        Reflections.findOneAndUpdate
-              ({'_id' : allReflections[0]._id},
-              {'streakCount' : newCount},
-              {new: true},
-              function(err, updatedReflection){
-                if (err) {
-                  console.log('streak count first reflection update error: ', err);
-                }
-                console.log('streak count blub blub: ', updatedReflection.streakCount);
-                serverSessionObject.streakCount = updatedReflection.streakCount;
-                newCount = 0;
-        });
+        // Reflections.findOneAndUpdate
+        //       ({'_id' : allReflections[0]._id},
+        //       {'streakCount' : newCount},
+        //       {new: true},
+        //       function(err, updatedReflection){
+        //         if (err) {
+        //           console.log('streak count first reflection update error: ', err);
+        //         }
+        //         console.log('streak count blub blub: ', updatedReflection.streakCount);
+        //         newCount = 0;
+        //
+        // });
         return serverSessionObject;
-
       }
 
 

@@ -1,6 +1,12 @@
 <div class = 'wrapper'>
 
-  <p>Did you connect with your sponsor/mentor today</p>
+<!-- Floating Next Button -->
+  <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
+    <i class="material-icons" id='formNextButton'>navigate_next</i>
+  </md-button>
+
+  <h3 class='md-subhead' layout='column'>Did you connect with your sponsor/mentor today?</h3>
+
   <div layout = 'row' layout-align = 'center'>
     <span>No</span>
     <md-switch aria-label = 'Did you connect with your sponsor today?' class = 'md-primary' ng-model="reflectionObject.spnsrMntrConnect">
@@ -30,7 +36,5 @@
   </div>
 
   <!-- {{ reflectionObject }} -->
-  <br>
-  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
 </div>
 <!-- ends wrapper -->
