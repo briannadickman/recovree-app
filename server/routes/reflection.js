@@ -3,6 +3,8 @@ var router = express.Router();
 var passport = require('passport');
 var json2csv = require('json2csv');
 var fs = require('fs');
+var moment = require('moment');
+moment().format();
 var Users = require('../models/user');
 var Reflection = require('../models/reflection');
 var path = require('path');
@@ -24,9 +26,89 @@ router.get('/', function (req, res) {
   });
 });
 
+// router.get('/streak/:memberID', function(req, res){
+//   console.log('memberID in streak: ', memberID);
+//   Reflection.findOne({memberID: memberID})
+//     .sort({date: -1})
+//     .exec(function(err, lastReflection){
+//       if (err){
+//         console.log('error in streak determination: ', err);
+//         res.sendStatus(500);
+//       }
+//       console.log('lastReflection: ', lastReflection);
+//     });
+// });
+
+router.get('/session/:memberID', function(req, res){
+  console.log('memberID in session: ', req.params.memberID);
+  Reflection.find({'memberID': req.params.memberID})
+  //orders allReflections from new to old
+    .sort({'reflectionDate': -1})
+    .exec(function(err, allReflections){
+      if (err){
+        console.log('error in find most recent reflection: ', err);
+        // res.sendStatus(500);
+      }
+      var serverSessionObject ={
+        reflectionCompleted : false,
+        streakCount : 1,
+        allReflectionsNewToOld : [],
+        yesterdaysGoal : "",
+        medication : false,
+        todaysReflection : {}
+      };
+      var dateNow = moment();
+      //defines the start of the day using moment js
+      var todayStart = dateNow.clone().startOf('day');
+      // defines the start of yesterday using moment js
+      var yesterdayStart = dateNow.clone().subtract(1, 'day').startOf('day');
+      console.log('todayStart: ' + todayStart + '   yesterdayStart: ' + yesterdayStart);
+      console.log(allReflections, allReflections.length, "all refelctions in session get");
+      if (allReflections.length >= 1){
+        //defines the most recent reflection as lastReflection
+        var lastReflection = allReflections[0];
+        //sets the serverSessionObject allReflectionsNewToOld property equal to all of the members reflections
+        serverSessionObject.allReflectionsNewToOld = allReflections;
+        //defines the start of the day for the most current reflection
+        var lastReflectionStart = moment(lastReflection.reflectionDate).startOf('day');
+        console.log('lastReflectionStart: ', lastReflectionStart);
+        //if the start of the day today is the same as the start of the day for the most recent reflection, it must have happened today
+        if (todayStart.clone().diff(lastReflectionStart) === 0){
+          console.log('last reflection is today!');
+          //so todays reflection has been completed
+          serverSessionObject.reflectionCompleted = true;
+          //it just so happens to be the most recent reflection
+          serverSessionObject.todaysReflection = lastReflection;
+          //tomorrows goal yesterday is yesterdays goal today - paul mccartney
+          if (allReflections.length > 1){
+          serverSessionObject.yesterdaysGoal = allReflections[1].tomorrowGoal;
+          }
+          //Note Note Note ***** if reflections can be completed twice in a day, the above needs to be changed
+          console.log('yesterdays goal', serverSessionObject.yesterdaysGoal);
+        }
+        //if the most recent reflection did not happen today
+        if(serverSessionObject.todaysReflection !== lastReflection){
+          //this checks to see if the start of yesterday is the same as the start of the day for the most recent reflection
+          if (yesterdayStart.clone().diff(lastReflectionStart) === 0){
+            //in which case they have completed reflections two days in a row and thus the streak goes up by one
+            serverSessionObject.streakCount++;
+            console.log('u did it!', serverSessionObject.streak);
+          } else {
+            //if the most recent reflection happened before yesterday, today's completed reflection starts a new streak at one
+            serverSessionObject.streakCount = 1;
+            console.log('you did not do it, but you can start again!');
+          }
+        }
+      }
+      console.log(serverSessionObject);
+      res.send(serverSessionObject);
+    });
+});
+
 
 router.post('/', function(req,res){
   console.log(req.user.memberID);
+  var memID = req.user.memberID;
   var reflection = req.body;
   var newReflection = new Reflection({
     id : req.user._id,
@@ -52,9 +134,9 @@ router.post('/', function(req,res){
     gratitude: reflection.gratitude,
     peerSupport: reflection.peerSupport,
     counselor: reflection.counselor,
-    memberID: req.user.memberID
+    memberID: memID
   });
-
+  console.log(newReflection.memberID);
   console.log('----NEW REFLECTION---', newReflection);
 
   newReflection.save(newReflection, function(err, savedReflection){

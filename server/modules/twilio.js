@@ -25,9 +25,7 @@ console.log(randomMessage);
 //   console.log('Text Reminder Sent To: ', phoneNumbers[i]);
 // }
 // console.log('CRON PORTION OF CODE');
+
 // },  null, true );
-
-
-
 
 module.exports = client;
