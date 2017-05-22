@@ -3,25 +3,12 @@ var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
-var gv = require('../variables/variables.js');
-
-console.log('testing global variables: ', gv.test);
-gv.testFunc('Hello World');
-
-var variables = require('../variables/variables.js');
-
-
 // Mongoose Schema
 var UserSchema = new Schema({
     username: {type: String, required: true, index: {unique: true}},
     password: {type: String, required: true},
     userType: {type: Number, default: 2},          //1: admin, 2: member - will defualt to 2, unless on admin log-in, then set to 1
     memberID : {type: Number, index: {unique:true}},
-
-    // userType: {type: Number}, //1: admin, 2: member - Will be defined in the log-in screen - client side
-    // memberID : {type: Number, index: {unique:true}},
-    // medication : {type: Boolean}
-
 });
 
 
@@ -59,4 +46,4 @@ UserSchema.methods.comparePassword = function(candidatePassword, callback) {
 };
 
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('users', UserSchema, 'users');

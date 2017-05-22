@@ -1,7 +1,16 @@
-<div class = 'wrapper'>
-  <p>This is Home view</p>
 
-  <md-button class = 'md-raised' ng-click = 'launchReflection()'>Reflect</md-button>
+<div layout='column' layout-align='center center'>
+  <h1 class='md-headline'>Welcome Back!</h1>
+  <div id='chainGraphic'>Chain Graphic Goes Here w/ Number of Days: {{sessionObject.streak}}</div>
+  <h2 class='md-subhead'>Recovree Days In A Row!</h2>
 </div>
+
+<div layout='column' layout-align='end center' ng-if='sessionObject.reflectionCompleted == false'>
+  <md-button class='md-raised md-hue-3' ng-click = 'launchReflection()'>Reflect</md-button>
+</div>
+<div layout='column' layout-align='end center' ng-if='sessionObject.reflectionCompleted == true'>
+  <h2 class='md-title'>You have completed your Recovree for the day!</h2>
+</div>
+<a href='#/admin-export'>Admin View</a>
 
 <footer class='navMenu' ng-include="'/views/partials/nav.html'"></footer>

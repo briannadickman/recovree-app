@@ -1,12 +1,17 @@
 <div class = 'wrapper'>
 
+<!-- Floating Next Button -->
+  <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
+    <i class="material-icons" id='formNextButton'>navigate_next</i>
+  </md-button>
+
+  <h3 class='md-subhead'>What are you thankful for today and why?</h3>
+
   <md-input-container class="md-block">
-    <label>What are you thankful for today and why?</label>
+    <!-- <label>What are you thankful for today and why?</label> -->
     <textarea ng-model="reflectionObject.gratitude" md-maxlength="150" rows="5" md-select-on-focus></textarea>
   </md-input-container>
 
   <!-- {{ reflectionObject }} -->
-  <br>
-  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
 </div>
 <!-- ends wrapper -->

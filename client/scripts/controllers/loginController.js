@@ -4,6 +4,8 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
       password: ''
     };
     $scope.message = '';
+    var userObject = UserService.userObject;
+
 
     $scope.login = function() {
       if($scope.user.username === '' || $scope.user.password === '') {
@@ -13,6 +15,9 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
         $http.post('/', $scope.user).then(function(response) {
           if(response.data.username) {
             console.log('success: ', response.data);
+            userObject.userName = response.data.username;
+            userObject.id = response.data.id;
+            userObject.memberID = response.data.memberID;
             // location works with SPA (ng-route)
             $location.path('/home');
           } else {
@@ -30,6 +35,10 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
         console.log('sending to server...', $scope.user);
         $http.post('/register', $scope.user).then(function(response) {
           console.log('success saving member');
+          console.log('response',response);
+          console.log('response.data.memberID', response.data.memberID);
+          $scope.registration.memberID = response.data.memberID;
+          $scope.userDemographics($scope.registration);
           $location.path('/login');
         },
         function(response) {
@@ -44,7 +53,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
     $scope.userDemographics = function(){
       console.log('sending demographics', $scope.registration);
       $http.post('/register/registration', $scope.registration).then(function(response) {
-        console.log('success saving demographic info');
+        console.log('success saving demographic info', response);
         $location.path('/login');
       });
     };
@@ -76,16 +85,14 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
         }
         console.log($scope.years);
         return $scope.years;
-      }
+      };
 
      // Generate Drugs of Choice Dropdown Options
-     var comma = ',';
      $scope.drugs = ('Alcohol,Amphetamine,Benzodiazepines,Cocaine,Crack,Ecstasy,Heroin,Inhalants,Marijuana-Hashish,Methamphetamine,Opiates,PCP,Synthetics,Other').split(comma).map(function(drug) {
          return {drug: drug};
       });
 
       // Generate Program Payment Options
-      var comma = ',';
       $scope.payments = ('Personal Financing,Insurance,Public Assistance,Treatment Program Scholarships').split(comma).map(function(payment) {
           return {payment: payment};
        });
