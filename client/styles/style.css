@@ -111,8 +111,6 @@ html {
 }
 
 /*keith*/
-<<<<<<< HEAD
-=======
 *{
   padding: 0;
   margin:0;
@@ -127,7 +125,6 @@ h1{
     text-align: center;
 }
 
->>>>>>> d23a6442b3ead79c53d08182114963a6fd60df6a
 .login-container{
   padding: 20px;
   text-align: center;
@@ -145,26 +142,7 @@ h1{
   background-color: gainsboro;
 }
 
-<<<<<<< HEAD
-.selectedTrue{
-  background-color: lightyellow;
-}
-
-button.feeling-button{
-  background-color: gainsboro;
-  border-radius: 5px;
-  display: inline-flex;
-
-  /*font-size: 75px;*/
-  /*min-width: 550px;*/
-}
-
-.md-button{
-  font-size: 10px;
-  min-width: 75px;
-=======
 .md-button{
   font-size: 12px;
   min-width: 100px;
->>>>>>> d23a6442b3ead79c53d08182114963a6fd60df6a
 }

@@ -1,13 +1,5 @@
 <div class = 'wrapper'>
 
-<<<<<<< HEAD
-  <p>Have you been selfish or dishonest with yourself or others today?</p>
-<<<<<<< HEAD
-  <md-switch ng-model="reflectionObject.selfishDishonest">
-    Switch 1: {{ reflectionObject.selfishDishonest }}
-  </md-switch>
-=======
-=======
 <!-- Floating Next Button -->
   <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
     <i class="material-icons" id='formNextButton'>navigate_next</i>
@@ -15,30 +7,16 @@
 
   <h3 class='md-subhead' layout='column' layout-align='center center'>Have you been selfish or dishonest with yourself or others today?</h3>
 
->>>>>>> f673ab2c38838b2a7e18691de5a8fd4965b02dc8
   <div layout = 'row' layout-align = 'center'>
     <span>No</span>
     <md-switch aria-label = 'Have you been selfish or dishonest with yourself or others today?' ng-model="reflectionObject.selfishDishonest" class='md-accent md-default'>
     </md-switch>
     <span>Yes</span>
   </div>
->>>>>>> d23a6442b3ead79c53d08182114963a6fd60df6a
 
   <md-input-container class="md-block md-accent md-default">
     <label>If yes, how?</label>
     <textarea ng-model="reflectionObject.howSelfshDishnt" md-maxlength="150" rows="5" md-select-on-focus></textarea>
   </md-input-container>
-<<<<<<< HEAD
-<<<<<<< HEAD
-  {{reflectionObject.howSelfshDishnt}}
-  {{ reflectionObject }}
-  <br>
-  <md-button ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
-=======
-  <br>
-  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
->>>>>>> d23a6442b3ead79c53d08182114963a6fd60df6a
-=======
->>>>>>> f673ab2c38838b2a7e18691de5a8fd4965b02dc8
 </div>
 <!-- ends wrapper -->

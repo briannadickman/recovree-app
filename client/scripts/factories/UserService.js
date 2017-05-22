@@ -167,73 +167,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
     function postToReflectionForm(reflectionObject){
       $http.post('/reflection', reflectionObject).then(function(response) {
-      });
-    }
-  }//ends postToReflectionForm
-
-  function updateReflectionForm(reflectionObject){
-    console.log("$http.put:", reflectionObject);
-    //this funciton will need to update the database
-    //find by id and date then update
-    //beacuse of async we will need to .then take the response set the
-    //reflectionObject = response and then pass reflectionObject into the
-    //advance to next function
-
-    advanceReflectionForm(reflectionObject);
-    if (userObject.id) {
-      console.log('TODAYS REFLECTION UPDATED IN DB');
-      $http.put('/reflection', reflectionObject).then(function(response) {
-      });
-    }
-  }
-
-  function getuser(){
-    $http.get('/user').then(function(response) {
-        if(response.data.id) {
-            // user has a curret session on the server
-            userObject.userName = response.data.username;
-            userObject.id = response.data.id;
-            // console.log('User Data: ', userObject.userName, userObject.id);
-        } else {
-            // user has no session, bounce them back to the login page
-            $location.path("/home");
-        }
-    });
-  }
-
-   function logout() {
-      $http.get('/user/logout').then(function(response) {
-        console.log('logged out');
-        $location.path("/home");
-      });
-  }
-
-  // takes reflectionObject and either posts it or updates it then advances to the next screen
-  function reflectionFormNextButton(reflectionObject){
-    console.log("you clicked the next button");
-    console.log("reflectionObject from NEXT Btn:", reflectionObject);
-
-    if (reflectionObject.formPosition === 1){
-      //makes intial post to database
-      postToReflectionForm(reflectionObject);
-    }
-    else{
-      //updates today's reflectionObject
-      updateReflectionForm(reflectionObject);
-    }
-  }//ends reflectionFormNextButton
-
-  function postToReflectionForm(reflectionObject){
-    console.log("$http.post:", reflectionObject);
-    //this funciton will need to post to the database
-    //posts date, id, and feelings
-    //beacuse of async we will need to .then take the response set the
-    //reflectionObject = response and then pass reflectionObject into the
-    //advance to next function
-    advanceReflectionForm(reflectionObject);
-    if (userObject.id) {
-      console.log('FEELINGS SAVED TO DB - NEW REFLECTION POSTED');
-      $http.post('/reflection', reflectionObject).then(function(response) {
         reflectionObject._id = response.data._id;
         console.log('reflectionObject._id: ', reflectionObject._id);
         advanceReflectionForm(reflectionObject);
@@ -269,5 +202,4 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     reflectionFormNextButton: reflectionFormNextButton,
     returnHomeButton: returnHomeButton
   };
-
 }]);

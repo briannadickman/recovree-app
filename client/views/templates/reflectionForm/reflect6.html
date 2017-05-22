@@ -1,27 +1,6 @@
 <div class = 'wrapper'>
 
-<<<<<<< HEAD
-  <p>Did you connect with your sponsor/mentor today</p>
-<<<<<<< HEAD
-  <md-switch ng-model="reflectionObject.spnsrMntrConnect">
-    Switch 1: {{ reflectionObject.spnsrMntrConnect }}
-  </md-switch>
 
-  <p>How many group meetings did you attend today?</p>
-  <md-switch ng-model="reflectionObject.groupMeet">
-    Switch 1: {{ reflectionObject.groupMeet }}
-  </md-switch>
-
-  <p>Did you engage in any service or community work today?</p>
-  <md-switch ng-model="reflectionObject.commntyService">
-    Switch 1: {{ reflectionObject.commntyService }}
-  </md-switch>
-
-  {{ reflectionObject }}
-  <br>
-  <md-button ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
-=======
-=======
 <!-- Floating Next Button -->
   <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
     <i class="material-icons" id='formNextButton'>navigate_next</i>
@@ -29,7 +8,6 @@
 
   <h3 class='md-subhead' layout='column' layout-align='center center'>Did you connect with your sponsor/mentor today?</h3>
 
->>>>>>> f673ab2c38838b2a7e18691de5a8fd4965b02dc8
   <div layout = 'row' layout-align = 'center'>
     <span>No</span>
     <md-switch aria-label = 'Did you connect with your sponsor today?'  class='md-accent md-default' ng-model="reflectionObject.spnsrMntrConnect">
@@ -59,11 +37,5 @@
   </div>
 
   <!-- {{ reflectionObject }} -->
-<<<<<<< HEAD
-  <br>
-  <md-button class = 'md-raised' ng-click = 'reflectionFormNextButton(reflectionObject)'>Next</md-button>
->>>>>>> d23a6442b3ead79c53d08182114963a6fd60df6a
-=======
->>>>>>> f673ab2c38838b2a7e18691de5a8fd4965b02dc8
 </div>
 <!-- ends wrapper -->
