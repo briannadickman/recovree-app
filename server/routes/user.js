@@ -89,24 +89,32 @@ router.put('/resetpassword', function(req, res) {
       if (err) {
         res.sendStatus(500);
       }
+      var date = moment().format();
+      //check if expiration has passed
+      if (foundUser.expiration >= date) {
+        console.log('NOW DATE EXP', date);
+        console.log('CODE EXPIRED AT', foundUser.expiration);
+      } else {
+          console.log('NOW DATE', date);
+          console.log('CODE TO EXPIRED AT', foundUser.expiration);
 
-    // TODO: check if expiration has passed - send 500 error expired
-
-       if (req.body.code != foundUser.code) {
-        res.sendStatus(500);
-       }
-
-       foundUser.password = req.body.password;
-       //set expiration to now after reset password
-       foundUser.expiration = Date.now();
-
-       foundUser.save(function(err, savedUser) {
-         if (err) {
-           console.log(err);
-           res.sendStatus(500);
-         }
-       res.send(foundUser);
-    });
+           foundUser.expiration = Date.now();
+        //   if (req.body.code != foundUser.code) {
+        //     res.sendStatus(500);
+        //   }
+        //
+        //   foundUser.password = req.body.password;
+        //   //set expiration to now after reset password
+        //   foundUser.expiration = Date.now();
+        //
+        //   foundUser.save(function(err, savedUser) {
+        //     if (err) {
+        //       console.log(err);
+        //       res.sendStatus(500);
+        //     }
+        //     res.send(foundUser);
+        // });
+      }
   });
 });
 
