@@ -170,3 +170,8 @@ h1{
   margin: 0 !important;
   padding: 0 !important;
 }
+
+#completedRecovree{
+  padding-left: 15px;
+  padding-right: 15px;
+}
