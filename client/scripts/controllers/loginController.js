@@ -1,8 +1,6 @@
-myApp.controller('LoginController', ['$scope', '$http', '$routeParams','$location', 'UserService', function($scope, $http, $routeParams, $location, UserService) {
-    $scope.user = {
-      username: '',
-      password: ''
-    };
+myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
+    $scope.user = UserService.user;
+
     $scope.message = '';
     var userObject = UserService.userObject;
 
@@ -67,6 +65,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams','$locatio
       }
     };
 
+
     $scope.registerUser = function() {
       if($scope.user.username === '' || $scope.user.password === '') {
         $scope.message = "Choose a username and password!";
@@ -87,15 +86,11 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams','$locatio
 
     };
 
-  // SENDS USER DEMOGRAPHIC INFO TO SERVER (No username or password)
 
-    $scope.userDemographics = function(){
-      console.log('sending demographics', $scope.registration);
-      $http.post('/register/registration', $scope.registration).then(function(response) {
-        console.log('success saving demographic info', response);
-        $location.path('/login');
-      });
-    };
+  // SENDS USER DEMOGRAPHIC INFO TO SERVER (No username or password)
+  $scope.registration = UserService.registration;
+  $scope.userDemographics = UserService.userDemographics;
+
 
   // REGISTRATION FORM
 
