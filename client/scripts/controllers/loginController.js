@@ -6,6 +6,23 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
     $scope.message = '';
     var userObject = UserService.userObject;
 
+    $scope.sendResetPassword = function () {
+      if($scope.user.username === '') {
+        $scope.message = "Enter your phone number";
+      } else {
+        console.log('sending to server...', $scope.user);
+        $http.post('/user/forgotpassword', $scope.user).then(function(response) {
+          if(response.data.username) {
+            console.log('success: ', response.data);
+            // location works with SPA (ng-route)
+            $location.path('Password Reset Link Sent');
+          } else {
+            console.log('failure: ', response);
+            $scope.message = "Failure";
+          }
+        });
+      }
+    };
 
     $scope.login = function() {
       if($scope.user.username === '' || $scope.user.password === '') {
