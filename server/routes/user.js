@@ -45,15 +45,14 @@ router.post('/forgotpassword', function(req, res) {
 console.log('Password Reset Route', req.body);
 var code = chance.string({pool:'abcdefghijklmnopqstuv1234567890', length: 20}); //pool of characters chance will select from to create random string
 //you should check for collision - can technically put userid.specialcharacter
-User.findone({"username": req.body.username}, function (err, foundUser) {
+User.findOne({"username": req.body.username}, function (err, foundUser) {
   if (err) {
     res.sendStatus(500);
   }
     console.log(foundUser);
-    res.sendStatus(200);
 
     var baseURL = 'http://localhost:5000'; //or env.VAR
-    console.log('password reset link:' +baseURL + '#confirmreset' + code );
+    console.log('password reset link/' +baseURL + '/#confirmreset/' + code );
     // TODO: Mail out this link to reset password
 
 
@@ -65,28 +64,27 @@ User.findone({"username": req.body.username}, function (err, foundUser) {
         console.log(err);
         res.sendStatus(500);
       }
-      res.send(foundUser);
+      // res.send(foundUser);
     });
 });
 });
 
 
-//technically should be a put
-router.post('/resetpassword', function(req, res) {
-console.log('Password Reset Route', req.body);
-var code = chance.string({pool:'abcdefghijklmnopqstuv1234567890', length: 20}); //pool of characters chance will select from to create random string
-//you should check for collision - can technically put userid.specialcharacter
+router.put('/resetpassword', function(req, res) {
 User.findone({"username": req.body.username}, function (err, foundUser) {     //getting ERR with User here
   if (err) {
     res.sendStatus(500);
   }
-  //should also check to see if expiration has passed
+  //should also check to see if expiration has passed here
+  // TODO: send 500 error if expiration is expired
+
     if (req.body.code != foundUser.code) {
       res.sendStatus(500);
     }    //need to re-run gen.SALT on the new password
 
     //this is non-salted password
     foundUser.password = req.body.password;
+    //foundUser.expiraton = reset expiration to Now, once password is reset
 
     foundUser.save(function(err, savedUser){
       if (err) {

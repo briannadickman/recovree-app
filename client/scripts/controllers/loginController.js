@@ -33,8 +33,8 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams','$locatio
       } else {
         console.log('sending to server...', $scope.user);
         $scope.user.code = $routeParams.code;
-        //this should be PUT since updating password
-        $http.post('/user/resetpassword', $scope.user).then(function(response) {
+
+        $http.put('/user/resetpassword', $scope.user).then(function(response) {
           if(response.data.username) {
             console.log('success: ', response.data);
             $location.path('/home');
