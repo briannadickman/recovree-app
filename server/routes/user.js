@@ -11,6 +11,8 @@ var Schema = mongoose.Schema;
 var UserModel = require('../models/user');
 var User = mongoose.model('users', UserModel.UserSchema);
 
+var moment = require('moment');
+
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function(req, res) {
   console.log('get /user route');
@@ -43,27 +45,30 @@ router.get('/logout', function(req, res) {
 
 router.post('/forgotpassword', function(req, res) {
   console.log('Password Reset Route', req.body);
+  //pool of characters chance will select from to create random string
   var code = chance.string({
     pool: 'abcdefghijklmnopqrstuvwxyz1234567890',
     length: 20
   });
-  //pool of characters chance will select from to create random string
-  console.log('HERE WILL CHECK FOR CODE COLLISON', code);
-  //you should check for collision - can technically put userid.specialcharacter
+
   User.findOne({
     "username": req.body.username
   }, function(err, foundUser) {
     if (err) {
       res.sendStatus(500);
     }
-    console.log(foundUser);
+    console.log('FOUND USER', foundUser);
 
-    var baseURL = 'http://localhost:5000'; //or env.VAR
-    console.log('password reset link/' + baseURL + '/#confirmreset/' + code);
+    var baseURL = 'http://localhost:5000'; //or env.VAR - change this for production
+    var passwordResetLink = 'password reset link/' + baseURL + '/#confirmreset/' + code;
+    console.log('RESET LINK', passwordResetLink );
     // TODO: Mail out this link to reset password
 
     foundUser.code = code;
-    //foundUser.expration = ' some time in the future'
+
+    var expireCode = moment().add(1, 'days').format();
+    foundUser.expiration = expireCode;
+    console.log('CODE WILL EXPIRE AT: ', expireCode);
 
     foundUser.save(function(err, savedUser) {
       if (err) {
@@ -81,28 +86,26 @@ router.put('/resetpassword', function(req, res) {
     "username": req.body.username
   },
     function(err, foundUser) { //getting ERR with User here
-
       if (err) {
         res.sendStatus(500);
       }
 
-    //should also check to see if expiration has passed here
-    // TODO: send 500 error if expiration is expired
+    // TODO: check if expiration has passed - send 500 error expired
 
-      if (req.body.code != foundUser.code) {
+       if (req.body.code != foundUser.code) {
         res.sendStatus(500);
-      } //need to re-run gen.SALT on the new password
+       }
 
-    //this is non-salted password
-        foundUser.password = req.body.password;
-    //foundUser.expiraton = reset expiration to Now, once password is reset
+       foundUser.password = req.body.password;
+       //set expiration to now after reset password
+       foundUser.expiration = Date.now();
 
-      foundUser.save(function(err, savedUser) {
-        if (err) {
-          console.log(err);
-          res.sendStatus(500);
-        }
-        res.send(foundUser);
+       foundUser.save(function(err, savedUser) {
+         if (err) {
+           console.log(err);
+           res.sendStatus(500);
+         }
+       res.send(foundUser);
     });
   });
 });
