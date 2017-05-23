@@ -46,7 +46,9 @@ router.post('/forgotpassword', function(req, res) {
   var code = chance.string({
     pool: 'abcdefghijklmnopqrstuvwxyz1234567890',
     length: 20
-  }); //pool of characters chance will select from to create random string
+  });
+  //pool of characters chance will select from to create random string
+  console.log('HERE WILL CHECK FOR CODE COLLISON');
   //you should check for collision - can technically put userid.specialcharacter
   User.findOne({
     "username": req.body.username
@@ -77,27 +79,30 @@ router.post('/forgotpassword', function(req, res) {
 router.put('/resetpassword', function(req, res) {
   User.findOne({
     "username": req.body.username
-  }, function(err, foundUser) { //getting ERR with User here
-    if (err) {
-      res.sendStatus(500);
-    }
+  },
+    function(err, foundUser) { //getting ERR with User here
+
+      if (err) {
+        res.sendStatus(500);
+      }
+
     //should also check to see if expiration has passed here
     // TODO: send 500 error if expiration is expired
 
-    if (req.body.code != foundUser.code) {
-      res.sendStatus(500);
-    } //need to re-run gen.SALT on the new password
+      if (req.body.code != foundUser.code) {
+        res.sendStatus(500);
+      } //need to re-run gen.SALT on the new password
 
     //this is non-salted password
-    foundUser.password = req.body.password;
+        foundUser.password = req.body.password;
     //foundUser.expiraton = reset expiration to Now, once password is reset
 
-    foundUser.save(function(err, savedUser) {
-      if (err) {
-        console.log(err);
-        res.sendStatus(500);
-      }
-      res.send(foundUser);
+      foundUser.save(function(err, savedUser) {
+        if (err) {
+          console.log(err);
+          res.sendStatus(500);
+        }
+        res.send(foundUser);
     });
   });
 });

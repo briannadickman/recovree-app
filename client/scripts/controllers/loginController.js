@@ -11,11 +11,10 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams','$locatio
         $scope.message = "Enter your phone number";
       } else {
         console.log('sending to server...', $scope.user);
+        $location.path('/home');
         $http.post('/user/forgotpassword', $scope.user).then(function(response) {
           if(response.data.username) {
             console.log('success: ', response.data);
-            // location works with SPA (ng-route)
-            $location.path('Password Reset Link Sent');
           } else {
             console.log('failure: ', response);
             $scope.message = "Failure";
@@ -25,8 +24,9 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams','$locatio
     };
 
     $scope.updatePassword = function() {
-      console.log($routeParams.code); //this is the randomly generated code, it's part of the url and will need it to reset password
+      //this is the randomly generated code, it's part of the url and will need it to reset password
       //send our password reset request to the server with our username, new password, and code
+      console.log($routeParams.code);
 
       if($scope.user.username === '' || $scope.user.password === '') {
         $scope.message = "Enter your username and password!";
