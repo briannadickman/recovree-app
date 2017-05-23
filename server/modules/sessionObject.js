@@ -107,7 +107,6 @@ var generateSessionObject = function(allReflections, medication){
       }
 
       // *************Retrieve current streak ******************************************
-
       serverSessionObject.streakCount = mostRecentReflection.streakCount;
       return serverSessionObject;
 
