@@ -39,7 +39,6 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
           console.log('response.data.memberID', response.data.memberID);
           $scope.registration.memberID = response.data.memberID;
           $scope.userDemographics($scope.registration);
-          $location.path('/login');
         },
         function(response) {
           console.log('error');

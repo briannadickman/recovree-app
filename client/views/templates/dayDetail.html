@@ -132,7 +132,7 @@
           <hr />
         </div>
 
-        <div ng-if = 'sessionObject.todaysReflectObject.dailyGoal == false'>
+        <div ng-if = 'sessionObject.todaysReflectObject.dailyGoal == true'>
           <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>You completed yesterday's goal of:</b></h3>
           <span class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.yesterdaysGoal}}</span>
           <hr />
@@ -143,7 +143,7 @@
           <p class='md-body-1' layout = 'column' layout-align = 'center center'>{{sessionObject.todaysReflectObject.gratitude}}</p>
           <hr />
         </div>
-        
+
       </div>
 
 </div>
