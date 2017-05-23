@@ -18,6 +18,7 @@ var UserSchema = new Schema({
 UserSchema.pre('save', function(next) {
     var user = this;
 
+    //this checks if password is modified
     if(!user.isModified('password')) {
       return next();
     }

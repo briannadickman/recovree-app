@@ -71,4 +71,32 @@ User.findone({"username": req.body.username}, function (err, foundUser) {
 });
 
 
+//technically should be a put
+router.post('/resetpassword', function(req, res) {
+console.log('Password Reset Route', req.body);
+var code = chance.string({pool:'abcdefghijklmnopqstuv1234567890', length: 20}); //pool of characters chance will select from to create random string
+//you should check for collision - can technically put userid.specialcharacter
+User.findone({"username": req.body.username}, function (err, foundUser) {     //getting ERR with User here
+  if (err) {
+    res.sendStatus(500);
+  }
+  //should also check to see if expiration has passed
+    if (req.body.code != foundUser.code) {
+      res.sendStatus(500);
+    }    //need to re-run gen.SALT on the new password
+
+    //this is non-salted password
+    foundUser.password = req.body.password;
+
+    foundUser.save(function(err, savedUser){
+      if (err) {
+        console.log(err);
+        res.sendStatus(500);
+      }
+      res.send(foundUser);
+    });
+});
+});
+
+
 module.exports = router;
