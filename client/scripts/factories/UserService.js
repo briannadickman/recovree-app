@@ -70,7 +70,8 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
           sessionObject.todaysReflectObject = {};
         }
         sessionObject.yesterdaysGoal = response.data.yesterdaysGoal;
-        sessionObject.takingMeds = response.data.takingMeds;
+        sessionObject.takingMeds = response.data.medication;
+        console.log("session Object at end of getSessionObject", sessionObject);
       });
     }//ends getSessionObject
 
