@@ -48,7 +48,7 @@ router.post('/forgotpassword', function(req, res) {
     length: 20
   });
   //pool of characters chance will select from to create random string
-  console.log('HERE WILL CHECK FOR CODE COLLISON');
+  console.log('HERE WILL CHECK FOR CODE COLLISON', code);
   //you should check for collision - can technically put userid.specialcharacter
   User.findOne({
     "username": req.body.username

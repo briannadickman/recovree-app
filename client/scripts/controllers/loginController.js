@@ -11,7 +11,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams','$locatio
         $scope.message = "Enter your phone number";
       } else {
         console.log('sending to server...', $scope.user);
-        $location.path('/home');
+        $location.path('/login');
         $http.post('/user/forgotpassword', $scope.user).then(function(response) {
           if(response.data.username) {
             console.log('success: ', response.data);
@@ -37,7 +37,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams','$locatio
         $http.put('/user/resetpassword', $scope.user).then(function(response) {
           if(response.data.username) {
             console.log('success: ', response.data);
-            $location.path('/home');
+            $location.path('/login');
           } else {
             console.log('failure: ', response);
             $scope.message = "Username or password is incorrect.";
