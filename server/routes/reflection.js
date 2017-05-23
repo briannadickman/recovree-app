@@ -19,12 +19,6 @@ var Registration = require('../models/registration');
 //our modules
 var generateSessionObject = require('../modules/sessionObject');
 
-
-
-
-
-
-
 ///get reflections from database
 router.get('/', function (req, res) {
   Reflection.find().lean().exec(function(err, reflections){
@@ -215,29 +209,6 @@ router.put('/', function (req, res) {
     });
   });
 });
-  //edit an employee
-
-    // var foundReflection = new Reflection(){
-    //
-    // }
-    // Reflection.findByIdAndRemove(reflection, function(err, foundReflection){
-    //   if (err) {
-    //     console.log(err);
-    //     res.sendStatus(500);
-    //   }
-    //   foundReflection.save(function(err, savedEmployee) {
-    //     if (err){
-    //       console.log(err);
-    //       res.sendStatus(500);
-    //     }
-    //     res.send(savedEmployee);
-    //   });
-    // });
-
-// });
-
-
-
 
 
 

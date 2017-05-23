@@ -45,6 +45,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
           $scope.message = "Please try again.";
         });
       }
+
     };
 
   // SENDS USER DEMOGRAPHIC INFO TO SERVER (No username or password)
@@ -73,7 +74,10 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
        });
 
      // Generate Birth Year Dropdown Options
-
+     var comma = ',';
+     $scope.years = ('Female,Male,Trans,Other,Prefer Not to Answer').split(comma).map(function(year) {
+         return {year: year};
+      });
         $scope.years = [];
 
         $scope.getYearDropdown = function(){
