@@ -84,8 +84,8 @@
     <p layout-xs='row'>Are you currently taking prescription medication?</p>
       <md-radio-group ng-model="registration.medication" layout-xs='row'>
 
-          <md-radio-button value= true class="md-primary">Yes</md-radio-button>
-          <md-radio-button value= false>No</md-radio-button>
+          <md-radio-button value="true" class="md-primary">Yes</md-radio-button>
+          <md-radio-button value="false">No</md-radio-button>
 
       </md-radio-group>
 
@@ -93,8 +93,7 @@
         <md-checkbox ng-model="registration.termsAgreement" required>I agree to the <a ng-href='#/terms'>Terms of Use</a></md-checkbox>
     </md-input-container>
 
-    <md-button class='md-raised' ng-click='registerUser(user); userDemographics(registration)'>Register</md-button>
-
+    <md-button class='md-raised' ng-click='registerUser(user,registration)'>Register</md-button>
     <a href="#login">Cancel</a>
   </div>
 
