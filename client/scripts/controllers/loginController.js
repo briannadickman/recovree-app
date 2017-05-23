@@ -1,4 +1,4 @@
-myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
+myApp.controller('LoginController', ['$scope', '$http', '$routeParams','$location', 'UserService', function($scope, $http, $routeParams, $location, UserService) {
     $scope.user = {
       username: '',
       password: ''
@@ -22,6 +22,10 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
           }
         });
       }
+    };
+
+    $scope.updatePassword = function() {
+      console.log($routeParams.code); //this is the randomly generated code, it's part of the url and will need it to reset password
     };
 
     $scope.login = function() {
