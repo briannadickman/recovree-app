@@ -48,14 +48,16 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
     };
 
   // SENDS USER DEMOGRAPHIC INFO TO SERVER (No username or password)
+  $scope.registration = UserService.registration;
+  $scope.userDemographics = UserService.userDemographics;
 
-    $scope.userDemographics = function(){
-      console.log('sending demographics', $scope.registration);
-      $http.post('/register/registration', $scope.registration).then(function(response) {
-        console.log('success saving demographic info', response);
-        $location.path('/login');
-      });
-    };
+    // $scope.userDemographics = function(){
+    //   console.log('sending demographics', $scope.registration);
+    //   $http.post('/register/registration', $scope.registration).then(function(response) {
+    //     console.log('success saving demographic info', response);
+    //     $location.path('/login');
+    //   });
+    // };
 
   // REGISTRATION FORM
 

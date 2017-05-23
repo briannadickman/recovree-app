@@ -3,6 +3,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
   //variables
   var userObject = {};
+  var registration = {};
   var sessionObject = {};
   var reflectionObject = {};
   var dailyReflectObject = { data: '' };
@@ -30,6 +31,23 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
         $location.path("/login");
       });
   }//ends logout
+
+  function userDemographics(registration){
+    console.log('sending demographics', registration);
+    $http.post('/register/registration', registration).then(function(response) {
+      console.log('success saving demographic info', response);
+      registration.gender = '';
+      registration.birthYear = '';
+      registration.state = '';
+      registration.county = '';
+      registration.drugChoice = '';
+      registration.sobrietyDate = '';
+      registration.programPayment = '';
+      registration.medication = '';
+      registration.termsAgreement = '';
+      $location.path('/login');
+    });
+  }//ends userDemographics
 
   //refreshes session object on each navigation page load
   function refreshSessionObject(){
@@ -196,8 +214,10 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     userObject : userObject,
     reflectionObject: reflectionObject,
     sessionObject: sessionObject,
+    registration: registration,
     getuser : getuser,
     logout: logout,
+    userDemographics: userDemographics,
     refreshSessionObject: refreshSessionObject,
     launchReflection: launchReflection,
     reflectionFormNextButton: reflectionFormNextButton,
