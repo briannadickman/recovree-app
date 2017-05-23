@@ -6,7 +6,7 @@ var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILI
 
 
 var phoneNumbers = ['6129918411', '7014294214', '6513997345'];
-var twilioNumber = '+17634529159';
+var twilioNumber = process.env.TWILIO_NUMBER;
 // var messageAlerts = ['Keep up the good work!', 'You are doing great!', 'Wow, look at you go!', 'You are a star!'];
 var messageAlerts = ['This is a friendly reminder to complete your daily Recovree (insert link)',
   'Find a moment to reflect and complete your daily Recovree (insert link)',
@@ -25,7 +25,6 @@ console.log(randomMessage);
 //   console.log('Text Reminder Sent To: ', phoneNumbers[i]);
 // }
 // console.log('CRON PORTION OF CODE');
-
 // },  null, true );
 
 module.exports = client;
