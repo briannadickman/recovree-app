@@ -31,25 +31,6 @@ router.get('/', function (req, res) {
   });
 });
 
-// router.put('/streak', function(req, res){
-//   if(user.isAuthenticated){
-//   memberID = req.params.memberID;
-//   console.log('streak in reflection/streak: ', req.body.streak);
-//   streakCount = req.body.streak;
-//   Reflection.findOne({memberID: memberID})
-//     .sort({date: -1})
-//     .exec(function(err, lastReflection){
-//       if (err){
-//         console.log('error in streak determination: ', err);
-//         res.sendStatus(500);
-//       }
-//       console.log('lastReflection: ', lastReflection);
-//     });
-//   } else {
-//     res.sendStatus(403);
-//   }
-// });
-
 router.get('/session/:memberID', function(req, res){
   if (req.isAuthenticated){
   var reflections;
@@ -125,6 +106,7 @@ router.get('/session/:memberID', function(req, res){
   }
 });
 
+//initial reflections post
 router.post('/', function(req,res){
   if(req.isAuthenticated){
   console.log(req.user.memberID);
@@ -171,6 +153,7 @@ router.post('/', function(req,res){
   }
 });
 
+//updates reflections at each step of the form
 router.put('/', function (req, res) {
   if(req.isAuthenticated){
   var reflectionUpdate = req.body;
@@ -215,30 +198,5 @@ router.put('/', function (req, res) {
     res.sendStatus(403);
   }
 });
-  //edit an employee
-
-    // var foundReflection = new Reflection(){
-    //
-    // }
-    // Reflection.findByIdAndRemove(reflection, function(err, foundReflection){
-    //   if (err) {
-    //     console.log(err);
-    //     res.sendStatus(500);
-    //   }
-    //   foundReflection.save(function(err, savedEmployee) {
-    //     if (err){
-    //       console.log(err);
-    //       res.sendStatus(500);
-    //     }
-    //     res.send(savedEmployee);
-    //   });
-    // });
-
-// });
-
-
-
-
-
 
 module.exports = router;
