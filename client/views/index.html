@@ -21,15 +21,58 @@
 
     </head>
 
-    <body ng-app="myApp">
-      <header ng-include="'/views/partials/header.html'"></header>
+    <body ng-app="myApp" layout = 'row'>
 
-      <md-content flex layout="column" flex style="overflow: scroll;" id='main-content'>
-        <main ng-view></main>
+      <md-content layout = 'column' flex >
+        <div flex layout = 'column'>
+            <header layout = 'column' flex = 'none' ng-include="'/views/partials/header.html'"></header>
+            <md-content flex>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+          </md-content>
+          <!-- <main layout = 'row' flex ng-view></main> -->
+          <footer layout = 'column'  flex = 'none' ng-include="'/views/partials/nav.html'"></footer>
+        </div>
       </md-content>
 
-      <!--  Needs to source in last for chart to work-->
       <script type="text/javascript" src="scripts/client.min.js"></script>
-
     </body>
 </html>

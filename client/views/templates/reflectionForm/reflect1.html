@@ -1,30 +1,42 @@
-<div class = 'wrapper'>
+<div layout = 'column' flex>
 <!-- Floating Next Button -->
-  <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
+  <!-- <md-button ng-class="{ visible: selectedTab==0 }" class="md-button md-button-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
     <i class="material-icons" id='formNextButton'>navigate_next</i>
-  </md-button>
+  </md-button> -->
 
+  <div layout = 'row' layout-align='center center'>
+    <h3 class='md-title' >How are you feeling today?</h3>
+  </div>
 
-  <h3 class='md-title' layout='row' layout-align='center center'>How are you feeling today?</h3>
-
-  <div layout='row' layout-align='center center'>
+  <div layout='column' layout-align='center center'>
     <form name="dailyFeelingsForm"  novalidate>
-      <span flex></span>
+      <div layout = 'column'layout-align = 'center center'>
             <ng-form name="feelingForm" class="form-group" ng-repeat="feeling in reflectionObject.feelings">
-                <md-button class = 'md-raised' ng-class = "{'md-primary md-default':(feeling.value === true)}" ng-click = 'toggleFeeling(feeling)'>
+                <md-button class = 'md-raised' ng-class = "{'md-accent':(feeling.value === true)}" ng-click = 'toggleFeeling(feeling)'>
                   {{feeling.name}}
                 </md-button>
             </ng-form>
-      <span flex></span>
-  </div>
+      </div>
 
-  <!-- {{ reflectionObject }} -->
+
         <md-input-container class="md-block md-accent md-default">
           <label>Why?</label>
           <textarea ng-model="reflectionObject.feelingsWhy" md-maxlength="150" rows="5" md-select-on-focus></textarea>
         </md-input-container>
+
     </form>
+  </div>
   <!-- ends feelingsForm -->
+
+
+
+    <section  layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+      <!-- <md-button class="md-raised" aria-label="Prev Reflection" ng-click = 'reflectionFormPrevButton(sessionObject, reflectionObject)'>Prev <i class="material-icons" id='formNextButton'>navigate_next</i> </md-button> -->
+      <md-button class="md-raised md-primary form-button" aria-label="Prev Reflection" ng-click = 'reflectionFormPrevButton(sessionObject, reflectionObject)'>Prev</md-button>
+      <md-button class="md-raised md-accent form-button" aria-label="Next Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
+
+      <!-- <md-button id='formNextButton' class="md-raised md-accent" aria-label="Next Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>Next <i class="material-icons">navigate_next</i> </md-button> -->
+    </section>
 
 </div>
 <!-- ends wrapper -->

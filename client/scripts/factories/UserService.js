@@ -215,6 +215,11 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     }
   }//ends reflectionFormNextButton
 
+  function reflectionFormPrevButton(sessionObject, reflectionObject){
+    console.log("you tried to go back, butchyoucantyet");
+
+  }//ends reflectionFormPrevButton
+
     function postToReflectionForm(reflectionObject){
       $http.post('/reflection', reflectionObject).then(function(response) {
         reflectionObject._id = response.data._id;
@@ -254,6 +259,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     refreshSessionObject: refreshSessionObject,
     launchReflection: launchReflection,
     reflectionFormNextButton: reflectionFormNextButton,
+    reflectionFormPrevButton: reflectionFormPrevButton,
     returnHomeButton: returnHomeButton
   };
 }]);
