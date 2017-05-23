@@ -2,6 +2,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
   console.log('User Service Loaded');
 
   //variables
+  var user = {};
   var userObject = {};
   var registration = {};
   var sessionObject = {};
@@ -32,22 +33,52 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
       });
   }//ends logout
 
+  function registerUser(user,registration) {
+    if(user.username === '' || user.password === '') {
+    } else {
+      console.log('sending to server...', user);
+      $http.post('/register', user).then(function(response) {
+        console.log('success saving member');
+        console.log('response',response);
+        console.log('response.data.memberID', response.data.memberID);
+        registration.memberID = response.data.memberID;
+        emptyUser(user);
+        userDemographics(registration);
+      },
+      function(response) {
+        console.log('error');
+        // $scope.message = "Please try again.";
+      });
+    }
+  }//ends registerUser
+
+  function emptyUser(user){
+    user.username = '';
+    user.password = '';
+  }//emptyUser
+
+
   function userDemographics(registration){
     console.log('sending demographics', registration);
     $http.post('/register/registration', registration).then(function(response) {
       console.log('success saving demographic info', response);
-      registration.gender = '';
-      registration.birthYear = '';
-      registration.state = '';
-      registration.county = '';
-      registration.drugChoice = '';
-      registration.sobrietyDate = '';
-      registration.programPayment = '';
-      registration.medication = '';
-      registration.termsAgreement = '';
+      emptyDemographics(registration);
       $location.path('/login');
     });
   }//ends userDemographics
+
+  function emptyDemographics(registration){
+    registration.gender = '';
+    registration.birthYear = '';
+    registration.state = '';
+    registration.county = '';
+    registration.drugChoice = '';
+    registration.sobrietyDate = '';
+    registration.programPayment = '';
+    registration.medication = '';
+    registration.termsAgreement = false;
+    registration.memberID = '';
+  }//ends emptyDemographics
 
   //refreshes session object on each navigation page load
   function refreshSessionObject(){
@@ -211,12 +242,14 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
   //return out of UserService Factory
   return {
+    user: user,
     userObject : userObject,
     reflectionObject: reflectionObject,
     sessionObject: sessionObject,
     registration: registration,
     getuser : getuser,
     logout: logout,
+    registerUser: registerUser,
     userDemographics: userDemographics,
     refreshSessionObject: refreshSessionObject,
     launchReflection: launchReflection,
