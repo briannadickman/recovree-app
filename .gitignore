@@ -2,3 +2,5 @@ node_modules/
 .DS_Store
 server/public
 npm-debug.log
+registration.csv
+reflection.csv
