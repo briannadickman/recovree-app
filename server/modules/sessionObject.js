@@ -47,8 +47,10 @@ var generateSessionObject = function(allReflections, medication){
 
       //if there is more than one reflection completed
       if (allReflections[1] !== undefined){
+
         //define nextMostRecent to  be the second reflection in the new to old reflection array
         var nextMostRecent = allReflections[1];
+        serverSessionObject.streakCount = nextMostRecent.streakCount;
         //define start of day for next most recent
         var nextMostRecentStart = moment(nextMostRecent.reflectionDate).startOf('day');
         console.log('nextMostRecent: ', nextMostRecent);
@@ -96,6 +98,7 @@ var generateSessionObject = function(allReflections, medication){
 
       //the reflection hasn't been completed today, so check to see if a reflection happened yesterday
     else if (yesterdayStart.clone().diff(mostRecentReflectionStart) === 0){
+      serverSessionObject.streakCount = mostRecentReflection.streakCount;
       //the streak does not need to restart, but we're going to wait until the reflection is completed to increase the streak
       serverSessionObject.yesterdayCompleted = true;
       if (mostRecentReflection.tomorrowGoal !== ''){
