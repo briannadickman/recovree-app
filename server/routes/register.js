@@ -24,7 +24,7 @@ var transporter = nodemailer.createTransport({
 
 var randomIdGenerator = function(){
   var newId = Math.round(Math.random() * (9999 - 1000) + 1000);
-  Users.count({'memberID' : 7167}, function(err, count){
+  Users.count({'memberID' : newId}, function(err, count){
     if (err) {
       console.log(err);
     }
@@ -36,6 +36,8 @@ var randomIdGenerator = function(){
   });
 return newId;
 };
+
+var registrationMemberId = 0;
 
 
 //SAVE ALL OTHER REGISTRATION DATA FROM REGISTER VIEW
@@ -49,7 +51,7 @@ var RegistrationSchema = mongoose.Schema({
   programPayment: {type: String},
   medication: {type: Boolean},
   termsAgreement: {type: Boolean},
-  // memberID: 
+  memberID: {type: Number}
 });
 
 var Registration = mongoose.model('registrations', RegistrationSchema, 'registrations');
@@ -90,7 +92,7 @@ router.post("/registration", function(req,res){
     programPayment : registration.programPayment,
     medication : registration.medication,
     termsAgreement : registration.termsAgreement,
-    memberID: registration.memberID
+    memberID: registrationMemberId
   });
   console.log("inside post, newForm:", newForm);
 
@@ -107,6 +109,7 @@ router.post("/registration", function(req,res){
 // Handles POST request with new user data
 router.post('/', function(req, res, next) {
   var newId = randomIdGenerator();
+  registrationMemberId = newId;
   console.log('newId in post: ', newId);
   var newUser = req.body;
   var userToSave = new Users({

@@ -9,7 +9,7 @@
             <form name="dailyFeelingsForm" novalidate>
                 <div layout = 'row' layout-align = 'center center' layout-wrap>
                     <ng-form name="feelingForm" class="form-group" ng-repeat="feeling in reflectionObject.feelings">
-                        <md-button class='md-raised' ng-class="{'md-primary':(feeling.value === true)}" ng-click='toggleFeeling(feeling)'>
+                        <md-button class='md-raised' ng-class="{'md-warn':(feeling.value === true)}" ng-click='toggleFeeling(feeling)'>
                             {{feeling.name}}
                         </md-button>
                     </ng-form>
