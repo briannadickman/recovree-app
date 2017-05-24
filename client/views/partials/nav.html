@@ -1,34 +1,18 @@
-<!-- <div id='navFooter'>
-    <div layout="row" layout-align="center center">
-       <md-toolbar flex='100' layout='row' layout-align='center center' class='md-default' >
-         <span flex></span>
-         <md-button ng-href="#/day-detail" class='md-subhead'>
-            <span class='md-subhead'>TODAY</span>
-         </md-button>
-          <md-button ng-href="#/home" class='md-subhead'>
-            <span class='md-subhead'>HOME</span>
-          </md-button>
-          <md-button ng-href="#/weekly-graphs" class='md-subhead'>
-            <span class='md-subhead'>WEEKLY</span>
-          </md-button>
-          <span flex></span>
-       </md-toolbar>
-    </div>
-</div> -->
-<md-toolbar layout = 'row' layout-align = 'center center'  class="md-hue-2">
+
+<md-toolbar layout = 'row' layout-align = 'center center'  class="md-hue-2" ng-controller = 'HomeController'>
   <div class="md-toolbar-tools" layout-align = 'center center'>
     <!-- <div> -->
-      <md-button ng-href="#/day-detail" class = 'footer-button' aria-label="Today">
+      <md-button ng-hide = hiddenList ng-href="#/day-detail" class = 'footer-button' aria-label="Today">
         TODAY
       </md-button >
     <!-- </div > -->
     <!-- <div> -->
-      <md-button ng-href="#/home" class = 'footer-button' aria-label="HOME">
+      <md-button ng-hide = hiddenList ng-href="#/home" class = 'footer-button' aria-label="HOME">
         HOME
       </md-button>
     <!-- </div> -->
     <!-- <div> -->
-      <md-button ng-href="#/weekly-graphs" class = 'footer-button' aria-label="WEEKLY">
+      <md-button  ng-hide = hiddenList ng-href="#/weekly-graphs" class = 'footer-button' aria-label="WEEKLY">
         WEEKLY
       </md-button>
     <!-- </div> -->

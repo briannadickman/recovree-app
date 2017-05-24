@@ -7,4 +7,7 @@ myApp.controller('HomeController', ['$scope', '$http', '$location', 'UserService
   $scope.sessionObject = UserService.sessionObject;
   $scope.launchReflection = UserService.launchReflection;
 
+  $scope.$location = $location;
+  $scope.hiddenList = "currentPath === '/login' || currentPath === '/register' || currentPath === '/terms'";
+
 }]);
