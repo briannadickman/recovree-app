@@ -1,39 +1,38 @@
 
-<md-content class='wrapper' flex>
-    <div layout='column' layout-align='center center' flex>
+<div class='wrapper' layout = 'column' layout-align = 'center center'>
+  <div  layout='column' layout-align='center center' flex>
         <div>
             <h3 class='md-title'>How are you feeling today?</h3>
         </div>
 
-        <div>
-            <form name="dailyFeelingsForm" novalidate>
-                <div layout = 'row' layout-align = 'center center' layout-wrap>
-                    <ng-form name="feelingForm" class="form-group" ng-repeat="feeling in reflectionObject.feelings">
-                        <md-button class='md-raised' ng-class="{'md-warn':(feeling.value === true)}" ng-click='toggleFeeling(feeling)'>
-                            {{feeling.name}}
-                        </md-button>
-                    </ng-form>
-                </div>
+        <md-content>
+          <form name="dailyFeelingsForm" novalidate>
+              <div layout = 'row' layout-align = 'center center' layout-wrap>
+                  <ng-form name="feelingForm" class="form-group" ng-repeat="feeling in reflectionObject.feelings">
+                      <md-button class='md-raised' ng-class="{'md-warn':(feeling.value === true)}" ng-click='toggleFeeling(feeling)'>
+                          {{feeling.name}}
+                      </md-button>
+                  </ng-form>
+              </div>
 
 
-                <md-input-container class="md-block md-accent md-default">
-                    <label>Why?</label>
-                    <textarea ng-model="reflectionObject.feelingsWhy" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-                </md-input-container>
+              <md-input-container class="md-block md-accent md-default">
+                  <label>Why?</label>
+                  <textarea ng-model="reflectionObject.feelingsWhy" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+              </md-input-container>
 
-            </form>
+          </form>
+        </md-content>
 
             <!-- ends feelingsForm -->
 
 
-
-            <section layout = 'row' layout-align = 'center center'>
-                <!-- <md-button class="md-raised md-primary form-button" aria-label="Prev Reflection" ng-click='reflectionFormPrevButton(sessionObject, reflectionObject)'>Prev</md-button> -->
+        <div>
+            <section layout = 'row' layout-align = 'center end'>
                 <md-button class = 'md-raised' ng-click = 'returnHomeButton(sessionObject, reflectionObject)'>Return Home</md-button>
-
                 <md-button class="md-raised md-accent form-button" aria-label="Next Reflection" ng-click='reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
             </section>
 
         </div>
     </div>
-</md-content>
+</div>
