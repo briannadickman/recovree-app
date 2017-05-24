@@ -164,7 +164,7 @@ h1{
 .form-button{
   color: white !important;
   font-weight: bold;
-  font-size: 16px;
+  /*font-size: 16px;*/
 }
 
 .footer-button{

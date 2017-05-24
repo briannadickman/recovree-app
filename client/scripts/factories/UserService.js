@@ -189,6 +189,16 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
   function reflectionFormPrevButton(sessionObject, reflectionObject){
     console.log("you tried to go back, butchyoucantyet");
+    //moves on to the next question
+    var medsForm = 3; //number of the form which asks about medication
+    var takesMeds = sessionObject.takingMeds;
+
+    if (reflectionObject.formPosition === (medsForm+1) && takesMeds === false){
+      reflectionObject.formPosition -= 1; //skips past meds form
+    }
+    reflectionObject.formPosition -= 1;
+
+    $location.path('/reflection-form/reflect-'+reflectionObject.formPosition);
 
   }//ends reflectionFormPrevButton
 

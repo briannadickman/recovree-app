@@ -90,7 +90,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
        });
 
      // Generate Birth Year Dropdown Options
-     var comma = ',';
+     comma = ',';
      $scope.years = ('Female,Male,Trans,Other,Prefer Not to Answer').split(comma).map(function(year) {
          return {year: year};
       });
