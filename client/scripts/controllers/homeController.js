@@ -7,6 +7,5 @@ myApp.controller('HomeController', ['$scope', '$http', '$location', 'UserService
   $scope.sessionObject = UserService.sessionObject;
   $scope.launchReflection = UserService.launchReflection;
 
-  $scope.$location = $location;
 
 }]);
