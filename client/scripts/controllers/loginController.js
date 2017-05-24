@@ -89,11 +89,6 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
           return {gender: gender};
        });
 
-     // Generate Birth Year Dropdown Options
-     var comma = ',';
-     $scope.years = ('Female,Male,Trans,Other,Prefer Not to Answer').split(comma).map(function(year) {
-         return {year: year};
-      });
         $scope.years = [];
 
         $scope.getYearDropdown = function(){
