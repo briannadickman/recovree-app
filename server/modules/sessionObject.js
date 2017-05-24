@@ -48,7 +48,7 @@ var generateSessionObject = function(allReflections, medication){
           serverSessionObject.streakCount++;
           //if today and yesterday exist, define yesterdays goal as the second most recent reflection goal
           if (nextMostRecent.tomorrowGoal !== ''){
-            serverSessionObject.yesterdayGoal = nextMostRecent.tomorrowGoal;
+            serverSessionObject.yesterdaysGoal = nextMostRecent.tomorrowGoal;
 
           } else {
             serverSessionObject.yesterdaysGoal = "";
