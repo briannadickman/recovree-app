@@ -7,7 +7,7 @@ var json2csv = require('json2csv');
 var fs = require('fs');
 var moment = require('moment');
 moment().format();
-var async = require('async');
+var asyncMod = require('async');
 var path = require('path');
 var mongoose = require("mongoose");
 
@@ -19,14 +19,9 @@ var Registration = require('../models/registration');
 //our modules
 var generateSessionObject = require('../modules/sessionObject');
 
-
-
-
-
-
-
 ///get reflections from database
 router.get('/', function (req, res) {
+  if(user.isAuthentication)
   Reflection.find().lean().exec(function(err, reflections){
     if(err){
       console.log("Mongo Error: ", err);
@@ -36,98 +31,84 @@ router.get('/', function (req, res) {
   });
 });
 
-router.put('/streak', function(req, res){
-  console.log('memberID in streak: ', req.params.memberID);
-  memberID = req.params.memberID;
-  console.log('streak in reflection/streak: ', req.body.streak);
-  streakCount = req.body.streak;
-  Reflection.findOne({memberID: memberID})
-    .sort({date: -1})
-    .exec(function(err, lastReflection){
-      if (err){
-        console.log('error in streak determination: ', err);
-        res.sendStatus(500);
-      }
-      console.log('lastReflection: ', lastReflection);
-    });
-});
-
 router.get('/session/:memberID', function(req, res){
+  if (req.isAuthenticated){
   var reflections;
   var medication;
   console.log('memberID in session: ', req.params.memberID);
   var memberID = req.params.memberID;
-  async.parallel([
+  //asyncMod is a node package that handles mongoose async calls for multiple database queries
+  //parallel will make both calls in parallel since neither call depends on the other
+  asyncMod.parallel([
     function(callback){
+      //finds all reflections for logged in member
       Reflection.find({'memberID': req.params.memberID})
       //orders allReflections from new to old
         .sort({'reflectionDate': -1})
-        .exec(function(err, sessionOutput){
+        .exec(function(err, allReflections){
           if (err){
-            console.log('error in find most recent reflection: ', err);
-            // res.sendStatus(500);
+            console.log('error in find reflections: ', err);
+            res.sendStatus(500);
           }
-          // var serverSessionObject = generateSessionObject(allReflections);
-          // console.log(serverSessionObject);
-          // res.send(serverSessionObject);
-          console.log('allReflections in session query: ', sessionOutput);
+          //all reflections are saved in the asyncMod's  sessionOutput[0]
+          sessionOutput = allReflections;
           callback(null, sessionOutput);
         });
     },
     function(callback, sessionOutput){
-      // console.log('in find medications - reflections: ', reflections);
+      //determines whether the current member should be asked medication question
       Registration.findOne({'memberID' : memberID})
       .select('medication')
       .exec(function(err, hasMedication){
         if (err){
           console.log('error in find meds: ', err);
         }
-        console.log('hasMedication? ', hasMedication);
+        //medication boolean returned from database saved as sessionOutput[1]
         sessionOutput = hasMedication;
         callback(null, sessionOutput);
 
       });
     }
   ],
-    function(err, sessionOutput){
-      console.log('reflections: ', sessionOutput[0]);
-      reflections = sessionOutput[0];
-      console.log('medication: ', sessionOutput[1]);
-      medication = sessionOutput[1].medication;
-      async.waterfall([
-        function(callback){
-          var serverSessionObject = generateSessionObject(reflections, medication);
-          console.log('streakCount: ', serverSessionObject.streakCount);
-          callback(null, serverSessionObject);
-        }],
-        function(err, results){
-          console.log('results: ', results);
-          var newCount = results.streakCount;
-          if (results.allReflectionsNewToOld[0]){
-            Reflection.findOne({'_id' : results.allReflectionsNewToOld[0]._id}, function(err, curReflection){
-                  if (err) {
-                    console.log('streak count first reflection update error: ', err);
-                  }
-                  curReflection.streakCount = newCount || curReflection.streakCount;
-                  console.log('streak count blub blub: ', curReflection.streakCount);
-                  res.send(results);
-            });
-          } else {
-            res.send(results);
+  function(err, sessionOutput){
+    //sessionOutput from reflection collection call saved as reflections now that the async calls have both completed
+    reflections = sessionOutput[0];
+    //sessionOutput from medication determination
+    medication = sessionOutput[1].medication;
+    //runs the streak determination then saves the streak to the database after the determinations has been completed
+    asyncMod.waterfall([
+      function(callback){
+        var serverSessionObject = generateSessionObject(reflections, medication);
+        callback(null, serverSessionObject);
+      }
+    ],
+    function(err, results){
+      //server session object is passed as results per async plugin
+      var newCount = results.streakCount;
+      //if a reflection exists (not a new user) this saves the results from the streak count determination
+      if (results.allReflectionsNewToOld[0]){
+        Reflection.findOne({'_id' : results.allReflectionsNewToOld[0]._id}, function(err, curReflection){
+          if (err) {
+            console.log('streak count first reflection update error: ', err);
           }
-      });
-
-
-
-
-
+          curReflection.streakCount = newCount || curReflection.streakCount;
+          res.send(results);
+        });
+      } else {
+        //this sends the defaults for sessionObject for new users
+        res.send(results);
+      }
+    });
   });
+  } else {
+    console.log('user not authorized');
+    res.sendStatus(403);
+  }
 });
 
-
-
-
+//initial reflections post
 router.post('/', function(req,res){
+  if(req.isAuthenticated){
   console.log(req.user.memberID);
   var memID = req.user.memberID;
   var reflection = req.body;
@@ -157,8 +138,6 @@ router.post('/', function(req,res){
     counselor: reflection.counselor,
     memberID: memID
   });
-  console.log(newReflection.memberID);
-  console.log('----NEW REFLECTION---', newReflection);
 
   newReflection.save(newReflection, function(err, savedReflection){
     if(err){
@@ -168,22 +147,22 @@ router.post('/', function(req,res){
     console.log('saved to db ----------', newReflection);
     res.send(savedReflection);
   });
+  } else {
+    console.log('user not authorized');
+    res.sendStatus(403);
+  }
 });
 
-
+//updates reflections at each step of the form
 router.put('/', function (req, res) {
-  console.log('----PUT---', req.body);
-  console.log('id in put: ', req.body._id);
-
-
+  if(req.isAuthenticated){
   var reflectionUpdate = req.body;
   Reflection.findOne({'_id' : req.body._id}, function(err, curReflection){
     if (err) {
       console.log('reflection put err: ', err);
       res.sendStatus(500);
     }
-    console.log('curRefliction in reflection put: ', curReflection);
-
+    //updates reflection found by id or reverts to original if property hasn't been passed
     curReflection.feelings = reflectionUpdate.feelings || curReflection.feelings;
     curReflection.feelingsWhy = reflectionUpdate.feelingsWhy || curReflection.feelingsWhy;
     curReflection.drugAlcoholIntake = reflectionUpdate.drugAlcoholIntake || curReflection.drugAlcoholIntake;
@@ -214,31 +193,10 @@ router.put('/', function (req, res) {
       res.send(updatedReflection);
     });
   });
+  } else {
+    console.log('user not authorized');
+    res.sendStatus(403);
+  }
 });
-  //edit an employee
-
-    // var foundReflection = new Reflection(){
-    //
-    // }
-    // Reflection.findByIdAndRemove(reflection, function(err, foundReflection){
-    //   if (err) {
-    //     console.log(err);
-    //     res.sendStatus(500);
-    //   }
-    //   foundReflection.save(function(err, savedEmployee) {
-    //     if (err){
-    //       console.log(err);
-    //       res.sendStatus(500);
-    //     }
-    //     res.send(savedEmployee);
-    //   });
-    // });
-
-// });
-
-
-
-
-
 
 module.exports = router;
