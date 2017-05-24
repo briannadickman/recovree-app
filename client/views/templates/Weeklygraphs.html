@@ -1,13 +1,18 @@
-<h1 class='md-headline' layout='row' layout-align='center center'>Reflection Weekly Summary</h1>
+<md-content class = 'wrapper' flex>
+  <div class = 'column' layout-align = 'center center' flex>
+    <div>
+      <h1 class='md-headline'>Reflection Weekly Summary</h1>
+    </div>
 
 
-<h3 class='md-subhead' layout='row' layout-align='center center'>Top Five Feelings</h3>
-<canvas id="feelingsChart" width="400" height="400"></canvas>
-
-<br>
-
-<h3 class='md-subhead' layout='row' layout-align='center center'>Sleep, Food, and Exercise</h3>
-<canvas id="lineChart" width="400" height="400"></canvas>
-
-
-<footer class='navMenu' ng-include="'/views/partials/nav.html'"></footer>
+    <div flex>
+      <h3 class='md-subhead'>Top Five Feelings</h3>
+      <canvas id="feelingsChart"></canvas>
+    </div>
+    <br>
+    <div flex>
+      <h3 class='md-subhead' >Sleep, Food, and Exercise</h3>
+      <canvas id="lineChart"></canvas>
+    </div>
+  </div>
+</md-content>

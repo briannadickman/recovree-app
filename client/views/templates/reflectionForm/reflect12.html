@@ -1,14 +1,8 @@
-<div class = 'wrapper' layout='column' layout-align='center center'>
-
-<!-- Floating Next Button -->
-  <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'returnHomeButton(sessionObject, reflectionObject)'>
-    <i class="material-icons" id='formNextButton'>check</i>
-  </md-button>
+<md-content class = 'wrapper' layout = 'column' layout-align = 'center center' flex>
 
   <h3 class='md-subhead'>You have finished your daily Recovree!</h3>
 
-  <div class='graph_image'>maybe like some sort of sweet animation here</div>
-  <!-- {{reflectionObject}} -->
+  <div class='graph_image' flex>maybe like some sort of sweet animation here</div>
 
-  <!-- <md-button class = 'md-raised' ng-click = 'returnHomeButton(sessionObject, reflectionObject)'>Return Home</md-button> -->
-</div>
+  <md-button class = 'md-raised' ng-click = 'returnHomeButton(sessionObject, reflectionObject)'>Return Home</md-button>
+</md-content>

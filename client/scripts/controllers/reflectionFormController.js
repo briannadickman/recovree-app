@@ -12,6 +12,7 @@ myApp.controller('ReflectionFormController', ['$scope', '$http', '$location', 'U
   $scope.reflectionObject = UserService.reflectionObject;
 
   //from factory functions
+  $scope.reflectionFormPrevButton = UserService.reflectionFormPrevButton;
   $scope.reflectionFormNextButton = UserService.reflectionFormNextButton;
   $scope.returnHomeButton = UserService.returnHomeButton;
 
