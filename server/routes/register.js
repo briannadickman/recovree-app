@@ -39,7 +39,6 @@ return newId;
 
 
 //SAVE ALL OTHER REGISTRATION DATA FROM REGISTER VIEW
-
 var RegistrationSchema = mongoose.Schema({
   state: {type: String},
   county: {type: String},
@@ -50,7 +49,7 @@ var RegistrationSchema = mongoose.Schema({
   programPayment: {type: String},
   medication: {type: Boolean},
   termsAgreement: {type: Boolean},
-  memberID: {type: Number}
+  // memberID: 
 });
 
 var Registration = mongoose.model('registrations', RegistrationSchema, 'registrations');

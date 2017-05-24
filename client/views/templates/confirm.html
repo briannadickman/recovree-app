@@ -4,9 +4,9 @@
       <div class = 'panel panel-default'>
         <div class = 'panel-body'>
 
-          <h1 class="lead">Login</h1>
+          <h1 class="lead">Chance Password</h1>
             <h1 class="lead alert alert-danger" role="alert" ng-if="message != ''">{{message}}</h2>
-            <form ng-submit="login()">
+            <form ng-submit="updatePassword()">
               <div>
                   <input type="text" placeholder = 'phone number' ng-model="user.username" />
               </div>
@@ -16,11 +16,9 @@
               </div>
               <br>
               <div>
-                  <input class="btn btn-default" type="submit" name="submit" value="Log In" />
+                  <input class="btn btn-default" type="submit" name="submit" value="Change Password" />
                   <br>
-                  <a href="#register">Register</a>
-                  <a href="#forgotpassword">Forgot Password</a>
-
+                  <a href="#home">Cancel</a>
               </div>
             </form>
 
@@ -30,4 +28,4 @@
   </div>
 </div>
 
-<!-- <footer class='navMenu' ng-include="'/views/partials/blankNav.html'"></footer> -->
+<footer class='navMenu' ng-include="'/views/partials/blankNav.html'"></footer>

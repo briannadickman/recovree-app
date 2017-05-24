@@ -2,9 +2,10 @@
   "name": "express_router_lecture_angular",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "Gruntfile.js",
   "scripts": {
     "test": "nodemon server/app.js",
+    "postinstall": "grunt copy uglify",
     "start": "node server/app.js"
   },
   "author": "Scott Bromander, Kris Szafranski",
@@ -19,6 +20,7 @@
     "bcrypt": "^1.0.2",
     "body-parser": "^1.13.3",
     "bootstrap": "^3.3.5",
+    "chance": "^1.0.8",
     "chart.js": "^2.5.0",
     "cron": "^1.2.1",
     "dotenv": "^4.0.0",
