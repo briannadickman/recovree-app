@@ -31,18 +31,18 @@ router.get('/', function (req, res) {
   });
 });
 
-router.get('/session/:memberID', function(req, res){
+router.get('/session/', function(req, res){//took out memberID
   if (req.isAuthenticated){
   var reflections;
   var medication;
-  console.log('memberID in session: ', req.params.memberID);
-  var memberID = req.params.memberID;
+  console.log('memberID in session: ', req.user.memberID);
+  var memberID = req.user.memberID;
   //asyncMod is a node package that handles mongoose async calls for multiple database queries
   //parallel will make both calls in parallel since neither call depends on the other
   asyncMod.parallel([
     function(callback){
       //finds all reflections for logged in member
-      Reflection.find({'memberID': req.params.memberID})
+      Reflection.find({'memberID': memberID})
       //orders allReflections from new to old
         .sort({'reflectionDate': -1})
         .exec(function(err, allReflections){
@@ -66,7 +66,6 @@ router.get('/session/:memberID', function(req, res){
         //medication boolean returned from database saved as sessionOutput[1]
         sessionOutput = hasMedication;
         callback(null, sessionOutput);
-
       });
     }
   ],
@@ -110,12 +109,11 @@ router.get('/session/:memberID', function(req, res){
 router.post('/', function(req,res){
   if(req.isAuthenticated){
   console.log(req.user.memberID);
-  var memID = req.user.memberID;
+  var memberID = req.user.memberID;
   var reflection = req.body;
   var newReflection = new Reflection({
     id : req.user._id,
     date: reflection.reflectionDate,
-    // time: reflection.reflectionTime,
     feelings : reflection.feelings,
     feelingsWhy: reflection.feelingsWhy,
     drugAlcoholIntake: reflection.drugAlcoholIntake,
@@ -136,7 +134,7 @@ router.post('/', function(req,res){
     gratitude: reflection.gratitude,
     peerSupport: reflection.peerSupport,
     counselor: reflection.counselor,
-    memberID: memID
+    memberID: memberID
   });
 
   newReflection.save(newReflection, function(err, savedReflection){

@@ -16,8 +16,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
             // user has a curret session on the server
             userObject.userName = response.data.username;
             userObject.id = response.data.id;
-            userObject.memberID = response.data.memberID;
-
         } else {
             // user has no session, bounce them back to the login page
             $location.path("/login");
@@ -41,7 +39,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
         console.log('success saving member');
         console.log('response',response);
         console.log('response.data.memberID', response.data.memberID);
-        registration.memberID = response.data.memberID;
         emptyUser(user);
         userDemographics(registration);
       },
@@ -82,32 +79,15 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
   //refreshes session object on each navigation page load
   function refreshSessionObject(){
-            // getSessionObject(sessionObject);
-            // getReflectionObject(reflectionObject);
-    $http.get('/user').then(function(response) {
-        if(response.data.id) {
-            // user has a curret session on the server
-            userObject.userName = response.data.username;
-            userObject.id = response.data.id;
-            userObject.memberID = response.data.memberID;
-            getSessionObject(userObject.memberID);
+            getSessionObject();//took out argument, build in backend and erase
             getReflectionObject(reflectionObject);
-
-        } else {
-            // user has no session, bounce them back to the login page
-            $location.path("/login");
-        }
-    });
-
   }//ends refreshSessionObject
 
     //builds sessionObject
-
-    function getSessionObject(memberID){
-      $http({
-        method: 'GET',
-        url: '/reflection/session/' + memberID,
-      }).then(function(response){
+    function getSessionObject(){
+      console.log('what is going on');
+      $http.get('reflection/session/')
+      .then(function(response){
         console.log('response in getSessionObject:', response);
         sessionObject.streak = response.data.streakCount;
         sessionObject.allReflections = response.data.allReflectionsNewToOld;
@@ -198,15 +178,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     }
     //post to database if it is the fist reflection form view
     if (reflectionObject.formPosition === 1){
-      $http.get('/user').then(function(response) {
-          if(response.data.id) {
-              reflectionObject.memberID = response.data.memberID;
-              postToReflectionForm(reflectionObject);
-          } else {
-              // user has no session, bounce them back to the login page
-              $location.path("/login");
-          }
-      });
+      postToReflectionForm(reflectionObject);
     }
     //put to database if it is any subsequent reflection form views
     else{
