@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var ReflectionSchema = mongoose.Schema({
   feelings: {type: Array},
-  overallfeelings: {type: Number},
+  overallfeeling: {type: Number},
   feelingsWhy: {type: String},
   drugAlcoholIntake: {type: Boolean},
   medication: {type: Boolean},
