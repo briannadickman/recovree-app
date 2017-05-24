@@ -145,6 +145,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
       // assigns key value pairs
       reflectionObject.feelings = feelingsArray;
+      reflectionObject.overallfeeling = '';
       reflectionObject.feelingsWhy = '';
       reflectionObject.drugAlcoholIntake = false;
       reflectionObject.medication = false;
