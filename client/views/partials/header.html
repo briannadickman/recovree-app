@@ -1,11 +1,11 @@
-<md-toolbar layout='row' class="md-hue-2">
-    <div class="md-toolbar-tools">
+<md-toolbar layout='row' ng-controller = 'HomeController'>
 
+    <div class="md-toolbar-tools">
         <h1 layout='column' flex='80' md-truncate>RECOVREE</h1>
 
         <div layout='column' flex>
 
-            <md-menu>
+            <md-menu ng-hide = "$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms'">
                 <md-button class="md-icon-button" aria-label="Logout" ng-click="$mdMenu.open($event)">
                     <md-icon md-menu-origin><i class="material-icons" id='headerMenuBtn'>more_vert</i></md-icon>
                 </md-button>

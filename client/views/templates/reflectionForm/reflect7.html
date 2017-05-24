@@ -1,4 +1,5 @@
-<md-content class = 'wrapper' layout = 'column' layout-align = 'center center' flex>
+<md-content class = 'wrapper' flex>
+  <div layout = 'column' layout-align = 'center center' flex>
 
     <h3 class='md-subhead'>Did any of the following create stress or anxiety today?</h3>
 
@@ -6,7 +7,7 @@
       <form name="dailyStressorsForm" novalidate flex>
         <div layout = 'row' layout-align = 'center center' layout-wrap flex>
           <ng-form name="stressForm" class="form-group" ng-repeat="stress in reflectionObject.stressors">
-              <md-button class = 'md-raised' ng-class = "{'md-primary':(stress.value === true)}" ng-click = 'toggleFeeling(stress)' >
+              <md-button class = 'md-raised' ng-class = "{'md-warn':(stress.value === true)}" ng-click = 'toggleFeeling(stress)' >
                 {{stress.name}}
               </md-button>
           </ng-form>
@@ -18,7 +19,7 @@
           <md-button class="md-raised md-accent form-button" aria-label="Next Reflection" ng-click='reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
       </section>
 
-
+    </div>
   <!-- ends feelingsForm -->
 </md-content>
 <!-- ends wrapper -->
