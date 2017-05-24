@@ -29,12 +29,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./server/public'));
 
 // Passport Session Configuration //
-app.use(session({   //change secret, require https in cookie
-   secret: 'secret',
+
+app.use(session({
+   secret: 'SsSKTchnhHRLpB1K',
    key: 'user', // this is the name of the req.variable. 'user' is convention, but not required
    resave: 'true',
    saveUninitialized: false,
-   cookie: { maxage: 60000, secure: false }
+   cookie: { maxage: 600000, secure: false }
 }));
 
 // start up passport sessions
