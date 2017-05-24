@@ -3,10 +3,6 @@ var router = express.Router();
 var passport = require('passport');
 var path = require('path');
 
-var Chance = require('chance');
-var chance = new Chance();
-
-
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function(req, res) {
   console.log('get /user route');
@@ -35,10 +31,6 @@ router.get('/logout', function(req, res) {
   console.log('Logged out');
   req.logOut();
   res.sendStatus(200);
-});
-
-router.post('/forgotpassword', function(req, res) {
-console.log('Password Reset Route', req.body);
 });
 
 

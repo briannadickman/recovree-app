@@ -3,23 +3,6 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
     $scope.message = '';
     var userObject = UserService.userObject;
 
-    $scope.sendResetPassword = function () {
-      if($scope.user.username === '') {
-        $scope.message = "Enter your phone number";
-      } else {
-        console.log('sending to server...', $scope.user);
-        $http.post('/user/forgotpassword', $scope.user).then(function(response) {
-          if(response.data.username) {
-            console.log('success: ', response.data);
-            // location works with SPA (ng-route)
-            $location.path('Password Reset Link Sent');
-          } else {
-            console.log('failure: ', response);
-            $scope.message = "Failure";
-          }
-        });
-      }
-    };
 
     $scope.login = function() {
       if($scope.user.username === '' || $scope.user.password === '') {
@@ -42,26 +25,8 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
       }
     };
 
-
     $scope.registerUser = UserService.registerUser;
-    // $scope.registerUser = function() {
-    //   if($scope.user.username === '' || $scope.user.password === '') {
-    //     $scope.message = "Choose a username and password!";
-    //   } else {
-    //     console.log('sending to server...', $scope.user);
-    //     $http.post('/register', $scope.user).then(function(response) {
-    //       console.log('success saving member');
-    //       console.log('response',response);
-    //       console.log('response.data.memberID', response.data.memberID);
-    //       $scope.registration.memberID = response.data.memberID;
-    //       $scope.userDemographics($scope.registration);
-    //     },
-    //     function(response) {
-    //       console.log('error');
-    //       $scope.message = "Please try again.";
-    //     });
-    //   }
-    // };
+
 
   // SENDS USER DEMOGRAPHIC INFO TO SERVER (No username or password)
   $scope.registration = UserService.registration;
@@ -84,10 +49,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
        });
 
      // Generate Birth Year Dropdown Options
-     var comma = ',';
-     $scope.years = ('Female,Male,Trans,Other,Prefer Not to Answer').split(comma).map(function(year) {
-         return {year: year};
-      });
+
         $scope.years = [];
 
         $scope.getYearDropdown = function(){

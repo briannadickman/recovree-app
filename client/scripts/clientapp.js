@@ -76,13 +76,6 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
       controller: 'LoginController'
     })
 
-//forgot password
-.when('/forgotpassword', {
-  templateUrl: '/views/templates/forgot.html',
-  controller: 'LoginController'
-})
-
-
 //home
     .when('/home', {
       templateUrl: '/views/templates/home.html',
@@ -272,26 +265,6 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
         }]
       }
     })
-
-//extra from base project
-    // .when('/info', {
-    //   templateUrl: '/views/templates/info.html',
-    //   controller: 'InfoController',
-    //   resolve: {
-    //     getuser : ['UserService', function(UserService){
-    //       return UserService.getuser();
-    //     }]
-    //   }
-    // })
-    // .when('/user', {
-    //   templateUrl: '/views/templates/user.html',
-    //   controller: 'UserController',
-    //   resolve: {
-    //     getuser : ['UserService', function(UserService){
-    //       return UserService.getuser();
-    //     }]
-    //   }
-    // })
 
     .otherwise({
       redirectTo: 'login'
