@@ -153,7 +153,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
       reflectionObject.dream = false;
       reflectionObject.whatDream = '';
       reflectionObject.exercise = 1;
-      reflectionObject.food =10;
+      reflectionObject.food = 1;
       reflectionObject.spnsrMntrConnect = false;
       reflectionObject.groupMeet = false;
       reflectionObject.commntyService = false;
