@@ -23,8 +23,6 @@ var ReflectionSchema = mongoose.Schema({
   peerSupport: {type: Boolean},
   counselor: {type: Boolean},
   streakCount : {type: Number, default: 0},
-  // reflectionDate: {type: String},
-  // reflectionTime: {type: String},
   reflectionDate: {type: Date, default: Date.now},
   memberID: {type: Number, ref: 'Registration'} //references Registration Schema
 });
