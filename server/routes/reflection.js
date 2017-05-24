@@ -198,10 +198,6 @@ router.put('/', function (req, res) {
     res.sendStatus(403);
   }
 });
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 9f40324b3aa3aeeb2efe54c8eeb6005769d5af88
 
 module.exports = router;
