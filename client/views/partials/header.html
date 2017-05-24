@@ -1,16 +1,25 @@
-<md-toolbar class="md-primary md-default">
-  <div class="instructions">
-    <div class="container header">
-      <div class="md-toolbar-tools" layout='row'>
+<md-toolbar layout='row' class="md-hue-2">
+    <div class="md-toolbar-tools">
 
-        <span flex></span>
-        <h1 flex md-truncates id='headerTitle'>RECOVREE</h1>
-        <span flex></span>
+        <h1 layout='column' flex='80' md-truncate>RECOVREE</h1>
 
-        <md-button>
-          <md-icon><i class="material-icons">more_vert</i></md-icon>
-        </md-button>
-      </div>
+        <div layout='column' flex>
+
+            <md-menu>
+                <md-button class="md-icon-button" aria-label="Logout" ng-click="$mdMenu.open($event)">
+                    <md-icon md-menu-origin><i class="material-icons" id='headerMenuBtn'>more_vert</i></md-icon>
+                </md-button>
+
+                <md-menu-content width="3">
+                    <md-menu-item>
+                        <md-button ng-href="#/login">
+                            <b>Logout</b>
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+
+        </div>
+
     </div>
-  </div>
 </md-toolbar>
