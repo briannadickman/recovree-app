@@ -1,32 +1,34 @@
-<md-content class = 'wrapper' layout = 'column' layout-align = 'center center' flex>
+<md-content class = 'wrapper' flex>
+  <div layout = 'column' layout-align = 'center center' flex>
 
-  <h3 class='md-subhead'>What is a goal for tomorrow?</h3>
+    <h3 class='md-subhead'>What is a goal for tomorrow?</h3>
 
-  <div layout = 'column' flex>
-    <div>
-      <md-input-container class="md-block">
-        <!-- <label>What is your goal for tomorrow?</label> -->
-        <textarea ng-model="reflectionObject.tomorrowGoal" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-      </md-input-container>
-    </div>
-
-    <div ng-if='sessionObject.yesterdaysGoal !== ""'>
-      <p>Yesterdays Goal: {{sessionObject.yesterdaysGoal}}</p>
-      <h3 class='md-subhead'>Did you complete your daily goal from yesterday?</h3>
-      <div layout = 'row' layout-align = 'center'>
-        <span>No</span>
-        <md-switch aria-label = 'Did you complete your daily goal from yesterday?' class = 'md-primary' ng-model="reflectionObject.dailyGoal">
-        </md-switch>
-        <span>Yes</span>
+    <div layout = 'column' flex>
+      <div>
+        <md-input-container class="md-block">
+          <!-- <label>What is your goal for tomorrow?</label> -->
+          <textarea ng-model="reflectionObject.tomorrowGoal" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
       </div>
+
+      <div ng-if='sessionObject.yesterdaysGoal !== ""'>
+        <p>Yesterdays Goal: {{sessionObject.yesterdaysGoal}}</p>
+        <h3 class='md-subhead'>Did you complete your daily goal from yesterday?</h3>
+        <div layout = 'row' layout-align = 'center'>
+          <span>No</span>
+          <md-switch aria-label = 'Did you complete your daily goal from yesterday?' class = 'md-primary' ng-model="reflectionObject.dailyGoal">
+          </md-switch>
+          <span>Yes</span>
+        </div>
+      </div>
+
     </div>
-    
+
+    <section layout = 'row' layout-align = 'center end'>
+        <md-button class="md-raised md-primary form-button" aria-label="Prev Reflection" ng-click='reflectionFormPrevButton(sessionObject, reflectionObject)'>Prev</md-button>
+        <md-button class="md-raised md-accent form-button" aria-label="Next Reflection" ng-click='reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
+    </section>
+
   </div>
-
-  <section layout = 'row' layout-align = 'center end'>
-      <md-button class="md-raised md-primary form-button" aria-label="Prev Reflection" ng-click='reflectionFormPrevButton(sessionObject, reflectionObject)'>Prev</md-button>
-      <md-button class="md-raised md-accent form-button" aria-label="Next Reflection" ng-click='reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
-  </section>
-
 </md-content>
 <!-- ends wrapper -->
