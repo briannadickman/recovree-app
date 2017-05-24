@@ -84,6 +84,7 @@ router.get('/session/', function(req, res){//took out memberID
     function(err, results){
       //server session object is passed as results per async plugin
       var newCount = results.streakCount;
+      console.log('newCount: ', newCount);
       //if a reflection exists (not a new user) this saves the results from the streak count determination
       if (results.allReflectionsNewToOld[0]){
         Reflection.findOne({'_id' : results.allReflectionsNewToOld[0]._id}, function(err, curReflection){
@@ -91,7 +92,15 @@ router.get('/session/', function(req, res){//took out memberID
             console.log('streak count first reflection update error: ', err);
           }
           curReflection.streakCount = newCount || curReflection.streakCount;
-          res.send(results);
+          console.log('curReflection.streakCount: ', curReflection.streakCount);
+          curReflection.save(function(err, updatedReflection){
+            if (err){
+              console.log('error in reflection put: ', err);
+              res.sendStatus(500);
+            }
+            console.log('updated reflection: ', updatedReflection);
+            res.send(results);
+          });
         });
       } else {
         //this sends the defaults for sessionObject for new users
