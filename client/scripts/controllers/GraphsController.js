@@ -6,7 +6,7 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   //all the REFLECTIONS data
   $scope.sessionObject = UserService.sessionObject;
   var reflections = $scope.sessionObject.allReflections;
-  // console.log('ALL REFLECTIONS', reflections);
+  console.log('ALL REFLECTIONS', reflections);
 
   var feelingNames = [];
   var exerciseAmount = [];
