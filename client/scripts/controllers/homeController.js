@@ -7,11 +7,4 @@ myApp.controller('HomeController', ['$scope', '$http', '$location', 'UserService
   $scope.sessionObject = UserService.sessionObject;
   $scope.launchReflection = UserService.launchReflection;
 
-  // $scope.openMenu = function ($mdOpenMenu, ev){
-  //   originatorEv = ev;
-  //   $mdOpenMenu(ev);
-  // };
-  // $scope.launchReflection = function(){
-  //   $location.path('/reflection-form/reflect-1');
-  // };
 }]);

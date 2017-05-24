@@ -1,12 +1,12 @@
 
-<md-content ng-if = '((sessionObject.reflectionCompleted) === false)' layout = 'column' layout-align = 'center center'>
-  <div>
+<md-content flex ng-if = '((sessionObject.reflectionCompleted) === false)' layout = 'column' layout-align = 'center center'>
+  <div layout = 'column' layout-align = 'center center'>
     <h3 class='md-subhead'>You haven't completed your daily Recovree</h3>
     <md-button class = 'md-raised' ng-click = 'launchReflection()'>Reflect</md-button>
   </div>
 </md-content>
 
-<md-content ng-if = '((sessionObject.reflectionCompleted) === true)'>
+<md-content  flex ng-if = '((sessionObject.reflectionCompleted) === true)'>
     <div>
       <div layout = 'column' layout-align = 'center center'>
           <h1 class='md-headline'>Daily Summary for {{sessionObject.todaysReflectObject.reflectionDate | date:'MM/dd/yyyy'}}</h1>
@@ -149,4 +149,4 @@
 </div>
 
 </md-content>
-<footer class='navMenu' ng-include="'/views/partials/nav.html'"></footer>
+<!-- <footer class='navMenu' ng-include="'/views/partials/nav.html'"></footer> -->
