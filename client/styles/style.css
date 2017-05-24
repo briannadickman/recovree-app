@@ -143,9 +143,11 @@ h1{
 }
 
 .wrapper{
-  padding-top: 15px;
+  /*padding-top: 15px;
   padding-right: 15px;
   padding-left: 15px;
+  padding-bottom: 15px;*/
+  padding: 15px;
 
 }
 
@@ -169,4 +171,8 @@ h1{
   width: 100px !important;
   margin: 0 !important;
   padding: 0 !important;
+}
+
+.center-text{
+  text-align: center;
 }

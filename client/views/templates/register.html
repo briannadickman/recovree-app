@@ -1,8 +1,9 @@
-<div class="container" layout='column'>
+
+<md-content class = 'wrapper' layout = 'column' flex >
   <h1 class='md-subhead'>Sign Up</h1>
   <h1 class="lead alert alert-danger" role="alert" ng-if="message != ''">{{message}}</h2>
 
-  <md-content>
+
   <form ng-submit="registerUser()">
 
   <!-- Captures Info into MemberSchema -->
@@ -95,11 +96,8 @@
 
     <md-button class='md-raised' ng-click='registerUser(user,registration)'>Register</md-button>
     <a href="#login">Cancel</a>
+    <br>
   </div>
 
   </form>
 </md-content>
-
-</div>
-
-<footer class='navMenu' ng-include="'/views/partials/blankNav.html'"></footer>
