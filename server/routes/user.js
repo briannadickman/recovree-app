@@ -73,7 +73,6 @@ router.post('/forgotpassword', function(req, res) {
         console.log(err);
         res.sendStatus(500);
       }
-      // res.send(foundUser);
     });
   });
 });
@@ -106,13 +105,11 @@ router.put('/resetpassword', function(req, res) {
           foundUser.expiration = Date.now();
 
           foundUser.save(function(err, savedUser) {
-            if (err) {
+          if (err) {
               console.log(err);
               res.sendStatus(500);
             }
-            res.send(foundUser);
         });
-      // }
   });
 });
 
