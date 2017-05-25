@@ -278,26 +278,6 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
       }
     })
 
-//extra from base project
-    // .when('/info', {
-    //   templateUrl: '/views/templates/info.html',
-    //   controller: 'InfoController',
-    //   resolve: {
-    //     getuser : ['UserService', function(UserService){
-    //       return UserService.getuser();
-    //     }]
-    //   }
-    // })
-    // .when('/user', {
-    //   templateUrl: '/views/templates/user.html',
-    //   controller: 'UserController',
-    //   resolve: {
-    //     getuser : ['UserService', function(UserService){
-    //       return UserService.getuser();
-    //     }]
-    //   }
-    // })
-
     .otherwise({
       redirectTo: 'login'
     });
