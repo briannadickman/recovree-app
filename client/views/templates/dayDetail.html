@@ -11,12 +11,25 @@
       <div layout = 'column' layout-align = 'center center'>
           <h1 class='md-headline'>Daily Summary for {{sessionObject.todaysReflectObject.reflectionDate | date:'MM/dd/yyyy'}}</h1>
       </div>
+
+      <div>
+        <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Overall you felt: </b></h3>
+        <div ng-switch on = "sessionObject.todaysReflectObject.overallfeeling" layout = 'row' layout-align = 'center center'>
+             <span ng-switch-when = "1">Terrible</span>
+             <span ng-switch-when = "2">Not So Great</span>
+             <span ng-switch-when = "3">Okay</span>
+             <span ng-switch-when = "4">Good</span>
+             <span ng-switch-when = "5">Great</span>
+        <span class='md-body-1'>({{sessionObject.todaysReflectObject.overallfeeling}})</span>
+        </div>
+      </div>
+
       <div>
           <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Feelings:</b></h3>
           <p class='md-body-1'>
             <p ng-repeat='feeling in sessionObject.todaysReflectObject.feelings | filter: { value: true }' layout = 'row' layout-align = 'center center'>{{feeling.name}} </p>
           </p>
-          <hr />
+          <hr/>
       </div>
 
         <div ng-if = 'sessionObject.todaysReflectObject.feelingsWhy !== ""'>
@@ -27,7 +40,7 @@
 
         <div>
           <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Last night you slept:</b></h3>
-          <div ng-switch on = sessionObject.todaysReflectObject.sleep layout = 'row' layout-align = 'center center'>
+          <div ng-switch on = "sessionObject.todaysReflectObject.sleep" layout = 'row' layout-align = 'center center'>
                <span ng-switch-when = "1">Terrible</span>
                <span ng-switch-when = "2">Not So Great</span>
                <span ng-switch-when = "3">Okay</span>
@@ -40,7 +53,7 @@
 
         <div>
           <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Your exercise level was:</b></h3>
-          <div ng-switch on = sessionObject.todaysReflectObject.exercise layout = 'row' layout-align = 'center center'>
+          <div ng-switch on = "sessionObject.todaysReflectObject.exercise" layout = 'row' layout-align = 'center center'>
                <span ng-switch-when = "1">Not Active</span>
                <span ng-switch-when = "2">Slightly Active</span>
                <span ng-switch-when = "3">Moderately Active</span>
@@ -53,7 +66,7 @@
 
         <div>
           <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Your food consumption was:</b></h3>
-          <div ng-switch on = sessionObject.todaysReflectObject.food layout = 'row' layout-align = 'center center'>
+          <div ng-switch on = "sessionObject.todaysReflectObject.food layout" = 'row' layout-align = 'center center'>
                 <span ng-switch-when = "1">Not Healthy</span>
                 <span ng-switch-when = "2">A Little Healthy</span>
                 <span ng-switch-when = "3">Somewhat Healthy</span>
