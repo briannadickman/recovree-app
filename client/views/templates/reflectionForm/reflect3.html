@@ -1,21 +1,22 @@
-<md-content class = 'wrapper' layout='column' layout-align='center center' flex>
+<md-content class='wrapper' layout = 'column' layout-align = 'center center' flex>
+  <div  layout='column' layout-align='center center' flex>
+    <md-content flex>
+      <h3 class='md-subhead'>Have you taken your medication today?</h3>
 
+      <div layout = 'row' layout-align = 'center' flex>
+        <span>No</span>
+        <md-switch ng-model="reflectionObject.medication" aria-label='Taken medication today?' class='md-accent md-default'>
+          <!-- Switch 1: {{ reflectionObject.medication }} -->
+        </md-switch>
+        <span>Yes</span>
+      </div>
+    </md-content>
 
-  <h3 class='md-subhead' layout='row' layout-align='center center'>Have you taken your medication today?</h3>
+    <section layout = 'row' layout-align = 'center end'>
+        <md-button class="md-raised md-primary form-button" aria-label="Prev Reflection" ng-click='reflectionFormPrevButton(sessionObject, reflectionObject)'>Prev</md-button>
+        <md-button class="md-raised md-accent form-button" aria-label="Next Reflection" ng-click='reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
+    </section>
 
-  <div layout = 'row' layout-align = 'center' flex>
-    <span>No</span>
-    <md-switch ng-model="reflectionObject.medication" aria-label='Taken medication today?' class='md-accent md-default'>
-      <!-- Switch 1: {{ reflectionObject.medication }} -->
-    </md-switch>
-    <span>Yes</span>
   </div>
-
-  <section layout = 'row' layout-align = 'center end'>
-      <md-button class="md-raised md-primary form-button" aria-label="Prev Reflection" ng-click='reflectionFormPrevButton(sessionObject, reflectionObject)'>Prev</md-button>
-      <md-button class="md-raised md-accent form-button" aria-label="Next Reflection" ng-click='reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
-  </section>
-
-  <!-- {{ reflectionObject }} -->
 </md-content>
 <!-- ends wrapper -->

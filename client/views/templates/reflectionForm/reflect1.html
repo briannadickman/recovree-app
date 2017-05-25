@@ -1,11 +1,9 @@
 
-<div class='wrapper' layout = 'column' layout-align = 'center center'>
+<md-content class='wrapper' layout = 'column' layout-align = 'center center' flex>
   <div  layout='column' layout-align='center center' flex>
-        <div>
-            <h3 class='md-title'>How are you feeling today?</h3>
-        </div>
+        <md-content flex>
+          <h3 class='md-title'>How are you feeling today?</h3>
 
-        <md-content>
           <form name="dailyFeelingsForm" novalidate>
               <div layout = 'row' layout-align = 'center center' layout-wrap>
                   <ng-form name="feelingForm" class="form-group" ng-repeat="feeling in reflectionObject.feelings">
@@ -35,4 +33,4 @@
 
         </div>
     </div>
-</div>
+</md-content>
