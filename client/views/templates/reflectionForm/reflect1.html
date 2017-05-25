@@ -1,7 +1,22 @@
 <div class='wrapper' layout = 'column' layout-align = 'center center'>
   <div  layout='column' layout-align='center center' flex>
+
+<md-content class='wrapper' flex>
+    <div layout='column' layout-align='center center' flex>
+      <div>
+          <h3 class='md-title'>Overall, how are you feeling?</h3>
+          <md-slider-container >
+              <span>Terrible</span>
+                  <md-slider aria-label = 'Overall, how are you feeling today? 1 = terrible 5 = great' flex  class='md-accent md-default' md-discrete ng-model="reflectionObject.overallfeeling" step="1" min="1" max="5" aria-label="rating">
+                  </md-slider>
+              <span>Great</span>
+          </md-slider-container>
+      </div>
+      <div class='wrapper' layout = 'column' layout-align = 'center center'>
+        <div  layout='column' layout-align='center center' flex>
+
         <div>
-            <h3 class='md-title'>How are you feeling today?</h3>
+            <h3 class='md-title'>What emotions did you experience today?</h3>
         </div>
 
         <md-content>
