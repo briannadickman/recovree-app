@@ -5,9 +5,8 @@ var cronJob = require('cron').CronJob;
 var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 
-var phoneNumbers = ['6129918411', '7014294214', '6513997345'];
+var phoneNumbers = ['6129918411', '7014294214', '6513997345', '6122050534'];
 var twilioNumber = process.env.TWILIO_NUMBER;
-// var messageAlerts = ['Keep up the good work!', 'You are doing great!', 'Wow, look at you go!', 'You are a star!'];
 var messageAlerts = ['This is a friendly reminder to complete your daily Recovree (insert link)',
   'Find a moment to reflect and complete your daily Recovree (insert link)',
   'One day at a time. Find time to complete your daily Recovree (insert link)',

@@ -1,9 +1,8 @@
 <md-content class = 'wrapper' flex>
   <div layout = 'column' layout-align = 'center center' flex>
 
+<!-- Floating Next Button -->
     <h3 class='md-subhead'>Did you connect with your sponsor/mentor today?</h3>
-
-
     <div layout = 'row' layout-align = 'center'>
       <span>No</span>
       <md-switch aria-label = 'Did you connect with your sponsor today?'  class='md-accent md-default' ng-model="reflectionObject.spnsrMntrConnect">
@@ -36,6 +35,7 @@
         <md-button class="md-raised md-primary form-button" aria-label="Prev Reflection" ng-click='reflectionFormPrevButton(sessionObject, reflectionObject)'>Prev</md-button>
         <md-button class="md-raised md-accent form-button" aria-label="Next Reflection" ng-click='reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
     </section>
+    
   </div>
 </md-content>
 <!-- ends wrapper -->
