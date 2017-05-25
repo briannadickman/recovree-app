@@ -1,8 +1,49 @@
 myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
     $scope.user = UserService.user;
+
     $scope.message = '';
     var userObject = UserService.userObject;
 
+
+    $scope.sendResetPassword = function () {
+      if($scope.user.username === '') {
+        $scope.message = "Enter your phone number";
+      } else {
+        console.log('sending to server...', $scope.user);
+        $location.path('/login');
+        $http.post('/user/forgotpassword', $scope.user).then(function(response) {
+          if(response.data.username) {
+            console.log('success: ', response.data);
+          } else {
+            console.log('failure: ', response);
+            $scope.message = "Failure";
+          }
+        });
+      }
+    };
+
+    $scope.updatePassword = function() {
+      //this is the randomly generated code, it's part of the url and will need it to reset password
+      //send our password reset request to the server with our username, new password, and code
+      console.log($routeParams.code);
+
+      if($scope.user.username === '' || $scope.user.password === '') {
+        $scope.message = "Enter your username and password!";
+      } else {
+        console.log('sending to server...', $scope.user);
+        $scope.user.code = $routeParams.code;
+
+        $http.put('/user/resetpassword', $scope.user).then(function(response) {
+          if(response.data.username) {
+            console.log('success: ', response.data);
+            $location.path('/login');
+          } else {
+            console.log('failure: ', response);
+            $scope.message = "Username or password is incorrect.";
+          }
+        });
+      }
+    };
 
     $scope.login = function() {
       if($scope.user.username === '' || $scope.user.password === '') {
@@ -25,7 +66,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
       }
     };
 
-    $scope.registerUser = UserService.registerUser;
+  $scope.registerUser = UserService.registerUser;
 
 
   // SENDS USER DEMOGRAPHIC INFO TO SERVER (No username or password)
@@ -49,7 +90,6 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
        });
 
      // Generate Birth Year Dropdown Options
-
         $scope.years = [];
 
         $scope.getYearDropdown = function(){

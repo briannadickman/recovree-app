@@ -9,7 +9,7 @@ var UserSchema = new Schema({
     password: {type: String, required: true},
     userType: {type: Number, default: 2},          //1: admin, 2: member - will defualt to 2, unless on admin log-in, then set to 1
     memberID : {type: Number, index: {unique:true}},
-    code: {type: Number},
+    code: {type: String},
     expiration: {type: Date, default: Date.now}  //code will expire right now, will want to give a large time window like 24 hours
 });
 
@@ -18,6 +18,7 @@ var UserSchema = new Schema({
 UserSchema.pre('save', function(next) {
     var user = this;
 
+    //this checks if password is modified
     if(!user.isModified('password')) {
       return next();
     }

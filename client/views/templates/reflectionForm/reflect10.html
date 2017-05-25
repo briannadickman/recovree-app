@@ -1,17 +1,23 @@
-<div class = 'wrapper'>
+<md-content class = 'wrapper' flex>
+  <div layout = 'column' layout-align = 'center center' flex>
+    <h3 class='md-subhead'>What are you thankful for today and why?</h3>
 
-<!-- Floating Next Button -->
-  <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
-    <i class="material-icons" id='formNextButton'>navigate_next</i>
-  </md-button>
 
-  <h3 class='md-subhead'>What are you thankful for today and why?</h3>
+    <div layout = 'column' flex>
+      <div>
+        <md-input-container class="md-block">
+          <label>What are you thankful for today and why?</label>
+          <textarea aria-label = 'What are you thankful for today and why?' ng-model="reflectionObject.gratitude" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+      </div>
+    </div>
 
-  <md-input-container class="md-block">
-    <!-- <label>What are you thankful for today and why?</label> -->
-    <textarea ng-model="reflectionObject.gratitude" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-  </md-input-container>
+    <section layout = 'row' layout-align = 'center end'>
+        <md-button class="md-raised md-primary form-button" aria-label="Prev Reflection" ng-click='reflectionFormPrevButton(sessionObject, reflectionObject)'>Prev</md-button>
+        <md-button class="md-raised md-accent form-button" aria-label="Next Reflection" ng-click='reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
+    </section>
 
-  <!-- {{ reflectionObject }} -->
-</div>
+  </div>
+</md-content>
+
 <!-- ends wrapper -->

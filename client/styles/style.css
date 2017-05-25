@@ -1,6 +1,7 @@
-html {
+/*html {
   min-height: 100%;
-}
+}*/
+
 
 .instructions .container h1 {
     font-size: 24px;
@@ -80,18 +81,23 @@ html {
 
 #formNextButton {
     color: white;
-    font-size: 24px;
-    display: block;
-    margin: auto;
-    background-repeat: no-repeat;
-    display: inline-block;
-    vertical-align: middle;
-    fill: currentColor;
-    height: 24px;
+    font-size: 14px;
+    /*display: block;*/
+    /*margin: auto;*/
+    /*background-repeat: no-repeat;*/
+    /*display: inline-block;*/
+    /*vertical-align: middle;*/
+    /*fill: currentColor;*/
+    /*height: 24px;
     width: 24px;
     min-height: 24px;
-    min-width: 24px;
+    min-width: 24px;*/
+    display: inline-block;
+    /*line-height: 16px;*/
+    height: 14px;
+    vertical-align: middle;
 }
+
 
 #headerTitle {
   font-family: 'Lato', sans-serif;
@@ -114,12 +120,18 @@ html {
 *{
   padding: 0;
   margin:0;
+  /*overflow: hidden;*/
   font-family: 'Questrial', sans-serif;
+}
+
+body{
+  min-height: : 100%;
 }
 
 h1{
   font-family: 'Lato', sans-serif;
 }
+
 
 .header{
     text-align: center;
@@ -131,11 +143,12 @@ h1{
 }
 
 .wrapper{
-  padding-top: 15px;
+  /*padding-top: 15px;
   padding-right: 15px;
   padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  padding-bottom: 15px;*/
+  padding: 15px;
+
 }
 
 .grey{
@@ -145,4 +158,21 @@ h1{
 .md-button{
   font-size: 12px;
   min-width: 100px;
+  text-align: center;
+}
+
+.form-button{
+  color: white !important;
+  font-weight: bold;
+  /*font-size: 16px;*/
+}
+
+.footer-button{
+  width: 100px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.center-text{
+  text-align: center;
 }

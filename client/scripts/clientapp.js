@@ -76,6 +76,18 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
       controller: 'LoginController'
     })
 
+//forgot password
+.when('/forgotpassword', {
+  templateUrl: '/views/templates/forgot.html',
+  controller: 'LoginController'
+})
+
+//confirm password reset
+.when('/confirmreset/:code', {
+  templateUrl: '/views/templates/confirm.html',
+  controller: 'LoginController'
+})
+
 //home
     .when('/home', {
       templateUrl: '/views/templates/home.html',
