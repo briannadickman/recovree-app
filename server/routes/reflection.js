@@ -123,6 +123,7 @@ router.post('/', function(req,res){
   var newReflection = new Reflection({
     id : req.user._id,
     date: reflection.reflectionDate,
+    overallfeeling: reflection.overallfeeling,
     feelings : reflection.feelings,
     feelingsWhy: reflection.feelingsWhy,
     drugAlcoholIntake: reflection.drugAlcoholIntake,
@@ -172,6 +173,7 @@ router.put('/', function (req, res) {
     //updates reflection found by id or reverts to original if property hasn't been passed
     curReflection.feelings = reflectionUpdate.feelings || curReflection.feelings;
     curReflection.feelingsWhy = reflectionUpdate.feelingsWhy || curReflection.feelingsWhy;
+    curReflection.overallfeeling = reflectionUpdate.overallfeeling || curReflection.overallfeeling;
     curReflection.drugAlcoholIntake = reflectionUpdate.drugAlcoholIntake || curReflection.drugAlcoholIntake;
     curReflection.medication =  reflectionUpdate.medication || curReflection.medication;
     curReflection.sleep = reflectionUpdate.sleep || curReflection.sleep;
