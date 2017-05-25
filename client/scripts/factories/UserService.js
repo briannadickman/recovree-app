@@ -179,6 +179,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     }
     //post to database if it is the fist reflection form view
     if (reflectionObject.formPosition === 1){
+      console.log('Before POST', reflectionObject);
       postToReflectionForm(reflectionObject);
     }
     //put to database if it is any subsequent reflection form views

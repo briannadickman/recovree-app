@@ -1,4 +1,4 @@
-myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
+myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$location', 'UserService', function($scope, $http, $routeParams, $location, UserService) {
     $scope.user = UserService.user;
 
     $scope.message = '';

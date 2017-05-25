@@ -2,17 +2,17 @@
 <md-toolbar layout = 'row' layout-align = 'center center' ng-controller = 'NavController'>
   <div class="md-toolbar-tools" layout-align = 'center center'>
     <!-- <div> -->
-      <md-button ng-hide = "$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms'" ng-href="#/day-detail" class = 'footer-button' aria-label="Today">
+      <md-button ng-hide = "$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms' || $location.path() === '/forgotpassword' || $location.path() === '/confirmreset/:code'" ng-href="#/day-detail" class = 'footer-button' aria-label="Today">
         TODAY
       </md-button >
     <!-- </div > -->
     <!-- <div> -->
-      <md-button ng-hide = "$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms'" ng-href="#/home" class = 'footer-button' aria-label="HOME">
+      <md-button ng-hide = "$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms' || $location.path() === '/forgotpassword' || $location.path() === '/confirmreset/:code'" ng-href="#/home" class = 'footer-button' aria-label="HOME">
         HOME
       </md-button>
     <!-- </div> -->
     <!-- <div> -->
-      <md-button  ng-hide = "$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms'" ng-href="#/weekly-graphs" class = 'footer-button' aria-label="WEEKLY">
+      <md-button  ng-hide = "$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms' || $location.path() === '/forgotpassword' || $location.path() === '/confirmreset/:code'" ng-href="#/weekly-graphs" class = 'footer-button' aria-label="WEEKLY">
         WEEKLY
       </md-button>
     <!-- </div> -->
