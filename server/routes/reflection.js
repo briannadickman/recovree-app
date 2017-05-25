@@ -124,7 +124,6 @@ router.post('/', function(req,res){
     id : req.user._id,
     date: reflection.reflectionDate,
     feelings : reflection.feelings,
-    overallfeeling : reflection.overallfeeling,
     feelingsWhy: reflection.feelingsWhy,
     drugAlcoholIntake: reflection.drugAlcoholIntake,
     medication: reflection.medication,
@@ -172,7 +171,6 @@ router.put('/', function (req, res) {
     }
     //updates reflection found by id or reverts to original if property hasn't been passed
     curReflection.feelings = reflectionUpdate.feelings || curReflection.feelings;
-    curReflection.overallfeeling = reflectionUpdate.overallfeeling || curReflection.overallfeeling;
     curReflection.feelingsWhy = reflectionUpdate.feelingsWhy || curReflection.feelingsWhy;
     curReflection.drugAlcoholIntake = reflectionUpdate.drugAlcoholIntake || curReflection.drugAlcoholIntake;
     curReflection.medication =  reflectionUpdate.medication || curReflection.medication;
