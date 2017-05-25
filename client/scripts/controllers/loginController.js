@@ -4,7 +4,6 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
     $scope.message = '';
     var userObject = UserService.userObject;
 
-
     $scope.sendResetPassword = function () {
       if($scope.user.username === '') {
         $scope.message = "Enter your phone number";
@@ -66,6 +65,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
       }
     };
 
+
   $scope.registerUser = UserService.registerUser;
 
 
@@ -89,7 +89,6 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
           return {gender: gender};
        });
 
-     // Generate Birth Year Dropdown Options
         $scope.years = [];
 
         $scope.getYearDropdown = function(){
