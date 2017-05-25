@@ -192,8 +192,10 @@ h1{
 
 #northernLights{
   /*background-image: url(/styles/images/northernLights.jpg);*/
-  background-image: url(/styles/images/blueBackground.jpg);
-  /*background-image: url(/styles/images/northernLights.jpg);*/
+  /*background-image: url(/styles/images/blueBackground.jpg);*/
+  /*background-image: url(/styles/images/purpleBackground.jpg);*/
+  /*background-image: url(/styles/images/largeLights.jpg);*/
+
   background-repeat: no-repeat;
   background-position:top;
   background-size: cover;
