@@ -1,0 +1,13 @@
+"State","County","Gender","Birth Year","Drug(s) of Choice","Sobriety Date","Form of Program Payment","Medication?","Terms of Agreement?"
+"ME",,"Female",2015,"Amphetamine,Benzodiazepines,Cocaine,Crack","""2017-05-19T05:00:00.000Z""","Insurance",true,true
+"ME",,"Female",2015,"Amphetamine,Benzodiazepines,Cocaine,Crack","""2017-05-19T05:00:00.000Z""","Insurance",true,true
+"LA",,"Female",2006,"Crack","""2016-02-17T06:00:00.000Z""","Treatment Program Scholarships",true,true
+"LA",,"Female",2006,"Crack","""2016-02-17T06:00:00.000Z""","Treatment Program Scholarships",true,true
+"MN","Ramsey","Male",1986,"Alcohol,Amphetamine,Marijuana-Hashish","""2016-10-24T05:00:00.000Z""","Public Assistance",true,true
+"MN","Ramsey","Male",1986,"Alcohol,Amphetamine,Marijuana-Hashish","""2016-10-24T05:00:00.000Z""","Public Assistance",true,true
+"MN","Hennepin","Male",1991,"Ecstasy,Marijuana-Hashish,PCP","""2017-01-18T06:00:00.000Z""","Public Assistance",true,true
+"MN","Hennepin","Male",1991,"Ecstasy,Marijuana-Hashish,PCP","""2017-01-18T06:00:00.000Z""","Public Assistance",true,true
+"MN","Hennepin","Female",1987,"Methamphetamine","""2016-10-27T05:00:00.000Z""","Insurance",true,true
+"MN","Hennepin","Female",1987,"Methamphetamine","""2016-10-27T05:00:00.000Z""","Insurance",true,true
+"AK","hym","Trans",2014,"Benzodiazepines",,,true,true
+"AK","hym","Trans",2014,"Benzodiazepines",,,true,true

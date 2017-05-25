@@ -29,6 +29,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('./server/public'));
 
 // Passport Session Configuration //
+
 app.use(session({
    secret: 'SsSKTchnhHRLpB1K',
    key: 'user', // this is the name of the req.variable. 'user' is convention, but not required
