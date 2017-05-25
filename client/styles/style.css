@@ -176,3 +176,25 @@ h1{
 .center-text{
   text-align: center;
 }
+
+#loginLogo{
+  height: 100px;
+  width: 100px;
+  border-radius: 5px;
+}
+
+#loginBox{
+  /*opacity: .5;*/
+  background-color: whitesmoke;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+#northernLights{
+  /*background-image: url(/styles/images/northernLights.jpg);*/
+  background-image: url(/styles/images/blueBackground.jpg);
+  /*background-image: url(/styles/images/northernLights.jpg);*/
+  background-repeat: no-repeat;
+  background-position:top;
+  background-size: cover;
+}
