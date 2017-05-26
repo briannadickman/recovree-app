@@ -12,6 +12,8 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   var exerciseAmount = [];
   var foodAmount = [];
   var sleepAmount = [];
+  var overallAmount = [];
+
   var singleFeelings = [];
   var feelingsCount = [],
     prev;
@@ -38,8 +40,11 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
 
     var sleep = reflections[i].sleep;
     sleepAmount.push(sleep);
-  }
 
+    var overall = reflections[i].overallfeeling;
+    overallAmount.push(overall);
+  }
+console.log('OVERALL FEELING DATA', overallAmount);
 
   //count occurence of each feeling and save in new object
   function countFeelings(array) {
@@ -96,21 +101,23 @@ formatTimestamp();
     data: {
       datasets: [{
         data: feelingsCount,
-        backgroundColor: [ //show only top 5 most occuring feelings
-          "#FF6384",
-          "#4BC0C0",
-          "#FFCE56",
-          "#E7E9ED",
-          "#36A2EB"
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.71)",
+          "rgba(75, 193, 193, 0.71)",
+          "rgba(255, 206, 85, 0.71)",
+          "rgba(231, 233, 237, 0.71)",
+          "rgba(54, 162, 235, 0.71)"
         ],
-        label: 'My dataset' // for legend
+        label: 'My dataset'
       }],
       labels: singleFeelings
     },
     options: {
-      scales: {
-
-      }
+      scale: {
+        // ticks: {
+        //     stepSize: 1
+        // }
+    }
     }
 
   }); //end polar area chart
@@ -128,6 +135,7 @@ formatTimestamp();
           borderColor: "rgba(215, 141, 141,1)",
           pointBackgroundColor: "rgba(215, 141, 141,1)",
           pointBorderColor: "rgba(215,141,141,1)",
+          backgroundColor: "rgba(215,141,141,1)",
           pointBorderWidth: 1,
           pointHoverRadius: 5,
           pointRadius: 4,
@@ -139,6 +147,7 @@ formatTimestamp();
           borderColor: "rgba(151,187,205,1)",
           pointBackgroundColor: "rgba(151,187,205,1)",
           pointBorderColor: "rgba(151,187,205,1)",
+          backgroundColor: "rgba(151,187,205,1)",
           pointBorderWidth: 1,
           pointHoverRadius: 5,
           pointRadius: 4,
@@ -150,10 +159,23 @@ formatTimestamp();
           borderColor: "rgba(178, 221, 158, 1)",
           pointBackgroundColor: "rgba(178, 221, 158, 1)",
           pointBorderColor: "rgba(178,221,158,1)",
+          backgroundColor: "rgba(178,221,158,1)",
           pointBorderWidth: 1,
           pointHoverRadius: 5,
           pointRadius: 4,
           data: sleepAmount
+        },
+        {
+          label: 'Overall Feelings',
+          fill: false,
+          borderColor: "rgba(246, 239, 175, 1)",
+          pointBackgroundColor: "rgba(246, 239, 175, 1)",
+          pointBorderColor: "rgba(246, 239, 175, 1)",
+          backgroundColor: "rgba(246, 239, 175, 1)",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointRadius: 4,
+          data: overallAmount
         }
       ]
     },
@@ -170,11 +192,6 @@ formatTimestamp();
       }
     }
   }); //end line chart
-
-
-
-
-
 
 
 }]); //end of controller

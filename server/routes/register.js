@@ -8,12 +8,6 @@ var Registration = require('../models/registration');
 
 var mongoose = require("mongoose");
 
-//SAVE ONLY USERNAME AND PASSWORD FROM REGISTER VIEW
-// Handles request for HTML file
-// router.get('/', function(req, res, next) {
-//   res.sendFile(path.resolve(__dirname, '../public/views/templates/register.html'));
-// });
-
 var transporter = nodemailer.createTransport({
   service: 'hotmail',
   auth: {
@@ -41,6 +35,7 @@ var registrationMemberId = 0;
 
 
 //SAVE ALL OTHER REGISTRATION DATA FROM REGISTER VIEW
+
 var RegistrationSchema = mongoose.Schema({
   state: {type: String},
   county: {type: String},
