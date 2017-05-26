@@ -9,7 +9,7 @@
                 <textarea  aria-label="What is a goal for tomorrow?" ng-model="reflectionObject.tomorrowGoal" md-maxlength="150" rows="5" md-select-on-focus></textarea>
             </md-input-container>
 
-            <div ng-if='sessionObject.yesterdaysGoal !== "No goal set yesterday"'>
+            <div ng-if='sessionObject.yesterdaysGoal !== "No goal set yesterday" || sessionObject.yesterdaysGoal !== "" '>
                 <p>Yesterdays Goal: {{sessionObject.yesterdaysGoal}}</p>
                 <h3 class='md-subhead'>Did you complete your daily goal from yesterday?</h3>
                 <div layout='row' layout-align='center'>
