@@ -8,7 +8,7 @@
             <form name="dailyStressorsForm" novalidate>
                 <div layout='row' layout-align='center center' layout-wrap flex>
                     <ng-form name="stressForm" class="form-group" ng-repeat="stress in reflectionObject.stressors">
-                        <md-button class='md-raised' ng-class="{'md-warn':(stress.value === true)}" ng-click='toggleFeeling(stress)'>
+                        <md-button class='md-raised' ng-class="{'md-primary':(stress.value === true)}" ng-click='toggleFeeling(stress)'>
                             {{stress.name}}
                         </md-button>
                     </ng-form>
