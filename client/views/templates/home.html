@@ -1,24 +1,28 @@
 <md-content class='wrapper' layout='column' layout-align='center center' flex>
     <div layout='column' layout-align='center center' flex>
         <md-content layout='column' layout-align='center center' flex>
-            <h1 class='md-headline'>Welcome Back!</h1>
+            <h1 style="font-size: 30px" >Welcome Back!</h1>
 
+      <br>
+            <div layout='column' layout-align='center center'>
+                  <p class='streakTitle center-text'>Current Reflection Streak </p>
+                  <p class='streak center-text'>{{sessionObject.streak}} Days</p>
+            </div>
 
-            <div flex>
-                <div style="width: 250px; height: 250px; float: center; position: relative; margin-left: 50px;">
-                <div style="width: 100%; height: 100%; position: absolute; top: 50%; left: 0;
-                           margin-top: -8px; line-height:19px; text-align: center; font-size: 40px;
-                           z-index: 999999999999999">3</div>
+            <div style="width:250px; height:250px font-size: 30px" flex layout='column' layout-align='center center' >
                 <canvas id="streakDonughtChart"></canvas>
             </div>
 
+
+          <br>
+
             <div layout='column' layout-align='center center'>
-                  <h2 class='md-subhead'>Recovree Days In A Row: {{sessionObject.streak}}</h2>
+                  <p style="font-size: 18px" class='center-text'>Goal: 30 Days</p>
             </div>
 
 
             <div layout='column' layout-align='center center' ng-if='sessionObject.reflectionCompleted == false'>
-                <md-button class='md-raised md-hue-3' ng-click='launchReflection()'>Reflect</md-button>
+                <md-button class='md-raised md-primary reflectBtn' style="font-size: 15px; font-weight: bold;" ng-click='launchReflection()'>Reflect</md-button>
             </div>
 
 
