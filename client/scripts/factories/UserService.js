@@ -125,7 +125,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
       // assigns key value pairs
       reflectionObject.feelings = feelingsArray;
-      reflectionObject.overallfeeling = '';
+      reflectionObject.overallfeeling = 1;
       reflectionObject.feelingsWhy = '';
       reflectionObject.drugAlcoholIntake = false;
       reflectionObject.medication = false;
@@ -179,6 +179,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     }
     //post to database if it is the fist reflection form view
     if (reflectionObject.formPosition === 1){
+      console.log('Before POST', reflectionObject);
       postToReflectionForm(reflectionObject);
     }
     //put to database if it is any subsequent reflection form views

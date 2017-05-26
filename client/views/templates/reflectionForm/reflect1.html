@@ -1,3 +1,4 @@
+
 <md-content class='wrapper' layout = 'column' layout-align = 'center center' flex>
   <div  layout='column' layout-align='center center' flex>
         <md-content flex>
@@ -13,7 +14,7 @@
           <form name="dailyFeelingsForm" novalidate>
               <div layout = 'row' layout-align = 'center center' layout-wrap>
                   <ng-form name="feelingForm" class="form-group" ng-repeat="feeling in reflectionObject.feelings">
-                      <md-button class='md-raised' ng-class="{'md-warn':(feeling.value === true)}" ng-click='toggleFeeling(feeling)'>
+                      <md-button class='md-raised' ng-class="{'md-primary':(feeling.value === true)}" ng-click='toggleFeeling(feeling)'>
                           {{feeling.name}}
                       </md-button>
                   </ng-form>
@@ -29,7 +30,6 @@
         </md-content>
 
             <!-- ends feelingsForm -->
-
 
         <div>
             <section layout = 'row' layout-align = 'center end'>
