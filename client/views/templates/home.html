@@ -1,14 +1,15 @@
 <md-content class='wrapper' layout='column' layout-align='center center' flex>
     <div layout='column' layout-align='center center' flex>
         <md-content layout='column' layout-align='center center' flex>
-            <h1 class='md-headline'>Welcome Back!</h1>
+            <h1 style="font-size: 30px" >Welcome Back!</h1>
 
       <br>
             <div layout='column' layout-align='center center'>
-                  <p class='md-subhead streak center-text'>Recovree Days In A Row: {{sessionObject.streak}}</p>
+                  <p class='streakTitle center-text'>Current Reflection Streak </p>
+                  <p class='streak center-text'>{{sessionObject.streak}} Days</p>
             </div>
 
-            <div style="width:250px; height:250px" flex layout='column' layout-align='center center' >
+            <div style="width:250px; height:250px font-size: 30px" flex layout='column' layout-align='center center' >
                 <canvas id="streakDonughtChart"></canvas>
             </div>
 
@@ -16,12 +17,12 @@
           <br>
 
             <div layout='column' layout-align='center center'>
-                  <p class='md-subhead center-text'>Goal: 30 Days In A Row</p>
+                  <p style="font-size: 18px" class='center-text'>Goal: 30 Days</p>
             </div>
 
 
             <div layout='column' layout-align='center center' ng-if='sessionObject.reflectionCompleted == false'>
-                <md-button class='md-raised md-hue-3' ng-click='launchReflection()'>Reflect</md-button>
+                <md-button class='md-raised md-primary reflectBtn' style="font-size: 15px; font-weight: bold;" ng-click='launchReflection()'>Reflect</md-button>
             </div>
 
 

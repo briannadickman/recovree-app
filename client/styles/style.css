@@ -2,10 +2,19 @@
   min-height: 100%;
 }*/
 
+.streakTitle {
+  color: #813172;
+  font-size: 18px;
+}
 .streak {
   color: #813172;
-  font-size: 20px;
+  font-size: 24px;
 }
+.reflectBtn {
+  font-size: 40px;
+  font-weight: bold;
+}
+
 .instructions .container h1 {
     font-size: 24px;
     font-weight: 700;
