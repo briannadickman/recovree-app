@@ -31,6 +31,32 @@ router.get('/', function (req, res) {
   });
 });
 
+router.get('/countByDay', function(req, res){
+  console.log('count by day hit');
+  var reflectionCountByDate = [];
+  Reflection.aggregate(
+    [{$group: {
+      _id : { month: {$month : '$reflectionDate'}, day: {$dayOfMonth: '$reflectionDate'}, year: { $year : '$reflectionDate'}},
+      count: { $sum : 1 },
+      }
+    }], function(err, countData){
+    if (err){
+      console.log('error in count by day: ', err);
+    }
+    for (i=0; i<countData.length; i++){
+      var countByDate = {
+        date: '',
+        count: 0
+      };
+      countByDate.date = countData[i]._id.month + '/' + countData[i]._id.day + '/' + countData[i]._id.year;
+      countByDate.count = countData[i].count;
+      reflectionCountByDate.push(countByDate);
+    }
+    console.log('countByDate: ', reflectionCountByDate);
+    res.send(reflectionCountByDate);
+  });
+});
+
 router.get('/session/', function(req, res){//took out memberID
   if (req.isAuthenticated){
   var reflections;

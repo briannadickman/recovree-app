@@ -31,7 +31,7 @@ app.use(express.static('./server/public'));
 // Passport Session Configuration //
 
 app.use(session({
-   secret: 'SsSKTchnhHRLpB1K',
+   secret: process.env.PASSPORT_SECRET,
    key: 'user', // this is the name of the req.variable. 'user' is convention, but not required
    resave: 'true',
    saveUninitialized: false,

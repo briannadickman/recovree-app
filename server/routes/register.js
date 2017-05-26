@@ -74,6 +74,17 @@ router.get('/meds/:id', function(req, res){
   });
 });
 
+router.get('/memberCount', function(req, res){
+  console.log('member count hit');
+  Registration.distinct('memberID', function(err, uniqueMembers){
+    if (err) {
+      console.log('error counting members');
+    }
+    console.log('uniqueMembers: ', uniqueMembers.length);
+    res.send(uniqueMembers);
+  });
+});
+
 router.post("/registration", function(req,res){
   var registration = req.body;
   console.log("inside post to /registration:", req.body);

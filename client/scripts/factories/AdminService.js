@@ -1,5 +1,9 @@
 myApp.factory('AdminService', ['$http', '$location', function($http, $location){
 
+  var adminObject = {
+    memberCount : 0,
+    countByDay : []
+  };
 
   function getReflections() {
       getCSVforReflections();
@@ -21,10 +25,25 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
     });
   }
 
+  function countMembers(){
+    $http.get('/register/memberCount').then(function(response){
+      adminObject.memberCount = response.data.length;
+      console.log('memberCount: ', adminObject.memberCount);
+    });
+  }
+
+  function countReflectionsByDay(){
+    $http.get('reflection/countByDay').then(function(response){
+      adminObject.countByDay = response.data;
+      console.log('count by day: ', adminObject.countByDay);
+    });
+  }
 
 
 
 return {
+  countMembers : countMembers,
+  countReflectionsByDay : countReflectionsByDay,
 
   getReflections: getReflections,
   getRegistrationInfo: getRegistrationInfo,
