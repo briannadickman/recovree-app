@@ -2,6 +2,10 @@
   min-height: 100%;
 }*/
 
+.streak {
+  color: #813172;
+  font-size: 20px;
+}
 .instructions .container h1 {
     font-size: 24px;
     font-weight: 700;
