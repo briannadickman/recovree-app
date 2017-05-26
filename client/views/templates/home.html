@@ -1,20 +1,23 @@
-<md-content class = 'wrapper' layout = 'column' layout-align = 'center center'flex>
-  <div layout='column' layout-align='center center'>
-    <h1 class='md-headline'>Welcome Back!</h1>
-    <div id='chainGraphic'>Chain Graphic Goes Here w/ Number of Days: {{sessionObject.streak}}</div>
-    <h2 class='md-subhead'>Recovree Days In A Row.</h2>
-  </div>
+<md-content class='wrapper' layout='column' layout-align='center center' flex>
+    <div layout='column' layout-align='center center' flex>
+        <md-content layout='column' layout-align='center center' flex>
+            <h1 class='md-headline'>Welcome Back!</h1>
+            <div id='chainGraphic'>Chain Graphic Goes Here w/ Number of Days: {{sessionObject.streak}}</div>
+            <h2 class='md-subhead'>Recovree Days In A Row.</h2>
 
 
-  <div layout='column' layout-align='center center' ng-if='sessionObject.reflectionCompleted == false'>
-    <md-button class='md-raised md-hue-3' ng-click = 'launchReflection()'>Reflect</md-button>
-  </div>
+
+            <div layout='column' layout-align='center center' ng-if='sessionObject.reflectionCompleted == false'>
+                <md-button class='md-raised md-hue-3' ng-click='launchReflection()'>Reflect</md-button>
+            </div>
 
 
-  <div layout='column' layout-align='center center' ng-if='sessionObject.reflectionCompleted == true'>
-      <h2 class='md-title center-text'>You have completed your Recovree for the day.</h2>
-  </div>
+            <div layout='column' layout-align='center center' ng-if='sessionObject.reflectionCompleted == true'>
+                <h2 class='md-title center-text'>You have completed your reflection for the day.</h2>
+            </div>
 
-  <a href='#/admin-export'>Admin View</a>
+            <a href='#/admin-export'>Admin View</a>
+        </md-content>
+    </div>
 </md-content>
 <!-- <footer class='navMenu' ng-include="'/views/partials/nav.html'"></footer> -->

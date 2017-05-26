@@ -1,6 +1,6 @@
 myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$location', 'UserService', function($scope, $http, $routeParams, $location, UserService) {
     $scope.user = UserService.user;
-
+    
     $scope.message = '';
     var userObject = UserService.userObject;
 

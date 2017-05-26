@@ -1,35 +1,35 @@
-<md-content class = 'wrapper' layout = 'column' layout-align = 'center center' flex>
+<md-content class='wrapper' layout='column' layout-align='center center' flex>
+    <div layout='column' layout-align='center center' flex>
+        <md-content flex>
+            <h3 class='md-subhead'>Did you exercise today?</h3>
+            <div>
+                <md-slider-container>
+                    <span>No Activity</span>
+                    <md-slider aria-label='Did you exercise today? 1 = no activity, 5 = high' flex class='md-accent md-default' md-discrete ng-model="reflectionObject.exercise" step="1" min="1" max="5" aria-label="rating">
+                    </md-slider>
+                    <span>High Activity</span>
+                </md-slider-container>
+            </div>
 
-  <h3 class='md-subhead'>Did you exercise today?</h3>
-  <div>
-    <md-slider-container>
-      <span>No Activity</span>
-      <md-slider aria-label = 'Did you exercise today? 1 = no activity, 5 = high' flex class='md-accent md-default' md-discrete ng-model="reflectionObject.exercise" step="1" min="1" max="5" aria-label="rating">
-      </md-slider>
-      <span>High Activity</span>
-    </md-slider-container>
-  </div>
 
-  <br>
+            <br>
 
-  <h3 class='md-subhead'>Rate your food consumption and access for today</h3>
-  <div flex>
-    <md-slider-container>
-      <span>Not Healthy</span>
-      <md-slider aria-label = 'Rate your food consumption and access for today. 1 = Not Healthy, 5 = Very Healthy' flex class='md-accent md-default' md-discrete ng-model="reflectionObject.food" step="1" min="1" max="5" aria-label="rating">
-      </md-slider>
-      <span>Very Healthy</span>
-    </md-slider-container>
-  </div>
+            <h3 class='md-subhead'>Rate your food consumption and access for today</h3>
+            <div flex>
+                <md-slider-container>
+                    <span>Not Healthy</span>
+                    <md-slider aria-label='Rate your food consumption and access for today. 1 = Not Healthy, 5 = Very Healthy' flex class='md-accent md-default' md-discrete ng-model="reflectionObject.food" step="1" min="1" max="5" aria-label="rating">
+                    </md-slider>
+                    <span>Very Healthy</span>
+                </md-slider-container>
+            </div>
+        </md-content>
+        <section layout='row' layout-align='center end'>
+            <md-button class="md-raised md-primary form-button" aria-label="Prev Reflection" ng-click='reflectionFormPrevButton(sessionObject, reflectionObject)'>Prev</md-button>
+            <md-button class="md-raised md-accent form-button" aria-label="Next Reflection" ng-click='reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
+        </section>
 
-  <section layout = 'row' layout-align = 'center end'>
-      <md-button class="md-raised md-primary form-button" aria-label="Prev Reflection" ng-click='reflectionFormPrevButton(sessionObject, reflectionObject)'>Prev</md-button>
-      <md-button class="md-raised md-accent form-button" aria-label="Next Reflection" ng-click='reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
-  </section>
-
-<!--
-  {{ reflectionObject }} -->
-</div>
+    </div>
 </md-content>
 
 <!-- ends wrapper -->

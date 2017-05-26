@@ -1,15 +1,15 @@
-<md-content class = 'wrapper' flex>
-  <div layout = 'column' layout-align = 'center center' flex>
-      <div layout = 'column'  flex>
+<md-content class='wrapper' layout = 'column' layout-align = 'center center' flex>
+  <div  layout='column' layout-align='center center' flex>
+      <md-content flex>
         <h3 class='md-subhead'>How did you sleep last night?</h3>
-        <div>
+
           <md-slider-container >
               <span>Terrible</span>
                   <md-slider aria-label = 'How did you sleep last night? 1 = terrible 5 = great' flex  class='md-accent md-default' md-discrete ng-model="reflectionObject.sleep" step="1" min="1" max="5" aria-label="rating">
                   </md-slider>
               <span>Great</span>
           </md-slider-container>
-        </div>
+
 
         <h3 class='md-subhead'>Did you have a using dream?</h3>
         <div layout='row' layout-align='center center'>
@@ -19,13 +19,14 @@
           <span>Yes</span>
         </div>
 
-        <div flex>
-          <md-input-container class="md-block md-accent md-default">
-            <label>If yes, can you describe your dream?</label>
-            <textarea ng-model="reflectionObject.whatDream" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-          </md-input-container>
-        </div>
-      </div>
+
+        <md-input-container class="md-block md-accent md-default">
+          <label>If yes, can you describe your dream?</label>
+          <textarea ng-model="reflectionObject.whatDream" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+
+
+      </md-content>
 
       <section layout = 'row' layout-align = 'center end'>
           <md-button class="md-raised md-primary form-button" aria-label="Prev Reflection" ng-click='reflectionFormPrevButton(sessionObject, reflectionObject)'>Prev</md-button>

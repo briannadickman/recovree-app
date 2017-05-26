@@ -1,26 +1,26 @@
-<md-content class = 'wrapper' layout = 'column' layout-align = 'center center'>
+<md-content class='wrapper' layout='column' layout-align='center center' flex>
+    <div layout='column' layout-align='center center' flex>
+        <md-content flex>
 
-  <div layout = 'column' flex>
-    <h3 class='md-subhead'>Have you been selfish or dishonest with yourself or others today?</h3>
-    <div layout = 'row' layout-align = 'center'>
-      <span>No</span>
-      <md-switch aria-label = 'Have you been selfish or dishonest with yourself or others today?' ng-model="reflectionObject.selfishDishonest" class='md-accent md-default'>
-      </md-switch>
-      <span>Yes</span>
+            <h3 class='md-subhead'>Have you been selfish or dishonest with yourself or others today?</h3>
+            <div layout='row' layout-align='center'>
+                <span>No</span>
+                <md-switch aria-label='Have you been selfish or dishonest with yourself or others today?' ng-model="reflectionObject.selfishDishonest" class='md-accent md-default'>
+                </md-switch>
+                <span>Yes</span>
+            </div>
+
+
+            <md-input-container class="md-block md-accent md-default">
+                <label>If yes, how?</label>
+                <textarea ng-model="reflectionObject.howSelfshDishnt" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+            </md-input-container>
+
+        </md-content>
+        <section layout='row' layout-align='center end'>
+            <md-button class="md-raised md-primary form-button" aria-label="Prev Reflection" ng-click='reflectionFormPrevButton(sessionObject, reflectionObject)'>Prev</md-button>
+            <md-button class="md-raised md-accent form-button" aria-label="Next Reflection" ng-click='reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
+        </section>
     </div>
-
-    <div flex>
-      <md-input-container class="md-block md-accent md-default">
-        <label>If yes, how?</label>
-        <textarea ng-model="reflectionObject.howSelfshDishnt" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-      </md-input-container>
-    </div>
-  </div>
-
-  <section layout = 'row' layout-align = 'center end'>
-      <md-button class="md-raised md-primary form-button" aria-label="Prev Reflection" ng-click='reflectionFormPrevButton(sessionObject, reflectionObject)'>Prev</md-button>
-      <md-button class="md-raised md-accent form-button" aria-label="Next Reflection" ng-click='reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
-  </section>
-
 </md-content>
 <!-- ends wrapper -->
