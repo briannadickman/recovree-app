@@ -23,6 +23,7 @@ router.get('/', function(req, res) {
     var userInfo = {
       username: req.user.username,
       id: req.user._id,
+      userType: req.user.userType
     };
     res.send(userInfo);
   } else {
