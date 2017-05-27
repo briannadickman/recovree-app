@@ -23,13 +23,14 @@ router.get('/', function(req, res) {
     var userInfo = {
       username: req.user.username,
       id: req.user._id,
+      userType: req.user.userType
     };
     res.send(userInfo);
   } else {
     // failure best handled on the server. do redirect here.
     console.log('not logged in');
     // should probably be res.sendStatus(403) and handled client-side, esp if this is an AJAX request (which is likely with AngularJS)
-    res.send(403);
+    res.sendStatus(403);
   }
 });
 

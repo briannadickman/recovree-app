@@ -54,9 +54,14 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
             console.log('success: ', response.data);
             userObject.userName = response.data.username;
             userObject.id = response.data.id;
-            userObject.memberID = response.data.memberID;
+            userObject.userType = response.data.userType;
             // location works with SPA (ng-route)
-            $location.path('/home');
+            if (userObject.userType === 2){
+              $location.path('/home');
+            } else if (userObject.userType === 1){
+              $location.path('/admin-export');
+            }
+
           } else {
             console.log('failure: ', response);
             $scope.message = "Username or password is incorrect.";

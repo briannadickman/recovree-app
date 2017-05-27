@@ -12,4 +12,7 @@ myApp.controller('AdminExportController', ['$scope', '$http', '$location', 'Admi
 
   };
 
+  AdminService.countMembers();
+  AdminService.countReflectionsByDay();
+
 }]);
