@@ -98,7 +98,12 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
         else{
           sessionObject.todaysReflectObject = {};
         }
-        sessionObject.yesterdaysGoal = response.data.yesterdaysGoal;
+        if (response.data.yesterdaysGoal === "" || response.data.yesterdaysGoal == "No goal set yesterday"){
+          sessionObject.yesterdaysGoal = false;
+        }
+        else {
+          sessionObject.yesterdaysGoal = response.data.yesterdaysGoal;
+        }
         sessionObject.takingMeds = response.data.medication;
         console.log("session Object at end of getSessionObject", sessionObject);
       });
