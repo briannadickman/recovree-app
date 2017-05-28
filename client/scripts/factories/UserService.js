@@ -129,15 +129,19 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
       var ctx3 = document.getElementById("streakDonughtChart");
       var streakDonughtChart = new Chart(ctx3, {
-          type: 'doughnut',
-          data: {
-            datasets: [{
-             data: [streak, goal],
-             backgroundColor: ['#813172','#bfbfbf'],
+        type: 'doughnut',
+        data: {
+          datasets: [{
+            data: [streak, goal],
+            backgroundColor: ['#813172', '#bfbfbf'],
           }],
-          // labels: ['Goal','Streak']
+          labels: ['Streak', 'Goal']
         },
-        // options:
+        options: {
+          legend: {
+            display: false
+          },
+        }
       });
     }//ends streakGraph
 
@@ -330,6 +334,28 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
         }
       }); //end line chart
 
+      //yes no graph for
+      //selfish dishonest, medication, using dream, connected w/ sponsor, service, use drugs/alcohol
+        var ctx4 = document.getElementById("yesNoChart");
+        var yesNoChart = new Chart(ctx4, {
+            type: 'horizontalBar',
+            data: {
+              // labels: ['Selfish/Dishonest', 'Medication', 'Using Dream', 'Sponsor Connection', 'Service', 'Drugs/Alcohol Use'],
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                    }],
+                    yAxes: [{
+                        ticks: {
+                          max: 5,
+                          min: 5,
+                          stepSize: 1
+                        }
+                    }]
+                }
+            }
+        }); //end of yesNoChart
 
     }//ends weeklyGraphs
 
