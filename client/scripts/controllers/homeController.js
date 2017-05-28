@@ -16,15 +16,19 @@ myApp.controller('HomeController', ['$scope', '$http', '$location', 'UserService
 
   var ctx = document.getElementById("streakDonughtChart");
   var streakDonughtChart = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        datasets: [{
-         data: [streak, goal],
-         backgroundColor: ['#813172','#bfbfbf'],
+    type: 'doughnut',
+    data: {
+      datasets: [{
+        data: [streak, goal],
+        backgroundColor: ['#813172', '#bfbfbf'],
       }],
-      // labels: ['Goal','Streak']
+      labels: ['Streak', 'Goal']
     },
-    // options:
+    options: {
+      legend: {
+        display: false
+      },
+    }
   });
 
 }]);
