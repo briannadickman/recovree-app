@@ -5,6 +5,8 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
 
   //all the REFLECTIONS data
   $scope.sessionObject = UserService.sessionObject;
+  $scope.weeks = weeks;
+  
   var reflections = $scope.sessionObject.allReflections;
   console.log('ALL REFLECTIONS', reflections);
 
@@ -20,10 +22,79 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   var countOfFeelings = {},
     sortByCount, topFiveFeelings;
   var dates = [];
+  var week = [];
+  var weekObject = {
+    week: week,
+    weekRange: ''
+  };
+  var weeks = weekObject;
+
+
+
+//determines what the current week in time is
+var currentWeek = moment().week();
+
+//Selecting weekly summary
+function weeklySummary(allReflectionsObject) {
+  // take all reflections objects
+
+  //loop through reflecton object and grab current week
+  for (var q = 0; q < allReflectionsObject.length; q++) {
+    var reflection = allReflectionsObject[q];
+    var date = reflection.reflectionDate;
+
+      console.log('CurrentWeek is now: ', currentWeek);
+
+      //determines what the week of a specific date is
+      var reflectionsWeek = moment(date).week();
+
+      // filterWeeks(reflectionsWeek, day, date);
+      if (reflectionsWeek == currentWeek) {
+        week.push(reflection);
+      } else {
+        currentWeek = reflectionsWeek;
+        console.log('CurrentWeek is now: ', currentWeek);
+        formatWeeklyDropdown(week);
+        weeks.push(week);
+        week = [];
+        week.push(reflection);
+        // weeklySummary(reflections);
+      }
+      if (q == allReflectionsObject.length - 1) {
+        formatWeeklyDropdown(week);
+        weeks.push(week);
+      }
+    }
+    //for drop-down: get dates for that week
+    // ng-change
+
+    //return only reflection objects that fit into that week
+    arrayForSummaryData(allReflectionsObject);
+    formatTimestamp(allReflectionsObject);
+    console.log('dates are now: ', dates);
+    console.log('Weeks array is: ', weeks);
+
+  }
+
+  // FORMAT TIMESTAMP TO MONTH AND DAY FOR WEEKLY RANGE DROP DOWN
+    function formatWeeklyDropdown(allReflectionsObject) {
+      //order from last to most recent refleciton
+      allReflectionsObject.reverse();
+      for (var z = 0; z < allReflectionsObject.length; z++) {
+        var date = allReflectionsObject[z].reflectionDate;
+        var weekRange = moment(date).weekday(0).format('l') + ' to ' + moment(date).weekday(6).format('l');
+        console.log('weekRange is: ', weekRange);
+        weekObject.weekRange = weekRange;
+        console.log('WeekObject is: ', weekObject);
+      }
+    }
+
+  //pass in actual reflection object
+  weeklySummary(reflections);
 
   //LOOP THROUGH THE REFLECTION ARRAY AND GET DATA FOR FEELINGS, SLEEP, EXERCISE, AND FOOD
-  for (var i = 0; i < reflections.length; i++) {
-    var feelings = reflections[i].feelings;
+  for (var i = 0; i < allReflectionsObject.length; i++) {
+    var feelings = allReflectionsObject[i].feelings;
     for (var x = 0; x < feelings.length; x++) {
       //if value fo feeling is true, then store feeling name into feelingNames
       if (feelings[x].value === true) {
@@ -32,16 +103,16 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
       }
     }
 
-    var exercise = reflections[i].exercise;
+    var exercise = allReflectionsObject[i].exercise;
     exerciseAmount.push(exercise);
 
-    var food = reflections[i].food;
+    var food = allReflectionsObject[i].food;
     foodAmount.push(food);
 
-    var sleep = reflections[i].sleep;
+    var sleep = allReflectionsObject[i].sleep;
     sleepAmount.push(sleep);
 
-    var overall = reflections[i].overallfeeling;
+    var overall = allReflectionsObject[i].overallfeeling;
     overallAmount.push(overall);
   }
 console.log('OVERALL FEELING DATA', overallAmount);
@@ -80,9 +151,9 @@ countFeelings(feelingNames);
   //FORMAT TIMESTAMP TO JUST DAY OF WEEK
   function formatTimestamp() {
     //order from last to most recent refleciton
-    reflections.reverse();
-    for (var z = 0; z < reflections.length; z++) {
-      var date = reflections[z].reflectionDate;
+    allReflectionsObject.reverse();
+    for (var z = 0; z < allReflectionsObject.length; z++) {
+      var date = allReflectionsObject[z].reflectionDate;
       // date = moment(date).format('L');
       date = moment(date).format('dddd');
       console.log(date);

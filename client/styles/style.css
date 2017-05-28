@@ -82,15 +82,6 @@
   padding: 50px;
 }
 
-.md-button.md-fab.md-fab-bottom-right {
-    top: auto;
-    right: 20px;
-    bottom: 20px;
-    left: auto;
-    /*position: absolute;*/
-    position: fixed !important;
-}
-
 #formNextButton {
     color: white;
     font-size: 14px;
@@ -115,11 +106,15 @@
   font-family: 'Lato', sans-serif;
   text-align: center;
   margin: 0;
+  font-weight: bold;
+  font-size: 28px;
+  margin-left: 40px;
 }
 
-.md-toolbar-tools > .md-button:last-child {
-    margin-right: -60px;
+md-toolbar .md-menu {
+    margin-right: -20px;
 }
+
 
 .graph_image {
   background-color: grey;
