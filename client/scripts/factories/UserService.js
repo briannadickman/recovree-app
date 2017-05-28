@@ -125,7 +125,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
       var streak = sessionObject.streak;
       var goal = streakGoal - streak;
-      console.log("streak",streak);
+      // console.log("streak",streak);
 
       var ctx3 = document.getElementById("streakDonughtChart");
       var streakDonughtChart = new Chart(ctx3, {
@@ -147,7 +147,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
     function weeklyGraphs(sessionObject){
       var reflections = sessionObject.allReflections;
-      console.log('ALL REFLECTIONS', reflections);
+      // console.log('ALL REFLECTIONS', reflections);
 
       var feelingNames = [];
       var exerciseAmount = [];
@@ -184,8 +184,8 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
         var overall = reflections[i].overallfeeling;
         overallAmount.push(overall);
+        // console.log('OVERALL FEELING DATA', overallAmount);
       }
-    console.log('OVERALL FEELING DATA', overallAmount);
 
       //count occurence of each feeling and save in new object
       function countFeelings(array) {
@@ -207,7 +207,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
         });
 
         topFiveFeelings = sortByCount.slice(0, 5);
-        console.log('TOP FIVE FEELINGS', topFiveFeelings);
 
         //push feeling names into one array and feeling count into another array - will use for chart
         topFiveFeelings.forEach(function(item) {
@@ -215,6 +214,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
           feelingsCount.push(item.value);
         });
       }
+
     countFeelings(feelingNames);
 
 
@@ -226,8 +226,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
           var date = reflections[z].reflectionDate;
           // date = moment(date).format('L');
           date = moment(date).format('dddd');
-          console.log(date);
-          //push dates as dddd into array - will use for charts
           dates.push(date);
         }
       }
@@ -334,28 +332,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
         }
       }); //end line chart
 
-      //yes no graph for
-      //selfish dishonest, medication, using dream, connected w/ sponsor, service, use drugs/alcohol
-        var ctx4 = document.getElementById("yesNoChart");
-        var yesNoChart = new Chart(ctx4, {
-            type: 'horizontalBar',
-            data: {
-              // labels: ['Selfish/Dishonest', 'Medication', 'Using Dream', 'Sponsor Connection', 'Service', 'Drugs/Alcohol Use'],
-            },
-            options: {
-                scales: {
-                    xAxes: [{
-                    }],
-                    yAxes: [{
-                        ticks: {
-                          max: 5,
-                          min: 5,
-                          stepSize: 1
-                        }
-                    }]
-                }
-            }
-        }); //end of yesNoChart
 
     }//ends weeklyGraphs
 
