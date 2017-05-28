@@ -89,7 +89,7 @@ var generateSessionObject = function(allReflections, medication){
       //if a reflection exists and it didn't happen today or yesterday
     } else {
       serverSessionObject.yesterdayCompleted = false;
-      serverSessionObject.yesterdaysGoal = 'No goal set yesterday.';
+      serverSessionObject.yesterdaysGoal = 'No goal set yesterday';
       serverSessionObject.message = 'Glad to have you back!';
       serverSessionObject.streakCount = 0;
       return serverSessionObject;
