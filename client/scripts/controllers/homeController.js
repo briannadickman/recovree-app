@@ -10,10 +10,10 @@ myApp.controller('HomeController', ['$scope', '$http', '$location', 'UserService
   console.log('SESSION OBJ', $scope.sessionObject);
 
   //strek graph
+  var streakGoal = 30;
   var streak = $scope.sessionObject.streak;
-  console.log('STREAK', streak);
-  var goal = 30 - streak;
-  console.log('GOAL LEFT: ', goal);
+  var goal = streakGoal - streak;
+
   var ctx3 = document.getElementById("streakDonughtChart");
   var streakDonughtChart = new Chart(ctx3, {
       type: 'doughnut',
