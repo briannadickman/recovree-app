@@ -166,7 +166,7 @@ countFeelings(feelingNames);
       var date = allReflectionsObject[z].reflectionDate;
       // date = moment(date).format('L');
       date = moment(date).format('dddd');
-      console.log(date);
+      // console.log(date);
       //push dates as dddd into array - will use for charts
       dates.push(date);
     }
