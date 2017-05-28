@@ -10,19 +10,21 @@ myApp.controller('HomeController', ['$scope', '$http', '$location', 'UserService
   console.log('SESSION OBJ', $scope.sessionObject);
 
   //strek graph
+  var streakGoal = 30;
   var streak = $scope.sessionObject.streak;
-  console.log('STREAK', streak);
+  var goal = streakGoal - streak;
 
   var ctx3 = document.getElementById("streakDonughtChart");
   var streakDonughtChart = new Chart(ctx3, {
       type: 'doughnut',
       data: {
         datasets: [{
-         data: [3, 30],
-         backgroundColor: ['#813172','#bfbfbf']
+         data: [streak, goal],
+         backgroundColor: ['#813172','#bfbfbf'],
       }],
+      // labels: ['Goal','Streak']
     },
-
+    // options:
   });
 
 }]);
