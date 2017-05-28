@@ -100,7 +100,6 @@ function weeklySummary(allReflectionsObject) {
     }
 
 
-
   //LOOP THROUGH THE REFLECTION ARRAY AND GET DATA FOR FEELINGS, SLEEP, EXERCISE, AND FOOD
   function arrayForSummaryData(){
   for (var i = 0; i < allReflectionsObject.length; i++) {
