@@ -234,8 +234,16 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     $location.path('/home');
   }
 
-  function routeHeaderMenu(){
-    
+  function routeHeaderMenu(route){
+    console.log('route origin is: ', route);
+    if(route == 'gratitude'){
+      $http.get('/reflection').then(function(response){
+        console.log('gratitude reflections are: ', response.data);
+      });
+    } else if (route == 'resources'){
+      
+      $location.path('/menuPage');
+    }
   }
 
   //return out of UserService Factory
