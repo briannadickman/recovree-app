@@ -193,14 +193,28 @@ formatTimestamp();
     }
   }); //end line chart
 
-
+//yes no graph for
+//selfish dishonest, medication, using dream, connected w/ sponsor, service, use drugs/alcohol
   var ctx3 = document.getElementById("yesNoChart");
   var yesNoChart = new Chart(ctx3, {
-    type: 'bar',
-    data: {
-    }
-  }); //end bar chart
-
+      type: 'horizontalBar',
+      data: {
+        // labels: ['Selfish/Dishonest', 'Medication', 'Using Dream', 'Sponsor Connection', 'Service', 'Drugs/Alcohol Use'],
+      },
+      options: {
+          scales: {
+              xAxes: [{
+              }],
+              yAxes: [{
+                  ticks: {
+                    max: 5,
+                    min: 5,
+                    stepSize: 1
+                  }
+              }]
+          }
+      }
+  });
 
 
 }]); //end of controller
