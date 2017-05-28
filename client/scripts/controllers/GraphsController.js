@@ -272,6 +272,6 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
 //       }
 //     }
 //   }); //end line chart
-//
+
 
 }]); //end of controller
