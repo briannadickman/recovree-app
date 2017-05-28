@@ -7,6 +7,8 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
     countByDay : []
   };
 
+  var dailyCount = [];
+  var dates = [];
 
   function getReflections() {
       getCSVforReflections();
@@ -16,9 +18,6 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
       getCSVforRegistration();
   }
 
-  function buildGraphs() {
-    buildAdminGraphs();
-  }
 
   function getCSVforReflections(){
     $http.get('/csvExport/reflections').then(function(response){
@@ -43,14 +42,26 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
     $http.get('reflection/countByDay').then(function(response){
       adminObject.countByDay = response.data;
       console.log('count by day: ', adminObject.countByDay);
+      storeDaysAndCountInArray();
     });
+  }
+
+  function storeDaysAndCountInArray() {
+      for (var i = 0; i < adminObject.countByDay.length; i++) {
+        var reflectionDate = adminObject.countByDay[i].date;
+        var reflectionCount = adminObject.countByDay[i].count;
+        dates.push(reflectionDate);
+        dailyCount.push(reflectionCount);
+      }
+      console.log('DATES', dates);
+      console.log('COUNTS', dailyCount);
   }
 
   function buildAdminGraphs() {
     //replace with actual dates
-    var days = ['5/21', '5/22', '5/23', '5/24', '5/25', '5/26', '5/27'];
+    var days = ['5/21', '5/22', '5/23', '5/24'];
     //replace with actual count of daily participants
-    var reflectionCount = [12, 13, 18, 12, 10, 8, 16];
+    var reflectionCount = [6, 13, 8, 10];
 
     var ctx = document.getElementById("dailyParticipantsChart");
     var dailyParticipantsChart = new Chart(ctx, {
@@ -68,7 +79,7 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
         scales: {
           yAxes: [{
             ticks: {
-              max: 20,
+              // max: 20,
               min: 0,
               stepSize: 1
             }
