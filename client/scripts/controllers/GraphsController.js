@@ -1,10 +1,9 @@
 myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
   console.log('GraphsController sourced!');
-
-  UserService.refreshSessionObject();
-
-  //all the REFLECTIONS data
+  var location = 'weekly';
+  UserService.refreshSessionObject(location);
   $scope.sessionObject = UserService.sessionObject;
+
   var reflections = $scope.sessionObject.allReflections;
   console.log('ALL REFLECTIONS', reflections);
 
@@ -215,6 +214,5 @@ formatTimestamp();
           }
       }
   });
-
 
 }]); //end of controller
