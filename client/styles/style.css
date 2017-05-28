@@ -106,7 +106,7 @@
   font-family: 'Lato', sans-serif;
   text-align: center;
   margin: 0;
-  font-weight: bold;
+  /*font-weight: bold;*/
   font-size: 28px;
   margin-left: 40px;
 }
