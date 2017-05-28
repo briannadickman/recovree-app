@@ -9,9 +9,5 @@ myApp.controller('NavController', ['$scope', '$http', '$location', 'UserService'
     $location.path("/login");
   }
 
-  $scope.goHome = goHome;
-  function goHome(){
-    $location.path('/home');
-  }
 
 }]);
