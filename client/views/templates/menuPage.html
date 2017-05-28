@@ -1,0 +1,13 @@
+<md-content class = 'wrapper' flex ng-if = '((sessionObject.reflectionCompleted) === false)' layout = 'column' layout-align = 'center center' ng-controller = 'NavController'>
+  <div layout = 'column' layout-align = 'center center'>
+    <h3 class='md-subhead'>Resources</h3>
+    <md-button class = 'md-raised md-primary reflectBtn'style="font-size: 15px; font-weight: bold;" ng-click = 'launchReflection()'>Reflect</md-button>
+  </div>
+</md-content>
+
+<md-content  class = 'wrapper' flex ng-if = '((sessionObject.reflectionCompleted) === true)'>
+  <div layout = 'column' layout-align = 'center center'>
+    <h3 class='md-subhead'>Gratitude</h3>
+    <md-button class = 'md-raised md-primary reflectBtn'style="font-size: 15px; font-weight: bold;" ng-click = 'launchReflection()'>Reflect</md-button>
+  </div>
+</md-content>

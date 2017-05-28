@@ -85,7 +85,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
 
     //builds sessionObject
     function getSessionObject(){
-      console.log('what is going on');
+      // console.log('what is going on');
       $http.get('reflection/session/')
       .then(function(response){
         console.log('response in getSessionObject:', response);
@@ -234,6 +234,10 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     $location.path('/home');
   }
 
+  function routeHeaderMenu(){
+    
+  }
+
   //return out of UserService Factory
   return {
     user: user,
@@ -249,6 +253,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location){
     launchReflection: launchReflection,
     reflectionFormNextButton: reflectionFormNextButton,
     reflectionFormPrevButton: reflectionFormPrevButton,
-    returnHomeButton: returnHomeButton
+    returnHomeButton: returnHomeButton,
+    routeHeaderMenu: routeHeaderMenu
   };
 }]);

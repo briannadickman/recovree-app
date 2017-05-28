@@ -7,7 +7,20 @@ myApp.controller('NavController', ['$scope', '$http', '$location', 'UserService'
     user.username = '';
     user.password = '';
     $location.path("/login");
-
   }
+
+  $scope.goHome = goHome;
+  function goHome(){
+    $location.path('/home');
+  }
+
+  $scope.goToGratitude = function(){
+    console.log('Gratitude button clicked!');
+  };
+
+  $scope.goToResources = function(){
+    console.log('Resources button clicked!');
+  };
+  $scope.routeHeaderMenu = UserService.routeHeaderMenu;
 
 }]);
