@@ -14,8 +14,8 @@ myApp.controller('HomeController', ['$scope', '$http', '$location', 'UserService
   var streak = $scope.sessionObject.streak;
   var goal = streakGoal - streak;
 
-  var ctx3 = document.getElementById("streakDonughtChart");
-  var streakDonughtChart = new Chart(ctx3, {
+  var ctx = document.getElementById("streakDonughtChart");
+  var streakDonughtChart = new Chart(ctx, {
       type: 'doughnut',
       data: {
         datasets: [{

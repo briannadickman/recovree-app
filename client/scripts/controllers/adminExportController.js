@@ -21,8 +21,8 @@ myApp.controller('AdminExportController', ['$scope', '$http', '$location', 'Admi
   //replace with actual count of daily participants
   var reflectionCount = [12, 13, 18, 12, 10, 8, 16];
 
-  var ctx4 = document.getElementById("dailyParticipantsChart");
-  var dailyParticipantsChart = new Chart(ctx4, {
+  var ctx = document.getElementById("dailyParticipantsChart");
+  var dailyParticipantsChart = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: days,

@@ -194,4 +194,13 @@ formatTimestamp();
   }); //end line chart
 
 
+  var ctx3 = document.getElementById("yesNoChart");
+  var yesNoChart = new Chart(ctx3, {
+    type: 'bar',
+    data: {
+    }
+  }); //end bar chart
+
+
+
 }]); //end of controller
