@@ -22,9 +22,9 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   var countOfFeelings = {},
     sortByCount, topFiveFeelings;
   var dates = [];
-  // var week = [];
+  var week = [];
   var weekObject = {
-    week: [],
+    week: week,
     weekRange: ''
   };
   // var weeks = weekObject;
@@ -35,8 +35,8 @@ var currentWeek = moment().week();
 
 //Selecting weekly summary
 function weeklySummary(allReflectionsObject) {
-  var weekObjectWeek = weekObject.week;
-  weekObjectWeek = [];
+  // var weekObjectWeek = weekObject.week;
+  // weekObjectWeek = [];
 
   // take all reflections objects and loop through reflecton object to grab current week
   for (var q = 0; q < allReflectionsObject.length; q++) {
@@ -45,22 +45,32 @@ function weeklySummary(allReflectionsObject) {
     var reflectionsWeek = moment(date).week(); //determines what the week of a specific date is
 
       if (reflectionsWeek == currentWeek) {
-        weekObjectWeek.push(reflection);
-      } else {
-        console.log('week for ' + currentWeek + ' is', weekObjectWeek);
-        // formatWeeklyDropdown(week);
-        // weeks.push(week);
+        week.push(reflection);
+      } else { // when changing to a new week
+        console.log('WEEK ' + currentWeek + ' IS: ', week);
+        week = weekObject.week;
+        console.log('WEEKOBJECT ' + currentWeek + ' IS: ', weekObject);
+        weeks.push(weekObject);
+        console.log('WEEKS ARE: ', weeks);
         currentWeek = reflectionsWeek;
-        weeks.push(weekObject);
-        weekObjectWeek = [];
-        console.log('EMPTYING WEEK OBJECT WEEK: ', weekObjectWeek);
-        weekObject.weekRange = '';
-        weekObjectWeek.push(reflection);
+        week = [];
+        console.log('empty week: ', week);
+        weekObject.week = [];
+        console.log('empty weekObject.week: ', weekObject.week);
+        // weekObject.weekRange = '';
+        // console.log('empty weekObject.weekRange: ', weekObject.weekRange);
+        week.push(reflection);
       }
-      if (q == allReflectionsObject.length - 1) {
-        // formatWeeklyDropdown(week);
-        weeks.push(weekObject);
-      }
+      //push final weekObject into weeks
+      // console.log(week.length);
+      // if (week.length < 7) {
+      //   console.log('q is: ', q);
+      //   // formatWeeklyDropdown(week);
+      //   // console.log('WEEKS ARE: ', weeks);
+      //   console.log('week for ' + currentWeek + ' is', week);
+      //   weeks.push(week);
+      //
+      // }
     }
     //for drop-down: get dates for that week
     // ng-change
