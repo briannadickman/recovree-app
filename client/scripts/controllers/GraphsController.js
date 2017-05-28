@@ -124,8 +124,8 @@ formatTimestamp();
 
 
   //line chart for food, sleep, exercise
-  var ctx2 = document.getElementById("lineChart");
-  var lineChart = new Chart(ctx2, {
+  var ctx2 = document.getElementById("overallChart");
+  var overallChart = new Chart(ctx2, {
     type: 'line',
     data: {
       labels: dates,

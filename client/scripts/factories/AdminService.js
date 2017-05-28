@@ -5,6 +5,7 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
     countByDay : []
   };
 
+
   function getReflections() {
       getCSVforReflections();
   }
