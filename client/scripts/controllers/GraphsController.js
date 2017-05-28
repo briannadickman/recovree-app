@@ -49,14 +49,15 @@ function weeklySummary(allReflectionsObject) {
       } else { // when changing to a new week
         console.log('WEEK ' + currentWeek + ' IS: ', week);
         week = weekObject.week;
-        console.log('WEEKOBJECT ' + currentWeek + ' IS: ', weekObject);
-        weeks.push(weekObject);
-        console.log('WEEKS ARE: ', weeks);
+        console.log('WEEK OBJECT ' + currentWeek + ' IS: ', weekObject);
+        // weeks.push(weekObject);
+        // console.log('WEEKS ARE: ', weeks);
+        formatWeeklyDropdown(weekObject);
         currentWeek = reflectionsWeek;
         week = [];
-        console.log('empty week: ', week);
+        // console.log('empty week: ', week);
         weekObject.week = [];
-        console.log('empty weekObject.week: ', weekObject.week);
+        // console.log('empty weekObject.week: ', weekObject.week);
         // weekObject.weekRange = '';
         // console.log('empty weekObject.weekRange: ', weekObject.weekRange);
         week.push(reflection);
@@ -84,19 +85,19 @@ function weeklySummary(allReflectionsObject) {
   weeklySummary(allReflectionsObject);
 
   // FORMAT TIMESTAMP TO MONTH AND DAY FOR WEEKLY RANGE DROP DOWN
-    // function formatWeeklyDropdown(allReflectionsObject) {
-    //   //order from last to most recent refleciton
-    //   allReflectionsObject.reverse();
-    //   for (var z = 0; z < allReflectionsObject.length; z++) {
-    //     var date = allReflectionsObject[z].reflectionDate;
-    //     var weekRange = moment(date).weekday(0).format('l') + ' to ' + moment(date).weekday(6).format('l');
-    //     console.log('weekRange is: ', weekRange);
-    //     weekObject.weekRange = weekRange;
-    //     console.log('WeekObject is: ', weekObject);
-    //     weeks.push(weekObject);
-    //     console.log('ALL WEEKS ARE: ', weeks);
-    //   }
-    // }
+    function formatWeeklyDropdown(weekObject) {
+      // console.log('WEEK OBJECT in dropdown IS ', weekObject);
+      week = weekObject.week;
+      for (var z = 0; z < week.length; z++) {
+        var date = week[z].reflectionDate;
+        var weekRange = moment(date).weekday(0).format('l') + ' to ' + moment(date).weekday(6).format('l');
+        // console.log('weekRange is: ', weekRange);
+        weekObject.weekRange = weekRange;
+        // console.log('WeekObject is: ', weekObject);
+        weeks.push(weekObject);
+        console.log('ALL WEEKS ARE: ', weeks);
+      }
+    }
 
 
 
