@@ -1,7 +1,9 @@
 <md-toolbar layout='row' ng-controller = 'NavController'>
 
     <div class="md-toolbar-tools">
-        <h1 layout='column' flex='80' md-truncate>RECOVREE</h1>
+        <span flex></span>
+          <h1 layout='column' flex='80' md-truncate>RECOVREE</h1>
+        <span flex></span>
 
         <div layout='column' flex>
 
@@ -11,6 +13,18 @@
                 </md-button>
 
                 <md-menu-content width="3">
+                    <md-menu-item>
+                        <md-button ng-click=''>
+                            <b>Gratitude</b>
+                        </md-button>
+                    </md-menu-item>
+                  <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <md-button ng-click=''>
+                            <b>Resources</b>
+                        </md-button>
+                    </md-menu-item>
+                  <md-menu-divider></md-menu-divider>
                     <md-menu-item>
                         <md-button ng-click='logout(user)'>
                             <b>Logout</b>

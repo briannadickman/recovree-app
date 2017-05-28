@@ -180,9 +180,11 @@ h1{
 }
 
 .footer-button{
-  width: 100px !important;
+  width: 150px !important;
   margin: 0 !important;
   padding: 0 !important;
+  font-size: 0.75em;
+  font-weight: bold;
 }
 
 .center-text{
