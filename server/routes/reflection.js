@@ -33,8 +33,6 @@ router.get('/', function (req, res) {
 });
 
 router.get('/countByDay', function(req, res){
-  console.log('count by day hit');
-
   Reflection.aggregate(
     [{$group: {
       _id : { month: {$month : '$reflectionDate'}, day: {$dayOfMonth: '$reflectionDate'}, year: { $year : '$reflectionDate'}},
@@ -44,6 +42,7 @@ router.get('/countByDay', function(req, res){
     if (err){
       console.log('error in count by day: ', err);
     }
+    console.log('count data: ', countData);
     var reflectionCountByDate = convertCount(countData);
     res.send(reflectionCountByDate);
   });
