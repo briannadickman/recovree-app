@@ -46,13 +46,6 @@ myApp.controller('AdminExportController', ['$scope', '$http', '$location', 'Admi
       legend: {
         display: false
       },
-      tooltips: {
-        callbacks: {
-          label: function(tooltipItem) {
-            return tooltipItem.yLabel;
-          }
-        }
-      }
     }
   });
 
