@@ -6,9 +6,9 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   //all the REFLECTIONS data
   $scope.sessionObject = UserService.sessionObject;
   $scope.weeks = weeks;
-  
-  var reflections = $scope.sessionObject.allReflections;
-  console.log('ALL REFLECTIONS', reflections);
+
+  var allReflectionsObject = $scope.sessionObject.allReflections;
+  console.log('ALL REFLECTIONS', allReflectionsObject);
 
   var feelingNames = [];
   var exerciseAmount = [];
@@ -22,47 +22,44 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   var countOfFeelings = {},
     sortByCount, topFiveFeelings;
   var dates = [];
-  var week = [];
+  // var week = [];
   var weekObject = {
-    week: week,
+    week: [],
     weekRange: ''
   };
-  var weeks = weekObject;
-
-
+  // var weeks = weekObject;
+  var weeks = [];
 
 //determines what the current week in time is
 var currentWeek = moment().week();
 
 //Selecting weekly summary
 function weeklySummary(allReflectionsObject) {
-  // take all reflections objects
+  var weekObjectWeek = weekObject.week;
+  weekObjectWeek = [];
 
-  //loop through reflecton object and grab current week
+  // take all reflections objects and loop through reflecton object to grab current week
   for (var q = 0; q < allReflectionsObject.length; q++) {
     var reflection = allReflectionsObject[q];
     var date = reflection.reflectionDate;
+    var reflectionsWeek = moment(date).week(); //determines what the week of a specific date is
 
-      console.log('CurrentWeek is now: ', currentWeek);
-
-      //determines what the week of a specific date is
-      var reflectionsWeek = moment(date).week();
-
-      // filterWeeks(reflectionsWeek, day, date);
       if (reflectionsWeek == currentWeek) {
-        week.push(reflection);
+        weekObjectWeek.push(reflection);
       } else {
+        console.log('week for ' + currentWeek + ' is', weekObjectWeek);
+        // formatWeeklyDropdown(week);
+        // weeks.push(week);
         currentWeek = reflectionsWeek;
-        console.log('CurrentWeek is now: ', currentWeek);
-        formatWeeklyDropdown(week);
-        weeks.push(week);
-        week = [];
-        week.push(reflection);
-        // weeklySummary(reflections);
+        weeks.push(weekObject);
+        weekObjectWeek = [];
+        console.log('EMPTYING WEEK OBJECT WEEK: ', weekObjectWeek);
+        weekObject.weekRange = '';
+        weekObjectWeek.push(reflection);
       }
       if (q == allReflectionsObject.length - 1) {
-        formatWeeklyDropdown(week);
-        weeks.push(week);
+        // formatWeeklyDropdown(week);
+        weeks.push(weekObject);
       }
     }
     //for drop-down: get dates for that week
@@ -71,28 +68,30 @@ function weeklySummary(allReflectionsObject) {
     //return only reflection objects that fit into that week
     arrayForSummaryData(allReflectionsObject);
     formatTimestamp(allReflectionsObject);
-    console.log('dates are now: ', dates);
-    console.log('Weeks array is: ', weeks);
-
   }
 
-  // FORMAT TIMESTAMP TO MONTH AND DAY FOR WEEKLY RANGE DROP DOWN
-    function formatWeeklyDropdown(allReflectionsObject) {
-      //order from last to most recent refleciton
-      allReflectionsObject.reverse();
-      for (var z = 0; z < allReflectionsObject.length; z++) {
-        var date = allReflectionsObject[z].reflectionDate;
-        var weekRange = moment(date).weekday(0).format('l') + ' to ' + moment(date).weekday(6).format('l');
-        console.log('weekRange is: ', weekRange);
-        weekObject.weekRange = weekRange;
-        console.log('WeekObject is: ', weekObject);
-      }
-    }
-
   //pass in actual reflection object
-  weeklySummary(reflections);
+  weeklySummary(allReflectionsObject);
+
+  // FORMAT TIMESTAMP TO MONTH AND DAY FOR WEEKLY RANGE DROP DOWN
+    // function formatWeeklyDropdown(allReflectionsObject) {
+    //   //order from last to most recent refleciton
+    //   allReflectionsObject.reverse();
+    //   for (var z = 0; z < allReflectionsObject.length; z++) {
+    //     var date = allReflectionsObject[z].reflectionDate;
+    //     var weekRange = moment(date).weekday(0).format('l') + ' to ' + moment(date).weekday(6).format('l');
+    //     console.log('weekRange is: ', weekRange);
+    //     weekObject.weekRange = weekRange;
+    //     console.log('WeekObject is: ', weekObject);
+    //     weeks.push(weekObject);
+    //     console.log('ALL WEEKS ARE: ', weeks);
+    //   }
+    // }
+
+
 
   //LOOP THROUGH THE REFLECTION ARRAY AND GET DATA FOR FEELINGS, SLEEP, EXERCISE, AND FOOD
+  function arrayForSummaryData(){
   for (var i = 0; i < allReflectionsObject.length; i++) {
     var feelings = allReflectionsObject[i].feelings;
     for (var x = 0; x < feelings.length; x++) {
@@ -116,6 +115,7 @@ function weeklySummary(allReflectionsObject) {
     overallAmount.push(overall);
   }
 console.log('OVERALL FEELING DATA', overallAmount);
+}
 
   //count occurence of each feeling and save in new object
   function countFeelings(array) {
