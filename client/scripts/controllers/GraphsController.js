@@ -3,5 +3,4 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   var location = 'weekly';
   UserService.refreshSessionObject(location);
   $scope.sessionObject = UserService.sessionObject;
-
 }]);
