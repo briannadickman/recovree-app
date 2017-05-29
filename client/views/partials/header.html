@@ -1,18 +1,30 @@
-<md-toolbar layout='row' ng-controller = 'NavController'>
+<md-toolbar layout='row' ng-controller = 'NavController' ng-click='goHome()'>
 
     <div class="md-toolbar-tools">
-        <h1 layout='column' flex='80' md-truncate>RECOVREE</h1>
+          <h1 layout='column' style='text-align: center' md-truncate id='headerTitle' flex='90'>RECOVREE</h1>
 
         <div layout='column' flex>
 
-            <md-menu ng-hide = "$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms'">
+            <md-menu ng-hide = "$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms' || $location.path() === '/confirmreset'|| $location.path() === '/forgotpassword'">
                 <md-button class="md-icon-button" aria-label="Logout" ng-click="$mdMenu.open($event)">
                     <md-icon md-menu-origin><i class="material-icons" id='headerMenuBtn'>more_vert</i></md-icon>
                 </md-button>
 
                 <md-menu-content width="3">
                     <md-menu-item>
-                        <md-button ng-href="#/login">
+                        <md-button ng-click='goToGratitude()'>
+                            <b>Gratitude</b>
+                        </md-button>
+                    </md-menu-item>
+                  <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <md-button ng-click='goToResources()'>
+                            <b>Resources</b>
+                        </md-button>
+                    </md-menu-item>
+                  <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <md-button ng-click='logout(user)'>
                             <b>Logout</b>
                         </md-button>
                     </md-menu-item>

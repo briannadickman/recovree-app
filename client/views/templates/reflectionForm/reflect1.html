@@ -1,29 +1,29 @@
-<div class='wrapper' layout = 'column' layout-align = 'center center'>
-  <div  layout='column' layout-align='center center' flex>
 
-<md-content class='wrapper' flex>
-    <div layout='column' layout-align='center center' flex>
-      <div>
+<md-content class='wrapper' layout = 'column' layout-align = 'center center' flex>
+  <div  layout='column' layout-align='center center' flex>
+        <md-content flex>
           <h3 class='md-title'>Overall, how are you feeling?</h3>
           <md-slider-container >
               <span>Terrible</span>
                   <md-slider aria-label = 'Overall, how are you feeling today? 1 = terrible 5 = great' flex  class='md-accent md-default' md-discrete ng-model="reflectionObject.overallfeeling" step="1" min="1" max="5" aria-label="rating">
                   </md-slider>
               <span>Great</span>
+
+
           </md-slider-container>
-      </div>
-      <div class='wrapper' layout = 'column' layout-align = 'center center'>
-        <div  layout='column' layout-align='center center' flex>
+          <div ng-switch on = "reflectionObject.overallfeeling" layout = 'row' layout-align = 'center center'>
+               <span ng-switch-when = "1">Terrible</span>
+               <span ng-switch-when = "2">Not So Great</span>
+               <span ng-switch-when = "3">Okay</span>
+               <span ng-switch-when = "4">Good</span>
+               <span ng-switch-when = "5">Great</span>
+          </div>
 
-        <div>
-            <h3 class='md-title'>What emotions did you experience today?</h3>
-        </div>
-
-        <md-content>
+          <h3 class='md-title'>What emotions did you experience today?</h3>
           <form name="dailyFeelingsForm" novalidate>
               <div layout = 'row' layout-align = 'center center' layout-wrap>
                   <ng-form name="feelingForm" class="form-group" ng-repeat="feeling in reflectionObject.feelings">
-                      <md-button class='md-raised' ng-class="{'md-warn':(feeling.value === true)}" ng-click='toggleFeeling(feeling)'>
+                      <md-button class='md-raised' ng-class="{'md-primary':(feeling.value === true)}" ng-click='toggleFeeling(feeling)'>
                           {{feeling.name}}
                       </md-button>
                   </ng-form>
@@ -48,4 +48,4 @@
 
         </div>
     </div>
-</div>
+</md-content>

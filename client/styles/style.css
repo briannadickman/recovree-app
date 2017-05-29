@@ -2,6 +2,18 @@
   min-height: 100%;
 }*/
 
+.streakTitle {
+  color: #813172;
+  font-size: 18px;
+}
+.streak {
+  color: #813172;
+  font-size: 24px;
+}
+.reflectBtn {
+  font-size: 40px;
+  font-weight: bold;
+}
 
 .instructions .container h1 {
     font-size: 24px;
@@ -70,15 +82,6 @@
   padding: 50px;
 }
 
-.md-button.md-fab.md-fab-bottom-right {
-    top: auto;
-    right: 20px;
-    bottom: 20px;
-    left: auto;
-    /*position: absolute;*/
-    position: fixed !important;
-}
-
 #formNextButton {
     color: white;
     font-size: 14px;
@@ -103,11 +106,14 @@
   font-family: 'Lato', sans-serif;
   text-align: center;
   margin: 0;
+  font-size: 28px;
+  margin-left: 40px;
 }
 
-.md-toolbar-tools > .md-button:last-child {
-    margin-right: -60px;
+md-toolbar .md-menu {
+    margin-right: -20px;
 }
+
 
 .graph_image {
   background-color: grey;
@@ -168,11 +174,37 @@ h1{
 }
 
 .footer-button{
-  width: 100px !important;
+  width: 150px !important;
   margin: 0 !important;
   padding: 0 !important;
+  font-size: 0.75em;
+  font-weight: bold;
 }
 
 .center-text{
   text-align: center;
+}
+
+#loginLogo{
+  height: 100px;
+  width: 100px;
+  border-radius: 5px;
+}
+
+#loginBox{
+  /*opacity: .5;*/
+  background-color: whitesmoke;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+#northernLights{
+  /*background-image: url(/styles/images/northernLights.jpg);*/
+  /*background-image: url(/styles/images/blueBackground.jpg);*/
+  /*background-image: url(/styles/images/purpleBackground.jpg);*/
+  /*background-image: url(/styles/images/largeLights.jpg);*/
+
+  background-repeat: no-repeat;
+  background-position:top;
+  background-size: cover;
 }

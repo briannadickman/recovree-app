@@ -1,41 +1,47 @@
-<md-content class = 'wrapper' flex>
-  <div layout = 'column' layout-align = 'center center' flex>
+<md-content class='wrapper' layout='column' layout-align='center center' flex>
+    <div layout='column' layout-align='center center' flex>
+        <md-content flex>
 
-<!-- Floating Next Button -->
-    <h3 class='md-subhead'>Did you connect with your sponsor/mentor today?</h3>
-    <div layout = 'row' layout-align = 'center'>
-      <span>No</span>
-      <md-switch aria-label = 'Did you connect with your sponsor today?'  class='md-accent md-default' ng-model="reflectionObject.spnsrMntrConnect">
-      </md-switch>
-      <span>Yes</span>
+
+            <h3 class='md-subhead'>Did you connect with your sponsor/mentor today?</h3>
+
+
+            <div layout='row' layout-align='center'>
+                <span>No</span>
+                <md-switch aria-label='Did you connect with your sponsor today?' class='md-accent md-default' ng-model="reflectionObject.spnsrMntrConnect">
+                </md-switch>
+                <span>Yes</span>
+            </div>
+
+            <h3 class='md-subhead'>How many group meetings did you attend today?</h3>
+            <md-input-container aria-label='How many group meetings did you attend today?' class='md-accent md-default'>
+                <label>Number of Meetings</label>
+                <md-select ng-model="reflectionObject.groupMeet">
+                    <md-option ng-value="0">0</md-option>
+                    <md-option ng-value="1">1</md-option>
+                    <md-option ng-value="2">2</md-option>
+                    <md-option ng-value="3">3</md-option>
+                    <md-option ng-value="4">4</md-option>
+                    <md-option ng-value="5">5</md-option>
+                </md-select>
+            </md-input-container>
+
+            <h3 class='md-subhead'>Did you engage in any service or community work today?</h3>
+            <div layout='row' layout-align='center' flex>
+                <span>No</span>
+                <md-switch aria-label='Did you engage in any service or community work today?' class='md-accent md-default' ng-model="reflectionObject.commntyService">
+                </md-switch>
+                <span>Yes</span>
+            </div>
+        </md-content>
+
+
+        <section layout='row' layout-align='center end'>
+            <md-button class="md-raised md-primary form-button" aria-label="Prev Reflection" ng-click='reflectionFormPrevButton(sessionObject, reflectionObject)'>Prev</md-button>
+            <md-button class="md-raised md-accent form-button" aria-label="Next Reflection" ng-click='reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
+        </section>
+
     </div>
 
-    <h3 class='md-subhead'>How many group meetings did you attend today?</h3>
-    <md-input-container aria-label = 'How many group meetings did you attend today?'  class='md-accent md-default'>
-      <label>Number of Meetings</label>
-      <md-select ng-model="reflectionObject.groupMeet">
-          <md-option ng-value = "0">0</md-option>
-          <md-option ng-value = "1">1</md-option>
-          <md-option ng-value = "2">2</md-option>
-          <md-option ng-value = "3">3</md-option>
-          <md-option ng-value = "4">4</md-option>
-          <md-option ng-value = "5">5</md-option>
-      </md-select>
-    </md-input-container>
-
-    <h3 class='md-subhead'>Did you engage in any service or community work today?</h3>
-    <div layout = 'row' layout-align = 'center' flex>
-      <span>No</span>
-        <md-switch  aria-label = 'Did you engage in any service or community work today?'  class='md-accent md-default' ng-model="reflectionObject.commntyService">
-        </md-switch>
-      <span>Yes</span>
-    </div>
-
-    <section layout = 'row' layout-align = 'center end'>
-        <md-button class="md-raised md-primary form-button" aria-label="Prev Reflection" ng-click='reflectionFormPrevButton(sessionObject, reflectionObject)'>Prev</md-button>
-        <md-button class="md-raised md-accent form-button" aria-label="Next Reflection" ng-click='reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
-    </section>
-    
-  </div>
 </md-content>
 <!-- ends wrapper -->

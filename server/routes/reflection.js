@@ -18,6 +18,7 @@ var Registration = require('../models/registration');
 
 //our modules
 var generateSessionObject = require('../modules/sessionObject');
+var convertCount = require('../modules/convertCount');
 
 ///get reflections from database
 router.get('/', function (req, res) {
@@ -28,6 +29,22 @@ router.get('/', function (req, res) {
       res.send(500);
     }
     res.send(reflections);
+  });
+});
+
+router.get('/countByDay', function(req, res){
+  Reflection.aggregate(
+    [{$group: {
+      _id : { month: {$month : '$reflectionDate'}, day: {$dayOfMonth: '$reflectionDate'}, year: { $year : '$reflectionDate'}},
+      count: { $sum : 1 },
+      }
+    }], function(err, countData){
+    if (err){
+      console.log('error in count by day: ', err);
+    }
+    console.log('count data: ', countData);
+    var reflectionCountByDate = convertCount(countData);
+    res.send(reflectionCountByDate);
   });
 });
 

@@ -1,18 +1,31 @@
-<md-content class = 'wrapper' flex>
-  <div class = 'column' layout-align = 'center center' flex>
-    <div>
-      <h1 class='md-headline'>Reflection Weekly Summary</h1>
-    </div>
+<md-content class='wrapper' layout = 'column' layout-align = 'center center' flex>
+  <div layout='column' layout-align='center center' flex>
+      <md-content flex>
+        <div layout = 'column' layout-align = 'center center'>
+            <h1 style="font-size: 24px">Reflection Weekly Summary</h1>
 
 
-    <div flex>
-      <h3 class='md-subhead'>Top Five Feelings</h3>
-      <canvas id="feelingsChart"></canvas>
-    </div>
-    <br>
-    <div flex>
-      <h3 class='md-subhead' >Sleep, Food, and Exercise</h3>
-      <canvas id="lineChart"></canvas>
-    </div>
+            <div flex layout='column' layout-align='center center'>
+                <h3 style="font-size: 18px; text-align: center;">Top Five Feelings</h3>
+                <canvas id="feelingsChart"></canvas>
+            </div>
+
+            <hr>
+
+
+            <div flex layout='column' layout-align='center center'>
+                <h3 style="font-size: 18px; text-align: center;">Sleep, Food, and Exercise</h3>
+                <canvas id="overallChart"></canvas>
+            </div>
+
+            <hr>
+
+            <div flex layout='column' layout-align='center center'>
+                  <h3 style="font-size: 18px; text-align: center;">Yes/No Responses</h3>
+                  <canvas id="yesNoChart"></canvas>
+            </div>
+
+        </div>
+      </md-content>
   </div>
 </md-content>
