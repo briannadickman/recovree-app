@@ -19,14 +19,12 @@ myApp.controller('NavController', ['$scope', '$http', '$location', 'UserService'
 
   $scope.goToGratitude = function(){
     console.log('Gratitude button clicked!');
-    route = 'gratitude';
-    routeHeaderMenu(route);
+    $location.path('/gratitude');
   };
 
   $scope.goToResources = function(){
     console.log('Resources button clicked!');
-    route = 'resources';
-    routeHeaderMenu(route);
+    $location.path('/resources');
   };
 
 

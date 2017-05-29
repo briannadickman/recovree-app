@@ -462,18 +462,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     $location.path('/home');
   }
 
-  function routeHeaderMenu(route){
-    console.log('route origin is: ', route);
-    if(route == 'gratitude'){
-      $http.get('/reflection').then(function(response){
-        console.log('gratitude reflections are: ', response.data);
-      });
-    } else if (route == 'resources'){
-
-      $location.path('/menuPage');
-    }
-  }
-
   //return out of UserService Factory
   return {
     user: user,
@@ -489,7 +477,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     launchReflection: launchReflection,
     reflectionFormNextButton: reflectionFormNextButton,
     reflectionFormPrevButton: reflectionFormPrevButton,
-    returnHomeButton: returnHomeButton,
-    routeHeaderMenu: routeHeaderMenu
+    returnHomeButton: returnHomeButton
   };
 }]);
