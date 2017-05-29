@@ -107,6 +107,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         console.log("session Object at end of getSessionObject", sessionObject);
         buildGraphs(location);
       });
+
   } //ends getSessionObject
 
   function buildGraphs(location) {
@@ -358,15 +359,15 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
 
     // assigns key value pairs
     reflectionObject.feelings = feelingsArray;
-    reflectionObject.overallfeeling = 1;
+    reflectionObject.overallfeeling = 3;
     reflectionObject.feelingsWhy = '';
     reflectionObject.drugAlcoholIntake = false;
     reflectionObject.medication = false;
-    reflectionObject.sleep = 1;
+    reflectionObject.sleep = 3;
     reflectionObject.dream = false;
     reflectionObject.whatDream = '';
-    reflectionObject.exercise = 1;
-    reflectionObject.food = 1;
+    reflectionObject.exercise = 3;
+    reflectionObject.food = 3;
     reflectionObject.spnsrMntrConnect = false;
     reflectionObject.groupMeet = false;
     reflectionObject.commntyService = false;
