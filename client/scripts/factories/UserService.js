@@ -40,6 +40,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
           console.log('success saving member');
           console.log('response', response);
           console.log('response.data.memberID', response.data.memberID);
+
           emptyUser(user);
           userDemographics(registration);
         },
@@ -49,6 +50,8 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         });
     }
   } //ends registerUser
+
+
 
   function emptyUser(user) {
     user.username = '';
