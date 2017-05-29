@@ -9,6 +9,13 @@
                   </md-slider>
               <span>Great</span>
           </md-slider-container>
+          <div ng-switch on = "reflectionObject.sleep" layout = 'row' layout-align = 'center center'>
+               <span ng-switch-when = "1">Terrible</span>
+               <span ng-switch-when = "2">Not So Great</span>
+               <span ng-switch-when = "3">Okay</span>
+               <span ng-switch-when = "4">Good</span>
+               <span ng-switch-when = "5">Great</span>
+          </div>
 
 
         <h3 class='md-subhead'>Did you have a using dream?</h3>

@@ -1,5 +1,5 @@
-var reflectionCountByDate = [];
 var convertCount = function(countData){
+  var reflectionCountByDate = [];
   for (i=0; i<countData.length; i++){
     var countByDate = {
       date: '',
