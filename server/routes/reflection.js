@@ -22,7 +22,7 @@ var convertCount = require('../modules/convertCount');
 
 ///get reflections from database
 router.get('/', function (req, res) {
-  if(user.isAuthentication)
+  if(req.isAuthenticated()) {
   Reflection.find().lean().exec(function(err, reflections){
     if(err){
       console.log("Mongo Error: ", err);
@@ -30,9 +30,13 @@ router.get('/', function (req, res) {
     }
     res.send(reflections);
   });
+} else {
+    res.sendStatus(403);
+  }
 });
 
 router.get('/countByDay', function(req, res){
+  if(req.isAuthenticated()){
   Reflection.aggregate(
     [{$group: {
       _id : { month: {$month : '$reflectionDate'}, day: {$dayOfMonth: '$reflectionDate'}, year: { $year : '$reflectionDate'}},
@@ -46,10 +50,13 @@ router.get('/countByDay', function(req, res){
     var reflectionCountByDate = convertCount(countData);
     res.send(reflectionCountByDate);
   });
+} else {
+    res.sendStatus(403);
+  }
 });
 
 router.get('/session/', function(req, res){//took out memberID
-  if (req.isAuthenticated){
+  if (req.isAuthenticated()){
   var reflections;
   var medication;
   console.log('memberID in session: ', req.user.memberID);
@@ -133,7 +140,7 @@ router.get('/session/', function(req, res){//took out memberID
 
 //initial reflections post
 router.post('/', function(req,res){
-  if(req.isAuthenticated){
+  if(req.isAuthenticated()){
   console.log(req.user.memberID);
   var memberID = req.user.memberID;
   var reflection = req.body;
@@ -180,7 +187,7 @@ router.post('/', function(req,res){
 
 //updates reflections at each step of the form
 router.put('/', function (req, res) {
-  if(req.isAuthenticated){
+  if(req.isAuthenticated()){
   var reflectionUpdate = req.body;
   Reflection.findOne({'_id' : req.body._id}, function(err, curReflection){
     if (err) {

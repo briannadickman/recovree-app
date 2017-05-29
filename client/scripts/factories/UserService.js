@@ -15,10 +15,27 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
   function getuser() {
     $http.get('/user').then(function(response) {
       if (response.data.id) {
+        console.log('response in validation: ', response.data);
         // user has a curret session on the server
         userObject.userName = response.data.username;
         userObject.id = response.data.id;
       } else {
+        // user has no session, bounce them back to the login page
+        $location.path("/login");
+      }
+    });
+  } //ends getuser
+
+  //getuser
+  function getadmin() {
+    $http.get('/user').then(function(response) {
+      if (response.data.id && response.data.userType === 1) {
+        console.log('login response: ', response.data);
+        // user has a curret session on the server
+        userObject.userName = response.data.username;
+        userObject.id = response.data.id;
+      } else {
+        console.log('login response: ', response.data);
         // user has no session, bounce them back to the login page
         $location.path("/login");
       }

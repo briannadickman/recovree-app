@@ -13,7 +13,7 @@ var Reflection = require('../models/reflection');
 
 //Exports demographic info into a .CSV saved in the root directory
 router.get('/registration', function(req, res){
-  if(req.isAuthenticated && req.user.userType == 1){
+  if(req.isAuthenticated() && req.user.userType == 1){
   //Defines key names json2csv expects, _id and __v not included in export.
   var fields =      ['state',
                     'county',
@@ -54,7 +54,7 @@ router.get('/registration', function(req, res){
 
 //Exports demographic info into a .CSV saved in the root directory
 router.get('/reflections', function(req, res){
-  if(req.isAuthenticated && req.user.userType == 1){
+  if(req.isAuthenticated() && req.user.userType == 1){
   var fields =      ['feelingsWhy',
                     'drugAlcoholIntake',
                     'medication',
