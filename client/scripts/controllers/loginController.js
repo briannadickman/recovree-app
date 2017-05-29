@@ -62,7 +62,6 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
           $location.path('/admin-export');
         }
 
-
       } else {
         console.log('failure: ', response);
         $scope.message = "Username or password is incorrect.";
