@@ -85,6 +85,71 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     getReflectionObject(reflectionObject);
   } //ends refreshSessionObject
 
+  var thisWeek = moment().week();
+  var lastWeek = thisWeek - 1;
+  var thisMonth = moment().month();
+  var lastMonth = thisMonth - 1;
+
+  var thisWeeksObject = {
+    reflections : [],
+  };
+  var lastWeeksObject = {
+    reflections : [],
+  };
+  var thisMonthsObject = {
+    reflections : [],
+  };
+  var lastMonthsObject = {
+    reflections : [],
+  };
+
+  var displayThisWeek = function(){
+    weeklyGraphs(thisWeeksObject);
+  };
+  var displayLastWeek = function(){
+    weeklyGraphs(lastWeeksObject);
+  };
+  var displayThisMonth = function(){
+    weeklyGraphs(thisMonthsObject);
+  };
+  var displayLastMonth = function(){
+    weeklyGraphs(lastMonthsObject);
+  };
+
+  var getWeeklyData = function(reflections){
+    thisWeeksObject.reflections = [];
+    lastWeeksObject.reflections = [];
+    for (var i = 0; i<reflections.length; i++){
+      var currentReflection = reflections[i];
+      var reflectionWeek = moment(currentReflection.reflectionDate).week();
+      if (reflectionWeek === thisWeek){
+        thisWeeksObject.reflections.push(currentReflection);
+      }
+      else if (reflectionWeek === lastWeek){
+        lastWeeksObject.reflections.push(currentReflection);
+      }
+    }
+    console.log('this weeks reflections: ', thisWeeksObject.reflections);
+    console.log('last weeks reflections: ', lastWeeksObject.reflections);
+  };
+
+  var getMonthlyData = function(reflections){
+    thisMonthsObject.reflections = [];
+    lastMonthsObject.reflections = [];
+    for (var i = 0; i<reflections.length; i++){
+      var currentReflection = reflections[i];
+      var reflectionMonth = moment(currentReflection.reflectionDate).month();
+      if (reflectionMonth === thisMonth){
+        thisMonthsObject.reflections.push(currentReflection);
+      } else if (reflectionMonth === lastMonth){
+        lastMonthsObject.reflections.push(currentReflection);
+      }
+    }
+    console.log('this months reflections: ', thisMonthsObject.reflections);
+    console.log('last months reflections: ', lastMonthsObject.reflections);
+  };
+
+
   //builds sessionObject
   function getSessionObject(location) {
     console.log('what is going on', location);
@@ -106,6 +171,8 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         }
         sessionObject.takingMeds = response.data.medication;
         console.log("session Object at end of getSessionObject", sessionObject);
+        getWeeklyData(sessionObject.allReflections);
+        getMonthlyData(sessionObject.allReflections);
         buildGraphs(location);
       });
 
@@ -117,7 +184,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
       streakGraph(sessionObject);
     }
     if (location === 'weekly') {
-      weeklyGraphs(sessionObject);
+      weeklyGraphs(thisWeeksObject);
     }
   }
 
@@ -145,8 +212,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     });
   } //ends streakGraph
 
-
-  function weeklyGraphs(location){
+  function weeklyGraphs(timeframe){
     var feelingNames = [];
     var exerciseAmount = [];
     var foodAmount = [];
@@ -160,9 +226,11 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
       sortByCount, topFiveFeelings;
     var dates = [];
 
+    var reflections = timeframe.reflections;
+
 
     // function weeklyGraphs(sessionObject) {
-      var reflections = sessionObject.allReflections;
+      // var reflections = sessionObject.allReflections;
       // console.log('ALL REFLECTIONS', reflections);
 
       //LOOP THROUGH THE REFLECTION ARRAY AND GET DATA FOR FEELINGS, SLEEP, EXERCISE, AND FOOD
@@ -233,10 +301,20 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
       }
       formatTimestamp();
 
-
+      // function removeData(chart) {
+      //   chart.data.labels.pop();
+      //   chart.data.datasets.forEach((dataset) => {
+      //     dataset.data.pop();
+      //   });
+      //   chart.update();
+      // }
 
       //chart for top five feelings
       var ctx1 = document.getElementById("feelingsChart");
+      // if (areaChart) {
+      //   console.log('areaChart exists');
+      //   removeData(areaChart);
+      // }
       var areaChart = new Chart(ctx1, {
         type: 'polarArea',
         data: {
@@ -334,8 +412,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
       }); //end line chart
 
   }//ends weeklyGraphs
-
-
 
   //builds reflectionObject
   function getReflectionObject(reflectionObject) {
@@ -481,5 +557,9 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     reflectionFormNextButton: reflectionFormNextButton,
     reflectionFormPrevButton: reflectionFormPrevButton,
     returnHomeButton: returnHomeButton,
+    displayThisWeek : displayThisWeek,
+    displayLastWeek : displayLastWeek,
+    displayThisMonth : displayThisMonth,
+    displayLastMonth : displayLastMonth
   };
 }]);
