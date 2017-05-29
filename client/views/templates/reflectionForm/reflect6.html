@@ -14,17 +14,22 @@
             </div>
 
             <h3 class='md-subhead'>How many group meetings did you attend today?</h3>
-            <md-input-container aria-label='How many group meetings did you attend today?' class='md-accent md-default'>
-                <label>Number of Meetings</label>
-                <md-select ng-model="reflectionObject.groupMeet">
-                    <md-option ng-value="0">0</md-option>
-                    <md-option ng-value="1">1</md-option>
-                    <md-option ng-value="2">2</md-option>
-                    <md-option ng-value="3">3</md-option>
-                    <md-option ng-value="4">4</md-option>
-                    <md-option ng-value="5">5</md-option>
-                </md-select>
-            </md-input-container>
+            <div>
+              <md-slider-container >
+                  <span>0</span>
+                      <md-slider aria-label = 'How many group meetings did you attend today?' flex  class='md-accent md-default' md-discrete ng-model="reflectionObject.groupMeet" step="1" min="1" max="5" aria-label="rating">
+                      </md-slider>
+                  <span>5</span>
+              </md-slider-container>
+              <div ng-switch on = "reflectionObject.groupMeet" layout = 'row' layout-align = 'center center'>
+                   <span ng-switch-when = "0">0</span>
+                   <span ng-switch-when = "1">1</span>
+                   <span ng-switch-when = "2">2</span>
+                   <span ng-switch-when = "3">3</span>
+                   <span ng-switch-when = "4">4</span>
+                   <span ng-switch-when = "5">5</span>
+              </div>
+            </div>
 
             <h3 class='md-subhead'>Did you engage in any service or community work today?</h3>
             <div layout='row' layout-align='center' flex>
