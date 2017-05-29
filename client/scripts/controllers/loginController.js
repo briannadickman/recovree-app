@@ -84,6 +84,7 @@ $scope.showConfirm = function(ev) {
     console.log("call registerUser()");
     $scope.registerUser($scope.user,$scope.registration);
   }, function() {
+    console.log("you chose cancel");
   });
 };
 
