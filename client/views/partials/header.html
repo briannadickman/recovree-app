@@ -1,7 +1,13 @@
 <md-toolbar layout='row' ng-controller = 'NavController'>
 
     <div class="md-toolbar-tools" ng-click='goHome()' >
-          <h1 layout='column' style='text-align: center' md-truncate id='headerTitle' flex='90'>RECOVREE</h1>
+      <div layout='column' flex  ng-hide='$location.path() === "/admin-export"'>
+        <h1 layout='column' style='text-align: center' md-truncate id='headerTitle' flex='90'>RECOVREE</h1>
+      </div>
+
+      <div layout='column' flex  ng-show='$location.path() === "/admin-export"'>
+        <h1 layout='column' style='text-align: left' md-truncate id='headerTitle' flex='90'>RECOVREE</h1>
+      </div>
 
         <div layout='column' flex='10'>
             <md-menu ng-hide = "$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms' || $location.path() === '/confirmreset'|| $location.path() === '/forgotpassword' || $location.path() === '/admin-export'">
@@ -31,9 +37,9 @@
             </md-menu>
         </div>
 
-        <div layout='column' flex='10' ng-show='$location.path() === "/admin-export"'>
-          <md-button class="md-icon-button" aria-label="Logout" ng-click='showConfirm($event)'>
-            <md-icon><i class="material-icons">exit_to_app</i></md-icon>
+        <div layout='column' flex="10"  ng-show='$location.path() === "/admin-export"'>
+          <md-button ng-click='logout(user)'>
+          <span>Logout</span>
           </md-button>
         </div>
 
