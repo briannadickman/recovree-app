@@ -60,7 +60,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
             // console.log(response.data.userType);
 
             // location works with SPA (ng-route)
-            
+
             // if (userObject.userType === 2){
             //   console.log('sending home');
             //   $location.path('/home');
