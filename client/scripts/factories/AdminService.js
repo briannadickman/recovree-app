@@ -85,6 +85,7 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
 return {
   countMembers : countMembers,
   countReflectionsByDay : countReflectionsByDay,
+  adminObject : adminObject,
 
   getReflections: getReflections,
   getRegistrationInfo: getRegistrationInfo,

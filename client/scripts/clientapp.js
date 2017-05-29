@@ -300,6 +300,6 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
     })
 
     .otherwise({
-      redirectTo: 'login'
+      redirectTo: '/login'
     });
 }]);
