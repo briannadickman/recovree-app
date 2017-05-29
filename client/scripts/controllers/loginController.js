@@ -1,6 +1,6 @@
 myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$location', 'UserService', function($scope, $http, $routeParams, $location, UserService) {
     $scope.user = UserService.user;
-    
+
     $scope.message = '';
     var userObject = UserService.userObject;
 
@@ -54,11 +54,18 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
             console.log('success: ', response.data);
             userObject.userName = response.data.username;
             userObject.id = response.data.id;
+            $location.path('/home'); //ADDED. REMOVE BEFORE PUSHING
+
             userObject.userType = response.data.userType;
+            console.log(response.data.userType);
+
             // location works with SPA (ng-route)
+
             if (userObject.userType === 2){
+              console.log('sending home');
               $location.path('/home');
             } else if (userObject.userType === 1){
+              console.log('sending to admin');
               $location.path('/admin-export');
             }
 
