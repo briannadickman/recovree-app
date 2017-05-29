@@ -4,7 +4,10 @@
   <h1 class="lead alert alert-danger" role="alert" ng-if="message != ''">{{message}}</h2>
 
 
-  <form ng-submit="registerUser()">
+  <!-- <form ng-submit="registerUser()"> -->
+  <form>
+
+    <!-- <form ng-submit="showConfirm($event)"> -->
 
   <!-- Captures Info into MemberSchema -->
   <div>
@@ -94,7 +97,9 @@
         <md-checkbox ng-model="registration.termsAgreement" required>I agree to the <a ng-href='#/terms'>Terms of Use</a></md-checkbox>
     </md-input-container>
 
-    <md-button class='md-raised' ng-click='registerUser(user,registration)'>Register</md-button>
+    <!-- <md-button class='md-raised' ng-click='registerUser(user,registration)'>Register</md-button> -->
+    <md-button class='md-raised' ng-click='showConfirm($event)'>Register</md-button>
+
     <a href="#login">Cancel</a>
     <br>
   </div>
