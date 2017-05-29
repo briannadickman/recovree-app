@@ -1,14 +1,9 @@
 
 <md-content class = 'wrapper' layout = 'column' flex >
-  <h1 class='md-subhead'>Sign Up</h1>
-  <h1 class="lead alert alert-danger" role="alert" ng-if="message != ''">{{message}}</h2>
+    <h1 class='md-subhead' style="font-size: 24px; text-align: center;">Sign Up For Recovree</h1>
+  <h2 class="lead alert alert-danger" role="alert" ng-if="message != ''">{{message}}</h2>
 
-
-  <!-- <form ng-submit="registerUser()"> -->
   <form>
-
-    <!-- <form ng-submit="showConfirm($event)"> -->
-
   <!-- Captures Info into MemberSchema -->
   <div>
     <md-input-container layout-xs='row'>
@@ -98,7 +93,7 @@
     </md-input-container>
 
     <!-- <md-button class='md-raised' ng-click='registerUser(user,registration)'>Register</md-button> -->
-    <md-button class='md-raised' ng-click='showConfirm($event)'>Register</md-button>
+    <md-button class='md-raised md-primary' style="font-size: 15px; font-weight: bold;" ng-click='showConfirm($event)'>Register</md-button>
 
     <a href="#login">Cancel</a>
     <br>
