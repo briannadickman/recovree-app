@@ -383,6 +383,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     reflectionObject.reflectionTime = time;
     reflectionObject.userObject = userObject;
     reflectionObject.formPosition = 1;
+
     //finishes building reflectionObject
   } //ends getReflectionObject
 
@@ -478,6 +479,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     launchReflection: launchReflection,
     reflectionFormNextButton: reflectionFormNextButton,
     reflectionFormPrevButton: reflectionFormPrevButton,
-    returnHomeButton: returnHomeButton
+    returnHomeButton: returnHomeButton,
   };
 }]);

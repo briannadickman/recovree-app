@@ -44,49 +44,24 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
       }
     };
 
-// <<<<<<< HEAD
-    $scope.login = function() {
-      if($scope.user.username === '' || $scope.user.password === '') {
-        $scope.message = "Enter your username and password!";
-      } else {
-        console.log('sending to server...', $scope.user);
-        $http.post('/', $scope.user).then(function(response) {
-          if(response.data.username) {
-            console.log('success: ', response.data);
-            userObject.userName = response.data.username;
-            userObject.id = response.data.id;
+  $scope.login = function() {
+  if($scope.user.username === '' || $scope.user.password === '') {
+    $scope.message = "Enter your username and password!";
+  } else {
+    console.log('sending to server...', $scope.user);
+    $http.post('/', $scope.user).then(function(response) {
+      if(response.data.username) {
+        console.log('success: ', response.data);
+        userObject.userName = response.data.username;
+        userObject.id = response.data.id;
+        userObject.userType = response.data.userType;
+        // location works with SPA (ng-route)
+        if (userObject.userType === 2){
+          $location.path('/home');
+        } else if (userObject.userType === 1){
+          $location.path('/admin-export');
+        }
 
-            userObject.userType = response.data.userType;
-            console.log(response.data.userType);
-
-            // location works with SPA (ng-route)
-
-            if (userObject.userType === 2){
-              console.log('sending home');
-              $location.path('/home');
-            } else if (userObject.userType === 1){
-              console.log('sending to admin');
-              $location.path('/admin-export');
-            }
-// =======
-//   $scope.login = function() {
-//   if($scope.user.username === '' || $scope.user.password === '') {
-//     $scope.message = "Enter your username and password!";
-//   } else {
-//     console.log('sending to server...', $scope.user);
-//     $http.post('/', $scope.user).then(function(response) {
-//       if(response.data.username) {
-//         console.log('success: ', response.data);
-//         userObject.userName = response.data.username;
-//         userObject.id = response.data.id;
-//         userObject.userType = response.data.userType;
-//         // location works with SPA (ng-route)
-//         if (userObject.userType === 2){
-//           $location.path('/home');
-//         } else if (userObject.userType === 1){
-//           $location.path('/admin-export');
-//         }
-// >>>>>>> 80122b90d875e2136ae9b03ca64964baa185570a
 
       } else {
         console.log('failure: ', response);
