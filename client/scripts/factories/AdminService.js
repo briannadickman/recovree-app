@@ -16,10 +16,6 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
       getCSVforRegistration();
   }
 
-  function buildGraphs() {
-    buildAdminGraphs();
-  }
-
   function getCSVforReflections(){
     $http.get('/csvExport/reflections').then(function(response){
       window.open('/csvExport/reflections');
