@@ -59,14 +59,6 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
   }
 
   function buildAdminGraphs(date, count) {
-    console.log('DATES', date);
-    console.log('COUNTS', count);
-
-    //replace with actual dates
-    var days = ['5/21', '5/22', '5/23', '5/24'];
-    //replace with actual count of daily participants
-    var reflectionCount = [6, 13, 8, 10];
-
     var ctx = document.getElementById("dailyParticipantsChart");
     var dailyParticipantsChart = new Chart(ctx, {
       type: 'bar',
