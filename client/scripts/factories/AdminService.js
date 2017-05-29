@@ -7,7 +7,10 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
     countByDay : []
   };
 
-<<<<<<< HEAD
+  var dailyCount = [];
+  var dates = [];
+
+
   //getuser
   function getadmin() {
     $http.get('/user').then(function(response) {
@@ -23,11 +26,6 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
       }
     });
   } //ends getuser
-
-=======
-  var dailyCount = [];
-  var dates = [];
->>>>>>> ec15da2a5e69e9da99f9c02525bfda89f2635db4
 
   function getReflections() {
       getCSVforReflections();

@@ -201,7 +201,30 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
       weeklyGraphs(thisWeeksObject);
     }
   }
+  function streakGraph(sessionObject) {
+    var streakGoal = 30;
+    var streak = sessionObject.streak;
+    var goal = streakGoal - streak;
+    // console.log("streak",streak);
 
+    var ctx3 = document.getElementById("streakDonughtChart");
+    var streakDonughtChart = new Chart(ctx3, {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [streak, goal],
+          backgroundColor: ['#813172', '#bfbfbf'],
+        }],
+        labels: ['Streak', 'Goal']
+      },
+      options: {
+        legend: {
+          display: false
+        },
+      }
+    });
+  } //ends streakGraph
+  
   function weeklyGraphs(timeframe){
     var feelingNames = [];
     var exerciseAmount = [];
@@ -301,10 +324,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
 
       //chart for top five feelings
       var ctx1 = document.getElementById("feelingsChart");
-      // if (areaChart) {
-      //   console.log('areaChart exists');
-      //   removeData(areaChart);
-      // }
       var areaChart = new Chart(ctx1, {
         type: 'polarArea',
         data: {
