@@ -9,6 +9,13 @@
                     </md-slider>
                     <span>High Activity</span>
                 </md-slider-container>
+                <div ng-switch on = "reflectionObject.exercise" layout = 'row' layout-align = 'center center'>
+                  <span ng-switch-when = "1">Not Active</span>
+                  <span ng-switch-when = "2">Slightly Active</span>
+                  <span ng-switch-when = "3">Moderately Active</span>
+                  <span ng-switch-when = "4">Active</span>
+                  <span ng-switch-when = "5">Very Active</span>
+                </div>
             </div>
 
 
@@ -22,6 +29,13 @@
                     </md-slider>
                     <span>Very Healthy</span>
                 </md-slider-container>
+                <div ng-switch on = "reflectionObject.food" layout = 'row' layout-align = 'center center'>
+                  <span ng-switch-when = "1">Not Healthy</span>
+                  <span ng-switch-when = "2">A Little Healthy</span>
+                  <span ng-switch-when = "3">Somewhat Healthy</span>
+                  <span ng-switch-when = "4">Healthy</span>
+                  <span ng-switch-when = "5">Very Healthy</span>
+                </div>
             </div>
         </md-content>
         <section layout='row' layout-align='center end'>
