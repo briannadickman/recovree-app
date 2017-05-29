@@ -1,5 +1,18 @@
-<md-content class = 'wrapper' flex layout = 'column' layout-align = 'center center' ng-controller = 'NavController'>
+<md-content class = 'wrapper' flex layout = 'column' layout-align = 'center center'>
   <div layout = 'column' layout-align = 'center center'>
-    <h1 style="font-size: 30px">Gratitude</h1>
-  </div>
-</md-content>
+    <md-content flex>
+      <div layout = 'column' layout-align = 'center center'>
+          <div>
+            <h1 style="font-size: 24px">Gratitude</h1>
+            <hr style='border-top: 1px solid #8c8b8b'>
+          </div>
+
+          <div ng-repeat='reflection in reflections' ng-hide='reflection.gratitude == ""'>
+            <p style='font-size: 18px; text-align: center;'>"{{reflection.gratitude}}"</p>
+            <hr />
+          </div>
+
+        </div>
+      </md-content>
+    </div>
+  </md-content>

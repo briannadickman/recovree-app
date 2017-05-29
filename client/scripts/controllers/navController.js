@@ -4,7 +4,7 @@ myApp.controller('NavController', ['$scope', '$http', '$location', 'UserService'
   $scope.$location = $location;
   $scope.logout = logout;
   $scope.sessionObject = UserService.sessionObject;
-  var reflections = $scope.sessionObject.allReflections;
+  $scope.reflections = $scope.sessionObject.allReflections;
 
   function logout(user){
     user.username = '';
@@ -18,9 +18,11 @@ myApp.controller('NavController', ['$scope', '$http', '$location', 'UserService'
   }
 
   $scope.goToGratitude = function(){
+    $scope.sessionObject = UserService.sessionObject;
+    $scope.reflections = $scope.sessionObject.allReflections;
     console.log('Gratitude button clicked!');
     $location.path('/gratitude');
-    console.log(reflections);
+    console.log($scope.reflections);
   };
 
   $scope.goToResources = function(){
