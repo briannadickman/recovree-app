@@ -10,6 +10,23 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
   var dailyCount = [];
   var dates = [];
 
+
+  //getuser
+  function getadmin() {
+    $http.get('/user').then(function(response) {
+      if (response.data.id && response.data.userType === 1) {
+        console.log('login response: ', response.data);
+        // user has a curret session on the server
+        adminObject.userName = response.data.username;
+        adminObject.id = response.data.id;
+      } else {
+        console.log('login response: ', response.data);
+        // user has no session, bounce them back to the login page
+        $location.path("/login");
+      }
+    });
+  } //ends getuser
+
   function getReflections() {
       getCSVforReflections();
   }
@@ -92,8 +109,8 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
 return {
   countMembers : countMembers,
   countReflectionsByDay : countReflectionsByDay,
-  adminObject: adminObject,
-  
+  adminObject : adminObject,
+  getadmin : getadmin,
   getReflections: getReflections,
   getRegistrationInfo: getRegistrationInfo,
   getCSVforReflections : getCSVforReflections,

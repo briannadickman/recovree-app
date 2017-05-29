@@ -293,13 +293,13 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
       templateUrl: '/views/templates/adminExport.html',
       controller: 'AdminExportController',
       resolve: {
-        getuser : ['UserService', function(UserService){
-          return UserService.getuser();
+        getuser : ['AdminService', function(AdminService){
+          return AdminService.getadmin();
         }]
       }
     })
 
     .otherwise({
-      redirectTo: 'login'
+      redirectTo: '/login'
     });
 }]);

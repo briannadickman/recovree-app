@@ -9,6 +9,7 @@ myApp.controller('NavController', ['$scope', '$http', '$location', 'UserService'
   function logout(user){
     user.username = '';
     user.password = '';
+    UserService.logout();
     $location.path("/login");
   }
 
