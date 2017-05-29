@@ -11,6 +11,20 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     data: ''
   };
 
+  var feelingNames = [];
+  var exerciseAmount = [];
+  var foodAmount = [];
+  var sleepAmount = [];
+  var overallAmount = [];
+
+  var singleFeelings = [];
+  var feelingsCount = [],
+    prev;
+  var countOfFeelings = {},
+    sortByCount, topFiveFeelings;
+  var dates = [];
+
+
   //getuser
   function getuser() {
     $http.get('/user').then(function(response) {
@@ -187,30 +201,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
       weeklyGraphs(thisWeeksObject);
     }
   }
-
-  function streakGraph(sessionObject) {
-    var streakGoal = 30;
-    var streak = sessionObject.streak;
-    var goal = streakGoal - streak;
-    // console.log("streak",streak);
-
-    var ctx3 = document.getElementById("streakDonughtChart");
-    var streakDonughtChart = new Chart(ctx3, {
-      type: 'doughnut',
-      data: {
-        datasets: [{
-          data: [streak, goal],
-          backgroundColor: ['#813172', '#bfbfbf'],
-        }],
-        labels: ['Streak', 'Goal']
-      },
-      options: {
-        legend: {
-          display: false
-        },
-      }
-    });
-  } //ends streakGraph
 
   function weeklyGraphs(timeframe){
     var feelingNames = [];

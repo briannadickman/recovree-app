@@ -7,6 +7,7 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
     countByDay : []
   };
 
+<<<<<<< HEAD
   //getuser
   function getadmin() {
     $http.get('/user').then(function(response) {
@@ -23,6 +24,10 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
     });
   } //ends getuser
 
+=======
+  var dailyCount = [];
+  var dates = [];
+>>>>>>> ec15da2a5e69e9da99f9c02525bfda89f2635db4
 
   function getReflections() {
       getCSVforReflections();
@@ -32,9 +37,6 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
       getCSVforRegistration();
   }
 
-  function buildGraphs() {
-    buildAdminGraphs();
-  }
 
   function getCSVforReflections(){
     $http.get('/csvExport/reflections').then(function(response){
@@ -59,32 +61,40 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
     $http.get('reflection/countByDay').then(function(response){
       adminObject.countByDay = response.data;
       console.log('count by day: ', adminObject.countByDay);
+      storeDaysAndCountInArray();
     });
   }
 
-  function buildAdminGraphs() {
-    //replace with actual dates
-    var days = ['5/21', '5/22', '5/23', '5/24', '5/25', '5/26', '5/27'];
-    //replace with actual count of daily participants
-    var reflectionCount = [12, 13, 18, 12, 10, 8, 16];
+  function storeDaysAndCountInArray() {
+      for (var i = 0; i < adminObject.countByDay.length; i++) {
+        var reflectionDate = adminObject.countByDay[i].date;
+        var reflectionCount = adminObject.countByDay[i].count;
+        dates.push(reflectionDate);
+        dailyCount.push(reflectionCount);
+      }
+      // console.log('DATES', dates);
+      // console.log('COUNTS', dailyCount);
+      buildAdminGraphs(dates, dailyCount);
+  }
 
+  function buildAdminGraphs(date, count) {
     var ctx = document.getElementById("dailyParticipantsChart");
     var dailyParticipantsChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: days,
+        labels: date,
         datasets: [{
           label: 'Daily Participants',
           fill: false,
           backgroundColor: 'rgba(129, 49, 114, 0.76)',
-          data: reflectionCount
+          data: count
         }]
       },
       options: {
         scales: {
           yAxes: [{
             ticks: {
-              max: 20,
+              // max: 20,
               min: 0,
               stepSize: 1
             }
@@ -103,7 +113,6 @@ return {
   countReflectionsByDay : countReflectionsByDay,
   adminObject : adminObject,
   getadmin : getadmin,
-
   getReflections: getReflections,
   getRegistrationInfo: getRegistrationInfo,
   getCSVforReflections : getCSVforReflections,
