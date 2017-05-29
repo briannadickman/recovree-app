@@ -2,7 +2,19 @@
   <div layout='column' layout-align='center center' flex>
       <md-content flex>
         <div layout = 'column' layout-align = 'center center'>
-            <h1 style="font-size: 24px">Reflection Weekly Summary</h1>
+            <h1 style="font-size: 24px">Reflection Summary</h1>
+
+            <div>
+                <section layout = 'row' layout-align = 'center end'>
+                    <md-button class='md-raised md-primary' style="font-size: 12px; font-weight: bold;" aria-label="This Week" ng-click='displayThisWeek()'>This Week</md-button>
+                    <md-button class="md-raised md-primary" style="font-size: 12px; font-weight: bold;" aria-label="Last Week" ng-click='displayLastWeek()'>Last Week</md-button>
+                  </section>
+                  <section layout = 'row' layout-align = 'center end'>
+                    <md-button class='md-raised md-primary' style="font-size: 12px; font-weight: bold;" aria-label="This Month" ng-click='displayThisMonth()'>This Month</md-button>
+                    <md-button class="md-raised md-primary" style="font-size: 12px; font-weight: bold;" aria-label="Last Month" ng-click='displayLastMonth()'>Last Month</md-button>
+                </section>
+
+            </div>
 
 
             <div flex layout='column' layout-align='center center'>

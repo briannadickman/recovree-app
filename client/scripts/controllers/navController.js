@@ -1,4 +1,4 @@
-myApp.controller('NavController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
+myApp.controller('NavController', ['$scope', '$http', '$location', '$mdDialog', 'UserService', function($scope, $http, $location, $mdDialog, UserService) {
   console.log('NavController sourced!');
   $scope.user = UserService.user;
   $scope.$location = $location;
@@ -9,7 +9,7 @@ myApp.controller('NavController', ['$scope', '$http', '$location', 'UserService'
   function logout(user){
     user.username = '';
     user.password = '';
-    $location.path("/login");
+    UserService.logout(user);
   }
 
   $scope.goHome = goHome;
@@ -28,6 +28,23 @@ myApp.controller('NavController', ['$scope', '$http', '$location', 'UserService'
   $scope.goToResources = function(){
     console.log('Resources button clicked!');
     $location.path('/resources');
+  };
+
+
+  $scope.showConfirm = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.confirm()
+          .title('Are you sure you want to logout?')
+          .targetEvent(ev)
+          .ok('Yes')
+          .cancel('Go Back');
+
+    $mdDialog.show(confirm).then(function() {
+      console.log("Logging out");
+      $scope.logout($scope.user, $scope.logout);
+    }, function() {
+      console.log("you chose cancel");
+    });
   };
 
 

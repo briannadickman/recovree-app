@@ -1,4 +1,4 @@
-myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$location', 'UserService', function($scope, $http, $routeParams, $location, UserService) {
+myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$location', '$mdDialog', 'UserService', function($scope, $http, $routeParams, $location, $mdDialog, UserService) {
     $scope.user = UserService.user;
 
     $scope.message = '';
@@ -68,6 +68,24 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
       }
     });
   }
+};
+
+$scope.showConfirm = function(ev) {
+  // Appending dialog to document.body to cover sidenav in docs app
+  var confirm = $mdDialog.confirm()
+        .title('Would you like to complete registration?')
+        // .textContent('All of the banks have agreed to forgive you your debts.')
+        // .ariaLabel('Lucky day')
+        .targetEvent(ev)
+        .ok('Confirm')
+        .cancel('Go Back');
+
+  $mdDialog.show(confirm).then(function() {
+    console.log("call registerUser()");
+    $scope.registerUser($scope.user,$scope.registration);
+  }, function() {
+    console.log("you chose cancel");
+  });
 };
 
 

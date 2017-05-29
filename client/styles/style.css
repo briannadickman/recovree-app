@@ -208,3 +208,7 @@ h1{
   background-position:top;
   background-size: cover;
 }
+
+.message-text{
+  color: red;
+}
