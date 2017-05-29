@@ -1,9 +1,7 @@
 myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
   console.log('GraphsController sourced!');
-
-  UserService.refreshSessionObject();
-
-  //all the REFLECTIONS data
+  var location = 'weekly';
+  UserService.refreshSessionObject(location);
   $scope.sessionObject = UserService.sessionObject;
   // $scope.weeks = weeks;
 
@@ -22,7 +20,7 @@ myApp.controller('GraphsController', ['$scope', '$http', '$location', 'UserServi
   var countOfFeelings = {},
     sortByCount, topFiveFeelings;
   var dates = [];
-  
+
 //   var week = [];
 //   var weekObject = {
 //     week: week,
@@ -274,5 +272,4 @@ formatTimestamp();
     }
   }); //end line chart
 
-
-}]); //end of controller
+}]);
