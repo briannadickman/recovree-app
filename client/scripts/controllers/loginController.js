@@ -1,6 +1,6 @@
 myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$location', 'UserService', function($scope, $http, $routeParams, $location, UserService) {
     $scope.user = UserService.user;
-    
+
     $scope.message = '';
     var userObject = UserService.userObject;
 
@@ -44,31 +44,32 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
       }
     };
 
-    $scope.login = function() {
-      if($scope.user.username === '' || $scope.user.password === '') {
-        $scope.message = "Enter your username and password!";
-      } else {
-        console.log('sending to server...', $scope.user);
-        $http.post('/', $scope.user).then(function(response) {
-          if(response.data.username) {
-            console.log('success: ', response.data);
-            userObject.userName = response.data.username;
-            userObject.id = response.data.id;
-            userObject.userType = response.data.userType;
-            // location works with SPA (ng-route)
-            if (userObject.userType === 2){
-              $location.path('/home');
-            } else if (userObject.userType === 1){
-              $location.path('/admin-export');
-            }
+  $scope.login = function() {
+  if($scope.user.username === '' || $scope.user.password === '') {
+    $scope.message = "Enter your username and password!";
+  } else {
+    console.log('sending to server...', $scope.user);
+    $http.post('/', $scope.user).then(function(response) {
+      if(response.data.username) {
+        console.log('success: ', response.data);
+        userObject.userName = response.data.username;
+        userObject.id = response.data.id;
+        userObject.userType = response.data.userType;
+        // location works with SPA (ng-route)
+        if (userObject.userType === 2){
+          $location.path('/home');
+        } else if (userObject.userType === 1){
+          $location.path('/admin-export');
+        }
 
-          } else {
-            console.log('failure: ', response);
-            $scope.message = "Username or password is incorrect.";
-          }
-        });
+      } else {
+        console.log('failure: ', response);
+        $scope.message = "Username or password is incorrect.";
       }
-    };
+    });
+  }
+};
+
 
 
   $scope.registerUser = UserService.registerUser;

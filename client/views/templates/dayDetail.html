@@ -9,11 +9,11 @@
 <md-content  class = 'wrapper' flex ng-if = '((sessionObject.reflectionCompleted) === true)'>
     <div>
       <div layout = 'column' layout-align = 'center center'>
-          <h1 class='md-headline'>Daily Summary for {{sessionObject.todaysReflectObject.reflectionDate | date:'MM/dd/yyyy'}}</h1>
+          <h1 style="font-size: 24px; text-align: center;">Daily Summary for {{sessionObject.todaysReflectObject.reflectionDate | date:'MM/dd/yyyy'}}</h1>
       </div>
 
       <div>
-        <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Overall you felt: </b></h3>
+        <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>Overall you felt: </b></h3>
         <div ng-switch on = "sessionObject.todaysReflectObject.overallfeeling" layout = 'row' layout-align = 'center center'>
              <span ng-switch-when = "1">Terrible</span>
              <span ng-switch-when = "2">Not So Great</span>
@@ -25,7 +25,7 @@
       </div>
 
       <div>
-          <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Feelings:</b></h3>
+          <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>Feelings:</b></h3>
           <p class='md-body-1'>
             <p ng-repeat='feeling in sessionObject.todaysReflectObject.feelings | filter: { value: true }' layout = 'row' layout-align = 'center center'>{{feeling.name}} </p>
           </p>
@@ -33,13 +33,13 @@
       </div>
 
         <div ng-if = 'sessionObject.todaysReflectObject.feelingsWhy !== ""'>
-          <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>You felt this way because:</b></h3>
+          <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>You felt this way because:</b></h3>
           <p class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.feelingsWhy}}</p>
           <hr />
         </div>
 
         <div>
-          <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Last night you slept:</b></h3>
+          <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>Last night you slept:</b></h3>
           <div ng-switch on = "sessionObject.todaysReflectObject.sleep" layout = 'row' layout-align = 'center center'>
                <span ng-switch-when = "1">Terrible</span>
                <span ng-switch-when = "2">Not So Great</span>
@@ -52,7 +52,7 @@
         </div>
 
         <div>
-          <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Your exercise level was:</b></h3>
+          <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>Your exercise level was:</b></h3>
           <div ng-switch on = "sessionObject.todaysReflectObject.exercise" layout = 'row' layout-align = 'center center'>
                <span ng-switch-when = "1">Not Active</span>
                <span ng-switch-when = "2">Slightly Active</span>
@@ -65,7 +65,7 @@
         </div>
 
         <div>
-          <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Your food consumption was:</b></h3>
+          <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>Your food consumption was:</b></h3>
           <div ng-switch on = "sessionObject.todaysReflectObject.food" layout = 'row' layout-align = 'center center'>
                 <span ng-switch-when = "1">Not Healthy</span>
                 <span ng-switch-when = "2">A Little Healthy</span>
@@ -78,49 +78,49 @@
         </div>
 
         <div>
-          <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Used drugs or alcohol:</b></h3>
+          <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>Used drugs or alcohol:</b></h3>
           <span class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.drugAlcoholIntake ? 'Yes':'No'}}</span>
           <hr />
         </div>
 
         <div ng-if = 'sessionObject.medication === true'>
-          <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Took your medication:</b></h3>
+          <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>Took your medication:</b></h3>
           <span class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.medication ? 'Yes':'No'}}</span>
           <hr />
         </div>
 
         <div>
-          <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Had a using dream last night:</b></h3>
+          <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>Had a using dream last night:</b></h3>
           <span class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.dream ? 'Yes':'No'}}</span>
           <hr />
         </div>
 
         <div ng-if = 'sessionObject.todaysReflectObject.whatDream !== ""'>
-          <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Your dream was:</b></h3>
+          <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>Your dream was:</b></h3>
           <span class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.whatDream}}</span>
           <hr />
         </div>
 
         <div>
-          <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Connected with a sponsor/mentor:</b></h3>
+          <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>Connected with a sponsor/mentor:</b></h3>
           <span class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.spnsrMntrConnect ? 'Yes':'No'}}</span>
           <hr />
         </div>
 
         <div>
-          <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Number of group meetings you attended:</b></h3>
+          <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>Number of group meetings you attended:</b></h3>
           <span class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.groupMeet}}</span>
           <hr />
         </div>
 
         <div>
-          <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Engaged in service or community work:</b></h3>
+          <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>Engaged in service or community work:</b></h3>
           <span class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.commntyService ? 'Yes':'No'}}</span>
           <hr />
         </div>
 
         <div>
-          <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Your stressors today:</b></h3>
+          <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>Your stressors today:</b></h3>
           <p class='md-body-1'>
             <p ng-repeat='stressor in sessionObject.todaysReflectObject.stressors | filter: { value: true }' layout = 'row' layout-align = 'center center'>{{stressor.name}} </p>
           </p>
@@ -128,31 +128,31 @@
         </div>
 
         <div>
-          <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Selfish or dishonest today:</b></h3>
+          <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>Selfish or dishonest today:</b></h3>
           <span class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.selfishDishonest ? 'Yes':'No'}}</span>
           <hr />
         </div>
 
         <div ng-if = 'sessionObject.todaysReflectObject.howSelfshDishnt !== ""'>
-          <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>How I was selfish or dishonest:</b></h3>
+          <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>How I was selfish or dishonest:</b></h3>
           <span class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.howSelfshDishnt}}</span>
           <hr />
         </div>
 
         <div ng-if = 'sessionObject.todaysReflectObject.tomorrowGoal !== ""'>
-          <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>Your daily goal is:</b></h3>
+          <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>Your daily goal is:</b></h3>
           <span class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.todaysReflectObject.tomorrowGoal}}</span>
           <hr />
         </div>
 
         <div ng-if = 'sessionObject.todaysReflectObject.dailyGoal == true'>
-          <h3 class='md-subhead' layout = 'row' layout-align = 'center center'><b>You completed yesterday's goal of:</b></h3>
+          <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>You completed yesterday's goal of:</b></h3>
           <span class='md-body-1' layout = 'row' layout-align = 'center center'>{{sessionObject.yesterdaysGoal}}</span>
           <hr />
         </div>
 
         <div>
-          <h3 class='md-subhead' ng-if = 'sessionObject.todaysReflectObject.gratitude !== ""' layout = 'row' layout-align = 'center center'><b>You were thankful for:</b></h3>
+          <h3 style="font-size: 18px" ng-if = 'sessionObject.todaysReflectObject.gratitude !== ""' layout = 'row' layout-align = 'center center'><b>You were thankful for:</b></h3>
           <p class='md-body-1' layout = 'column' layout-align = 'center center'>{{sessionObject.todaysReflectObject.gratitude}}</p>
           <hr />
         </div>

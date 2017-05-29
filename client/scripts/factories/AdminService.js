@@ -53,11 +53,15 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
         dates.push(reflectionDate);
         dailyCount.push(reflectionCount);
       }
-      console.log('DATES', dates);
-      console.log('COUNTS', dailyCount);
+      // console.log('DATES', dates);
+      // console.log('COUNTS', dailyCount);
+      buildAdminGraphs(dates, dailyCount);
   }
 
-  function buildAdminGraphs() {
+  function buildAdminGraphs(date, count) {
+    console.log('DATES', date);
+    console.log('COUNTS', count);
+
     //replace with actual dates
     var days = ['5/21', '5/22', '5/23', '5/24'];
     //replace with actual count of daily participants
@@ -67,12 +71,12 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
     var dailyParticipantsChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: days,
+        labels: date,
         datasets: [{
           label: 'Daily Participants',
           fill: false,
           backgroundColor: 'rgba(129, 49, 114, 0.76)',
-          data: reflectionCount
+          data: count
         }]
       },
       options: {

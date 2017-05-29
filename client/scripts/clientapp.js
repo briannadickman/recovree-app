@@ -244,6 +244,27 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
       })
 //ends check in form
 
+//resources
+    .when('/resources', {
+      templateUrl: '/views/templates/resources.html',
+      controller: 'NavController',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })
+
+//gratitude
+    .when('/gratitude', {
+      templateUrl: '/views/templates/gratitude.html',
+      controller: 'NavController',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })
 
 //day detail
     .when('/day-detail', {
