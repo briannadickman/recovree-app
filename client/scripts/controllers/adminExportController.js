@@ -15,7 +15,6 @@ myApp.controller('AdminExportController', ['$scope', '$http', '$location', 'Admi
 
   AdminService.countMembers();
   AdminService.countReflectionsByDay();
-  AdminService.buildAdminGraphs();
 
   $scope.adminObject = AdminService.adminObject;
 }]); //end controller
