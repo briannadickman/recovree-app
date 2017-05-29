@@ -93,12 +93,11 @@ return {
   countMembers : countMembers,
   countReflectionsByDay : countReflectionsByDay,
   adminObject: adminObject,
-  
+
   getReflections: getReflections,
   getRegistrationInfo: getRegistrationInfo,
   getCSVforReflections : getCSVforReflections,
   getCSVforRegistration : getCSVforRegistration,
-  buildAdminGraphs: buildAdminGraphs
 
 
 
