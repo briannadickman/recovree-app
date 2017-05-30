@@ -29,14 +29,47 @@ quote: 'Self-reflection is a humbling process. It is essential to find out why y
 {
   quote: 'It is not easy to find happiness in ourselves, and it is not possible to find it elsewhere.',
   name: ' – Agnes Repplier'
+},
+{
+  quote: 'It always seems impossible until it’s done.',
+  name: ' – Nelson Mandela'
+},
+{
+  quote: 'Happiness is where we find it, but rarely where we seek it.',
+  name: '– J. Petit Senn'
+},
+{
+  quote: 'Have patience with all things, but chiefly have patience with yourself. Do not lose courage in considering your own imperfections, but instantly set about remedying them – every day, begin the task anew.',
+  name: ' – Saint Francis de Sales'
+},
+{
+  quote: 'Nothing worthwhile ever happens quickly and easily. You achieve only as you are determined to achieve… and as you keep at it until you have achieved.',
+  name: '– Author Robert H. Lauer'
+},
+{
+  quote: 'If you are aware of your weaknesses and are constantly learning, your potential is virtually limitless.',
+  name: '– Banker Jay Sidhu'
+},
+{
+  quote: 'In the middle of difficulty lies opportunity.',
+  name: ' – Physicist Albert Einstein'
+},
+{
+  quote: 'Our greatest glory is not in never falling, but in rising every time we fall.',
+  name: ' – Confucius'
+},
+{
+  quote: 'We all make mistakes, have struggles, and even regret things in our past. But you are not your mistakes, you are not your struggles, and you are here now with the power to shape your day and your future.',
+  name: ' – Steve Maraboli'
 }
 
      ];
 
+
+
+
 var randomIndex = Math.floor(Math.random() * reflectionQuote.length);
 $scope.randomQuote = reflectionQuote[randomIndex];
-
-console.log($scope.randomQuote);
 
 
 }]);
