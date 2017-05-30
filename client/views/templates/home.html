@@ -6,18 +6,28 @@
             <br>
 
             <div layout='column' layout-align='center center'>
-                  <p class='streakTitle center-text'>Current Reflection Streak </p>
-                  <p class='streak center-text'>{{sessionObject.streak}} Days</p>
+                  <p class='streakTitle center-text' ng-show="sessionObject.streak > 0" >Current Reflection Streak </p>
+                  <p class='streak center-text' ng-show="sessionObject.streak > 1">{{sessionObject.streak}} Days</p>
+                  <!-- <p class='streak center-text' ng-show="sessionObject.streak = 1">{{sessionObject.streak}} Day</p>
+                  <p class='streak center-text' ng-show="sessionObject.streak < 1"></p> -->
             </div>
 
+          <div flex layout='column' layout-align='center center' ng-show='sessionObject.streak < 1'>
+            <p class='streak center-text'>{{randomQuote.quote}}</p>
+             <p class='streakTitle center-text'> {{randomQuote.name}} </p>
+          </div>
+
+          <div flex layout='column' layout-align='center center' ng-hide='sessionObject.streak < 1' >
             <div style="width:250px; height:250px; font-size: 30px" flex layout='column' layout-align='center center' >
                 <canvas id="streakDonughtChart"></canvas>
             </div>
+          </div>
 
             <br>
 
             <div layout='column' layout-align='center center'>
-                  <p style="font-size: 18px" class='center-text'>Goal: 30 Days</p>
+                  <p style="font-size: 18px" class='center-text' ng-show="sessionObject.streak  < 1"> Reflection Goal: 30 Days In A Row</p>
+                  <p style="font-size: 18px" class='center-text' ng-show="sessionObject.streak >= 1"> Goal: 30 Days</p>
             </div>
 
             <div layout='column' layout-align='center center' ng-if='sessionObject.reflectionCompleted == true'>
