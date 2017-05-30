@@ -14,13 +14,9 @@ myApp.controller('HomeController', ['$scope', '$http', '$location', '$q', 'UserS
   {
   quote: 'Self-reflection is a humbling process. It is essential to find out why you think, say, and do certain things...then better yourself.',
    name: '-Sonya Teclai'
- },
- // {
- //   quote:
- //   name:
- // }
+ }
 
-       ];
+  ];
 
   var randomIndex = Math.floor(Math.random() * reflectionQuote.length);
   $scope.randomQuote = reflectionQuote[randomIndex];
