@@ -4,3 +4,4 @@ server/public
 npm-debug.log
 registration.csv
 reflection.csv
+.env
