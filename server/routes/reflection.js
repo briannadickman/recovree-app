@@ -55,6 +55,8 @@ router.get('/countByDay', function(req, res){
   }
 });
 
+router.get('/')
+
 router.get('/session/', function(req, res){//took out memberID
   if (req.isAuthenticated()){
   var reflections;
