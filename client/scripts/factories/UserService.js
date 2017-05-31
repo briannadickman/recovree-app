@@ -11,18 +11,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     data: ''
   };
 
-  var feelingNames = [];
-  var exerciseAmount = [];
-  var foodAmount = [];
-  var sleepAmount = [];
-  var overallAmount = [];
-
-  var singleFeelings = [];
-  var feelingsCount = [],
-    prev;
-  var countOfFeelings = {},
-    sortByCount, topFiveFeelings;
-  var dates = [];
 
 
   //getuser
