@@ -11,19 +11,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     data: ''
   };
 
-  var feelingNames = [];
-  var exerciseAmount = [];
-  var foodAmount = [];
-  var sleepAmount = [];
-  var overallAmount = [];
-
-  var singleFeelings = [];
-  var feelingsCount = [],
-    prev;
-  var countOfFeelings = {},
-    sortByCount, topFiveFeelings;
-  var dates = [];
-
 
   //getuser
   function getuser() {
@@ -129,7 +116,9 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     $location.path('/last-week');
   };
   var displayThisMonth = function(){
+    console.log("inside displayThisMonth", thisMonthsObject);
     weeklyGraphs(thisMonthsObject);
+    console.log("thisMonthsObject",thisMonthsObject);
     $location.path('/this-month');
   };
   var displayLastMonth = function(){
@@ -233,6 +222,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
   } //ends streakGraph
 
   function weeklyGraphs(timeframe){
+    console.log("weeklyGraphs",timeframe);
     var feelingNames = [];
     var exerciseAmount = [];
     var foodAmount = [];
