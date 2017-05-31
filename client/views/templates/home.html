@@ -26,7 +26,11 @@
 
             <div layout='column' layout-align='center center'>
                   <p style="font-size: 18px" class='center-text' ng-show="sessionObject.streak  < 1"> Reflection Goal: 30 Days In A Row</p>
-                  <p style="font-size: 18px" class='center-text' ng-show="sessionObject.streak >= 1"> Goal: 30 Days</p>
+
+            <p ng-if=" "></p>
+                  <p style="font-size: 18px" class='center-text' ng-show="sessionObject.streak >="> Goal: 30 Days</p>
+                  <p style="font-size: 18px" class='center-text' ng-show="sessionObject.streak > 30"> Goal: Another 30 Days</p>
+
             </div>
 
             <div layout='column' layout-align='center center' ng-if='sessionObject.reflectionCompleted == true'>
