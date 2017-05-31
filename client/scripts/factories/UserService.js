@@ -122,15 +122,19 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
 
   var displayThisWeek = function(){
     weeklyGraphs(thisWeeksObject);
+    $location.path('/weekly-graphs');
   };
   var displayLastWeek = function(){
     weeklyGraphs(lastWeeksObject);
+    $location.path('/last-week');
   };
   var displayThisMonth = function(){
     weeklyGraphs(thisMonthsObject);
+    $location.path('/this-month');
   };
   var displayLastMonth = function(){
     weeklyGraphs(lastMonthsObject);
+    $location.path('/last-month');
   };
 
   var getWeeklyData = function(reflections){
