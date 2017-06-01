@@ -10,7 +10,9 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
   var dailyReflectObject = {
     data: ''
   };
+
   var graphsObject = {};
+
 
 
   //getuser
@@ -223,7 +225,13 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     var streakGoal = 30;
     var streak = sessionObject.streak;
     var goal = streakGoal - streak;
-    // console.log("streak",streak);
+
+   //if streak is over 30 days, reset so it still increments
+    if (streak >= 30) {
+        streak = streak % 30;
+        console.log('New Streak For Graph', streak);
+        return streak ;
+    }
 
     var ctx3 = document.getElementById("streakDonughtChart");
     var streakDonughtChart = new Chart(ctx3, {
