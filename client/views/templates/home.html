@@ -7,9 +7,8 @@
 
             <div layout='column' layout-align='center center'>
                   <p class='streakTitle center-text' ng-show="sessionObject.streak > 0" >Current Reflection Streak </p>
-                  <p class='streak center-text' ng-show="sessionObject.streak >= 1">{{sessionObject.streak}} Days</p>
-                  <!-- <p class='streak center-text' ng-show="sessionObject.streak = 1">{{sessionObject.streak}} Day</p>
-                  <p class='streak center-text' ng-show="sessionObject.streak < 1"></p> -->
+                  <p class='streak center-text' ng-show="sessionObject.streak > 1">{{sessionObject.streak}} Days</p>
+                  <p class='streak center-text' ng-show="sessionObject.streak == 1">{{sessionObject.streak}} Day</p>
             </div>
 
           <div flex layout='column' layout-align='center center' ng-show='sessionObject.streak < 1'>
@@ -27,7 +26,11 @@
 
             <div layout='column' layout-align='center center'>
                   <p style="font-size: 18px" class='center-text' ng-show="sessionObject.streak  < 1"> Reflection Goal: 30 Days In A Row</p>
+
+            <p ng-if=" "></p>
                   <p style="font-size: 18px" class='center-text' ng-show="sessionObject.streak >= 1"> Goal: 30 Days</p>
+                  <p style="font-size: 18px" class='center-text' ng-show="sessionObject.streak > 30"> Goal: Another 30 Days</p>
+
             </div>
 
             <div layout='column' layout-align='center center' ng-if='sessionObject.reflectionCompleted == true'>
