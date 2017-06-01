@@ -1,5 +1,5 @@
-/*html {
-  min-height: 100%;
+/*::-webkit-scrollbar {
+    display: none;
 }*/
 
 .streakTitle {
@@ -101,6 +101,9 @@
     vertical-align: middle;
 }
 
+.termsTitle {
+  font-size: 16px;
+}
 
 #headerTitle {
   font-family: 'Lato', sans-serif;
