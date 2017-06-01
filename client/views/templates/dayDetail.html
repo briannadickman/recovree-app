@@ -18,7 +18,7 @@
       </div>
 
       <div layout="column" layout-align="center center">
-        <md-select placeholder="select another day" ng-model="sessionObject.currentDailyReflection">
+        <md-select placeholder="{{sessionObject.todaysReflectObject.reflectionDate | date:'MM/dd/yyyy'}}" ng-model="sessionObject.currentDailyReflection">
           <md-option ng-value="reflection" ng-repeat="reflection in sessionObject.allReflections">{{ reflection.reflectionDate | date:'MM/dd/yyyy' }}</md-option>
         </md-select>
       </div>
