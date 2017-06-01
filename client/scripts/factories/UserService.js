@@ -11,18 +11,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     data: ''
   };
 
-  var feelingNames = [];
-  var exerciseAmount = [];
-  var foodAmount = [];
-  var sleepAmount = [];
-  var overallAmount = [];
-
-  var singleFeelings = [];
-  var feelingsCount = [],
-    prev;
-  var countOfFeelings = {},
-    sortByCount, topFiveFeelings;
-  var dates = [];
 
   //getuser
   function getuser() {
@@ -403,10 +391,10 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
             {
               label: 'Overall Feelings',
               fill: false,
-              borderColor: "rgba(228, 210, 47, 1)",
-              pointBackgroundColor: "rgba(228, 210, 47, 1)",
-              pointBorderColor: "rgba(228, 210, 47, 1)",
-              backgroundColor: "rgba(228, 210, 47, 1)",
+              borderColor: "rgba(143, 60, 226, 1)",
+              pointBackgroundColor: "rgba(143, 60, 226, 1)",
+              pointBorderColor: "rgba(143, 60, 226, 1)",
+              backgroundColor: "rgba(143, 60, 226, 1)",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
               pointRadius: 4,
