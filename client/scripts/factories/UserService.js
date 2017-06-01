@@ -10,6 +10,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
   var dailyReflectObject = {
     data: ''
   };
+  var graphsObject = {};
 
 
   //getuser
@@ -107,22 +108,27 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     reflections : [],
   };
 
+  graphsObject.thisWeeksObject = thisWeeksObject;
+  graphsObject.lastWeeksObject = lastWeeksObject;
+  graphsObject.thisMonthsObject = thisMonthsObject;
+  graphsObject.lastMonthsObject = lastMonthsObject;
+
   var displayThisWeek = function(){
-    weeklyGraphs(thisWeeksObject);
+    // weeklyGraphs(thisWeeksObject);
     $location.path('/weekly-graphs');
   };
   var displayLastWeek = function(){
-    weeklyGraphs(lastWeeksObject);
+    // weeklyGraphs(lastWeeksObject);
     $location.path('/last-week');
   };
   var displayThisMonth = function(){
-    console.log("inside displayThisMonth", thisMonthsObject);
-    weeklyGraphs(thisMonthsObject);
-    console.log("thisMonthsObject",thisMonthsObject);
+    // console.log("inside displayThisMonth", thisMonthsObject);
+    // weeklyGraphs(thisMonthsObject);
+    // console.log("thisMonthsObject",thisMonthsObject);
     $location.path('/this-month');
   };
   var displayLastMonth = function(){
-    weeklyGraphs(lastMonthsObject);
+    // weeklyGraphs(lastMonthsObject);
     $location.path('/last-month');
   };
 
@@ -183,20 +189,36 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         console.log("session Object at end of getSessionObject", sessionObject);
         getWeeklyData(sessionObject.allReflections);
         getMonthlyData(sessionObject.allReflections);
-        buildGraphs(location);
+        buildGraphs(location, graphsObject);
       });
 
   } //ends getSessionObject
 
-  function buildGraphs(location) {
-    console.log("inside buildGraphs", sessionObject, location);
+  function buildGraphs(location, graphsObject) {
+    console.log("inside buildGraphs", sessionObject, graphsObject, location);
     if (location === 'home') {
       streakGraph(sessionObject);
     }
     if (location === 'weekly') {
       weeklyGraphs(thisWeeksObject);
     }
+    switch (location){
+      case "/weekly-graphs":
+        console.log("inside /weekly-graphs switch");
+        weeklyGraphs(graphsObject.thisWeeksObject);
+        break;
+      case "/last-week":
+        weeklyGraphs(graphsObject.lastWeeksObject);
+        break;
+      case "/this-month":
+        weeklyGraphs(graphsObject.thisMonthsObject);
+        break;
+      case "/last-month":
+        weeklyGraphs(graphsObject.lastMonthsObject);
+        break;
+    }//ends swith
   }
+
   function streakGraph(sessionObject) {
     var streakGoal = 30;
     var streak = sessionObject.streak;
