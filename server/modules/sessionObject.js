@@ -14,7 +14,7 @@ var generateSessionObject = function(allReflections, medication){
     todaysReflection : {},
     message : ''
   };
-  
+
   var dateNow = moment(Date.now());
   var todayStart = dateNow.clone().startOf('day');
   var yesterdayStart = dateNow.clone().subtract(1, 'day').startOf('day');
@@ -42,7 +42,6 @@ var generateSessionObject = function(allReflections, medication){
             serverSessionObject.yesterdaysGoal = nextMostRecent.tomorrowGoal;
           } else {
             serverSessionObject.yesterdaysGoal = "";
-            console.log('reflections completed yesterday and today, but no goal was set yesterday!');
           }
           return serverSessionObject;
           //otherwise the last reflection was not yesterday
