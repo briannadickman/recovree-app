@@ -11,18 +11,8 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     data: ''
   };
 
-  var feelingNames = [];
-  var exerciseAmount = [];
-  var foodAmount = [];
-  var sleepAmount = [];
-  var overallAmount = [];
+  var graphsObject = {};
 
-  var singleFeelings = [];
-  var feelingsCount = [],
-    prev;
-  var countOfFeelings = {},
-    sortByCount, topFiveFeelings;
-  var dates = [];
 
 
   //getuser
@@ -120,17 +110,28 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     reflections : [],
   };
 
+  graphsObject.thisWeeksObject = thisWeeksObject;
+  graphsObject.lastWeeksObject = lastWeeksObject;
+  graphsObject.thisMonthsObject = thisMonthsObject;
+  graphsObject.lastMonthsObject = lastMonthsObject;
+
   var displayThisWeek = function(){
-    weeklyGraphs(thisWeeksObject);
+    // weeklyGraphs(thisWeeksObject);
+    $location.path('/weekly-graphs');
   };
   var displayLastWeek = function(){
-    weeklyGraphs(lastWeeksObject);
+    // weeklyGraphs(lastWeeksObject);
+    $location.path('/last-week');
   };
   var displayThisMonth = function(){
-    weeklyGraphs(thisMonthsObject);
+    // console.log("inside displayThisMonth", thisMonthsObject);
+    // weeklyGraphs(thisMonthsObject);
+    // console.log("thisMonthsObject",thisMonthsObject);
+    $location.path('/this-month');
   };
   var displayLastMonth = function(){
-    weeklyGraphs(lastMonthsObject);
+    // weeklyGraphs(lastMonthsObject);
+    $location.path('/last-month');
   };
 
   var getWeeklyData = function(reflections){
@@ -190,25 +191,47 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         console.log("session Object at end of getSessionObject", sessionObject);
         getWeeklyData(sessionObject.allReflections);
         getMonthlyData(sessionObject.allReflections);
-        buildGraphs(location);
+        buildGraphs(location, graphsObject);
       });
 
   } //ends getSessionObject
 
-  function buildGraphs(location) {
-    console.log("inside buildGraphs", sessionObject, location);
+  function buildGraphs(location, graphsObject) {
+    console.log("inside buildGraphs", sessionObject, graphsObject, location);
     if (location === 'home') {
       streakGraph(sessionObject);
     }
     if (location === 'weekly') {
       weeklyGraphs(thisWeeksObject);
     }
+    switch (location){
+      case "/weekly-graphs":
+        console.log("inside /weekly-graphs switch");
+        weeklyGraphs(graphsObject.thisWeeksObject);
+        break;
+      case "/last-week":
+        weeklyGraphs(graphsObject.lastWeeksObject);
+        break;
+      case "/this-month":
+        weeklyGraphs(graphsObject.thisMonthsObject);
+        break;
+      case "/last-month":
+        weeklyGraphs(graphsObject.lastMonthsObject);
+        break;
+    }//ends swith
   }
+
   function streakGraph(sessionObject) {
     var streakGoal = 30;
     var streak = sessionObject.streak;
     var goal = streakGoal - streak;
-    // console.log("streak",streak);
+
+   //if streak is over 30 days, reset so it still increments
+    if (streak >= 30) {
+        streak = streak % 30;
+        console.log('New Streak For Graph', streak);
+        return streak ;
+    }
 
     var ctx3 = document.getElementById("streakDonughtChart");
     var streakDonughtChart = new Chart(ctx3, {
@@ -229,6 +252,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
   } //ends streakGraph
 
   function weeklyGraphs(timeframe){
+    console.log("weeklyGraphs",timeframe);
     var feelingNames = [];
     var exerciseAmount = [];
     var foodAmount = [];
@@ -398,10 +422,10 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
             {
               label: 'Overall Feelings',
               fill: false,
-              borderColor: "rgba(246, 239, 175, 1)",
-              pointBackgroundColor: "rgba(246, 239, 175, 1)",
-              pointBorderColor: "rgba(246, 239, 175, 1)",
-              backgroundColor: "rgba(246, 239, 175, 1)",
+              borderColor: "rgba(143, 60, 226, 1)",
+              pointBackgroundColor: "rgba(143, 60, 226, 1)",
+              pointBorderColor: "rgba(143, 60, 226, 1)",
+              backgroundColor: "rgba(143, 60, 226, 1)",
               pointBorderWidth: 1,
               pointHoverRadius: 5,
               pointRadius: 4,

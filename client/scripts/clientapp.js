@@ -288,6 +288,36 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
       }
     })
 
+    .when('/last-week', {
+      templateUrl: '/views/templates/lastWeeksGraph.html',
+      controller: 'GraphsController',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })
+
+    .when('/this-month', {
+      templateUrl: '/views/templates/thisMonthsGraph.html',
+      controller: 'GraphsController',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })
+
+    .when('/last-month', {
+      templateUrl: '/views/templates/lastMonthsGraph.html',
+      controller: 'GraphsController',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })
+
 //admin export
     .when('/admin-export', {
       templateUrl: '/views/templates/adminExport.html',
