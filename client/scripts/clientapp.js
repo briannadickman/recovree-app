@@ -76,6 +76,18 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
       controller: 'LoginController'
     })
 
+//forgot password
+.when('/forgotpassword', {
+  templateUrl: '/views/templates/forgot.html',
+  controller: 'LoginController'
+})
+
+//confirm password reset
+.when('/confirmreset/:code', {
+  templateUrl: '/views/templates/confirm.html',
+  controller: 'LoginController'
+})
+
 //home
     .when('/home', {
       templateUrl: '/views/templates/home.html',
@@ -232,6 +244,27 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
       })
 //ends check in form
 
+//resources
+    .when('/resources', {
+      templateUrl: '/views/templates/resources.html',
+      controller: 'NavController',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })
+
+//gratitude
+    .when('/gratitude', {
+      templateUrl: '/views/templates/gratitude.html',
+      controller: 'NavController',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })
 
 //day detail
     .when('/day-detail', {
@@ -255,10 +288,9 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
       }
     })
 
-//admin export
-    .when('/admin-export', {
-      templateUrl: '/views/templates/adminExport.html',
-      controller: 'AdminExportController',
+    .when('/last-week', {
+      templateUrl: '/views/templates/lastWeeksGraph.html',
+      controller: 'GraphsController',
       resolve: {
         getuser : ['UserService', function(UserService){
           return UserService.getuser();
@@ -266,27 +298,38 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
       }
     })
 
-//extra from base project
-    // .when('/info', {
-    //   templateUrl: '/views/templates/info.html',
-    //   controller: 'InfoController',
-    //   resolve: {
-    //     getuser : ['UserService', function(UserService){
-    //       return UserService.getuser();
-    //     }]
-    //   }
-    // })
-    // .when('/user', {
-    //   templateUrl: '/views/templates/user.html',
-    //   controller: 'UserController',
-    //   resolve: {
-    //     getuser : ['UserService', function(UserService){
-    //       return UserService.getuser();
-    //     }]
-    //   }
-    // })
+    .when('/this-month', {
+      templateUrl: '/views/templates/thisMonthsGraph.html',
+      controller: 'GraphsController',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })
+
+    .when('/last-month', {
+      templateUrl: '/views/templates/lastMonthsGraph.html',
+      controller: 'GraphsController',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })
+
+//admin export
+    .when('/admin-export', {
+      templateUrl: '/views/templates/adminExport.html',
+      controller: 'AdminExportController',
+      resolve: {
+        getuser : ['AdminService', function(AdminService){
+          return AdminService.getadmin();
+        }]
+      }
+    })
 
     .otherwise({
-      redirectTo: 'login'
+      redirectTo: '/login'
     });
 }]);

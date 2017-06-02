@@ -1,14 +1,34 @@
+<md-content class='wrapper' layout='column' layout-align='center center' flex>
+    <div layout='column' layout-align='center center' flex>
+        <md-content >
+            <div layout='column' layout-align='center center'>
+              <h1 class='md-headline'>Welcome Back Admin</h1>
+            </div>
+    <br>
+            <div layout='column' layout-align='center center'>
+                  <p class='md-subhead center-text'>Registered Members: {{adminObject.memberCount}}</p>
+            </div>
+        <br>
+            <div layout='column' layout-align='center center'>
+                  <p class='streakTitle md-subhead'>Daily Participants</p>
+            </div>
 
-<div layout='column' layout-align='center center'>
-<h1 class='md-headline'>Welcome Back Admin</h1>
+            <div layout-align='center center' style="width:600px; height:300px;">
+                <canvas id="dailyParticipantsChart"></canvas>
+            </div>
 
-<h3 class='md-subhead'>Demographic Information</h3>
-<md-button class="md-raised" ng-click='demographicExport()'>Export to CSV</md-button>
 
-<br>
+            <div layout='column' layout-align='center center'>
+              <h3 class='md-subhead'>Demographic Information</h3>
+              <md-button class="md-raised md-primary" style="font-size: 15px; font-weight: bold;" ng-click='demographicExport()'>Export to CSV</md-button>
+            </div>
 
-<h3 class='md-subhead'>Reflection Response Information</h3>
-<md-button class="md-raised" ng-click='reflectionExport()'>Export to CSV</md-button>
-</div>
+            <br>
 
-<footer class='navMenu' ng-include="'/views/partials/blankNav.html'"></footer>
+            <div layout='column' layout-align='center center'>
+              <h3 class='md-subhead'>Reflection Response Information</h3>
+              <md-button class="md-raised md-primary" style="font-size: 15px; font-weight: bold;" ng-click='reflectionExport()'>Export to CSV</md-button>
+            </div>
+        </md-content>
+    </div>
+</md-content>

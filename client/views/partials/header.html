@@ -1,41 +1,47 @@
-<!-- <div class="instructions">
-    <div class="container header">
-      <div layout='row'>
-        <h1 class="lead" layout-align='center center'>RECOVREE</h1>
-        <md-button layout-align='end center'>
-          <i class="material-icons">more_vert</i>
-        </md-button>
+<md-toolbar layout='row' ng-controller = 'NavController'>
+
+    <div class="md-toolbar-tools" ng-click='goHome()' >
+      <div layout='column' flex  ng-hide='$location.path() === "/admin-export"'>
+        <h1 layout='column' style='text-align: center' md-truncate id='headerTitle' flex='90'>RECOVREE</h1>
       </div>
-    </div>
-</div> -->
 
-
-<md-toolbar class="md-primary md-default">
-  <div class="instructions">
-    <div class="container header">
-     <div class="md-toolbar-tools" layout='row'>
-
-       <span flex></span>
-       <h1 flex md-truncates id='headerTitle'>RECOVREE</h1>
-       <span flex></span>
-
-      <!-- <md-menu>
-        <md-button class="md-icon-button" aria-label="Logout" ng-click="openMenu($mdMenu, $event)">
-          <md-icon md-menu-origin><i class="material-icons" id='headerMenuBtn'>more_vert</i></md-icon>
-        </md-button>
-        <md-menu-content width="3">
-          <md-menu-item>
-            <md-button ng-click="header()">
-              <b>Logout</b>
-            </md-button>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu> -->
-
-       <md-button>
-         <md-icon><i class="material-icons">more_vert</i></md-icon>
-       </md-button>
+      <div layout='column' flex  ng-show='$location.path() === "/admin-export"'>
+        <h1 layout='column' style='text-align: left' md-truncate id='headerTitle' flex='90'>RECOVREE</h1>
       </div>
+
+        <div layout='column' flex='10'>
+            <md-menu ng-hide = "$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms' || $location.path() === '/confirmreset'|| $location.path() === '/forgotpassword' || $location.path() === '/admin-export'">
+                <md-button class="md-icon-button" aria-label="Logout" ng-click="$mdMenu.open($event)">
+                    <md-icon md-menu-origin><i class="material-icons" id='headerMenuBtn'>more_vert</i></md-icon>
+                </md-button>
+
+                <md-menu-content width="3">
+                    <md-menu-item>
+                        <md-button ng-click='goToGratitude()'>
+                            <b>Gratitude</b>
+                        </md-button>
+                    </md-menu-item>
+                  <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <md-button ng-click='goToResources()'>
+                            <b>Resources</b>
+                        </md-button>
+                    </md-menu-item>
+                  <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <md-button ng-click='logout(user)'>
+                            <b>Logout</b>
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
+
+        <div layout='column' flex="10"  ng-show='$location.path() === "/admin-export"'>
+          <md-button ng-click='logout(user)'>
+          <span>Logout</span>
+          </md-button>
+        </div>
+
     </div>
-  </div>
 </md-toolbar>

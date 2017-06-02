@@ -1,20 +1,19 @@
-<div class="container" layout='column'>
-  <h1 class='md-subhead'>Sign Up</h1>
-  <h1 class="lead alert alert-danger" role="alert" ng-if="message != ''">{{message}}</h2>
 
-  <md-content>
-  <form ng-submit="registerUser()">
+<md-content class = 'wrapper' layout = 'column' flex >
+    <h1 class='md-subhead' style="font-size: 24px; text-align: center;">Sign Up For Recovree</h1>
+  <h2 class="lead alert alert-danger" role="alert" ng-if="message != ''">{{message}}</h2>
 
+  <form>
   <!-- Captures Info into MemberSchema -->
   <div>
     <md-input-container layout-xs='row'>
         <label for="username">Phone Number:</label>
-        <input type="text" ng-model="user.username" />
+        <input type="text" ng-model="user.username" ng-pattern="/^[0-9]{10}$/" required/>
     </md-input-container>
 
     <md-input-container layout-xs='row'>
         <label for="password">Password:</label>
-        <input type="password" ng-model="user.password" />
+        <input type="password" ng-model="user.password" required/>
     </md-input-container>
   </div>
 
@@ -83,22 +82,22 @@
   <div layout='column'  layout-align='center center'>
     <p layout-xs='row'>Are you currently taking prescription medication?</p>
       <md-radio-group ng-model="registration.medication" layout-xs='row'>
-          <md-radio-button value="Yes" class="md-primary">Yes</md-radio-button>
-          <md-radio-button value="No">No</md-radio-button>
+
+          <md-radio-button value="true" class="md-primary">Yes</md-radio-button>
+          <md-radio-button value="false">No</md-radio-button>
+
       </md-radio-group>
 
     <md-input-container layout-xs='row'>
         <md-checkbox ng-model="registration.termsAgreement" required>I agree to the <a ng-href='#/terms'>Terms of Use</a></md-checkbox>
     </md-input-container>
 
-    <md-button class='md-raised' ng-click='registerUser(user); userDemographics(registration)'>Register</md-button>
+    <!-- <md-button class='md-raised' ng-click='registerUser(user,registration)'>Register</md-button> -->
+    <md-button class='md-raised md-primary' style="font-size: 15px; font-weight: bold;" ng-click='showConfirm($event)'>Register</md-button>
 
     <a href="#login">Cancel</a>
+    <br>
   </div>
 
   </form>
 </md-content>
-
-</div>
-
-<footer class='navMenu' ng-include="'/views/partials/blankNav.html'"></footer>

@@ -2,15 +2,18 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var json2csv = require('json2csv');
-var fs = require('fs');
-var Users = require('../models/user');
-var Registration = require('../models/registration');
-var Reflection = require('../models/reflection');
 var path = require('path');
 var mongoose = require('mongoose');
 
+//Schema
+var Users = require('../models/user');
+var Registration = require('../models/registration');
+var Reflection = require('../models/reflection');
+
+
 //Exports demographic info into a .CSV saved in the root directory
 router.get('/registration', function(req, res){
+  if(req.isAuthenticated() && req.user.userType == 1){
   //Defines key names json2csv expects, _id and __v not included in export.
   var fields =      ['state',
                     'county',
@@ -38,27 +41,20 @@ router.get('/registration', function(req, res){
       res.sendStatus(500);
     }
     //runs a json2csv function to prepare and save registration data
-    var registrationData = json2csv({data: allRegistrations, fields: fields, fieldNames: fieldNames}, function(err, csv){
-      if (err) {
-        console.log('registrationToCSV error: ', err);
-        res.sendStatus(500);
-      }
-      // console.log('csv in registrationToCSV: ', csv);
-      fs.writeFile('registration.csv', csv, function(err){
-          if(err){
-            console.log('error: ', err);
-            res.sendStatus(500);
-          }
-          console.log('saved registration.csv');
-          res.send(csv);
-      });
-      //returns registration data to client for future display?
+    var registrationData = json2csv({data: allRegistrations, fields: fields, fieldNames: fieldNames});
+      //sends the registration csv back to the client
+      res.attachment('registration.csv');
+      res.status(200).send(registrationData);
     });
-  });
+  } else {
+    console.log('not authorized');
+    res.sendStatus(403);
+  }
 });
 
 //Exports demographic info into a .CSV saved in the root directory
 router.get('/reflections', function(req, res){
+  if(req.isAuthenticated() && req.user.userType == 1){
   var fields =      ['feelingsWhy',
                     'drugAlcoholIntake',
                     'medication',
@@ -180,23 +176,16 @@ router.get('/reflections', function(req, res){
       console.log('error in csv find for reflections: ', err);
       res.sendStatus(500);
     }
-    console.log('allReflections: ', allReflections);
-    var reflectionData = json2csv({data: allReflections, fields: fields, fieldNames: fieldNames}, function(err, csv){
-      if (err){
-        console.log('error in json2csv conversion: ', err);
-        res.sendStatus(500);
-      }
-      console.log('csv: ', csv);
-      fs.writeFile('reflection.csv', csv, function(err){
-        if (err){
-          console.log('error in reflection file save: ', err);
-          res.sendStatus(500);
-        }
-        console.log('saved reflection.csv');
-        res.send(csv);
-      });
+    //sends the csv file back to the client for immediate download
+    var reflectionData = json2csv({data: allReflections, fields: fields, fieldNames: fieldNames});
+      // console.log('csv in registrationToCSV: ', csv);
+      res.attachment('reflection.csv');
+      res.status(200).send(reflectionData);
     });
-  });
+  } else {
+    console.log('not authorized');
+    res.sendStatus(403);
+  }
 });
 
 module.exports = router;

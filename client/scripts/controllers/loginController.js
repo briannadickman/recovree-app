@@ -1,25 +1,41 @@
-myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
-    $scope.user = {
-      username: '',
-      password: ''
-    };
+myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$location', '$mdDialog', 'UserService', function($scope, $http, $routeParams, $location, $mdDialog, UserService) {
+    $scope.user = UserService.user;
+
     $scope.message = '';
     var userObject = UserService.userObject;
 
+    $scope.sendResetPassword = function () {
+      if($scope.user.username === '') {
+        $scope.message = "Enter your phone number";
+      } else {
+        console.log('sending to server...', $scope.user);
+        $location.path('/login');
+        $http.post('/user/forgotpassword', $scope.user).then(function(response) {
+          if(response.data.username) {
+            console.log('success: ', response.data);
+          } else {
+            console.log('failure: ', response);
+            $scope.message = "Failure";
+          }
+        });
+      }
+    };
 
-    $scope.login = function() {
+    $scope.updatePassword = function() {
+      //this is the randomly generated code, it's part of the url and will need it to reset password
+      //send our password reset request to the server with our username, new password, and code
+      console.log($routeParams.code);
+
       if($scope.user.username === '' || $scope.user.password === '') {
         $scope.message = "Enter your username and password!";
       } else {
         console.log('sending to server...', $scope.user);
-        $http.post('/', $scope.user).then(function(response) {
+        $scope.user.code = $routeParams.code;
+
+        $http.put('/user/resetpassword', $scope.user).then(function(response) {
           if(response.data.username) {
             console.log('success: ', response.data);
-            userObject.userName = response.data.username;
-            userObject.id = response.data.id;
-            userObject.memberID = response.data.memberID;
-            // location works with SPA (ng-route)
-            $location.path('/home');
+            $location.path('/login');
           } else {
             console.log('failure: ', response);
             $scope.message = "Username or password is incorrect.";
@@ -28,35 +44,59 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
       }
     };
 
-    $scope.registerUser = function() {
-      if($scope.user.username === '' || $scope.user.password === '') {
-        $scope.message = "Choose a username and password!";
+  $scope.login = function() {
+  if($scope.user.username === '' || $scope.user.password === '') {
+    $scope.message = "Enter your username and password!";
+  } else {
+    console.log('sending to server...', $scope.user);
+    $http.post('/', $scope.user).then(function(response) {
+      if(response.data.username) {
+        console.log('success: ', response.data);
+        userObject.userName = response.data.username;
+        userObject.id = response.data.id;
+        userObject.userType = response.data.userType;
+        // location works with SPA (ng-route)
+        if (userObject.userType === 2){
+          $location.path('/home');
+        } else if (userObject.userType === 1){
+          $location.path('/admin-export');
+        }
+
       } else {
-        console.log('sending to server...', $scope.user);
-        $http.post('/register', $scope.user).then(function(response) {
-          console.log('success saving member');
-          console.log('response',response);
-          console.log('response.data.memberID', response.data.memberID);
-          $scope.registration.memberID = response.data.memberID;
-          $scope.userDemographics($scope.registration);
-          $location.path('/login');
-        },
-        function(response) {
-          console.log('error');
-          $scope.message = "Please try again.";
-        });
+        console.log('failure: ', response);
+        $scope.message = "Username or password is incorrect.";
       }
-    };
+    });
+  }
+};
+
+$scope.showConfirm = function(ev) {
+  // Appending dialog to document.body to cover sidenav in docs app
+  var confirm = $mdDialog.confirm()
+        .title('Would you like to complete registration?')
+        // .textContent('All of the banks have agreed to forgive you your debts.')
+        // .ariaLabel('Lucky day')
+        .targetEvent(ev)
+        .ok('Confirm')
+        .cancel('Go Back');
+
+  $mdDialog.show(confirm).then(function() {
+    console.log("call registerUser()");
+    $scope.registerUser($scope.user,$scope.registration);
+  }, function() {
+    console.log("you chose cancel");
+  });
+};
+
+
+
+  $scope.registerUser = UserService.registerUser;
+
 
   // SENDS USER DEMOGRAPHIC INFO TO SERVER (No username or password)
+  $scope.registration = UserService.registration;
+  $scope.userDemographics = UserService.userDemographics;
 
-    $scope.userDemographics = function(){
-      console.log('sending demographics', $scope.registration);
-      $http.post('/register/registration', $scope.registration).then(function(response) {
-        console.log('success saving demographic info', response);
-        $location.path('/login');
-      });
-    };
 
   // REGISTRATION FORM
 
@@ -72,8 +112,6 @@ myApp.controller('LoginController', ['$scope', '$http', '$location', 'UserServic
       $scope.genders = ('Female,Male,Trans,Other,Prefer Not to Answer').split(comma).map(function(gender) {
           return {gender: gender};
        });
-
-     // Generate Birth Year Dropdown Options
 
         $scope.years = [];
 

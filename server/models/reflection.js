@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var ReflectionSchema = mongoose.Schema({
   feelings: {type: Array},
+  overallfeeling: {type: Number},
   feelingsWhy: {type: String},
   drugAlcoholIntake: {type: Boolean},
   medication: {type: Boolean},
@@ -22,8 +23,7 @@ var ReflectionSchema = mongoose.Schema({
   gratitude: {type: String},
   peerSupport: {type: Boolean},
   counselor: {type: Boolean},
-  // reflectionDate: {type: String},
-  // reflectionTime: {type: String},
+  streakCount : {type: Number, default: 0},
   reflectionDate: {type: Date, default: Date.now},
   memberID: {type: Number, ref: 'Registration'} //references Registration Schema
 });

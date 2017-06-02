@@ -1,36 +1,46 @@
-<div class = 'wrapper'>
+<md-content class='wrapper' layout = 'column' layout-align = 'center center' flex>
+  <div  layout='column' layout-align='center center' flex>
+      <md-content flex>
+        <h3 class='md-subhead'>How did you sleep last night?</h3>
 
-<!-- Floating Next Button -->
-  <md-button ng-class="{ visible: selectedTab==0 }" class="md-fab md-fab-bottom-right md-primary md-default"  aria-label="New Reflection" ng-click = 'reflectionFormNextButton(sessionObject, reflectionObject)'>
-    <i class="material-icons" id='formNextButton'>navigate_next</i>
-  </md-button>
+        <div>
+          <md-slider-container >
+              <span>Terrible</span>
+                  <md-slider aria-label = 'How did you sleep last night? 1 = terrible 5 = great' flex  class='md-accent md-default' md-discrete ng-model="reflectionObject.sleep" step="1" min="1" max="5" aria-label="rating">
+                  </md-slider>
+              <span>Great</span>
+          </md-slider-container>
+          <div ng-switch on = "reflectionObject.sleep" layout = 'row' layout-align = 'center center'>
+               <span ng-switch-when = "1">Terrible</span>
+               <span ng-switch-when = "2">Not So Great</span>
+               <span ng-switch-when = "3">Okay</span>
+               <span ng-switch-when = "4">Good</span>
+               <span ng-switch-when = "5">Great</span>
+          </div>
+        </div>
+        
 
-  <div>
-      <h3 class='md-subhead' layout='row' layout-align='center center'>How did you sleep last night?</h3>
-      <md-slider-container>
-          <span>Terrible</span>
-              <md-slider aria-label = 'How did you sleep last night? 1 = terrible 5 = great' flex  class='md-accent md-default' md-discrete ng-model="reflectionObject.sleep" step="1" min="1" max="5" aria-label="rating">
-              </md-slider>
-          <span>Great</span>
-
-      </md-slider-container>
-  </div>
-
-  <div>
-    <h3 class='md-subhead' layout='row' layout-align='center center'>Did you have a using dream?</h3>
+        <h3 class='md-subhead'>Did you have a using dream?</h3>
         <div layout='row' layout-align='center center'>
           <span>No</span>
               <md-switch aria-label = 'Did you have a using dream"' ng-model="reflectionObject.dream">
               </md-switch>
           <span>Yes</span>
         </div>
+
+
+        <md-input-container class="md-block md-accent md-default">
+          <label>If yes, can you describe your dream?</label>
+          <textarea ng-model="reflectionObject.whatDream" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+
+
+      </md-content>
+
+      <section layout = 'row' layout-align = 'center end'>
+          <md-button class="md-raised md-primary form-button" aria-label="Prev Reflection" ng-click='reflectionFormPrevButton(sessionObject, reflectionObject)'>Prev</md-button>
+          <md-button class="md-raised md-accent form-button" aria-label="Next Reflection" ng-click='reflectionFormNextButton(sessionObject, reflectionObject)'>Next</md-button>
+      </section>
   </div>
-
-  <md-input-container class="md-block md-accent md-default">
-    <label>If yes, can you describe your dream?</label>
-    <textarea ng-model="reflectionObject.whatDream" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-  </md-input-container>
-
-  <!-- {{ reflectionObject }} -->
-</div>
+</md-content>
 <!-- ends wrapper -->

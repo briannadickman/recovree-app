@@ -1,16 +1,48 @@
+<md-content class='wrapper' layout = 'column' layout-align = 'center center' flex>
+  <div layout='column' layout-align='center center' flex>
+        <md-content flex>
+          <div layout = 'column' layout-align = 'center center'>
+            <h1 style="font-size: 30px" >Welcome!</h1>
+            <br>
 
-<div layout='column' layout-align='center center'>
-  <h1 class='md-headline'>Welcome Back!</h1>
-  <div id='chainGraphic'>Chain Graphic Goes Here w/ Number of Days: {{sessionObject.streak}}</div>
-  <h2 class='md-subhead'>Recovree Days In A Row!</h2>
-</div>
+            <div layout='column' layout-align='center center'>
+                  <p class='streakTitle center-text' ng-show="sessionObject.streak > 0" >Current Reflection Streak </p>
+                  <p class='streak center-text' ng-show="sessionObject.streak > 1">{{sessionObject.streak}} Days</p>
+                  <p class='streak center-text' ng-show="sessionObject.streak == 1">{{sessionObject.streak}} Day</p>
+            </div>
 
-<div layout='column' layout-align='end center' ng-if='sessionObject.reflectionCompleted == false'>
-  <md-button class='md-raised md-hue-3' ng-click = 'launchReflection()'>Reflect</md-button>
-</div>
-<div layout='column' layout-align='end center' ng-if='sessionObject.reflectionCompleted == true'>
-  <h2 class='md-title'>You have completed your Recovree for the day!</h2>
-</div>
-<a href='#/admin-export'>Admin View</a>
+          <div flex layout='column' layout-align='center center' ng-show='sessionObject.streak < 1'>
+            <p class='streak center-text'>{{randomQuote.quote}}</p>
+             <p class='streakTitle center-text'> {{randomQuote.name}} </p>
+          </div>
 
-<footer class='navMenu' ng-include="'/views/partials/nav.html'"></footer>
+          <div flex layout='column' layout-align='center center' ng-hide='sessionObject.streak < 1' >
+            <div style="width:250px; height:250px; font-size: 30px" flex layout='column' layout-align='center center' >
+                <canvas id="streakDonughtChart"></canvas>
+            </div>
+          </div>
+
+            <br>
+
+            <div layout='column' layout-align='center center'>
+                  <p style="font-size: 18px" class='center-text' ng-show="sessionObject.streak  < 1"> Reflection Goal: 30 Days In A Row</p>
+
+            <p ng-if=" "></p>
+                  <p style="font-size: 18px" class='center-text' ng-show="sessionObject.streak >= 1"> Goal: 30 Days</p>
+                  <p style="font-size: 18px" class='center-text' ng-show="sessionObject.streak > 30"> Goal: Another 30 Days</p>
+
+            </div>
+
+            <div layout='column' layout-align='center center' ng-if='sessionObject.reflectionCompleted == true'>
+                <h2 class='md-title center-text'>You have completed your reflection for the day.</h2>
+            </div>
+
+          </div>
+        </md-content>
+
+        <div ng-if='sessionObject.reflectionCompleted == false'>
+            <md-button class='md-raised md-primary reflectBtn' style="font-size: 15px; font-weight: bold;" ng-click='launchReflection()'>Reflect</md-button>
+        </div>
+    </div>
+</md-content>
+<!-- <footer class='navMenu' ng-include="'/views/partials/nav.html'"></footer> -->

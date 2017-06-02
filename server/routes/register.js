@@ -8,12 +8,6 @@ var Registration = require('../models/registration');
 
 var mongoose = require("mongoose");
 
-//SAVE ONLY USERNAME AND PASSWORD FROM REGISTER VIEW
-// Handles request for HTML file
-// router.get('/', function(req, res, next) {
-//   res.sendFile(path.resolve(__dirname, '../public/views/templates/register.html'));
-// });
-
 var transporter = nodemailer.createTransport({
   service: 'hotmail',
   auth: {
@@ -24,7 +18,7 @@ var transporter = nodemailer.createTransport({
 
 var randomIdGenerator = function(){
   var newId = Math.round(Math.random() * (9999 - 1000) + 1000);
-  Users.count({'memberID' : 7167}, function(err, count){
+  Users.count({'memberID' : newId}, function(err, count){
     if (err) {
       console.log(err);
     }
@@ -36,6 +30,8 @@ var randomIdGenerator = function(){
   });
 return newId;
 };
+
+var registrationMemberId = 0;
 
 
 //SAVE ALL OTHER REGISTRATION DATA FROM REGISTER VIEW
@@ -78,6 +74,17 @@ router.get('/meds/:id', function(req, res){
   });
 });
 
+router.get('/memberCount', function(req, res){
+  console.log('member count hit');
+  Registration.distinct('memberID', function(err, uniqueMembers){
+    if (err) {
+      console.log('error counting members');
+    }
+    console.log('uniqueMembers: ', uniqueMembers.length);
+    res.send(uniqueMembers);
+  });
+});
+
 router.post("/registration", function(req,res){
   var registration = req.body;
   console.log("inside post to /registration:", req.body);
@@ -91,7 +98,7 @@ router.post("/registration", function(req,res){
     programPayment : registration.programPayment,
     medication : registration.medication,
     termsAgreement : registration.termsAgreement,
-    memberID: registration.memberID
+    memberID: registrationMemberId
   });
   console.log("inside post, newForm:", newForm);
 
@@ -108,6 +115,7 @@ router.post("/registration", function(req,res){
 // Handles POST request with new user data
 router.post('/', function(req, res, next) {
   var newId = randomIdGenerator();
+  registrationMemberId = newId;
   console.log('newId in post: ', newId);
   var newUser = req.body;
   var userToSave = new Users({
