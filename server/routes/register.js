@@ -111,7 +111,6 @@ router.post("/registration", function(req,res){
   });
 });
 
-
 // Handles POST request with new user data
 router.post('/', function(req, res, next) {
   var newId = randomIdGenerator();

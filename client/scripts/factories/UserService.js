@@ -42,21 +42,15 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     if (user.username === '' || user.password === '') {} else {
       console.log('sending to server...', user);
       $http.post('/register', user).then(function(response) {
-          console.log('success saving member');
-          console.log('response', response);
-          console.log('response.data.memberID', response.data.memberID);
-
           emptyUser(user);
           userDemographics(registration);
         },
         function(response) {
           console.log('error');
           // $scope.message = "Please try again.";
-        });
+        });  
     }
   } //ends registerUser
-
-
 
   function emptyUser(user) {
     user.username = '';
