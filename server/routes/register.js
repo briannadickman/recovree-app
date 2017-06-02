@@ -12,7 +12,7 @@ var transporter = nodemailer.createTransport({
   service: 'hotmail',
   auth: {
     user: 'benbizzey@outlook.com',
-    pass: '9670no5^BXN^0'
+    pass: '',
   },
 });
 
@@ -122,15 +122,12 @@ router.post('/', function(req, res, next) {
     username: newUser.username,
     password: newUser.password,
     memberID: newId,
-    // userType: newUser.userType
   });
   console.log("userToSave", userToSave);
   userToSave.save(userToSave, function(err, post) {
     if (err) {
-      // next() here would continue on and route to routes/index.js
       next(err);
     } else {
-      // route a new express request for GET '/'
       console.log('post: ', post);
       var newUserEmail = {
         from: '"Ben Bizzey" <benbizzey@outlook.com>',
