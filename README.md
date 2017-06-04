@@ -46,6 +46,9 @@ In seperate terminal tabs run the commands below:
 * chance.js
 * express
 
+## Deployment
+* Heroku
+
 ## Contributors
 * Anisa Abdulkadir
 * Brianna Dickman
