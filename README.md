@@ -19,7 +19,7 @@ These directions will get a copy of the project running on your local machine fo
    ```
    git remote add origin https://github.com/username/recovree_project.git
    ```
- * Run 'git pull origin master` if you forked the project repository. Otherwise, run `git push origin master` if you downloaded a ZIP file and have an empty github repository. This command will sync your local and github repository
+ * Run `git pull origin master` if you forked the project repository. Otherwise, run `git push origin master` if you downloaded a ZIP file and have an empty github repository. This command will sync your local and github repository
  * Run `npm install` to install all dependencies specified in the package.json
  * Open Robomongo
 
@@ -30,4 +30,30 @@ In seperate terminal tabs run the commands below:
 * `npm start` - starts the node server. You should see "Listening on port: 500" in the terminal. 
 
 
+## Built With
+* AngularJS 
+* Angular Material
+* Passport - Base code provided by instructors
+* grunt
+* twilio
+* json2csv
+* async
+* nodemailer
+* cron
+* moment.js
+* bcrypt
+* chart.js
+* chance.js
+* express
+
+## Contributors
+* Anisa Abdulkadir
+* Brianna Dickman
+* Logan Kelly
+* Keith Tomlinson
+
+
+## Acknowledgments
+* Scott Bromander, Chris Black, Luke Schlangen
+* Luke Kjolsing and Melissa Kjolsing
 
