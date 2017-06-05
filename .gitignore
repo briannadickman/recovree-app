@@ -6,3 +6,4 @@ registration.csv
 reflection.csv
 .env
 .~lock.reflection.csv#
+*.log
