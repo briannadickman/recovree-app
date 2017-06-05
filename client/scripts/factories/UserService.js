@@ -34,7 +34,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
   function logout() {
     $http.get('/user/logout').then(function(response) {
       console.log('logged out');
-      $location.path("/login");
+      $location.path("/landing");
     });
   } //ends logout
 
