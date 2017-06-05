@@ -38,7 +38,7 @@ var sendReminders = function(){
 var generateReminders = function(recipients){
   for (i = 0; i<recipients.length; i++){
     var message = randomMessage();
-    console.log(recipients[i] + ' : ' + message);
+    // console.log(recipients[i] + ' : ' + message);
   }
 };
 
