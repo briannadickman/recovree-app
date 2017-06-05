@@ -1,3 +1,4 @@
+//gives the client the date in the format specified for the graph labels
 var convertCount = function(countData){
   var reflectionCountByDate = [];
   for (i=0; i<countData.length; i++){
@@ -9,7 +10,6 @@ var convertCount = function(countData){
     countByDate.count = countData[i].count;
     reflectionCountByDate.push(countByDate);
   }
-  console.log('countByDate: ', reflectionCountByDate);
   return reflectionCountByDate;
 };
 
