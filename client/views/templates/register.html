@@ -1,39 +1,39 @@
-<md-content id='northernLights' class='wrapper' layout='column' layout-align='center center' flex>
-    <div layout='column' layout-align='center center' flex>
-        <md-content layout='column' layout-align='center center' flex>
-            <div layout='column' layout-align='center center'>
-
-    <h1 class='md-subhead' style="font-size: 24px; text-align: center;">Sign Up For Recovree</h1>
-  <h2 class="lead alert alert-danger" role="alert" ng-if="message != ''">{{message}}</h2>
-
+<md-content class='wrapper' layout = 'column' layout-align = 'center center' flex>
+  <div layout='column' layout-align='center center' flex>
+      <md-content flex>
+          <div layout = 'column' layout-align = 'center center'>
+              <h3 class='md-subhead' style="font-size: 24px; text-align: center; font-weight: bold;">Begin Your Recovree</h3>
+                <h2 class="lead alert alert-danger" role="alert" ng-if="message != ''">{{message}}</h2>
+  <br>
   <form>
   <!-- Captures Info into MemberSchema -->
   <div>
-    <md-input-container layout-xs='row'>
-        <label for="username">Phone Number:</label>
+    <md-input-container layout='row'>
+        <label for="username">Mobile Phone Number:</label>
         <input type="text" ng-model="user.username" ng-pattern="/^[0-9]{10}$/" required/>
     </md-input-container>
 
-    <md-input-container layout-xs='row'>
+    <md-input-container layout='row'>
         <label for="password">Password:</label>
         <input type="password" ng-model="user.password" required/>
     </md-input-container>
+
   </div>
 
   <!-- Captures Info into RegistrationSchema -->
     <div layout='row'>
-      <md-input-container flex>
+      <md-input-container flex='60'>
           <label for="gender">Gender:</label>
-          <md-select ng-model="registration.gender">
+          <md-select ng-model="registration.gender" required>
               <md-option ng-repeat="gender in genders" value="{{gender.gender}}">
                 {{gender.gender}}
               </md-option>
           </md-select>
       </md-input-container>
 
-      <md-input-container flex>
+      <md-input-container flex='40'>
           <label for="birthYear">Birth Year:</label>
-          <md-select ng-model="registration.birthYear" ng-click='getYearDropdown()'>
+          <md-select ng-model="registration.birthYear" ng-click='getYearDropdown()' required>
               <md-option ng-repeat="year in years" value="{{year}}">
                 {{year}}
               </md-option>
@@ -42,74 +42,70 @@
     </div>
 
   <div layout='row'>
-    <md-input-container flex>
+    <md-input-container flex='40'>
         <label for="state">State:</label>
-        <md-select ng-model="registration.state">
+        <md-select ng-model="registration.state" required>
             <md-option ng-repeat="state in states" value="{{state.abbrev}}">
               {{state.abbrev}}
             </md-option>
         </md-select>
     </md-input-container>
 
-    <md-input-container flex>
+    <md-input-container flex='60'>
         <label for="county">County:</label>
-        <input type="text" ng-model="registration.county" />
+        <input type="text" ng-model="registration.county"  required/>
     </md-input-container>
   </div>
 
-  <div layout='row'>
-    <md-input-container  flex>
+  <div layout='row' style="padding: 0px; margin: 0px;">
+    <md-input-container  flex='60'>
         <label for="drugChoice">Drugs of Choice:</label>
-        <md-select multiple ng-model="registration.drugChoice">
+        <md-select multiple ng-model="registration.drugChoice" required>
             <md-option ng-repeat="drug in drugs" value="{{drug.drug}}">
               {{drug.drug}}
             </md-option>
         </md-select>
     </md-input-container>
 
-    <md-input-container flex>
+    <md-input-container flex='40'>
         <label for="sobrietyDate">Sobriety Date:</label>
-        <md-datepicker md-hide-icons="calendar" md-open-on-focus ng-model="registration.sobrietyDate"></md-datepicker>
+        <md-datepicker md-hide-icons="calendar" md-open-on-focus ng-model="registration.sobrietyDate" required></md-datepicker>
     </md-input-container>
   </div>
 
-    <md-input-container layout-xs='row'>
+  <div layout='row'>
+    <md-input-container>
         <label for="programPayment">How did you pay for your treatment services?</label>
-        <md-select ng-model="registration.programPayment">
+        <md-select ng-model="registration.programPayment" required>
             <md-option ng-repeat="payment in payments" value="{{payment.payment}}">
               {{payment.payment}}
             </md-option>
         </md-select>
     </md-input-container>
+  </div>
 
-  <div layout='column'  layout-align='center center'>
-
-
-    <md-input-container>
-      <p layout='row'>Are you currently taking prescription medication?</p>
-        <label>Social Security Number</label>
-        <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
-
-      <md-radio-group ng-model="registration.medication" layout-xs='row' style='display: inline-block;'>
-
+  <div layout='column' layout-align='center center'>
+    <p layout'row'>Are you currently taking prescription medication?</p>
+      <md-radio-group ng-model="registration.medication" layout='row' required>
+        <div layout='row'  layout-align='center center'>
           <md-radio-button value="true" class="md-primary">Yes</md-radio-button>
           <md-radio-button value="false">No</md-radio-button>
-
+        </div>
       </md-radio-group>
+  </div>
 
-    <md-input-container layout-xs='row'>
-        <md-checkbox ng-model="registration.termsAgreement" required>I agree to the <a ng-href='#/terms'>Terms of Use</a></md-checkbox>
+  <br>
+  <div layout='column' layout-align='center center'>
+    <md-input-container layout'row' style="padding: 0px; margin: 0px;">
+        <md-checkbox ng-model="registration.termsAgreement" required>I agree to the <a ng-href='#/terms' required>Terms of Use</a></md-checkbox>
     </md-input-container>
 
-    <!-- <md-button class='md-raised' ng-click='registerUser(user,registration)'>Register</md-button> -->
-    <md-button class='md-raised md-primary' style="font-size: 15px; font-weight: bold;" ng-click='showConfirm($event)'>Register</md-button>
-
-    <a href="#login">Cancel</a>
+    <md-button class='md-raised md-primary' style="font-size: 15px; font-weight: bold; padding: 0px; margin: 0px;" ng-click='showConfirm($event)'>Register</md-button>
     <br>
+    <a href="#/landing">Cancel</a>
   </div>
 
   </form>
-
 </div>
 </md-content>
 </div>
