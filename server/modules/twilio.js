@@ -64,7 +64,7 @@ var sendReminders = function() {
         for (i = 0; i < allUsers.length; i++) {
             phoneNumbers.push(allUsers[i].username);
         }
-        generateReminders(phoneNumbers);
+        // generateReminders(phoneNumbers);
     });
 };
 
