@@ -35,6 +35,7 @@ router.get('/', function (req, res) {
   }
 });
 
+//admin - return count by day
 router.get('/countByDay', function(req, res){
   if(req.isAuthenticated()){
   Reflection.aggregate(
@@ -46,7 +47,6 @@ router.get('/countByDay', function(req, res){
     if (err){
       console.log('error in count by day: ', err);
     }
-    console.log('count data: ', countData);
     var reflectionCountByDate = convertCount(countData);
     res.send(reflectionCountByDate);
   });
@@ -55,52 +55,43 @@ router.get('/countByDay', function(req, res){
   }
 });
 
-router.get('/')
-
+//async session generation
 router.get('/session/', function(req, res){//took out memberID
   if (req.isAuthenticated()){
   var reflections;
   var medication;
-  console.log('memberID in session: ', req.user.memberID);
   var memberID = req.user.memberID;
-  //asyncMod is a node package that handles mongoose async calls for multiple database queries
-  //parallel will make both calls in parallel since neither call depends on the other
+  //find reflections by memberID
   asyncMod.parallel([
     function(callback){
-      //finds all reflections for logged in member
       Reflection.find({'memberID': memberID})
-      //orders allReflections from new to old
         .sort({'reflectionDate': -1})
         .exec(function(err, allReflections){
           if (err){
             console.log('error in find reflections: ', err);
             res.sendStatus(500);
           }
-          //all reflections are saved in the asyncMod's  sessionOutput[0]
           sessionOutput = allReflections;
           callback(null, sessionOutput);
         });
     },
     function(callback, sessionOutput){
-      //determines whether the current member should be asked medication question
+      //does the user have medication?  called in the backend to protect anonymity
       Registration.findOne({'memberID' : memberID})
       .select('medication')
       .exec(function(err, hasMedication){
         if (err){
           console.log('error in find meds: ', err);
         }
-        //medication boolean returned from database saved as sessionOutput[1]
         sessionOutput = hasMedication;
         callback(null, sessionOutput);
       });
     }
   ],
   function(err, sessionOutput){
-    //sessionOutput from reflection collection call saved as reflections now that the async calls have both completed
     reflections = sessionOutput[0];
-    //sessionOutput from medication determination
     medication = sessionOutput[1].medication;
-    //runs the streak determination then saves the streak to the database after the determinations has been completed
+    //create session object
     asyncMod.waterfall([
       function(callback){
         var serverSessionObject = generateSessionObject(reflections, medication);
@@ -108,28 +99,24 @@ router.get('/session/', function(req, res){//took out memberID
       }
     ],
     function(err, results){
-      //server session object is passed as results per async plugin
       var newCount = results.streakCount;
-      console.log('newCount: ', newCount);
-      //if a reflection exists (not a new user) this saves the results from the streak count determination
+      //if reflection(s) exist, save the streak count
       if (results.allReflectionsNewToOld[0]){
         Reflection.findOne({'_id' : results.allReflectionsNewToOld[0]._id}, function(err, curReflection){
           if (err) {
             console.log('streak count first reflection update error: ', err);
           }
           curReflection.streakCount = newCount || curReflection.streakCount;
-          console.log('curReflection.streakCount: ', curReflection.streakCount);
           curReflection.save(function(err, updatedReflection){
             if (err){
               console.log('error in reflection put: ', err);
               res.sendStatus(500);
             }
-            console.log('updated reflection: ', updatedReflection);
             res.send(results);
           });
         });
       } else {
-        //this sends the defaults for sessionObject for new users
+        //send session object defaults for new members
         res.send(results);
       }
     });
@@ -143,7 +130,6 @@ router.get('/session/', function(req, res){//took out memberID
 //initial reflections post
 router.post('/', function(req,res){
   if(req.isAuthenticated()){
-  console.log(req.user.memberID);
   var memberID = req.user.memberID;
   var reflection = req.body;
   var newReflection = new Reflection({
@@ -178,7 +164,6 @@ router.post('/', function(req,res){
       console.log("Error: ", err);
       res.sendStatus(500);
     }
-    console.log('saved to db ----------', newReflection);
     res.send(savedReflection);
   });
   } else {
@@ -224,7 +209,6 @@ router.put('/', function (req, res) {
         console.log('error in reflection put: ', err);
         res.sendStatus(500);
       }
-      console.log('updated reflection: ', updatedReflection);
       res.send(updatedReflection);
     });
   });

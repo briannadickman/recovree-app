@@ -1,29 +1,47 @@
 var express = require('express');
 var cronJob = require('cron').CronJob;
+var Users = require('../models/user');
+var asyncMod = require('async');
 
 //TWILIO
 var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
-
-var phoneNumbers = ['6129918411', '7014294214', '6513997345', '6122050534'];
-var twilioNumber = process.env.TWILIO_NUMBER;
+//Random Message
 var messageAlerts = ['This is a friendly reminder to complete your daily Recovree (insert link)',
-  'Find a moment to reflect and complete your daily Recovree (insert link)',
-  'One day at a time. Find time to complete your daily Recovree (insert link)',
-  'Sobriety is a journey. A reminder to complete your daily Recovree (insert link)'
-];
+                     'Find a moment to reflect and complete your daily Recovree (insert link)',
+                     'One day at a time. Find time to complete your daily Recovree (insert link)',
+                     'Sobriety is a journey. A reminder to complete your daily Recovree (insert link)'];
 
-var randomIndex = Math.floor(Math.random() * messageAlerts.length);
-var randomMessage = messageAlerts[randomIndex];
-console.log(randomMessage);
+var twilioNumber = process.env.TWILIO_NUMBER;
 
-// Using Cron to send automated messages at desiredintervals
-// var textJob = new cronJob( '* * * * *', function(){ // send SMS message every minute
-// for (var i = 0; i < phoneNumbers.length; i++) {
-//   client.messages.create( { to: phoneNumbers[i], from: twilioNumber, body: randomMessage}, function( err, data ) {});
-//   console.log('Text Reminder Sent To: ', phoneNumbers[i]);
-// }
-// console.log('CRON PORTION OF CODE');
-// },  null, true );
+//select random message
+var randomMessage = function(){
+  var randomIndex = Math.floor(Math.random() * messageAlerts.length);
+  return messageAlerts[randomIndex];
+};
+
+//send out random message to all users
+var sendReminders = function(){
+  var phoneNumbers = [];
+  Users.find({}, function(err, allUsers){
+    if (err){
+      console.log('error in find users: ', err);
+    }
+    for (i = 0; i < allUsers.length; i++){
+      phoneNumbers.push(allUsers[i].username);
+    }
+    generateReminders(phoneNumbers);
+  });
+};
+
+//random reminders combined with all user phone numbers
+var generateReminders = function(recipients){
+  for (i = 0; i<recipients.length; i++){
+    var message = randomMessage();
+    console.log(recipients[i] + ' : ' + message);
+  }
+};
+
+sendReminders();
 
 module.exports = client;
