@@ -58,6 +58,12 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
 
 
   $routeProvider
+//landing
+.when('/landing', {
+  templateUrl: '/views/templates/landingPage.html',
+  controller: 'LoginController'
+})
+
 //login
     .when('/login', {
       templateUrl: '/views/templates/login.html',
@@ -300,6 +306,6 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
     })
 
     .otherwise({
-      redirectTo: '/login'
+      redirectTo: '/landing'
     });
 }]);

@@ -1,5 +1,8 @@
+<md-content id='northernLights' class='wrapper' layout='column' layout-align='center center' flex>
+    <div layout='column' layout-align='center center' flex>
+        <md-content layout='column' layout-align='center center' flex>
+            <div layout='column' layout-align='center center'>
 
-<md-content class = 'wrapper' layout = 'column' flex >
     <h1 class='md-subhead' style="font-size: 24px; text-align: center;">Sign Up For Recovree</h1>
   <h2 class="lead alert alert-danger" role="alert" ng-if="message != ''">{{message}}</h2>
 
@@ -18,8 +21,8 @@
   </div>
 
   <!-- Captures Info into RegistrationSchema -->
-    <div layout-xs='row'>
-      <md-input-container flex='50'>
+    <div layout='row'>
+      <md-input-container flex>
           <label for="gender">Gender:</label>
           <md-select ng-model="registration.gender">
               <md-option ng-repeat="gender in genders" value="{{gender.gender}}">
@@ -28,7 +31,7 @@
           </md-select>
       </md-input-container>
 
-      <md-input-container flex='50'>
+      <md-input-container flex>
           <label for="birthYear">Birth Year:</label>
           <md-select ng-model="registration.birthYear" ng-click='getYearDropdown()'>
               <md-option ng-repeat="year in years" value="{{year}}">
@@ -38,8 +41,8 @@
       </md-input-container>
     </div>
 
-  <div layout-xs='row'>
-    <md-input-container flex-xs='35'>
+  <div layout='row'>
+    <md-input-container flex>
         <label for="state">State:</label>
         <md-select ng-model="registration.state">
             <md-option ng-repeat="state in states" value="{{state.abbrev}}">
@@ -48,14 +51,14 @@
         </md-select>
     </md-input-container>
 
-    <md-input-container flex-xs='65'>
+    <md-input-container flex>
         <label for="county">County:</label>
         <input type="text" ng-model="registration.county" />
     </md-input-container>
   </div>
 
-  <div layout-xs='row'>
-    <md-input-container  flex-xs='60'>
+  <div layout='row'>
+    <md-input-container  flex>
         <label for="drugChoice">Drugs of Choice:</label>
         <md-select multiple ng-model="registration.drugChoice">
             <md-option ng-repeat="drug in drugs" value="{{drug.drug}}">
@@ -64,7 +67,7 @@
         </md-select>
     </md-input-container>
 
-    <md-input-container flex-xs='40'>
+    <md-input-container flex>
         <label for="sobrietyDate">Sobriety Date:</label>
         <md-datepicker md-hide-icons="calendar" md-open-on-focus ng-model="registration.sobrietyDate"></md-datepicker>
     </md-input-container>
@@ -80,8 +83,14 @@
     </md-input-container>
 
   <div layout='column'  layout-align='center center'>
-    <p layout-xs='row'>Are you currently taking prescription medication?</p>
-      <md-radio-group ng-model="registration.medication" layout-xs='row'>
+
+
+    <md-input-container>
+      <p layout='row'>Are you currently taking prescription medication?</p>
+        <label>Social Security Number</label>
+        <input name="social" ng-model="user.social" ng-pattern="/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/" />
+
+      <md-radio-group ng-model="registration.medication" layout-xs='row' style='display: inline-block;'>
 
           <md-radio-button value="true" class="md-primary">Yes</md-radio-button>
           <md-radio-button value="false">No</md-radio-button>
@@ -100,4 +109,8 @@
   </div>
 
   </form>
+
+</div>
+</md-content>
+</div>
 </md-content>
