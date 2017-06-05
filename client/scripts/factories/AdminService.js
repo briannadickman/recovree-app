@@ -35,7 +35,6 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
       getCSVforRegistration();
   }
 
-
   function getCSVforReflections(){
     $http.get('/csvExport/reflections').then(function(response){
       window.open('/csvExport/reflections');
@@ -111,6 +110,7 @@ return {
   countReflectionsByDay : countReflectionsByDay,
   adminObject : adminObject,
   getadmin : getadmin,
+
   getReflections: getReflections,
   getRegistrationInfo: getRegistrationInfo,
   getCSVforReflections : getCSVforReflections,
