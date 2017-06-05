@@ -30,6 +30,11 @@ myApp.controller('NavController', ['$scope', '$http', '$location', '$mdDialog', 
     $location.path('/resources');
   };
 
+  $scope.goToContactUs = function(){
+    console.log('Contact Us button clicked!');
+    $location.path('/contact-us');
+  };
+
 
   $scope.showConfirm = function(ev) {
     // Appending dialog to document.body to cover sidenav in docs app
