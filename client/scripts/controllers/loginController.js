@@ -135,8 +135,19 @@ $scope.showConfirm = function(ev) {
           return {payment: payment};
        });
 
-    // Capture Into MemberSchema
+    // TERMS OF USE MODAL
+    function DialogController($scope, $mdDialog) {
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
 
-    // Capture Into RegistrationSchema
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
+  }
 
 }]);
