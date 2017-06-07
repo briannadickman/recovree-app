@@ -2,7 +2,11 @@ var express = require('express');
 var cronJob = require('cron').CronJob;
 var Users = require('../models/user');
 var asyncMod = require('async');
-var User = require('../routes/user');
+// var User = require('../routes/user');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var UserModel = require('../models/user');
+var User = mongoose.model('users', UserModel.UserSchema);
 
 var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 var twilioNumber = process.env.TWILIO_NUMBER;
