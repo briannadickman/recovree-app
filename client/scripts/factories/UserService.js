@@ -52,8 +52,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
                 function(response) {
                     console.log('error');
                     // $scope.message = "Please try again.";
-                }); >>>
-            >>> > password - reset
+                });
         }
     } //ends registerUser
 
