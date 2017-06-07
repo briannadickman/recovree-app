@@ -1,7 +1,7 @@
 <md-toolbar layout='row' ng-controller = 'NavController'>
 
     <div class="md-toolbar-tools" ng-click='goHome()' >
-      <div layout='column' flex  ng-hide='$location.path() === "/admin-export"'>
+      <div layout='column' flex  ng-hide='$location.path() === "/admin-export" || $location.path() === "/landing" || $location.path() === "/register"'>
         <h1 layout='column' style='text-align: center' md-truncate id='headerTitle' flex='90'>RECOVREE</h1>
       </div>
 
@@ -10,7 +10,7 @@
       </div>
 
         <div layout='column' flex='10'>
-            <md-menu ng-hide = "$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms' || $location.path() === '/confirmreset'|| $location.path() === '/forgotpassword' || $location.path() === '/admin-export'">
+            <md-menu ng-hide = "$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms' || $location.path() === '/confirmreset'|| $location.path() === '/forgotpassword' || $location.path() === '/admin-export' || $location.path() === '/landing'">
                 <md-button class="md-icon-button" aria-label="Logout" ng-click="$mdMenu.open($event)">
                     <md-icon md-menu-origin><i class="material-icons" id='headerMenuBtn'>more_vert</i></md-icon>
                 </md-button>
