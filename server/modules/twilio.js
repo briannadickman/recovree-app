@@ -7,7 +7,7 @@ var user = require('../routes/user');
 var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 var twilioNumber = process.env.TWILIO_NUMBER;
 
-var phoneNumbers = [];
+var allPhoneNumbers = [];
 var newMember = '';
 
 var welcomeMember = 'Welcome to Recovree';
@@ -37,8 +37,15 @@ function sendSMS(phoneNumber, message) {
         });
 }
 
+//save all new member's phone numbers in an array and send daily text reminders
+function storePhoneNumbers(newPhoneNumber) {
+    allPhoneNumbers.push(newPhoneNumber);
+    console.log('NUMBERS TO SEND REMINDERS', allPhoneNumbers);
+    return allPhoneNumbers;
+}
+
 // Send SMS message 6pm everyday
-function scheduleSMS(params) {
+function scheduleSMS() {
     // var textJob = new cronJob( '0 18 * * *', function(){ 
     // }
     // console.log('CRON PORTION OF CODE');
@@ -56,3 +63,4 @@ function scheduleSMS(params) {
 
 
 module.exports = sendSMS;
+module.exports.allPhoneNumbers = storePhoneNumbers;
