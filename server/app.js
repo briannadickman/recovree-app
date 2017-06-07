@@ -15,7 +15,7 @@ var index = require('./routes/index');
 var user = require('./routes/user');
 var register = require('./routes/register');
 var reflection = require('./routes/reflection');
-
+var twilio = require('./routes/twilio');
 
 //modules
 var csvExport = require('./modules/csvExport');
@@ -43,6 +43,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
+app.use('/twilio', twilio);
 app.use('/csvExport', csvExport);
 app.use('/reflection', reflection);
 app.use('/register', register);

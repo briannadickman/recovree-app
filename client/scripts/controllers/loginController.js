@@ -8,11 +8,12 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
       if($scope.user.username === '') {
         $scope.message = "Enter your phone number";
       } else {
-        console.log('sending to server...', $scope.user);
         $location.path('/login');
         $http.post('/user/forgotpassword', $scope.user).then(function(response) {
           if(response.data.username) {
-            console.log('success: ', response.data);
+            $http.get('/twilio', $scope.user).then(function(response) {
+              console.log('TO TWILIO', $scope.user);
+            });
           } else {
             console.log('failure: ', response);
             $scope.message = "Failure";
