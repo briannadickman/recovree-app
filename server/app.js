@@ -15,7 +15,6 @@ var index = require('./routes/index');
 var user = require('./routes/user');
 var register = require('./routes/register');
 var reflection = require('./routes/reflection');
-var twilio = require('./routes/twilio');
 
 //modules
 var csvExport = require('./modules/csvExport');
