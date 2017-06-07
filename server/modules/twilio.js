@@ -2,7 +2,7 @@ var express = require('express');
 var cronJob = require('cron').CronJob;
 var Users = require('../models/user');
 var asyncMod = require('async');
-var user = require('../routes/user');
+var User = require('../routes/user');
 
 var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 var twilioNumber = process.env.TWILIO_NUMBER;
@@ -45,13 +45,20 @@ function storePhoneNumbers(newPhoneNumber) {
 }
 
 // Send SMS message 6pm everyday
-function scheduleSMS() {
+function dailyReminderSMS() {
+    User.find({}, function(err, users) {
+        if (err) {
+            console.log(err);
+        }
+        console.log('ALL MEMBERS', users);
+    });
     // var textJob = new cronJob( '0 18 * * *', function(){ 
     // }
     // console.log('CRON PORTION OF CODE');
     // },  null, true );
 }
 
+dailyReminderSMS();
 // var textJob = new cronJob( '* * * * *', function(){ 
 // for (var i = 0; i < phoneNumbers.length; i++) {
 //   client.messages.create( { to: phoneNumbers[i], from: twilioNumber, body: randomomizeReminderMessage},
@@ -63,4 +70,3 @@ function scheduleSMS() {
 
 
 module.exports = sendSMS;
-module.exports.allPhoneNumbers = storePhoneNumbers;
