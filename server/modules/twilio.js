@@ -1,4 +1,5 @@
 var express = require('express');
+var router = express('Router');
 var cronJob = require('cron').CronJob;
 var Users = require('../models/user');
 var asyncMod = require('async');
@@ -30,7 +31,7 @@ function sendReminderText(phoneNumber, message) {
         });
 }
 
-app.get('/', function(req, res) {
+router.get('/', function(req, res) {
   console.log('FROM RESET PASSWORD');
 });
 //send out random message to all users
@@ -56,4 +57,4 @@ app.get('/', function(req, res) {
 // };
 
 
-module.exports = client;
+module.exports = router;
