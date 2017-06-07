@@ -17,8 +17,8 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
       if (response.data.id && response.data.userType === 1) {
         console.log('login response: ', response.data);
         // user has a curret session on the server
-        adminObject.userName = response.data.username;
-        adminObject.id = response.data.id;
+        // adminObject.userName = response.data.username;
+        // adminObject.id = response.data.id;
       } else {
         console.log('login response: ', response.data);
         // user has no session, bounce them back to the login page
@@ -47,6 +47,11 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
     });
   }
 
+  function getAdminObject(){
+    countMembers();
+    countReflectionsByDay();
+  }
+
   function countMembers(){
     $http.get('/register/memberCount').then(function(response){
       adminObject.memberCount = response.data.length;
@@ -63,14 +68,14 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
   }
 
   function storeDaysAndCountInArray() {
-      for (var i = 0; i < adminObject.countByDay.length; i++) {
-        var reflectionDate = adminObject.countByDay[i].date;
-        var reflectionCount = adminObject.countByDay[i].count;
-        dates.push(reflectionDate);
-        dailyCount.push(reflectionCount);
-      }
-      // console.log('DATES', dates);
-      // console.log('COUNTS', dailyCount);
+      console.log("adminObject", adminObject.countByDay[0].date);
+      adminObject.countByDay.sort(function(a,b){
+          // Turn your strings into dates, and then subtract them
+          // to get a value that is either negative, positive, or zero.
+          return new Date(b.date) - new Date(a.date);
+        });
+      console.log("adminObject", adminObject, "later");
+
       buildAdminGraphs(dates, dailyCount);
   }
 
@@ -115,7 +120,8 @@ return {
   getRegistrationInfo: getRegistrationInfo,
   getCSVforReflections : getCSVforReflections,
   getCSVforRegistration : getCSVforRegistration,
-  buildAdminGraphs: buildAdminGraphs
+  buildAdminGraphs: buildAdminGraphs,
+  getAdminObject: getAdminObject
 
 
 
