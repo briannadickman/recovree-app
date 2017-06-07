@@ -29,6 +29,28 @@ var reflectionCompleteMessage = ['Thank you for completing your daily Recovree!'
 var randomIndex = Math.floor(Math.random() * reminderMessage.length);
 var randomomizeReminderMessage = reminderMessage[randomIndex];
 
+dailyReminderSMS();
+
+function dailyReminderSMS() {
+    var textJob = new cronJob('0 18 * * *', function() {
+            // var textJob = new cronJob('* * * * *', function() {      //every minute for development purposes
+            getPhoneNumbers();
+            console.log('DIALY REMINDER SENT TO: ', allPhoneNumbers);
+        },
+        null, true);
+}
+
+function getPhoneNumbers() {
+    User.find({}, function(err, users) {
+        if (err) {
+            console.log(err);
+        }
+        for (var i = 0; i < users.length; i++) {
+            var numbers = users[i].username;
+            sendSMS(numbers, randomomizeReminderMessage);
+        }
+    });
+}
 
 function sendSMS(phoneNumber, message) {
     client.messages.create({ to: phoneNumber, from: twilioNumber, body: message },
@@ -41,40 +63,7 @@ function sendSMS(phoneNumber, message) {
         });
 }
 
-//save all new member's phone numbers in an array and send daily text reminders
-function storePhoneNumbers(newPhoneNumber) {
-    allPhoneNumbers.push(newPhoneNumber);
-}
 
-// Send SMS message 6pm everyday
-function getPhoneNumbers() {
-    User.find({}, function(err, users) {
-        if (err) {
-            console.log(err);
-        }
-        for (var i = 0; i < users.length; i++) {
-            var numbers = users[i].username;
-            console.log('ALL THE NUMBERS', numbers);
-            allPhoneNumbers.push(numbers);
-        }
-    });
-}
-
-function dailyReminderSMS() {
-    var textJob = new cronJob('0 18 * * *', function() {
-                //run test message here
-            }
-        },
-        null, true);
-}
-// var textJob = new cronJob( '* * * * *', function(){ 
-// for (var i = 0; i < phoneNumbers.length; i++) {
-//   client.messages.create( { to: phoneNumbers[i], from: twilioNumber, body: randomomizeReminderMessage},
-//   function( err, data ) {});
-//   console.log('Text Reminder Sent To: ', phoneNumbers[i]);
-// }
-// console.log('CRON PORTION OF CODE');
-// },  null, true );
 
 
 module.exports = sendSMS;
