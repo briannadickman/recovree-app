@@ -58,6 +58,12 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
 
 
   $routeProvider
+//landing
+.when('/landing', {
+  templateUrl: '/views/templates/landingPage.html',
+  controller: 'LoginController'
+})
+
 //login
     .when('/login', {
       templateUrl: '/views/templates/login.html',
@@ -266,6 +272,17 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
       }
     })
 
+//contact-us
+    .when('/contact-us', {
+      templateUrl: '/views/templates/contactUs.html',
+      controller: 'NavController',
+      resolve: {
+        getuser : ['UserService', function(UserService){
+          return UserService.getuser();
+        }]
+      }
+    })
+
 //day detail
     .when('/day-detail', {
       templateUrl: '/views/templates/dayDetail.html',
@@ -330,6 +347,6 @@ myApp.config(['$routeProvider', '$locationProvider', '$mdThemingProvider',
     })
 
     .otherwise({
-      redirectTo: '/login'
+      redirectTo: '/landing'
     });
 }]);
