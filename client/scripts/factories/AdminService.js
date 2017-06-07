@@ -75,6 +75,12 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location){
           return new Date(b.date) - new Date(a.date);
         });
       console.log("adminObject", adminObject, "later");
+      for (var i = 0; i < adminObject.countByDay.length; i++) {
+        var reflectionDate = adminObject.countByDay[i].date;
+        var reflectionCount = adminObject.countByDay[i].count;
+        dates.push(reflectionDate);
+        dailyCount.push(reflectionCount);
+      }
 
       buildAdminGraphs(dates, dailyCount);
   }
