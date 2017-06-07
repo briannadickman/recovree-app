@@ -44,25 +44,29 @@ function sendSMS(phoneNumber, message) {
 //save all new member's phone numbers in an array and send daily text reminders
 function storePhoneNumbers(newPhoneNumber) {
     allPhoneNumbers.push(newPhoneNumber);
-    console.log('NUMBERS TO SEND REMINDERS', allPhoneNumbers);
-    return allPhoneNumbers;
 }
 
 // Send SMS message 6pm everyday
-function dailyReminderSMS() {
+function getPhoneNumbers() {
     User.find({}, function(err, users) {
         if (err) {
             console.log(err);
         }
-        console.log('ALL MEMBERS', users);
+        for (var i = 0; i < users.length; i++) {
+            var numbers = users[i].username;
+            console.log('ALL THE NUMBERS', numbers);
+            allPhoneNumbers.push(numbers);
+        }
     });
-    // var textJob = new cronJob( '0 18 * * *', function(){ 
-    // }
-    // console.log('CRON PORTION OF CODE');
-    // },  null, true );
 }
 
-dailyReminderSMS();
+function dailyReminderSMS() {
+    var textJob = new cronJob('0 18 * * *', function() {
+                //run test message here
+            }
+        },
+        null, true);
+}
 // var textJob = new cronJob( '* * * * *', function(){ 
 // for (var i = 0; i < phoneNumbers.length; i++) {
 //   client.messages.create( { to: phoneNumbers[i], from: twilioNumber, body: randomomizeReminderMessage},
