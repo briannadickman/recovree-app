@@ -11,9 +11,6 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
         $location.path('/login');
         $http.post('/user/forgotpassword', $scope.user).then(function(response) {
           if(response.data.username) {
-            $http.get('/twilio', $scope.user).then(function(response) {
-              console.log('TO TWILIO', $scope.user);
-            });
           } else {
             console.log('failure: ', response);
             $scope.message = "Failure";

@@ -1,9 +1,9 @@
 var express = require('express');
-var router = express('Router');
+// var router = express('Router');
 var cronJob = require('cron').CronJob;
 var Users = require('../models/user');
 var asyncMod = require('async');
-
+var user = require('../routes/user');
 //TWILIO
 var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 var twilioNumber = process.env.TWILIO_NUMBER;
@@ -20,20 +20,23 @@ var reminderMessage = ['This is a friendly reminder to complete your daily Recov
 var randomIndex = Math.floor(Math.random() * reminderMessage.length);
 var randomomizeReminderMessage = reminderMessage[randomIndex];
 
-function sendReminderText(phoneNumber, message) {
-    client.messages.create({ to: phoneNumber, from: twilioNumber, body: message },
-        function(err, data) {
-            if(err) {
-              console.log('Error Sending Message');
-            } else {
-              console.log('SMS SENT', data);
-            }
-        });
+function sendSMS(phoneNumber, message) {
+  console.log('WILL SEND THIS NUMBER',phoneNumber );
+  console.log('THIS RESET LINK', message);
+    // client.messages.create({ to: phoneNumber, from: twilioNumber, body: message },
+    //     function(err, data) {
+    //         if(err) {
+    //           console.log('Error Sending Message');
+    //         } else {
+    //           console.log('SMS SENT', data);
+    //         }
+    //     });
 }
 
-router.get('/', function(req, res) {
-  console.log('FROM RESET PASSWORD');
-});
+console.log('TWILIO',user);
+// router.get('/', function(req, res) {
+//   console.log('FROM RESET PASSWORD');
+// });
 //send out random message to all users
 // var sendReminders = function() {
 //     var phoneNumbers = [];
@@ -57,4 +60,4 @@ router.get('/', function(req, res) {
 // };
 
 
-module.exports = router;
+module.exports = sendSMS;

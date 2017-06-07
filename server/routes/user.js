@@ -12,6 +12,7 @@ var UserModel = require('../models/user');
 var User = mongoose.model('users', UserModel.UserSchema);
 
 var moment = require('moment');
+var twilio = require ('../modules/twilio');
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function(req, res) {
@@ -62,6 +63,7 @@ router.post('/forgotpassword', function(req, res) {
     var passwordResetLink = 'password reset link/' + baseURL + '/#confirmreset/' + code;
     console.log('RESET LINK', passwordResetLink );
     // TODO: Mail out this link to reset password
+    console.log('TWILIO FUNCTION', twilio.sendSMS('123', 'hey'));
 
     foundUser.code = code;
 
