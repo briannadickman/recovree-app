@@ -1,10 +1,9 @@
 var express = require('express');
-var router = express.Router();
 var cronJob = require('cron').CronJob;
 var Users = require('../models/user');
 var asyncMod = require('async');
+var user = require('../routes/user');
 
-//TWILIO
 var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 var twilioNumber = process.env.TWILIO_NUMBER;
 
@@ -23,18 +22,20 @@ var reflectionCompleteMessage = ['Thank you for completing your daily Recovree!'
     'Thanks for making Recovree a part of your day!',
     'Many thanks for taking time to complete Recovree today'
 ];
+var randomIndex = Math.floor(Math.random() * reminderMessage.length);
+var randomomizeReminderMessage = reminderMessage[randomIndex];
 
-function sendTwilioSMS(phoneNumber, message) {
+
+function sendSMS(phoneNumber, message) {
     client.messages.create({ to: phoneNumber, from: twilioNumber, body: message },
         function(err, data) {
-            // if(err) {
-            //   console.log('Error Sending Message');
-            // } else {
-            //   console.log('SMS SENT', data);
-            // }
+            if (err) {
+                console.log('Error Sending Message');
+            } else {
+                console.log('SMS SENT', data);
+            }
         });
 }
-
 
 // Send SMS message 6pm everyday
 function scheduleSMS(params) {
@@ -54,29 +55,4 @@ function scheduleSMS(params) {
 // },  null, true );
 
 
-//Logan's Code
-var sendReminders = function() {
-    var phoneNumbers = [];
-    Users.find({}, function(err, allUsers) {
-        if (err) {
-            console.log('error in find users: ', err);
-        }
-        for (i = 0; i < allUsers.length; i++) {
-            phoneNumbers.push(allUsers[i].username);
-        }
-        // generateReminders(phoneNumbers);
-    });
-};
-
-var generateReminders = function(recipients) {
-    for (i = 0; i < recipients.length; i++) {
-        var message = randomMessage();
-        console.log(recipients[i] + ' : ' + message);
-    }
-};
-
-sendReminders();
-
-
-
-module.exports = client;
+module.exports = sendSMS;
