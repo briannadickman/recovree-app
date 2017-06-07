@@ -24,11 +24,12 @@ These directions will get a copy of the project running on your local machine fo
  * Open Robomongo
  
 * create a .env file and add the following environmental variables 
-TWILIO_ACCOUNT_SID 
-TWILIO_AUTH_TOKEN 
-TWILIO_NUMBER 
-PASSPORT_SECRET
-MONGODB_URI
+- TWILIO_ACCOUNT_SID 
+- TWILIO_AUTH_TOKEN 
+- TWILIO_NUMBER 
+- PASSPORT_SECRET
+- MONGODB_URI
+- BASE_URL (for production purposes only);
 
 - You can delete or comment out the twilio.js code if you don't have a twilio account or don't want to use this portion of the project
 
