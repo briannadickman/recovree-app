@@ -533,6 +533,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     }
     //put to database if it is any subsequent reflection form views
     else {
+      console.log("else statement inside reflectionFormNextButton", sessionObject);
       //updates today's reflectionObject
       updateReflectionForm(reflectionObject);
     }
@@ -557,6 +558,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
       reflectionObject._id = response.data._id;
       console.log('reflectionObject._id: ', reflectionObject._id);
       sessionObject.reflectionCompleted = true;
+      console.log("after POST, sessionObject", sessionObject);
       advanceReflectionForm(reflectionObject);
     });
   } //ends postToReflectionForm
