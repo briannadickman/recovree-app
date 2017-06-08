@@ -525,8 +525,9 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     if (reflectionObject.formPosition === (medsForm - 1) && takesMeds === false) {
       reflectionObject.formPosition += 1; //skips past meds form
     }
+    console.log("inside reflectionFormNextButton",sessionObject);
     //post to database if it is the fist reflection form view
-    if (reflectionObject.formPosition === 1) {
+    if (sessionObject.reflectionCompleted === false) {
       console.log('Before POST', reflectionObject);
       postToReflectionForm(reflectionObject);
     }
@@ -538,7 +539,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
   } //ends reflectionFormNextButton
 
   function reflectionFormPrevButton(sessionObject, reflectionObject) {
-    console.log("you tried to go back, butchyoucantyet");
     //moves on to the next question
     var medsForm = 3; //number of the form which asks about medication
     var takesMeds = sessionObject.takingMeds;
@@ -556,6 +556,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     $http.post('/reflection', reflectionObject).then(function(response) {
       reflectionObject._id = response.data._id;
       console.log('reflectionObject._id: ', reflectionObject._id);
+      sessionObject.reflectionCompleted = true;
       advanceReflectionForm(reflectionObject);
     });
   } //ends postToReflectionForm
