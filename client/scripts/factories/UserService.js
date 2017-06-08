@@ -521,6 +521,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         var medsForm = 3; //number of the form which asks about medication
         var takesMeds = sessionObject.takingMeds;
 
+
         if (reflectionObject.formPosition === (medsForm - 1) && takesMeds === false) {
             reflectionObject.formPosition += 1; //skips past meds form
         }
@@ -535,6 +536,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
             updateReflectionForm(reflectionObject);
         }
     } //ends reflectionFormNextButton
+
 
     function reflectionFormPrevButton(sessionObject, reflectionObject) {
         console.log("you tried to go back, butchyoucantyet");
@@ -556,6 +558,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
       reflectionObject._id = response.data._id;
       console.log('reflectionObject._id: ', reflectionObject._id);
       sessionObject.reflectionCompleted = true;
+      console.log("after POST, sessionObject", sessionObject);
       advanceReflectionForm(reflectionObject);
     });
   } //ends postToReflectionForm
