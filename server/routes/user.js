@@ -12,6 +12,7 @@ var UserModel = require('../models/user');
 var User = mongoose.model('users', UserModel.UserSchema);
 
 var moment = require('moment');
+var twilio = require ('../modules/twilio');
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function(req, res) {
@@ -56,12 +57,19 @@ router.post('/forgotpassword', function(req, res) {
     if (err) {
       res.sendStatus(500);
     }
-    console.log('FOUND USER', foundUser);
 
-    var baseURL = 'http://localhost:5000'; //or env.VAR - change this for production
-    var passwordResetLink = 'password reset link/' + baseURL + '/#confirmreset/' + code;
-    console.log('RESET LINK', passwordResetLink );
-    // TODO: Mail out this link to reset password
+    var baseURL = 'http://localhost:5000';
+    var passwordResetLink = 'Reset your Recovree password here. This link will expire in 24 hours.   ' +  baseURL + '/#confirmreset/' + code;
+
+    // enable env.BASE_URL for production
+    // var passwordResetLink = 'Reset your Recovree password here. This link will expire in 24 hours.' + process.env.BASE_URL + '/#confirmreset/' + code;
+
+    if (foundUser.userType == 2) {
+      var userNumber = req.body.username;
+      twilio(userNumber, passwordResetLink);
+    } else {
+      // otherwise user is an admin and send password reset via email using nodemailer
+    }
 
     foundUser.code = code;
 
