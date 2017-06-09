@@ -1,25 +1,25 @@
 <div class="container">
-  <div class = 'login-container row'>
-    <div class = 'col-md-offset-4 col-md-4 col-md-offset-4'>
-      <div class = 'panel panel-default'>
-        <div class = 'panel-body'>
+    <div class='login-container row'>
+        <div class='col-md-offset-4 col-md-4 col-md-offset-4'>
+            <div class='panel panel-default'>
+                <div class='panel-body'>
 
-          <h1 class="lead">Enter Phone Number</h1>
-            <h1 class="lead alert alert-danger" role="alert" ng-if="message != ''">{{message}}</h2>
-            <form ng-submit="sendResetPassword()">
-              <div>
-                  <input type="text" placeholder = 'phone number' ng-model="user.username" />
-              </div>
-              <br>
-              <div>
-                    <input class="btn btn-default" type="submit" name="submit" value="Submit" />
-              </div>
-              <br>
-              <a href="#login">cancel</a>
-            </form>
+                    <h1 class="lead">Enter Phone Number</h1>
+                    <h1 class="lead alert alert-danger" role="alert" ng-if="message != ''">{{message}}</h2>
+                        <form ng-submit="sendResetPassword()">
+                            <div>
+                                <input type="text" placeholder='phone number' ng-model="user.username" />
+                            </div>
+                            <br>
+                            <div>
+                                <input class="btn btn-default" type="submit" name="submit" value="Submit" />
+                            </div>
+                            <br>
+                            <a href="#/login">cancel</a>
+                        </form>
 
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

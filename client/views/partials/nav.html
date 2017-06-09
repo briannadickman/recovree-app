@@ -1,21 +1,23 @@
+<md-toolbar layout='row' layout-align='center center' ng-controller='NavController'>
+    <div class="md-toolbar-tools" layout-align='center center'>
+        <!-- <div> -->
+        <md-button ng-hide="$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms' || $location.path() === '/admin-export'|| $location.path() === '/confirmreset'|| $location.path() === '/forgotpassword' || $location.path() === '/landing' || $location.path() === '/confirmreset/'"
+            ng-href="#/day-detail" class='footer-button' aria-label="Today">
+            TODAY
+        </md-button>
+        <!-- </div > -->
+        <!-- <div> -->
+        <md-button ng-hide="$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms'|| $location.path() === '/admin-export'|| $location.path() === '/confirmreset'|| $location.path() === '/forgotpassword' || $location.path() === '/landing' || $location.path() === '/confirmreset/'"
+            ng-href="#/home" class='footer-button' aria-label="HOME">
+            HOME
+        </md-button>
+        <!-- </div> -->
+        <!-- <div> -->
+        <md-button ng-hide="$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms'|| $location.path() === '/admin-export'|| $location.path() === '/confirmreset'|| $location.path() === '/forgotpassword' || $location.path() === '/landing' || $location.path() === '/confirmreset/'"
+            ng-href="#/weekly-graphs" class='footer-button' aria-label="WEEKLY">
+            WEEKLY
+        </md-button>
+        <!-- </div> -->
 
-<md-toolbar layout = 'row' layout-align = 'center center' ng-controller = 'NavController'>
-  <div class="md-toolbar-tools" layout-align = 'center center'>
-    <!-- <div> -->
-      <md-button ng-hide = "$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms' || $location.path() === '/admin-export'|| $location.path() === '/confirmreset'|| $location.path() === '/forgotpassword' || $location.path() === '/landing'" ng-href="#/day-detail" class = 'footer-button' aria-label="Today">
-        TODAY
-      </md-button >
-    <!-- </div > -->
-    <!-- <div> -->
-      <md-button ng-hide = "$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms'|| $location.path() === '/admin-export'|| $location.path() === '/confirmreset'|| $location.path() === '/forgotpassword' || $location.path() === '/landing'" ng-href="#/home" class = 'footer-button' aria-label="HOME">
-        HOME
-      </md-button>
-    <!-- </div> -->
-    <!-- <div> -->
-      <md-button  ng-hide = "$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms'|| $location.path() === '/admin-export'|| $location.path() === '/confirmreset'|| $location.path() === '/forgotpassword' || $location.path() === '/landing'" ng-href="#/weekly-graphs" class = 'footer-button' aria-label="WEEKLY">
-        WEEKLY
-      </md-button>
-    <!-- </div> -->
-
-  </div>
+    </div>
 </md-toolbar>

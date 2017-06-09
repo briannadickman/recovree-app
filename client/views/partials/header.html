@@ -1,16 +1,16 @@
-<md-toolbar layout='row' ng-controller = 'NavController'>
+<md-toolbar layout='row' ng-controller='NavController'>
 
-    <div class="md-toolbar-tools" ng-click='goHome()' >
-      <div layout='column' flex  ng-hide='$location.path() === "/admin-export" || $location.path() === "/landing" || $location.path() === "/register"'>
-        <h1 layout='column' style='text-align: center' md-truncate id='headerTitle' flex='90'>RECOVREE</h1>
-      </div>
+    <div class="md-toolbar-tools" ng-click='goHome()'>
+        <div layout='column' flex ng-hide='$location.path() === "/admin-export" || $location.path() === "/landing" || $location.path() === "/register" || $location.path() === "/confirmreset/"'>
+            <h1 layout='column' style='text-align: center' md-truncate id='headerTitle' flex='90'>RECOVREE</h1>
+        </div>
 
-      <div layout='column' flex  ng-show='$location.path() === "/admin-export"'>
-        <h1 layout='column' style='text-align: left' md-truncate id='headerTitle' flex='90'>RECOVREE</h1>
-      </div>
+        <div layout='column' flex ng-show='$location.path() === "/admin-export"'>
+            <h1 layout='column' style='text-align: left' md-truncate id='headerTitle' flex='90'>RECOVREE</h1>
+        </div>
 
         <div layout='column' flex='10'>
-            <md-menu ng-hide = "$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms' || $location.path() === '/confirmreset'|| $location.path() === '/forgotpassword' || $location.path() === '/admin-export' || $location.path() === '/landing'">
+            <md-menu ng-hide="$location.path() === '/login' || $location.path() === '/register' || $location.path() === '/terms' || $location.path() === '/confirmreset'|| $location.path() === '/forgotpassword' || $location.path() === '/admin-export' || $location.path() === '/landing'">
                 <md-button class="md-icon-button" aria-label="Logout" ng-click="$mdMenu.open($event)">
                     <md-icon md-menu-origin><i class="material-icons" id='headerMenuBtn'>more_vert</i></md-icon>
                 </md-button>
@@ -21,19 +21,19 @@
                             <b>Gratitude</b>
                         </md-button>
                     </md-menu-item>
-                  <md-menu-divider></md-menu-divider>
+                    <md-menu-divider></md-menu-divider>
                     <md-menu-item>
                         <md-button ng-click='goToResources()'>
                             <b>Resources</b>
                         </md-button>
                     </md-menu-item>
-                  <md-menu-divider></md-menu-divider>
+                    <md-menu-divider></md-menu-divider>
                     <md-menu-item>
                         <md-button ng-click='goToContactUs()'>
                             <b>Contact Us</b>
                         </md-button>
                     </md-menu-item>
-                  <md-menu-divider></md-menu-divider>
+                    <md-menu-divider></md-menu-divider>
                     <md-menu-item>
                         <md-button ng-click='logout(user)'>
                             <b>Logout</b>
@@ -43,10 +43,10 @@
             </md-menu>
         </div>
 
-        <div layout='column' flex="10"  ng-show='$location.path() === "/admin-export"'>
-          <md-button ng-click='logout(user)'>
-          <span>Logout</span>
-          </md-button>
+        <div layout='column' flex="10" ng-show='$location.path() === "/admin-export"'>
+            <md-button ng-click='logout(user)'>
+                <span>Logout</span>
+            </md-button>
         </div>
 
     </div>

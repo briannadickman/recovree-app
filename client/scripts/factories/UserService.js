@@ -14,7 +14,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     var graphsObject = {};
 
 
-
     //getuser
     function getuser() {
         $http.get('/user').then(function(response) {
@@ -553,52 +552,52 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
 
     } //ends reflectionFormPrevButton
 
-  function postToReflectionForm(reflectionObject) {
-    $http.post('/reflection', reflectionObject).then(function(response) {
-      reflectionObject._id = response.data._id;
-      console.log('reflectionObject._id: ', reflectionObject._id);
-      sessionObject.reflectionCompleted = true;
-      console.log("after POST, sessionObject", sessionObject);
-      advanceReflectionForm(reflectionObject);
-    });
-  } //ends postToReflectionForm
+    function postToReflectionForm(reflectionObject) {
+        $http.post('/reflection', reflectionObject).then(function(response) {
+            reflectionObject._id = response.data._id;
+            console.log('reflectionObject._id: ', reflectionObject._id);
+            sessionObject.reflectionCompleted = true;
+            console.log("after POST, sessionObject", sessionObject);
+            advanceReflectionForm(reflectionObject);
+        });
+    } //ends postToReflectionForm
 
-  function updateReflectionForm(reflectionObject) {
-    $http.put('/reflection', reflectionObject).then(function(response) {
-      console.log('updateReflectionForm response: ', response.data);
-      advanceReflectionForm(reflectionObject);
-    });
-  } //ends updateReflectionForm
+    function updateReflectionForm(reflectionObject) {
+        $http.put('/reflection', reflectionObject).then(function(response) {
+            console.log('updateReflectionForm response: ', response.data);
+            advanceReflectionForm(reflectionObject);
+        });
+    } //ends updateReflectionForm
 
-  function advanceReflectionForm(reflectionObject) {
-    //moves on to the next question
-    reflectionObject.formPosition += 1;
-    $location.path('/reflection-form/reflect-' + reflectionObject.formPosition);
-  } //ends advanceReflectionForm
+    function advanceReflectionForm(reflectionObject) {
+        //moves on to the next question
+        reflectionObject.formPosition += 1;
+        $location.path('/reflection-form/reflect-' + reflectionObject.formPosition);
+    } //ends advanceReflectionForm
 
-  function returnHomeButton(sessionObject, reflectionObject) {
-    $location.path('/home');
-  }
+    function returnHomeButton(sessionObject, reflectionObject) {
+        $location.path('/home');
+    }
 
-  //return out of UserService Factory
-  return {
-    user: user,
-    userObject: userObject,
-    reflectionObject: reflectionObject,
-    sessionObject: sessionObject,
-    registration: registration,
-    getuser: getuser,
-    logout: logout,
-    registerUser: registerUser,
-    userDemographics: userDemographics,
-    refreshSessionObject: refreshSessionObject,
-    launchReflection: launchReflection,
-    reflectionFormNextButton: reflectionFormNextButton,
-    reflectionFormPrevButton: reflectionFormPrevButton,
-    returnHomeButton: returnHomeButton,
-    displayThisWeek : displayThisWeek,
-    displayLastWeek : displayLastWeek,
-    displayThisMonth : displayThisMonth,
-    displayLastMonth : displayLastMonth
-  };
+    //return out of UserService Factory
+    return {
+        user: user,
+        userObject: userObject,
+        reflectionObject: reflectionObject,
+        sessionObject: sessionObject,
+        registration: registration,
+        getuser: getuser,
+        logout: logout,
+        registerUser: registerUser,
+        userDemographics: userDemographics,
+        refreshSessionObject: refreshSessionObject,
+        launchReflection: launchReflection,
+        reflectionFormNextButton: reflectionFormNextButton,
+        reflectionFormPrevButton: reflectionFormPrevButton,
+        returnHomeButton: returnHomeButton,
+        displayThisWeek: displayThisWeek,
+        displayLastWeek: displayLastWeek,
+        displayThisMonth: displayThisMonth,
+        displayLastMonth: displayLastMonth
+    };
 }]);
