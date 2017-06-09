@@ -13,10 +13,10 @@ var twilioNumber = process.env.TWILIO_NUMBER;
 
 var herokuURl = 'https://recovree.herokuapp.com/';
 var welcomeMember = 'Welcome to Recovree';
-var reminderMessage = ['This is a friendly reminder to complete your daily Recovree.' + herokuURl,
-    'Find a moment to reflect and complete your daily Recovree' + herokuURl,
-    'One day at a time. Find time to complete your daily Recovree' + herokuURl,
-    'Sobriety is a journey. A reminder to complete your daily Recovree' + herokuURl,
+var reminderMessage = ['This is a friendly reminder to complete your daily Recovree  ' + herokuURl,
+    'Find a moment to reflect and complete your daily Recovree  ' + herokuURl,
+    'One day at a time. Find time to complete your daily Recovree  ' + herokuURl,
+    'Sobriety is a journey. A reminder to complete your daily Recovree  ' + herokuURl,
 ];
 var randomIndex = Math.floor(Math.random() * reminderMessage.length);
 var randomomizeReminderMessage = reminderMessage[randomIndex];
