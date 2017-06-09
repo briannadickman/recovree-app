@@ -521,11 +521,12 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         var medsForm = 3; //number of the form which asks about medication
         var takesMeds = sessionObject.takingMeds;
 
+
         if (reflectionObject.formPosition === (medsForm - 1) && takesMeds === false) {
             reflectionObject.formPosition += 1; //skips past meds form
         }
         //post to database if it is the fist reflection form view
-        if (reflectionObject.formPosition === 1) {
+        if (sessionObject.reflectionCompleted === false) {
             console.log('Before POST', reflectionObject);
             postToReflectionForm(reflectionObject);
         }
@@ -535,6 +536,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
             updateReflectionForm(reflectionObject);
         }
     } //ends reflectionFormNextButton
+
 
     function reflectionFormPrevButton(sessionObject, reflectionObject) {
         console.log("you tried to go back, butchyoucantyet");
@@ -551,50 +553,52 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
 
     } //ends reflectionFormPrevButton
 
-    function postToReflectionForm(reflectionObject) {
-        $http.post('/reflection', reflectionObject).then(function(response) {
-            reflectionObject._id = response.data._id;
-            console.log('reflectionObject._id: ', reflectionObject._id);
-            advanceReflectionForm(reflectionObject);
-        });
-    } //ends postToReflectionForm
+  function postToReflectionForm(reflectionObject) {
+    $http.post('/reflection', reflectionObject).then(function(response) {
+      reflectionObject._id = response.data._id;
+      console.log('reflectionObject._id: ', reflectionObject._id);
+      sessionObject.reflectionCompleted = true;
+      console.log("after POST, sessionObject", sessionObject);
+      advanceReflectionForm(reflectionObject);
+    });
+  } //ends postToReflectionForm
 
-    function updateReflectionForm(reflectionObject) {
-        $http.put('/reflection', reflectionObject).then(function(response) {
-            console.log('updateReflectionForm response: ', response.data);
-            advanceReflectionForm(reflectionObject);
-        });
-    } //ends updateReflectionForm
+  function updateReflectionForm(reflectionObject) {
+    $http.put('/reflection', reflectionObject).then(function(response) {
+      console.log('updateReflectionForm response: ', response.data);
+      advanceReflectionForm(reflectionObject);
+    });
+  } //ends updateReflectionForm
 
-    function advanceReflectionForm(reflectionObject) {
-        //moves on to the next question
-        reflectionObject.formPosition += 1;
-        $location.path('/reflection-form/reflect-' + reflectionObject.formPosition);
-    } //ends advanceReflectionForm
+  function advanceReflectionForm(reflectionObject) {
+    //moves on to the next question
+    reflectionObject.formPosition += 1;
+    $location.path('/reflection-form/reflect-' + reflectionObject.formPosition);
+  } //ends advanceReflectionForm
 
-    function returnHomeButton(sessionObject, reflectionObject) {
-        $location.path('/home');
-    }
+  function returnHomeButton(sessionObject, reflectionObject) {
+    $location.path('/home');
+  }
 
-    //return out of UserService Factory
-    return {
-        user: user,
-        userObject: userObject,
-        reflectionObject: reflectionObject,
-        sessionObject: sessionObject,
-        registration: registration,
-        getuser: getuser,
-        logout: logout,
-        registerUser: registerUser,
-        userDemographics: userDemographics,
-        refreshSessionObject: refreshSessionObject,
-        launchReflection: launchReflection,
-        reflectionFormNextButton: reflectionFormNextButton,
-        reflectionFormPrevButton: reflectionFormPrevButton,
-        returnHomeButton: returnHomeButton,
-        displayThisWeek: displayThisWeek,
-        displayLastWeek: displayLastWeek,
-        displayThisMonth: displayThisMonth,
-        displayLastMonth: displayLastMonth
-    };
+  //return out of UserService Factory
+  return {
+    user: user,
+    userObject: userObject,
+    reflectionObject: reflectionObject,
+    sessionObject: sessionObject,
+    registration: registration,
+    getuser: getuser,
+    logout: logout,
+    registerUser: registerUser,
+    userDemographics: userDemographics,
+    refreshSessionObject: refreshSessionObject,
+    launchReflection: launchReflection,
+    reflectionFormNextButton: reflectionFormNextButton,
+    reflectionFormPrevButton: reflectionFormPrevButton,
+    returnHomeButton: returnHomeButton,
+    displayThisWeek : displayThisWeek,
+    displayLastWeek : displayLastWeek,
+    displayThisMonth : displayThisMonth,
+    displayLastMonth : displayLastMonth
+  };
 }]);
