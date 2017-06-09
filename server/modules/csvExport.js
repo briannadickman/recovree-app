@@ -14,7 +14,6 @@ var Reflection = require('../models/reflection');
 //Exports demographic info into a .CSV saved in the root directory
 router.get('/registration', function(req, res){
   if(req.isAuthenticated() && req.user.userType == 1){
-  //Defines key names json2csv expects, _id and __v not included in export.
   var fields =      ['state',
                     'county',
                     'gender',
@@ -24,7 +23,6 @@ router.get('/registration', function(req, res){
                     'programPayment',
                     'medication',
                     'termsAgreement'];
-  //Defines titles as they appear in registration.csv
   var fieldNames = ['State',
                     'County',
                     'Gender',
@@ -34,15 +32,12 @@ router.get('/registration', function(req, res){
                     'Form of Program Payment',
                     'Medication?',
                     'Terms of Agreement?'];
-  //returns all registration documents
   Registration.find().lean().exec(function(err, allRegistrations){
     if (err){
       console.log('error in csv find for reflections: ', err);
       res.sendStatus(500);
     }
-    //runs a json2csv function to prepare and save registration data
     var registrationData = json2csv({data: allRegistrations, fields: fields, fieldNames: fieldNames});
-      //sends the registration csv back to the client
       res.attachment('registration.csv');
       res.status(200).send(registrationData);
     });
@@ -176,9 +171,7 @@ router.get('/reflections', function(req, res){
       console.log('error in csv find for reflections: ', err);
       res.sendStatus(500);
     }
-    //sends the csv file back to the client for immediate download
     var reflectionData = json2csv({data: allReflections, fields: fields, fieldNames: fieldNames});
-      // console.log('csv in registrationToCSV: ', csv);
       res.attachment('reflection.csv');
       res.status(200).send(reflectionData);
     });

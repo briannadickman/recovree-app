@@ -8,11 +8,9 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
       if($scope.user.username === '') {
         $scope.message = "Enter your phone number";
       } else {
-        console.log('sending to server...', $scope.user);
         $location.path('/login');
         $http.post('/user/forgotpassword', $scope.user).then(function(response) {
           if(response.data.username) {
-            console.log('success: ', response.data);
           } else {
             console.log('failure: ', response);
             $scope.message = "Failure";
@@ -135,8 +133,19 @@ $scope.showConfirm = function(ev) {
           return {payment: payment};
        });
 
-    // Capture Into MemberSchema
+    // TERMS OF USE MODAL
+    function DialogController($scope, $mdDialog) {
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
 
-    // Capture Into RegistrationSchema
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
+  }
 
 }]);
