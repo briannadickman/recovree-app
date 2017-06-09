@@ -12,10 +12,10 @@ var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILI
 var twilioNumber = process.env.TWILIO_NUMBER;
 
 var welcomeMember = 'Welcome to Recovree';
-var reminderMessage = ['This is a friendly reminder to complete your daily Recovree (insert link)',
-    'Find a moment to reflect and complete your daily Recovree (insert link)',
-    'One day at a time. Find time to complete your daily Recovree (insert link)',
-    'Sobriety is a journey. A reminder to complete your daily Recovree (insert link)'
+var reminderMessage = ['This is a friendly reminder to complete your daily Recovree. (https://recovree.herokuapp.com/)',
+    'Find a moment to reflect and complete your daily Recovree (https://recovree.herokuapp.com/)',
+    'One day at a time. Find time to complete your daily Recovree https://recovree.herokuapp.com/)',
+    'Sobriety is a journey. A reminder to complete your daily Recovree https://recovree.herokuapp.com/)'
 ];
 var randomIndex = Math.floor(Math.random() * reminderMessage.length);
 var randomomizeReminderMessage = reminderMessage[randomIndex];

@@ -61,10 +61,8 @@ router.post('/forgotpassword', function(req, res) {
         var baseURL = 'http://localhost:5000';
         var resetMessage = 'Reset your Recovree password here. This link will expire in 24 hours.   ';
         var passwordResetView = '/#confirmreset/';
-        var passwordResetLink = resetMessage + baseURL + passwordResetView + code;
 
-        // enable env.BASE_URL for production
-        // var passwordResetLink = 'Reset your Recovree password here. This link will expire in 24 hours.' + process.env.BASE_URL + '/#confirmreset/' + code;
+        var passwordResetLink = 'Reset your Recovree password here. This link will expire in 24 hours.' + process.env.BASE_URL + '/#confirmreset/' + code;
 
         if (foundUser.userType == 2) {
             var userNumber = req.body.username;
