@@ -23,6 +23,9 @@
         </md-select>
       </div>
 
+      {{sessionObject.currentDailyReflection}}
+
+
       <div>
         <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>Overall you felt: </b></h3>
         <div ng-switch on = "sessionObject.currentDailyReflection.overallfeeling" layout = 'row' layout-align = 'center center'>
