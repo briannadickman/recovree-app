@@ -163,6 +163,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
                 sessionObject.reflectionCompleted = response.data.reflectionCompleted;
                 if (sessionObject.reflectionCompleted === true) {
                     sessionObject.todaysReflectObject = response.data.todaysReflection;
+                    sessionObject.currentDailyReflection = response.data.todaysReflection;
                 } else {
                     sessionObject.todaysReflectObject = {};
                 }

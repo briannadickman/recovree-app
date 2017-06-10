@@ -22,10 +22,6 @@
           <md-option ng-value="reflection" ng-repeat="reflection in sessionObject.allReflections">{{ reflection.reflectionDate | date:'MM/dd/yyyy' }}</md-option>
         </md-select>
       </div>
-      <span>something here</span>
-      {{sessionObject.currentDailyReflection}}
-      <span>something here</span>
-
 
       <div>
         <h3 style="font-size: 18px" layout = 'row' layout-align = 'center center'><b>Overall you felt: </b></h3>
@@ -35,7 +31,7 @@
              <span ng-switch-when = "3">Okay</span>
              <span ng-switch-when = "4">Good</span>
              <span ng-switch-when = "5">Great</span>
-        <span class='md-body-1'>({{sessionObject.todaysReflectObject.overallfeeling}})</span>
+        <span class='md-body-1'>({{sessionObject.currentDailyRefelction.overallfeeling}})</span>
         </div>
       </div>
 
