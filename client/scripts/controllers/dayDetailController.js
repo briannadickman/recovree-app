@@ -1,9 +1,10 @@
 myApp.controller('DayDetailController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
   console.log('DayDetailController sourced!');
+var location = "day";
 
 var refreshSessionObject = UserService.refreshSessionObject;
-refreshSessionObject();
-// $scope.dailyReflectObject = UserService.dailyReflectObject;
+refreshSessionObject(location);
+
 $scope.sessionObject = UserService.sessionObject;
 $scope.launchReflection = UserService.launchReflection;
 
@@ -65,11 +66,6 @@ quote: 'Self-reflection is a humbling process. It is essential to find out why y
 
      ];
 
-
-
-
 var randomIndex = Math.floor(Math.random() * reflectionQuote.length);
 $scope.randomQuote = reflectionQuote[randomIndex];
-
-
 }]);

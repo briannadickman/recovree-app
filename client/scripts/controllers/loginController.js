@@ -12,7 +12,6 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
         $http.post('/user/forgotpassword', $scope.user).then(function(response) {
           if(response.data.username) {
           } else {
-            console.log('failure: ', response);
             $scope.message = "Failure";
           }
         });
@@ -22,20 +21,16 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
     $scope.updatePassword = function() {
       //this is the randomly generated code, it's part of the url and will need it to reset password
       //send our password reset request to the server with our username, new password, and code
-      console.log($routeParams.code);
 
       if($scope.user.username === '' || $scope.user.password === '') {
         $scope.message = "Enter your username and password!";
       } else {
-        console.log('sending to server...', $scope.user);
         $scope.user.code = $routeParams.code;
 
         $http.put('/user/resetpassword', $scope.user).then(function(response) {
           if(response.data.username) {
-            console.log('success: ', response.data);
             $location.path('/login');
           } else {
-            console.log('failure: ', response);
             $scope.message = "Username or password is incorrect.";
           }
         });
@@ -46,10 +41,8 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
   if($scope.user.username === '' || $scope.user.password === '') {
     $scope.message = "Enter your username and password!";
   } else {
-    console.log('sending to server...', $scope.user);
     $http.post('/', $scope.user).then(function(response) {
       if(response.data.username) {
-        console.log('success: ', response.data);
         userObject.userName = response.data.username;
         userObject.id = response.data.id;
         userObject.userType = response.data.userType;
@@ -61,7 +54,6 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
         }
 
       } else {
-        console.log('failure: ', response);
         $scope.message = "Username or password is incorrect.";
       }
     });
@@ -79,10 +71,8 @@ $scope.showConfirm = function(ev) {
         .cancel('Go Back');
 
   $mdDialog.show(confirm).then(function() {
-    console.log("call registerUser()");
     $scope.registerUser($scope.user,$scope.registration);
   }, function() {
-    console.log("you chose cancel");
   });
 };
 
@@ -115,11 +105,9 @@ $scope.showConfirm = function(ev) {
 
         $scope.getYearDropdown = function(){
         var currentYear = new Date().getFullYear();
-        console.log(currentYear);
         for(var i = 0; i < 100; i++){
           $scope.years.push(currentYear - i);
         }
-        console.log($scope.years);
         return $scope.years;
       };
 
