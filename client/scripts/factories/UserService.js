@@ -1,5 +1,4 @@
 myApp.factory('UserService', ['$http', '$location', function($http, $location) {
-    console.log('User Service Loaded');
 
     //variables
     var user = {};
@@ -12,8 +11,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     };
 
     var graphsObject = {};
-
-
 
     //getuser
     function getuser() {
@@ -43,8 +40,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
                     userDemographics(registration);
                 },
                 function(response) {
-                    console.log('error');
-                    // $scope.message = "Please try again.";
+                    $scope.message = "Please try again.";
                 });
         }
     } //ends registerUser
@@ -173,7 +169,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
                     sessionObject.yesterdaysGoal = response.data.yesterdaysGoal;
                 }
                 sessionObject.takingMeds = response.data.medication;
-                console.log("session Object at end of getSessionObject", sessionObject);
                 getWeeklyData(sessionObject.allReflections);
                 getMonthlyData(sessionObject.allReflections);
                 buildGraphs(location, graphsObject);
@@ -212,7 +207,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         //if streak is over 30 days, reset so it still increments
         if (streak >= 30) {
             streak = streak % 30;
-            console.log('New Streak For Graph', streak);
             return streak;
         }
 
@@ -249,11 +243,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         var dates = [];
 
         var reflections = timeframe.reflections;
-
-
-        // function weeklyGraphs(sessionObject) {
-        // var reflections = sessionObject.allReflections;
-        // console.log('ALL REFLECTIONS', reflections);
 
         //LOOP THROUGH THE REFLECTION ARRAY AND GET DATA FOR FEELINGS, SLEEP, EXERCISE, AND FOOD
         for (var i = 0; i < reflections.length; i++) {
@@ -322,14 +311,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
             }
         }
         formatTimestamp();
-
-        // function removeData(chart) {
-        //   chart.data.labels.pop();
-        //   chart.data.datasets.forEach((dataset) => {
-        //     dataset.data.pop();
-        //   });
-        //   chart.update();
-        // }
 
         //chart for top five feelings
         var ctx1 = document.getElementById("feelingsChart");
@@ -504,7 +485,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         var medsForm = 3; //number of the form which asks about medication
         var takesMeds = sessionObject.takingMeds;
 
-
         if (reflectionObject.formPosition === (medsForm - 1) && takesMeds === false) {
             reflectionObject.formPosition += 1; //skips past meds form
         }
@@ -534,49 +514,49 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
 
     } //ends reflectionFormPrevButton
 
-  function postToReflectionForm(reflectionObject) {
-    $http.post('/reflection', reflectionObject).then(function(response) {
-      reflectionObject._id = response.data._id;
-      sessionObject.reflectionCompleted = true;
-      advanceReflectionForm(reflectionObject);
-    });
-  } //ends postToReflectionForm
+    function postToReflectionForm(reflectionObject) {
+        $http.post('/reflection', reflectionObject).then(function(response) {
+            reflectionObject._id = response.data._id;
+            sessionObject.reflectionCompleted = true;
+            advanceReflectionForm(reflectionObject);
+        });
+    } //ends postToReflectionForm
 
-  function updateReflectionForm(reflectionObject) {
-    $http.put('/reflection', reflectionObject).then(function(response) {
-      advanceReflectionForm(reflectionObject);
-    });
-  } //ends updateReflectionForm
+    function updateReflectionForm(reflectionObject) {
+        $http.put('/reflection', reflectionObject).then(function(response) {
+            advanceReflectionForm(reflectionObject);
+        });
+    } //ends updateReflectionForm
 
-  function advanceReflectionForm(reflectionObject) {
-    //moves on to the next question
-    reflectionObject.formPosition += 1;
-    $location.path('/reflection-form/reflect-' + reflectionObject.formPosition);
-  } //ends advanceReflectionForm
+    function advanceReflectionForm(reflectionObject) {
+        //moves on to the next question
+        reflectionObject.formPosition += 1;
+        $location.path('/reflection-form/reflect-' + reflectionObject.formPosition);
+    } //ends advanceReflectionForm
 
-  function returnHomeButton(sessionObject, reflectionObject) {
-    $location.path('/home');
-  }
+    function returnHomeButton(sessionObject, reflectionObject) {
+        $location.path('/home');
+    }
 
-  //return out of UserService Factory
-  return {
-    user: user,
-    userObject: userObject,
-    reflectionObject: reflectionObject,
-    sessionObject: sessionObject,
-    registration: registration,
-    getuser: getuser,
-    logout: logout,
-    registerUser: registerUser,
-    userDemographics: userDemographics,
-    refreshSessionObject: refreshSessionObject,
-    launchReflection: launchReflection,
-    reflectionFormNextButton: reflectionFormNextButton,
-    reflectionFormPrevButton: reflectionFormPrevButton,
-    returnHomeButton: returnHomeButton,
-    displayThisWeek : displayThisWeek,
-    displayLastWeek : displayLastWeek,
-    displayThisMonth : displayThisMonth,
-    displayLastMonth : displayLastMonth
-  };
+    //return out of UserService Factory
+    return {
+        user: user,
+        userObject: userObject,
+        reflectionObject: reflectionObject,
+        sessionObject: sessionObject,
+        registration: registration,
+        getuser: getuser,
+        logout: logout,
+        registerUser: registerUser,
+        userDemographics: userDemographics,
+        refreshSessionObject: refreshSessionObject,
+        launchReflection: launchReflection,
+        reflectionFormNextButton: reflectionFormNextButton,
+        reflectionFormPrevButton: reflectionFormPrevButton,
+        returnHomeButton: returnHomeButton,
+        displayThisWeek: displayThisWeek,
+        displayLastWeek: displayLastWeek,
+        displayThisMonth: displayThisMonth,
+        displayLastMonth: displayLastMonth
+    };
 }]);
