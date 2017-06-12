@@ -1,23 +1,16 @@
 myApp.controller('AdminExportController', ['$scope', '$http', '$location', 'AdminService', function($scope, $http, $location, AdminService) {
-  console.log('AdminExportController sourced!');
+    console.log('AdminExportController sourced!');
 
-  $scope.demographicExport = function() {
-    console.log('demographicExport button clicked!');
-    AdminService.getRegistrationInfo();
-  };
+    $scope.demographicExport = function() {
+        AdminService.getRegistrationInfo();
+    };
 
-  $scope.reflectionExport = function() {
-    console.log('reflectionExport button clicked!');
-    AdminService.getReflections();
+    $scope.reflectionExport = function() {
+        AdminService.getReflections();
 
-  };
-  // $scope.adminObject = AdminService.adminObject;
-  //
-  // AdminService.countMembers();
-  // AdminService.countReflectionsByDay();
-  // AdminService.buildAdminGraphs();
+    };
 
-  $scope.getAdminObject = AdminService.getAdminObject;
-  $scope.getAdminObject();
-  $scope.adminObject = AdminService.adminObject;
+    $scope.getAdminObject = AdminService.getAdminObject;
+    $scope.getAdminObject();
+    $scope.adminObject = AdminService.adminObject;
 }]); //end controller
