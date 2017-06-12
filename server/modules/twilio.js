@@ -33,7 +33,6 @@ function dailyReminderSMS() {
     var textJob = new cronJob('0 18 * * *', function() {
             // var textJob = new cronJob('* * * * *', function() {      //every minute for development purposes
             getPhoneNumbers();
-            console.log('DIALY REMINDER SENT TO: ', allPhoneNumbers);
         },
         null, true);
 }
