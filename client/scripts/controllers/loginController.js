@@ -19,7 +19,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
 
     $scope.updatePassword = function() {
         //this is the randomly generated code, it's part of the url and will need it to reset password
-        //send our password reset request to the server with our username, new password, and code
+        //send password reset request to the server with username, new password, and code
         if ($scope.user.username === '' || $scope.user.password === '') {
             $scope.message = "Enter your username and password!";
         } else {
@@ -39,7 +39,6 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
         } else {
             $http.post('/', $scope.user).then(function(response) {
                 if (response.data.username) {
-                    console.log('success: ', response.data);
                     userObject.userName = response.data.username;
                     userObject.id = response.data.id;
                     userObject.userType = response.data.userType;
@@ -65,22 +64,16 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
             .cancel('Go Back');
 
         $mdDialog.show(confirm).then(function() {
-            console.log("call registerUser()");
             $scope.registerUser($scope.user, $scope.registration);
-        }, function() {
-            console.log("you chose cancel");
-        });
+        }, function() {});
     };
-
 
 
     $scope.registerUser = UserService.registerUser;
 
-
     // SENDS USER DEMOGRAPHIC INFO TO SERVER (No username or password)
     $scope.registration = UserService.registration;
     $scope.userDemographics = UserService.userDemographics;
-
 
     // REGISTRATION FORM
 
@@ -101,11 +94,9 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
 
     $scope.getYearDropdown = function() {
         var currentYear = new Date().getFullYear();
-        console.log(currentYear);
         for (var i = 0; i < 100; i++) {
             $scope.years.push(currentYear - i);
         }
-        console.log($scope.years);
         return $scope.years;
     };
 
