@@ -15,13 +15,9 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
     function getadmin() {
         $http.get('/user').then(function(response) {
             if (response.data.id && response.data.userType === 1) {
-                console.log('login response: ', response.data);
                 // user has a curret session on the server
-                // adminObject.userName = response.data.username;
-                // adminObject.id = response.data.id;
             } else {
                 console.log('login response: ', response.data);
-                // user has no session, bounce them back to the login page
                 $location.path("/login");
             }
         });
@@ -55,33 +51,28 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
     function countMembers() {
         $http.get('/register/memberCount').then(function(response) {
             adminObject.memberCount = response.data.length;
-            console.log('memberCount: ', adminObject.memberCount);
         });
     }
 
     function countReflectionsByDay() {
         $http.get('reflection/countByDay').then(function(response) {
             adminObject.countByDay = response.data;
-            console.log('count by day: ', adminObject.countByDay);
             storeDaysAndCountInArray();
         });
     }
 
     function storeDaysAndCountInArray() {
-        console.log("adminObject", adminObject.countByDay[0].date);
         adminObject.countByDay.sort(function(a, b) {
             // Turn your strings into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
             return new Date(b.date) - new Date(a.date);
         });
-        console.log("adminObject", adminObject, "later");
         for (var i = 0; i < adminObject.countByDay.length; i++) {
             var reflectionDate = adminObject.countByDay[i].date;
             var reflectionCount = adminObject.countByDay[i].count;
             dates.push(reflectionDate);
             dailyCount.push(reflectionCount);
         }
-
         buildAdminGraphs(dates, dailyCount);
     }
 

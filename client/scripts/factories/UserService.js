@@ -18,7 +18,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     function getuser() {
         $http.get('/user').then(function(response) {
             if (response.data.id) {
-                console.log('response in validation: ', response.data);
                 // user has a curret session on the server
                 userObject.userName = response.data.username;
                 userObject.id = response.data.id;
@@ -32,19 +31,13 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     //logout
     function logout() {
         $http.get('/user/logout').then(function(response) {
-            console.log('logged out');
             $location.path("/landing");
         });
     } //ends logout
 
     function registerUser(user, registration) {
         if (user.username === '' || user.password === '') {} else {
-            console.log('sending to server...', user);
             $http.post('/register', user).then(function(response) {
-                    console.log('success saving member');
-                    console.log('response', response);
-                    console.log('response.data.memberID', response.data.memberID);
-
                     emptyUser(user);
                     userDemographics(registration);
                 },
@@ -64,9 +57,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
 
 
     function userDemographics(registration) {
-        console.log('sending demographics', registration);
         $http.post('/register/registration', registration).then(function(response) {
-            console.log('success saving demographic info', response);
             emptyDemographics(registration);
             $location.path('/login');
         });
@@ -145,8 +136,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
                 lastWeeksObject.reflections.push(currentReflection);
             }
         }
-        console.log('this weeks reflections: ', thisWeeksObject.reflections);
-        console.log('last weeks reflections: ', lastWeeksObject.reflections);
     };
 
     var getMonthlyData = function(reflections) {
@@ -161,17 +150,13 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
                 lastMonthsObject.reflections.push(currentReflection);
             }
         }
-        console.log('this months reflections: ', thisMonthsObject.reflections);
-        console.log('last months reflections: ', lastMonthsObject.reflections);
     };
 
 
     //builds sessionObject
     function getSessionObject(location) {
-        console.log('what is going on', location);
         $http.get('reflection/session/')
             .then(function(response) {
-                console.log('response in getSessionObject:', response);
                 sessionObject.streak = response.data.streakCount;
                 sessionObject.allReflections = response.data.allReflectionsNewToOld;
                 sessionObject.reflectionCompleted = response.data.reflectionCompleted;
@@ -186,7 +171,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
                     sessionObject.yesterdaysGoal = response.data.yesterdaysGoal;
                 }
                 sessionObject.takingMeds = response.data.medication;
-                console.log("session Object at end of getSessionObject", sessionObject);
                 getWeeklyData(sessionObject.allReflections);
                 getMonthlyData(sessionObject.allReflections);
                 buildGraphs(location, graphsObject);
@@ -195,7 +179,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     } //ends getSessionObject
 
     function buildGraphs(location, graphsObject) {
-        console.log("inside buildGraphs", sessionObject, graphsObject, location);
         if (location === 'home') {
             streakGraph(sessionObject);
         }
@@ -204,7 +187,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         }
         switch (location) {
             case "/weekly-graphs":
-                console.log("inside /weekly-graphs switch");
                 weeklyGraphs(graphsObject.thisWeeksObject);
                 break;
             case "/last-week":
@@ -227,7 +209,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         //if streak is over 30 days, reset so it still increments
         if (streak >= 30) {
             streak = streak % 30;
-            console.log('New Streak For Graph', streak);
             return streak;
         }
 
@@ -250,7 +231,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     } //ends streakGraph
 
     function weeklyGraphs(timeframe) {
-        console.log("weeklyGraphs", timeframe);
         var feelingNames = [];
         var exerciseAmount = [];
         var foodAmount = [];
@@ -265,11 +245,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         var dates = [];
 
         var reflections = timeframe.reflections;
-
-
-        // function weeklyGraphs(sessionObject) {
-        // var reflections = sessionObject.allReflections;
-        // console.log('ALL REFLECTIONS', reflections);
 
         //LOOP THROUGH THE REFLECTION ARRAY AND GET DATA FOR FEELINGS, SLEEP, EXERCISE, AND FOOD
         for (var i = 0; i < reflections.length; i++) {
@@ -292,9 +267,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
 
             var overall = reflections[i].overallfeeling;
             overallAmount.push(overall);
-            // console.log('OVERALL FEELING DATA', overallAmount);
         }
-
 
         //count occurence of each feeling and save in new object
         function countFeelings(array) {
@@ -338,14 +311,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
             }
         }
         formatTimestamp();
-
-        // function removeData(chart) {
-        //   chart.data.labels.pop();
-        //   chart.data.datasets.forEach((dataset) => {
-        //     dataset.data.pop();
-        //   });
-        //   chart.update();
-        // }
 
         //chart for top five feelings
         var ctx1 = document.getElementById("feelingsChart");
@@ -526,7 +491,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         }
         //post to database if it is the fist reflection form view
         if (sessionObject.reflectionCompleted === false) {
-            console.log('Before POST', reflectionObject);
             postToReflectionForm(reflectionObject);
         }
         //put to database if it is any subsequent reflection form views
@@ -538,7 +502,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
 
 
     function reflectionFormPrevButton(sessionObject, reflectionObject) {
-        console.log("you tried to go back, butchyoucantyet");
         //moves on to the next question
         var medsForm = 3; //number of the form which asks about medication
         var takesMeds = sessionObject.takingMeds;
@@ -555,16 +518,13 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     function postToReflectionForm(reflectionObject) {
         $http.post('/reflection', reflectionObject).then(function(response) {
             reflectionObject._id = response.data._id;
-            console.log('reflectionObject._id: ', reflectionObject._id);
             sessionObject.reflectionCompleted = true;
-            console.log("after POST, sessionObject", sessionObject);
             advanceReflectionForm(reflectionObject);
         });
     } //ends postToReflectionForm
 
     function updateReflectionForm(reflectionObject) {
         $http.put('/reflection', reflectionObject).then(function(response) {
-            console.log('updateReflectionForm response: ', response.data);
             advanceReflectionForm(reflectionObject);
         });
     } //ends updateReflectionForm
