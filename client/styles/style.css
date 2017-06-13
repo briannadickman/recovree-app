@@ -1,18 +1,16 @@
-/*::-webkit-scrollbar {
-    display: none;
-}*/
-
 .streakTitle {
-  color: #813172;
-  font-size: 18px;
+    color: #813172;
+    font-size: 18px;
 }
+
 .streak {
-  color: #813172;
-  font-size: 24px;
+    color: #813172;
+    font-size: 24px;
 }
+
 .reflectBtn {
-  font-size: 40px;
-  font-weight: bold;
+    font-size: 40px;
+    font-weight: bold;
 }
 
 .instructions .container h1 {
@@ -33,8 +31,8 @@
     margin-top: 10px;
 }
 
-.container p{
-    margin-top : 14px;
+.container p {
+    margin-top: 14px;
 }
 
 .message {
@@ -46,199 +44,181 @@
 }
 
 .message:nth-child(odd) {
-     background-color: #eeeeee;
+    background-color: #eeeeee;
 }
 
 .message:nth-child(even) {
     background-color: #f8f8f8;
 }
 
-.btn-danger{
+.btn-danger {
     margin-left: 10px;
 }
 
 #navFooter {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  background-color: #000000;
-  overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #000000;
+    overflow: hidden;
 }
 
 #main-content {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  padding-bottom: 100px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 100px;
 }
 
 #chainGraphic {
-  width: 250px;
-  height: 250px;
-  background-color: grey;
-  margin: 20px;
-  text-align: center;
-  padding: 50px;
+    width: 250px;
+    height: 250px;
+    background-color: grey;
+    margin: 20px;
+    text-align: center;
+    padding: 50px;
 }
 
 #formNextButton {
     color: white;
     font-size: 14px;
-    /*display: block;*/
-    /*margin: auto;*/
-    /*background-repeat: no-repeat;*/
-    /*display: inline-block;*/
-    /*vertical-align: middle;*/
-    /*fill: currentColor;*/
-    /*height: 24px;
-    width: 24px;
-    min-height: 24px;
-    min-width: 24px;*/
     display: inline-block;
-    /*line-height: 16px;*/
     height: 14px;
     vertical-align: middle;
 }
 
 .termsTitle {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 #headerTitle {
-  font-family: 'Lato', sans-serif;
-  text-align: center;
-  margin: 0;
-  font-size: 28px;
-  margin-left: 40px;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    margin: 0;
+    font-size: 28px;
+    margin-left: 40px;
 }
 
 md-toolbar .md-menu {
     margin-right: -20px;
 }
 
-
 .graph_image {
-  background-color: grey;
-  width: 200px;
-  height: 200px;
-  text-align: center;
-}
-
-/*keith*/
-*{
-  padding: 0;
-  margin:0;
-  /*overflow: hidden;*/
-  font-family: 'Questrial', sans-serif;
-}
-
-body{
-  min-height: : 100%;
-}
-
-h1{
-  font-family: 'Lato', sans-serif;
-}
-
-
-.header{
+    background-color: grey;
+    width: 200px;
+    height: 200px;
     text-align: center;
 }
 
-.login-container{
-  padding: 20px;
-  text-align: center;
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Questrial', sans-serif;
 }
 
-.wrapper{
-  /*padding-top: 15px;
-  padding-right: 15px;
-  padding-left: 15px;
-  padding-bottom: 15px;*/
-  padding: 15px;
-
+body {
+    min-height: : 100%;
 }
 
-.grey{
-  background-color: gainsboro;
+h1 {
+    font-family: 'Lato', sans-serif;
 }
 
-.md-button{
-  font-size: 12px;
-  min-width: 100px;
-  text-align: center;
+.header {
+    text-align: center;
 }
 
-.form-button{
-  color: white !important;
-  font-weight: bold;
-  /*font-size: 16px;*/
+.login-container {
+    padding: 20px;
+    text-align: center;
 }
 
-.footer-button{
-  width: 150px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  font-size: 0.75em;
-  font-weight: bold;
+.wrapper {
+    padding: 15px;
 }
 
-.center-text{
-  text-align: center;
+.grey {
+    background-color: gainsboro;
 }
 
-#loginLogo{
-  height: 100px;
-  width: 100px;
-  border-radius: 5px;
+.md-button {
+    font-size: 12px;
+    min-width: 100px;
+    text-align: center;
 }
 
-#loginBox{
-  background-color: whitesmoke;
-  padding: 20px;
-  border-radius: 5px;
+.form-button {
+    color: white !important;
+    font-weight: bold;
 }
 
-#northernLights{
-  /*background-image: url(/styles/images/northernLights.jpg);*/
-  /*background-image: url(/styles/images/blueBackground.jpg);*/
-  /*background-image: url(/styles/images/purpleBackground.jpg);*/
-  /*background-image: url(/styles/images/largeLights.jpg);*/
-
-  background-repeat: no-repeat;
-  background-position:top;
-  background-size: cover;
+.footer-button {
+    width: 150px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 0.75em;
+    font-weight: bold;
 }
 
-.message-text{
-  color: red;
+.center-text {
+    text-align: center;
 }
+
+#loginLogo {
+    height: 100px;
+    width: 100px;
+    border-radius: 5px;
+}
+
+#loginBox {
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#northernLights {
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+}
+
+.message-text {
+    color: red;
+}
+
 
 /*TERMS OF USE MODAL*/
 
 .dialogdemoBasicUsage #popupContainer {
-  position: relative; }
+    position: relative;
+}
 
 .dialogdemoBasicUsage .footer {
-  width: 100%;
-  text-align: center;
-  margin-left: 20px; }
+    width: 100%;
+    text-align: center;
+    margin-left: 20px;
+}
 
-.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
-  font-size: 0.8em;
-  margin-top: 50px; }
+.dialogdemoBasicUsage .footer,
+.dialogdemoBasicUsage .footer>code {
+    font-size: 0.8em;
+    margin-top: 50px;
+}
 
 .dialogdemoBasicUsage button {
-  width: 200px; }
+    width: 200px;
+}
 
 .dialogdemoBasicUsage div#status {
-  color: #c60008; }
+    color: #c60008;
+}
 
 .dialogdemoBasicUsage .dialog-demo-prerendered md-checkbox {
-  margin-bottom: 0; }
+    margin-bottom: 0;
+}
 
-  .hint {
+.hint {
     /* Position the hint */
     position: absolute;
     left: 2px;
@@ -249,4 +229,5 @@ h1{
     line-height: 14px;
     transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
     /* Set our own color */
-    color: grey; }
+    color: grey;
+}
