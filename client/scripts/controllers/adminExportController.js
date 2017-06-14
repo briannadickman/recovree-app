@@ -4,7 +4,7 @@ myApp.controller('AdminExportController', ['$scope', '$http', '$location', 'Admi
         AdminService.getRegistrationInfo();
     };
 
-    $scope.reflectionExport = function() {\
+    $scope.reflectionExport = function() {
         AdminService.getReflections();
     };
 
