@@ -1,16 +1,8 @@
 myApp.controller('DayDetailController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
-// <<<<<<< HEAD
-//
-//     var refreshSessionObject = UserService.refreshSessionObject;
-//     refreshSessionObject();
-//     $scope.sessionObject = UserService.sessionObject;
-//     $scope.launchReflection = UserService.launchReflection;
-// =======
-    var location = "day";
 
+    var location = "day";
     var refreshSessionObject = UserService.refreshSessionObject;
     refreshSessionObject(location);
-// >>>>>>> develop
 
     $scope.sessionObject = UserService.sessionObject;
     $scope.launchReflection = UserService.launchReflection;
