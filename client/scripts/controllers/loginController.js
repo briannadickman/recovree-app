@@ -19,6 +19,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
 
     $scope.updatePassword = function() {
         //this is the randomly generated code, it's part of the url and will need it to reset password
+// <<<<<<< HEAD
         //send password reset request to the server with username, new password, and code
         if ($scope.user.username === '' || $scope.user.password === '') {
             $scope.message = "Enter your username and password!";
@@ -27,6 +28,19 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
             $scope.user.code = $routeParams.code;
             $http.put('/user/resetpassword', $scope.user).then(function(response) {
                 if (response.data.username) {} else {
+// =======
+//         //send assword reset request to the server with username, new password, and code
+//
+//         if ($scope.user.username === '' || $scope.user.password === '') {
+//             $scope.message = "Enter your username and password!";
+//         } else {
+//             $scope.user.code = $routeParams.code;
+//
+//             $http.put('/user/resetpassword', $scope.user).then(function(response) {
+//                 if (response.data.username) {
+//                     $location.path('/login');
+//                 } else {
+// >>>>>>> develop
                     $scope.message = "Username or password is incorrect.";
                 }
             });
@@ -48,6 +62,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
                     } else if (userObject.userType === 1) {
                         $location.path('/admin-export');
                     }
+
                 } else {
                     $scope.message = "Username or password is incorrect.";
                 }
@@ -68,8 +83,15 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
         }, function() {});
     };
 
-
     $scope.registerUser = UserService.registerUser;
+
+// <<<<<<< HEAD
+//     $scope.registerUser = UserService.registerUser;
+// =======
+//     // SENDS USER DEMOGRAPHIC INFO TO SERVER (No username or password)
+//     $scope.registration = UserService.registration;
+//     $scope.userDemographics = UserService.userDemographics;
+// >>>>>>> develop
 
     // SENDS USER DEMOGRAPHIC INFO TO SERVER (No username or password)
     $scope.registration = UserService.registration;

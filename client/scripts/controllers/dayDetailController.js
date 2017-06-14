@@ -1,10 +1,19 @@
 myApp.controller('DayDetailController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
+// <<<<<<< HEAD
+//
+//     var refreshSessionObject = UserService.refreshSessionObject;
+//     refreshSessionObject();
+//     $scope.sessionObject = UserService.sessionObject;
+//     $scope.launchReflection = UserService.launchReflection;
+// =======
+    var location = "day";
 
     var refreshSessionObject = UserService.refreshSessionObject;
-    refreshSessionObject();
+    refreshSessionObject(location);
+// >>>>>>> develop
+
     $scope.sessionObject = UserService.sessionObject;
     $scope.launchReflection = UserService.launchReflection;
-
 
     // random message to display when reflection is less than zero or 1
     var reflectionQuote = [{
@@ -64,6 +73,5 @@ myApp.controller('DayDetailController', ['$scope', '$http', '$location', 'UserSe
 
     var randomIndex = Math.floor(Math.random() * reflectionQuote.length);
     $scope.randomQuote = reflectionQuote[randomIndex];
-
 
 }]);
