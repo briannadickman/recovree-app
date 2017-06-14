@@ -72,13 +72,6 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
 
     $scope.registerUser = UserService.registerUser;
 
-// <<<<<<< HEAD
-//     $scope.registerUser = UserService.registerUser;
-// =======
-//     // SENDS USER DEMOGRAPHIC INFO TO SERVER (No username or password)
-//     $scope.registration = UserService.registration;
-//     $scope.userDemographics = UserService.userDemographics;
-// >>>>>>> develop
 
     // SENDS USER DEMOGRAPHIC INFO TO SERVER (No username or password)
     $scope.registration = UserService.registration;
