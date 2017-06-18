@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var date = new Date();
 var newdate = date.toLocaleString();
 
+
 var ReflectionSchema = mongoose.Schema({
     feelings: { type: Array },
     overallfeeling: { type: Number },
