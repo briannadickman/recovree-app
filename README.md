@@ -33,6 +33,7 @@ These directions will get a copy of the project running on your local machine fo
 
 - You can delete or comment out the twilio.js code if you don't have a twilio account or don't want to use this portion of the project
 
+
 In seperate terminal tabs run the commands below:
 * `mongod` - starts the database
 * `mongo` - provides javascript API for database operations

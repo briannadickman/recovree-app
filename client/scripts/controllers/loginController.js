@@ -19,17 +19,15 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
 
     $scope.updatePassword = function() {
         //this is the randomly generated code, it's part of the url and will need it to reset password
-        //send assword reset request to the server with username, new password, and code
-
+        //send password reset request to the server with username, new password, and code
         if ($scope.user.username === '' || $scope.user.password === '') {
             $scope.message = "Enter your username and password!";
         } else {
+            $location.path('/login');
             $scope.user.code = $routeParams.code;
-
             $http.put('/user/resetpassword', $scope.user).then(function(response) {
-                if (response.data.username) {
-                    $location.path('/login');
-                } else {
+                if (response.data.username) {} else {
+
                     $scope.message = "Username or password is incorrect.";
                 }
             });
@@ -74,10 +72,10 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
 
     $scope.registerUser = UserService.registerUser;
 
+
     // SENDS USER DEMOGRAPHIC INFO TO SERVER (No username or password)
     $scope.registration = UserService.registration;
     $scope.userDemographics = UserService.userDemographics;
-
 
     // REGISTRATION FORM
 

@@ -63,7 +63,7 @@ router.get('/registration', function(req, res) {
 });
 
 router.get('/meds/:id', function(req, res) {
-    console.log("req.params.id", req.params.id);
+
     var id = req.params.id;
     Registration.findById({ '_id': id }, function(err, registrations) {
         if (err) {
@@ -75,7 +75,7 @@ router.get('/meds/:id', function(req, res) {
 });
 
 router.get('/memberCount', function(req, res) {
-    console.log('member count hit');
+
     Registration.distinct('memberID', function(err, uniqueMembers) {
         if (err) {
             console.log('error counting members');
@@ -119,12 +119,12 @@ router.post('/', function(req, res, next) {
         password: newUser.password,
         memberID: newId,
     });
-    console.log("userToSave", userToSave);
+
     userToSave.save(userToSave, function(err, post) {
         if (err) {
             next(err);
         } else {
-            console.log('post: ', post);
+
             var newUserEmail = {
                 from: '"Ben Bizzey" <benbizzey@outlook.com>',
                 to: 'benbizzey@outlook.com',

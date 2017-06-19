@@ -1,4 +1,5 @@
 myApp.controller('HomeController', ['$scope', '$http', '$location', '$q', 'UserService', function($scope, $http, $location, $q, UserService) {
+
     var location = "home";
 
     var userObject = UserService.userObject;

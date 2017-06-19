@@ -17,7 +17,7 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
             if (response.data.id && response.data.userType === 1) {
                 // user has a curret session on the server
             } else {
-                // user has no session, bounce them back to the login page
+
                 $location.path("/login");
             }
         });
@@ -73,7 +73,6 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
             dates.push(reflectionDate);
             dailyCount.push(reflectionCount);
         }
-
         buildAdminGraphs(dates, dailyCount);
     }
 
@@ -107,7 +106,6 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
         });
     } //end build graphs function
 
-
     return {
         countMembers: countMembers,
         countReflectionsByDay: countReflectionsByDay,
@@ -121,4 +119,5 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
         buildAdminGraphs: buildAdminGraphs,
         getAdminObject: getAdminObject
     };
+
 }]);

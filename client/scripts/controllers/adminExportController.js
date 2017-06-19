@@ -1,5 +1,4 @@
 myApp.controller('AdminExportController', ['$scope', '$http', '$location', 'AdminService', function($scope, $http, $location, AdminService) {
-    console.log('AdminExportController sourced!');
 
     $scope.demographicExport = function() {
         AdminService.getRegistrationInfo();
@@ -7,8 +6,8 @@ myApp.controller('AdminExportController', ['$scope', '$http', '$location', 'Admi
 
     $scope.reflectionExport = function() {
         AdminService.getReflections();
-
     };
+
 
     $scope.getAdminObject = AdminService.getAdminObject;
     $scope.getAdminObject();

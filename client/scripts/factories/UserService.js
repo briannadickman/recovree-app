@@ -12,6 +12,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
 
     var graphsObject = {};
 
+
     //getuser
     function getuser() {
         $http.get('/user').then(function(response) {
@@ -265,9 +266,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
 
             var overall = reflections[i].overallfeeling;
             overallAmount.push(overall);
-            // console.log('OVERALL FEELING DATA', overallAmount);
         }
-
 
         //count occurence of each feeling and save in new object
         function countFeelings(array) {
