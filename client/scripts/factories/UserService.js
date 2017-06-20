@@ -1,5 +1,4 @@
 myApp.factory('UserService', ['$http', '$location', function($http, $location) {
-    console.log('User Service Loaded');
 
     //variables
     var user = {};
@@ -42,8 +41,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
                     userDemographics(registration);
                 },
                 function(response) {
-                    console.log('error');
-                    // $scope.message = "Please try again.";
+                    $scope.message = "Please try again.";
                 });
         }
     } //ends registerUser
@@ -162,6 +160,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
                 sessionObject.reflectionCompleted = response.data.reflectionCompleted;
                 if (sessionObject.reflectionCompleted === true) {
                     sessionObject.todaysReflectObject = response.data.todaysReflection;
+                    sessionObject.currentDailyReflection = response.data.todaysReflection;
                 } else {
                     sessionObject.todaysReflectObject = {};
                 }
@@ -484,7 +483,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     function reflectionFormNextButton(sessionObject, reflectionObject) {
         var medsForm = 3; //number of the form which asks about medication
         var takesMeds = sessionObject.takingMeds;
-
 
         if (reflectionObject.formPosition === (medsForm - 1) && takesMeds === false) {
             reflectionObject.formPosition += 1; //skips past meds form

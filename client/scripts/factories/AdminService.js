@@ -17,7 +17,7 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
             if (response.data.id && response.data.userType === 1) {
                 // user has a curret session on the server
             } else {
-                console.log('login response: ', response.data);
+
                 $location.path("/login");
             }
         });
@@ -105,7 +105,6 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
             }
         });
     } //end build graphs function
-
 
     return {
         countMembers: countMembers,

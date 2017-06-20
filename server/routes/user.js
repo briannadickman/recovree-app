@@ -100,7 +100,6 @@ router.put('/resetpassword', function(req, res) {
             }
 
             foundUser.password = req.body.password;
-            //set expiration to now after reset password
             foundUser.expiration = Date.now();
             foundUser.save(function(err, savedUser) {
                 if (err) {
