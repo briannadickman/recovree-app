@@ -5,6 +5,7 @@ var nodemailer = require('nodemailer');
 var Users = require('../models/user');
 var path = require('path');
 var Registration = require('../models/registration');
+var twilio = require('../modules/twilio');
 
 var mongoose = require("mongoose");
 
@@ -112,11 +113,17 @@ router.post('/', function(req, res, next) {
     var newId = randomIdGenerator();
     registrationMemberId = newId;
     var newUser = req.body;
+
+    //send newUser welcome text
+    var welcomeMessage = 'Thank you for signing up with Recovree and inviting us to be a part of your personal health journey. You will receive a daily text message to help remind you to complete your reflection in Recovree. To access Recovree, visit https://recovree.herokuapp.com/';
+    twilio(newUser.username, welcomeMessage);
+
     var userToSave = new Users({
         username: newUser.username,
         password: newUser.password,
         memberID: newId,
     });
+
     userToSave.save(userToSave, function(err, post) {
         if (err) {
             next(err);

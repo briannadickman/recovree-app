@@ -20,18 +20,14 @@ myApp.controller('NavController', ['$scope', '$http', '$location', '$mdDialog', 
     $scope.goToGratitude = function() {
         $scope.sessionObject = UserService.sessionObject;
         $scope.reflections = $scope.sessionObject.allReflections;
-        console.log('Gratitude button clicked!');
         $location.path('/gratitude');
-        console.log($scope.reflections);
     };
 
     $scope.goToResources = function() {
-        console.log('Resources button clicked!');
         $location.path('/resources');
     };
 
     $scope.goToContactUs = function() {
-        console.log('Contact Us button clicked!');
         $location.path('/contact-us');
     };
 
