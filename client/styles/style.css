@@ -100,6 +100,10 @@
     margin-left: 40px;
 }
 
+.menu-width{
+  min-width: 40px;
+}
+
 md-toolbar .md-menu {
     margin-right: -20px;
 }
@@ -185,6 +189,10 @@ h1 {
 
 .message-text {
     color: red;
+}
+
+#menuButton{
+  margin: 0;
 }
 
 
