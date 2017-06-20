@@ -123,6 +123,11 @@ md-toolbar .md-menu {
     text-align: center;
 }
 
+.graph-canvas{
+  width: 600px;
+  height: 300px;
+}
+
 * {
     padding: 0;
     margin: 0;
