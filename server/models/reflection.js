@@ -1,9 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var date = new Date();
-var newdate = date.toLocaleString();
-
 
 var ReflectionSchema = mongoose.Schema({
     feelings: { type: Array },
