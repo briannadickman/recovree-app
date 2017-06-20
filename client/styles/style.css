@@ -100,6 +100,14 @@
     margin-left: 40px;
 }
 
+#adminTitle {
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    margin: 0;
+    font-size: 28px;
+    margin-left: 100px;
+}
+
 .menu-width{
   min-width: 40px;
 }

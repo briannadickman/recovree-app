@@ -1,6 +1,6 @@
-<md-toolbar layout='row' ng-controller='NavController' ng-hide = '$location.path() === "/admin-export"'>
+<md-toolbar layout='row' ng-controller='NavController' >
 
-    <div class="md-toolbar-tools" layout='row' layout-align='center center' ng-click='goHome()'>
+    <div class="md-toolbar-tools" layout='row' layout-align='center center' ng-click='goHome()' ng-hide = '$location.path() === "/admin-export"'>
             <div flex ng-hide='$location.path() === "/admin-export" || $location.path() === "/landing" || $location.path() === "/register" || $location.path() === "/confirmreset/*"'>
                 <h1 style='text-align: center' md-truncate id='headerTitle'>RECOVREE</h1>
             </div>
@@ -39,12 +39,12 @@
     </div>
 
 <!-- Admin Toolbar -->
-    <div class="md-toolbar-tools" layout='row' layout-align='center center' ng-show='$location.path() === "/admin-export"'>
-        <div flex ng-show='$location.path() === "/admin-export"'>
-            <h1 style='text-align: center' md-truncate id='headerTitle'>RECOVREE</h1>
+    <div class="md-toolbar-tools" layout='row' layout-align='center center' ng-show = '$location.path() === "/admin-export"'>
+        <div flex>
+            <h1 style='text-align: center' md-truncate id='adminTitle'>RECOVREE</h1>
         </div>
 
-        <md-button ng-click='logout(user)' ng-show='$location.path() === "/admin-export"'>
+        <md-button ng-click='logout(user)'>
             <span>Logout</span>
         </md-button>
     </div>
