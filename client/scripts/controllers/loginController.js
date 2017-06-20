@@ -23,10 +23,12 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
         if ($scope.user.username === '' || $scope.user.password === '') {
             $scope.message = "Enter your username and password!";
         } else {
-            $location.path('/login');
             $scope.user.code = $routeParams.code;
+
             $http.put('/user/resetpassword', $scope.user).then(function(response) {
-                if (response.data.username) {} else {
+                if (response.data.username) {
+                    $location.path('/login');
+                } else {
                     $scope.message = "Username or password is incorrect.";
                 }
             });
@@ -48,6 +50,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
                     } else if (userObject.userType === 1) {
                         $location.path('/admin-export');
                     }
+
                 } else {
                     $scope.message = "Username or password is incorrect.";
                 }
@@ -67,7 +70,6 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
             $scope.registerUser($scope.user, $scope.registration);
         }, function() {});
     };
-
 
     $scope.registerUser = UserService.registerUser;
 

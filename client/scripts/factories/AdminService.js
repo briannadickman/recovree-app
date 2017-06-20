@@ -73,6 +73,7 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
             dates.push(reflectionDate);
             dailyCount.push(reflectionCount);
         }
+
         buildAdminGraphs(dates, dailyCount);
     }
 
@@ -120,5 +121,4 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
         buildAdminGraphs: buildAdminGraphs,
         getAdminObject: getAdminObject
     };
-
 }]);

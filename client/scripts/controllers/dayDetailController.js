@@ -1,10 +1,11 @@
 myApp.controller('DayDetailController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
+    var location = "day";
 
     var refreshSessionObject = UserService.refreshSessionObject;
-    refreshSessionObject();
+    refreshSessionObject(location);
+
     $scope.sessionObject = UserService.sessionObject;
     $scope.launchReflection = UserService.launchReflection;
-
 
     // random message to display when reflection is less than zero or 1
     var reflectionQuote = [{
@@ -59,11 +60,9 @@ myApp.controller('DayDetailController', ['$scope', '$http', '$location', 'UserSe
             quote: 'We all make mistakes, have struggles, and even regret things in our past. But you are not your mistakes, you are not your struggles, and you are here now with the power to shape your day and your future.',
             name: ' – Steve Maraboli'
         }
-    ];
 
+    ];
 
     var randomIndex = Math.floor(Math.random() * reflectionQuote.length);
     $scope.randomQuote = reflectionQuote[randomIndex];
-
-
 }]);
