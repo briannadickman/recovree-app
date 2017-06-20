@@ -24,7 +24,6 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
             $scope.message = "Enter your username and password!";
         } else {
             $scope.user.code = $routeParams.code;
-
             $http.put('/user/resetpassword', $scope.user).then(function(response) {
                 if (response.data.username) {
                     $location.path('/login');

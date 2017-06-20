@@ -4,7 +4,7 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
 
     var adminObject = {
         memberCount: 0,
-        countByDay: []
+        countByDay: [],
     };
 
     var dailyCount = [];
@@ -17,7 +17,6 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
             if (response.data.id && response.data.userType === 1) {
                 // user has a curret session on the server
             } else {
-                console.log('login response: ', response.data);
                 $location.path("/login");
             }
         });
@@ -62,6 +61,8 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
     }
 
     function storeDaysAndCountInArray() {
+        dates = [];
+        dailyCount = [];
         adminObject.countByDay.sort(function(a, b) {
             // Turn your strings into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
@@ -73,7 +74,6 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
             dates.push(reflectionDate);
             dailyCount.push(reflectionCount);
         }
-
         buildAdminGraphs(dates, dailyCount);
     }
 
@@ -106,7 +106,6 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
             }
         });
     } //end build graphs function
-
 
     return {
         countMembers: countMembers,

@@ -100,6 +100,18 @@
     margin-left: 40px;
 }
 
+#adminTitle {
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    margin: 0;
+    font-size: 28px;
+    margin-left: 108px;
+}
+
+.menu-width{
+  min-width: 40px;
+}
+
 md-toolbar .md-menu {
     margin-right: -20px;
 }
@@ -109,6 +121,11 @@ md-toolbar .md-menu {
     width: 200px;
     height: 200px;
     text-align: center;
+}
+
+.graph-canvas{
+  width: 600px;
+  height: 300px;
 }
 
 * {
@@ -185,6 +202,10 @@ h1 {
 
 .message-text {
     color: red;
+}
+
+#menuButton{
+  margin: 0;
 }
 
 
