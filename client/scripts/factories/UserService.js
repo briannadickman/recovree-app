@@ -111,9 +111,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         $location.path('/last-week');
     };
     var displayThisMonth = function() {
-        // console.log("inside displayThisMonth", thisMonthsObject);
-        // weeklyGraphs(thisMonthsObject);
-        // console.log("thisMonthsObject",thisMonthsObject);
         $location.path('/this-month');
     };
     var displayLastMonth = function() {
