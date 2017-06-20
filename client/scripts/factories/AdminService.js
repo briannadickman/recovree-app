@@ -4,7 +4,7 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
 
     var adminObject = {
         memberCount: 0,
-        countByDay: []
+        countByDay: [],
     };
 
     var dailyCount = [];
@@ -62,6 +62,8 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
     }
 
     function storeDaysAndCountInArray() {
+        dates = [];
+        dailyCount = [];
         adminObject.countByDay.sort(function(a, b) {
             // Turn your strings into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
