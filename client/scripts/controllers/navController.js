@@ -1,5 +1,4 @@
 myApp.controller('NavController', ['$scope', '$http', '$location', '$mdDialog', 'UserService', function($scope, $http, $location, $mdDialog, UserService) {
-    console.log('NavController sourced!');
     $scope.user = UserService.user;
     $scope.$location = $location;
     $scope.logout = logout;
