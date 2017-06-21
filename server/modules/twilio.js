@@ -27,8 +27,8 @@ var randomomizeReminderMessage = reminderMessage[randomIndex];
 dailyReminderSMS();
 
 function dailyReminderSMS() {
-    // var textJob = new cronJob('0 18 * * *', function() {
-    var textJob = new cronJob('* * * * *', function() { //every minute for development purposes
+    var textJob = new cronJob('55 16 * * *', function() {
+            // var textJob = new cronJob('* * * * *', function() { //every minute for development purposes
             getPhoneNumbers();
         },
         null, true);
