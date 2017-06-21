@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
 var ReflectionSchema = mongoose.Schema({
     feelings: { type: Array },
     overallfeeling: { type: Number },
