@@ -51,7 +51,6 @@ app.use('/', index);
 // App Set //
 app.set('port', (process.env.PORT || 5000));
 
-console.log('ENV MONDODB', process.env.MONGODB_URI);
 // Listen //
 app.listen(app.get("port"), function() {
     console.log("Listening on port: " + app.get("port"));
