@@ -155,31 +155,56 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     function getSessionObject(location) {
         $http.get('reflection/session/')
             .then(function(response) {
+                //check to see if response has anything
+                if (response.data.allReflectionsNewToOld.length !== 0){
+                  //allReflections
+                  sessionObject.allReflections = response.data.allReflectionsNewToOld;
+                  //sessionObject.allReflections convertToLocal
+                  for (var i = 0; i < sessionObject.allReflections.length; i++){
+                    var date = sessionObject.allReflections[i].reflectionDate;
+                    sessionObject.allReflections[i].reflectionDate = convertToLocal(date);
+                  }
 
-                sessionObject.streak = response.data.streakCount;
-                sessionObject.allReflections = response.data.allReflectionsNewToOld;
-                //sessionObject.allReflections convertToLocal
-                for (var i = 0; i < sessionObject.allReflections.length; i++){
-                  var date = sessionObject.allReflections[i].reflectionDate;
-                  sessionObject.allReflections[i].reflectionDate = convertToLocal(date);
-                }
-                sessionObject.reflectionCompleted = checkReflectionCompleted(sessionObject.allReflections);
-                if (sessionObject.reflectionCompleted === true) {
-                    sessionObject.todaysReflectObject = response.data.todaysReflection;
-                    sessionObject.currentDailyReflection = response.data.todaysReflection;
-                } else {
-                    sessionObject.todaysReflectObject = {};
-                }
-                if (response.data.yesterdaysGoal === "" || response.data.yesterdaysGoal == "No goal set yesterday") {
-                    sessionObject.yesterdaysGoal = false;
-                } else {
-                    sessionObject.yesterdaysGoal = response.data.yesterdaysGoal;
-                }
-                sessionObject.takingMeds = response.data.medication;
+                  //reflectionCompleted
+                  sessionObject.reflectionCompleted = checkReflectionCompleted(sessionObject.allReflections);
 
-                getWeeklyData(sessionObject.allReflections);
-                getMonthlyData(sessionObject.allReflections);
-                buildGraphs(location, graphsObject);
+                  //todaysReflectObject
+                  if (sessionObject.reflectionCompleted === true) {
+                      sessionObject.todaysReflectObject = sessionObject.allReflections[0];
+                  } else {
+                      sessionObject.todaysReflectObject = {};
+                  }
+
+                  //currentDailyReflection
+                  sessionObject.currentDailyReflection = sessionObject.allReflections[0];
+
+                  //check if yesterday was completed
+                  var yesterdayCompleted = checkYesterdayCompleted(sessionObject);
+
+                  //streak
+                  sessionObject.streak = calculateStreak(sessionObject, yesterdayCompleted);
+
+                  //yesterdaysGoal
+                  //today is done, yesterday was done, and yesterday had a goal
+                  if (sessionObject.reflectionCompleted && yesterdayCompleted && sessionObject.allReflections[1].tomorrowGoal !== "") {
+                      sessionObject.yesterdaysGoal = sessionObject.allReflections[1].tomorrowGoal;
+                  }
+                  //today is not done, yesterday was done, and yesterday had a goal
+                  else if (yesterdayCompleted && sessionObject.allReflections[0].tomorrowGoal !== ""){
+                      sessionObject.yesterdaysGoal = sessionObject.allReflections[0].tomorrowGoal;
+                  }
+                  //otherwise
+                  else {
+                      sessionObject.yesterdaysGoal = false;
+                  }
+
+                  //takingMeds
+                  sessionObject.takingMeds = response.data.medication;
+
+                  getWeeklyData(sessionObject.allReflections);
+                  getMonthlyData(sessionObject.allReflections);
+                  buildGraphs(location, graphsObject);
+                }
             });
 
     } //ends getSessionObject
@@ -201,10 +226,53 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
       if (todayStart.clone().diff(mostRecentReflectionStart) === 0){
         return true;
       }
-      else{
+      else {
         return false;
       }
     }//ends checkReflectionCompleted
+
+    function checkYesterdayCompleted(sessionObject){
+      var dateNow = moment(Date.now());
+      var yesterdayStart = dateNow.clone().subtract(1, 'day').startOf('day');
+      console.log("yesterdayStart",yesterdayStart, sessionObject.allReflections[1].reflectionDate, sessionObject.allReflections[0].reflectionDate);
+
+      console.log("sessionObject.reflectionCompleted", sessionObject.reflectionCompleted);
+      //today is done, and the previous reflection is from yesterday
+      if (sessionObject.reflectionCompleted && yesterdayStart.clone().diff(moment(sessionObject.allReflections[1].reflectionDate).startOf('day')) === 0){
+        return true;
+      }
+      //today is not done, and the most recent reflection is from yesterday
+      else if (yesterdayStart.clone().diff(moment(sessionObject.allReflections[1].reflectionDate).startOf('day')) === 0){
+        return true;
+      }
+      //otherwise
+      else {
+        return false;
+      }
+    }//ends checkYesterdayCompleted
+
+    function calculateStreak(sessionObject, yesterdayCompleted){
+      //today is done and yesterday was done, take yesterday's streak and add 1
+      if (sessionObject.reflectionCompleted && yesterdayCompleted){
+        return sessionObject.allReflections[0].streakCount + 1;
+      }
+      // today is done and yesterday was not done, then return 1
+      else if (sessionObject.reflectionCompleted && !yesterdayCompleted){
+        return 1;
+      }
+      // today is not done and yesteraday was done, then return yesterday's streak
+      else if (!sessionObject.reflectionCompleted && yesterdayCompleted){
+        return sessionObject.allReflections[0].streakCount;
+      }
+      // today is not done and yesterday is not done, then return 0
+      else if (!sessionObject.reflectionCompleted && !yesterdayCompleted){
+        return 0;
+      }
+      //otherwise
+      else{
+        return 0;
+      }
+    }//ends calculateStreak
 
     function buildGraphs(location, graphsObject) {
         if (location === 'home') {
