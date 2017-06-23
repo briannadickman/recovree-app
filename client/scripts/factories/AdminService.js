@@ -57,8 +57,17 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
     function countReflectionsByDay() {
         $http.get('reflection/countByDay').then(function(response) {
             adminObject.countByDay = response.data;
+            for (var i = 0; i < adminObject.countByDay.length; i++){
+              adminObject.countByDay[i].date = convertToLocal(adminObject.countByDay[i].date);
+            }
             storeDaysAndCountInArray();
         });
+    }
+
+    function convertToLocal(date){
+      var stillUtc = moment.utc(date).toDate();
+      var local = moment(stillUtc).local().format('MM-DD');
+      return local;
     }
 
     function storeDaysAndCountInArray() {
@@ -71,6 +80,7 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
         });
         for (var i = 0; i < adminObject.countByDay.length; i++) {
             var reflectionDate = adminObject.countByDay[i].date;
+            console.log("reflectionDate", reflectionDate);
             var reflectionCount = adminObject.countByDay[i].count;
             dates.push(reflectionDate);
             dailyCount.push(reflectionCount);

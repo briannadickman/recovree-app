@@ -155,6 +155,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     function getSessionObject(location) {
         $http.get('reflection/session/')
             .then(function(response) {
+
                 sessionObject.streak = response.data.streakCount;
                 sessionObject.allReflections = response.data.allReflectionsNewToOld;
                 sessionObject.reflectionCompleted = response.data.reflectionCompleted;
@@ -170,12 +171,27 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
                     sessionObject.yesterdaysGoal = response.data.yesterdaysGoal;
                 }
                 sessionObject.takingMeds = response.data.medication;
+
+                //sessionObject.allReflections
+                for (var i = 0; i < sessionObject.allReflections.length; i++){
+                  var date = sessionObject.allReflections[i].reflectionDate;
+                  sessionObject.allReflections[i].reflectionDate = convertToLocal(date);
+                }
+
+
                 getWeeklyData(sessionObject.allReflections);
                 getMonthlyData(sessionObject.allReflections);
                 buildGraphs(location, graphsObject);
             });
 
     } //ends getSessionObject
+
+
+    function convertToLocal(date){
+      var stillUtc = moment.utc(date).toDate();
+      var local = moment(stillUtc).local().format('YYYY-MM-DD HH:mm:ss');
+      return local;
+    }
 
     function buildGraphs(location, graphsObject) {
         if (location === 'home') {
