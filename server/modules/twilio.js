@@ -9,11 +9,12 @@ var User = mongoose.model('users', UserModel.UserSchema);
 
 var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 var twilioNumber = process.env.TWILIO_NUMBER;
+var herokuURL = ' https://recovree.herokuapp.com/'; //change to recovreeapp 
 
-var reminderMessage = ['This is a friendly reminder to complete your daily Recovree  https://recovree.herokuapp.com/',
-    'Find a moment to reflect and complete your daily Recovree  https://recovree.herokuapp.com/',
-    'One day at a time. Find time to complete your daily Recovree  https://recovree.herokuapp.com/',
-    'Sobriety is a journey. A reminder to complete your daily Recovree  https://recovree.herokuapp.com/',
+var reminderMessage = ['This is a friendly reminder to complete your daily Recovree', herokuURL,
+    'Find a moment to reflect and complete your daily Recovree', herokuURL,
+    'One day at a time. Find time to complete your daily Recovree', herokuURL,
+    'Sobriety is a journey. A reminder to complete your daily Recovree', herokuURL,
 ];
 var randomIndex = Math.floor(Math.random() * reminderMessage.length);
 var randomomizeReminderMessage = reminderMessage[randomIndex];
