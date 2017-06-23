@@ -101,25 +101,13 @@ router.get('/session/', function(req, res) { //took out memberID
                         }
                     ],
                     function(err, results) {
-                        var newCount = results.streakCount;
-                        //if reflection(s) exist, save the streak count
-                        if (results.allReflectionsNewToOld[0]) {
-                            Reflection.findOne({ '_id': results.allReflectionsNewToOld[0]._id }, function(err, curReflection) {
-                                if (err) {
-                                    console.log('streak count first reflection update error: ', err);
-                                }
-                                curReflection.streakCount = newCount || curReflection.streakCount;
-                                curReflection.save(function(err, updatedReflection) {
-                                    if (err) {
-                                        console.log('error in reflection put: ', err);
-                                        res.sendStatus(500);
-                                    }
-                                    res.send(results);
-                                });
-                            });
-                        } else {
-                            //send session object defaults for new members
-                            res.send(results);
+
+                        if (err) {
+                          console.log('error in serverSessionObject response');
+                          res.sendStatus(500);
+                        }
+                        else{
+                          res.send(results);
                         }
                     });
             });
@@ -158,6 +146,7 @@ router.post('/', function(req, res) {
             gratitude: reflection.gratitude,
             peerSupport: reflection.peerSupport,
             counselor: reflection.counselor,
+            streakCount: reflection.streakCount,
             memberID: memberID
         });
 

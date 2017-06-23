@@ -182,7 +182,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
                   var yesterdayCompleted = checkYesterdayCompleted(sessionObject);
 
                   //streak
-                  sessionObject.streak = calculateStreak(sessionObject, yesterdayCompleted);
+                  sessionObject.streak = getStreak(sessionObject, yesterdayCompleted);
 
                   //yesterdaysGoal
                   //today is done, yesterday was done, and yesterday had a goal
@@ -234,15 +234,13 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     function checkYesterdayCompleted(sessionObject){
       var dateNow = moment(Date.now());
       var yesterdayStart = dateNow.clone().subtract(1, 'day').startOf('day');
-      console.log("yesterdayStart",yesterdayStart, sessionObject.allReflections[1].reflectionDate, sessionObject.allReflections[0].reflectionDate);
 
-      console.log("sessionObject.reflectionCompleted", sessionObject.reflectionCompleted);
       //today is done, and the previous reflection is from yesterday
       if (sessionObject.reflectionCompleted && yesterdayStart.clone().diff(moment(sessionObject.allReflections[1].reflectionDate).startOf('day')) === 0){
         return true;
       }
       //today is not done, and the most recent reflection is from yesterday
-      else if (yesterdayStart.clone().diff(moment(sessionObject.allReflections[1].reflectionDate).startOf('day')) === 0){
+      else if (yesterdayStart.clone().diff(moment(sessionObject.allReflections[0].reflectionDate).startOf('day')) === 0){
         return true;
       }
       //otherwise
@@ -251,10 +249,12 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
       }
     }//ends checkYesterdayCompleted
 
-    function calculateStreak(sessionObject, yesterdayCompleted){
+    function getStreak(sessionObject, yesterdayCompleted){
+      console.log("sessionObject.reflectionCompleted", sessionObject.reflectionCompleted);
+      console.log("yesterdayCompleted", yesterdayCompleted);
       //today is done and yesterday was done, take yesterday's streak and add 1
-      if (sessionObject.reflectionCompleted && yesterdayCompleted){
-        return sessionObject.allReflections[0].streakCount + 1;
+      if (sessionObject.reflectionCompleted){
+        return sessionObject.allReflections[0].streakCount;
       }
       // today is done and yesterday was not done, then return 1
       else if (sessionObject.reflectionCompleted && !yesterdayCompleted){
@@ -586,6 +586,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         }
         //post to database if it is the fist reflection form view
         if (sessionObject.reflectionCompleted === false) {
+            reflectionObject.streakCount = sessionObject.streak + 1;
             postToReflectionForm(reflectionObject);
         }
         //put to database if it is any subsequent reflection form views
