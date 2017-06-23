@@ -16,13 +16,15 @@ var generateSessionObject = function(allReflections, medication){
   };
 
   var dateNow = moment(Date.now());
+  console.log("dateNow", dateNow);
   var todayStart = dateNow.clone().startOf('day');
   var yesterdayStart = dateNow.clone().subtract(1, 'day').startOf('day');
 
   //if the user has completed a reflection
   if (allReflections.length >= 1){
     var mostRecentReflection = allReflections[0];
-    var mostRecentReflectionStart = moment(mostRecentReflection.reflectionDate).startOf('day');
+    var mostRecentReflectionDate = convertToLocal(allReflections[0].reflectionDate);
+    var mostRecentReflectionStart = moment(mostRecentReflectionDate).startOf('day');
     serverSessionObject.allReflectionsNewToOld = allReflections;
     //if todays reflection is complete
     if (todayStart.clone().diff(mostRecentReflectionStart) === 0){
@@ -31,8 +33,9 @@ var generateSessionObject = function(allReflections, medication){
       //if there is more than one reflection completed
       if (allReflections[1] !== undefined){
         var nextMostRecent = allReflections[1];
+        var nextMostRecentDate = convertToLocal(allReflections[1].reflectionDate);
         serverSessionObject.streakCount = nextMostRecent.streakCount;
-        var nextMostRecentStart = moment(nextMostRecent.reflectionDate).startOf('day');
+        var nextMostRecentStart = moment(nextMostRecentDate).startOf('day');
         //if today is complete and another entry exists, check to see if it happened yesterday
         if (yesterdayStart.clone().diff(nextMostRecentStart) === 0){
           serverSessionObject.yesterdayCompleted = true;
@@ -81,5 +84,11 @@ var generateSessionObject = function(allReflections, medication){
   return serverSessionObject;
   }
 };
+
+function convertToLocal(date){
+  var stillUtc = moment.utc(date).toDate();
+  var local = moment(stillUtc).local().format('YYYY-MM-DD HH:mm:ss');
+  return local;
+}
 
 module.exports = generateSessionObject;
