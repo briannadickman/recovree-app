@@ -158,7 +158,12 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
 
                 sessionObject.streak = response.data.streakCount;
                 sessionObject.allReflections = response.data.allReflectionsNewToOld;
-                sessionObject.reflectionCompleted = response.data.reflectionCompleted;
+                //sessionObject.allReflections convertToLocal
+                for (var i = 0; i < sessionObject.allReflections.length; i++){
+                  var date = sessionObject.allReflections[i].reflectionDate;
+                  sessionObject.allReflections[i].reflectionDate = convertToLocal(date);
+                }
+                sessionObject.reflectionCompleted = checkReflectionCompleted(sessionObject.allReflections);
                 if (sessionObject.reflectionCompleted === true) {
                     sessionObject.todaysReflectObject = response.data.todaysReflection;
                     sessionObject.currentDailyReflection = response.data.todaysReflection;
@@ -172,13 +177,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
                 }
                 sessionObject.takingMeds = response.data.medication;
 
-                //sessionObject.allReflections
-                for (var i = 0; i < sessionObject.allReflections.length; i++){
-                  var date = sessionObject.allReflections[i].reflectionDate;
-                  sessionObject.allReflections[i].reflectionDate = convertToLocal(date);
-                }
-
-
                 getWeeklyData(sessionObject.allReflections);
                 getMonthlyData(sessionObject.allReflections);
                 buildGraphs(location, graphsObject);
@@ -191,7 +189,22 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
       var stillUtc = moment.utc(date).toDate();
       var local = moment(stillUtc).local().format('YYYY-MM-DD HH:mm:ss');
       return local;
-    }
+    }// ends convertToLocal
+
+    function checkReflectionCompleted(arrayOfReflections){
+      //this will check if the most recent reflection was from today based on the local timezone
+      var dateNow = moment(Date.now());
+      var todayStart = dateNow.clone().startOf('day');
+      var mostRecentReflection = arrayOfReflections[0];
+      var mostRecentReflectionDate =arrayOfReflections[0].reflectionDate;
+      var mostRecentReflectionStart = moment(mostRecentReflectionDate).startOf('day');
+      if (todayStart.clone().diff(mostRecentReflectionStart) === 0){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }//ends checkReflectionCompleted
 
     function buildGraphs(location, graphsObject) {
         if (location === 'home') {
