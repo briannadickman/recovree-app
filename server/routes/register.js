@@ -115,7 +115,9 @@ router.post('/', function(req, res, next) {
     var newUser = req.body;
 
     //send newUser welcome text
-    var welcomeMessage = 'Thank you for signing up with Recovree and inviting us to be a part of your personal health journey. You will receive a daily text message to help remind you to complete your reflection in Recovree. To access Recovree, visit https://recovree.herokuapp.com/';
+    var herokuURL = ' https://recovreeapp.herokuapp.com/';
+    var welcomeMessage = 'Thank you for signing up with Recovree and inviting us to be a part of your personal health journey. You will receive a daily text message to help remind you to complete your reflection in Recovree. To access Recovree, visit',
+        herokuURL;
     twilio(newUser.username, welcomeMessage);
 
     var userToSave = new Users({
