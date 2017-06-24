@@ -60,7 +60,7 @@ router.post('/forgotpassword', function(req, res) {
         var resetMessage = 'Reset your Recovree password here. This link will expire in 24 hours.   ';
         var passwordResetView = '/#confirmreset/';
 
-        var herokuURL = 'https://recovreeapp.herokuapp.com/';
+        var herokuURL = 'https://recovreeapp.com/';
 
         var passwordResetLink = 'Reset your Recovree password here. This link will expire in 24 hours.' + herokuURL + '#/confirmreset/' + code;
 
