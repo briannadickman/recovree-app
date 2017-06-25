@@ -250,8 +250,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     }//ends checkYesterdayCompleted
 
     function getStreak(sessionObject, yesterdayCompleted){
-      console.log("sessionObject.reflectionCompleted", sessionObject.reflectionCompleted);
-      console.log("yesterdayCompleted", yesterdayCompleted);
       //today is done and yesterday was done, take yesterday's streak and add 1
       if (sessionObject.reflectionCompleted){
         return sessionObject.allReflections[0].streakCount;
