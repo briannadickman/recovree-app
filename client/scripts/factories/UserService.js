@@ -12,7 +12,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
 
     var graphsObject = {};
 
-
     //getuser
     function getuser() {
         $http.get('/user').then(function(response) {
@@ -112,9 +111,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         $location.path('/last-week');
     };
     var displayThisMonth = function() {
-        // console.log("inside displayThisMonth", thisMonthsObject);
-        // weeklyGraphs(thisMonthsObject);
-        // console.log("thisMonthsObject",thisMonthsObject);
         $location.path('/this-month');
     };
     var displayLastMonth = function() {
@@ -427,11 +423,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         ];
         var stressorsArray = buildArray(listOfStressors);
 
-        //gets date information
-        var today = new Date();
-        var date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear();
-        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-
         // assigns key value pairs
         reflectionObject.feelings = feelingsArray;
         reflectionObject.overallfeeling = 3;
@@ -454,8 +445,6 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         reflectionObject.gratitude = '';
         reflectionObject.peerSupport = false;
         reflectionObject.counselor = false;
-        reflectionObject.reflectionDate = date;
-        reflectionObject.reflectionTime = time;
         reflectionObject.userObject = userObject;
         reflectionObject.formPosition = 1;
 

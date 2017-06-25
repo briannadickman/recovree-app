@@ -5,6 +5,7 @@ var nodemailer = require('nodemailer');
 var Users = require('../models/user');
 var path = require('path');
 var Registration = require('../models/registration');
+var twilio = require('../modules/twilio');
 
 var mongoose = require("mongoose");
 
@@ -63,7 +64,6 @@ router.get('/registration', function(req, res) {
 });
 
 router.get('/meds/:id', function(req, res) {
-
     var id = req.params.id;
     Registration.findById({ '_id': id }, function(err, registrations) {
         if (err) {
@@ -75,7 +75,6 @@ router.get('/meds/:id', function(req, res) {
 });
 
 router.get('/memberCount', function(req, res) {
-
     Registration.distinct('memberID', function(err, uniqueMembers) {
         if (err) {
             console.log('error counting members');
@@ -114,6 +113,13 @@ router.post('/', function(req, res, next) {
     var newId = randomIdGenerator();
     registrationMemberId = newId;
     var newUser = req.body;
+
+    //send newUser welcome text
+    var herokuURL = ' https://recovreeapp.com/';
+    var welcomeMessage = 'Thank you for signing up with Recovree and inviting us to be a part of your personal health journey. You will receive a daily text message to help remind you to complete your reflection in Recovree. To access Recovree, visit' +
+        herokuURL;
+    twilio(newUser.username, welcomeMessage);
+
     var userToSave = new Users({
         username: newUser.username,
         password: newUser.password,
@@ -124,7 +130,6 @@ router.post('/', function(req, res, next) {
         if (err) {
             next(err);
         } else {
-
             var newUserEmail = {
                 from: '"Ben Bizzey" <benbizzey@outlook.com>',
                 to: 'benbizzey@outlook.com',

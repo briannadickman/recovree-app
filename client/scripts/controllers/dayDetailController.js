@@ -1,4 +1,5 @@
 myApp.controller('DayDetailController', ['$scope', '$http', '$location', 'UserService', function($scope, $http, $location, UserService) {
+    var location = "day";
 
     var location = "day";
     var refreshSessionObject = UserService.refreshSessionObject;
@@ -60,10 +61,9 @@ myApp.controller('DayDetailController', ['$scope', '$http', '$location', 'UserSe
             quote: 'We all make mistakes, have struggles, and even regret things in our past. But you are not your mistakes, you are not your struggles, and you are here now with the power to shape your day and your future.',
             name: ' – Steve Maraboli'
         }
-    ];
 
+    ];
 
     var randomIndex = Math.floor(Math.random() * reflectionQuote.length);
     $scope.randomQuote = reflectionQuote[randomIndex];
-
 }]);
