@@ -7,6 +7,7 @@ var db = require("./modules/db");
 
 var passport = require('./strategies/userStrategy');
 var session = require('express-session');
+var sslRedirect = require('heroku-ssl-redirect');
 
 var dotenv = require('dotenv').config();
 
@@ -39,6 +40,9 @@ app.use(session({
 // start up passport sessions
 app.use(passport.initialize());
 app.use(passport.session());
+
+//enable ssl redirect
+app.use(sslRedirect());
 
 // Routes
 app.use('/twilio', twilio);
