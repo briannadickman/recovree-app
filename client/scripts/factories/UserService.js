@@ -54,6 +54,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
 
 
     function userDemographics(registration) {
+        console.log("userDemographics registration",registration);
         $http.post('/register/registration', registration).then(function(response) {
             emptyDemographics(registration);
             $location.path('/login');
