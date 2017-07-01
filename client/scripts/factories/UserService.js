@@ -70,6 +70,7 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         registration.sobrietyDate = '';
         registration.programPayment = '';
         registration.medication = '';
+        registration.howHear = '';
         registration.termsAgreement = false;
         registration.memberID = '';
     } //ends emptyDemographics
