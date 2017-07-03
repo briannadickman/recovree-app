@@ -22,6 +22,7 @@ router.get('/registration', function(req, res) {
             'sobrietyDate',
             'programPayment',
             'medication',
+            'howHear',
             'termsAgreement'
         ];
         var fieldNames = ['State',
@@ -32,6 +33,7 @@ router.get('/registration', function(req, res) {
             'Sobriety Date',
             'Form of Program Payment',
             'Medication?',
+            'How did you hear about Recovree?',
             'Terms of Agreement?'
         ];
         Registration.find().lean().exec(function(err, allRegistrations) {
