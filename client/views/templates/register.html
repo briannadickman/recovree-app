@@ -96,6 +96,17 @@
                     </div>
 
                     <br>
+                    <!-- How did you hear about Recovree -->
+                    <div layout='column' layout-align='center center'>
+                        <p layout 'row'>How did you hear about Recovree?</p>
+                        <md-input-container layout='row'>
+                            <label for="howHear">How did you hear about Recovree?</label>
+                            <input type="text" ng-model="registration.howHear" />
+                        </md-input-container>
+
+                    </div>
+
+                    <br>
                     <div layout='column' layout-align='center center'>
                         <md-input-container layout 'row' style="padding: 0px; margin: 0px;">
                             <md-checkbox ng-model="registration.termsAgreement" required>I agree to the <a ng-href='#/terms' required>Terms of Use</a></md-checkbox>
