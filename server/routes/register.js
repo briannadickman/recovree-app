@@ -46,6 +46,7 @@ var RegistrationSchema = mongoose.Schema({
     sobrietyDate: { type: Date },
     programPayment: { type: String },
     medication: { type: Boolean },
+    howHear: {type: String},
     termsAgreement: { type: Boolean },
     memberID: { type: Number }
 });
@@ -95,6 +96,7 @@ router.post("/registration", function(req, res) {
         sobrietyDate: registration.sobrietyDate,
         programPayment: registration.programPayment,
         medication: registration.medication,
+        howHear: registration.howHear,
         termsAgreement: registration.termsAgreement,
         memberID: registrationMemberId
     });
