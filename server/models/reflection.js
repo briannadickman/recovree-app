@@ -1,9 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var date = new Date();
-var newdate = date.toLocaleString();
-
 var ReflectionSchema = mongoose.Schema({
     feelings: { type: Array },
     overallfeeling: { type: Number },
@@ -27,7 +24,7 @@ var ReflectionSchema = mongoose.Schema({
     peerSupport: { type: Boolean },
     counselor: { type: Boolean },
     streakCount: { type: Number, default: 0 },
-    reflectionDate: { type: Date, default: newdate },
+    reflectionDate: { type: Date, default: Date.now },
     memberID: { type: Number, ref: 'Registration' } //references Registration Schema
 });
 

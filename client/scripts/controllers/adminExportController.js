@@ -8,7 +8,6 @@ myApp.controller('AdminExportController', ['$scope', '$http', '$location', 'Admi
         AdminService.getReflections();
     };
 
-
     $scope.getAdminObject = AdminService.getAdminObject;
     $scope.getAdminObject();
     $scope.adminObject = AdminService.adminObject;

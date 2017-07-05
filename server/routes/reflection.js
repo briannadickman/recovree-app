@@ -124,7 +124,6 @@ router.post('/', function(req, res) {
         var reflection = req.body;
         var newReflection = new Reflection({
             id: req.user._id,
-            date: reflection.reflectionDate,
             overallfeeling: reflection.overallfeeling,
             feelings: reflection.feelings,
             feelingsWhy: reflection.feelingsWhy,

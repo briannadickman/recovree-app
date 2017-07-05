@@ -17,7 +17,6 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
             if (response.data.id && response.data.userType === 1) {
                 // user has a curret session on the server
             } else {
-
                 $location.path("/login");
             }
         });
@@ -131,5 +130,4 @@ myApp.factory('AdminService', ['$http', '$location', function($http, $location) 
         buildAdminGraphs: buildAdminGraphs,
         getAdminObject: getAdminObject
     };
-
 }]);
