@@ -9,12 +9,12 @@ var User = mongoose.model('users', UserModel.UserSchema);
 
 var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 var twilioNumber = process.env.TWILIO_NUMBER;
-var herokuURL = ' https://recovreeapp.com/';
+var herokuURL = ' www.recovreeapp.com/';
 
-var reminderMessage = ['This is a friendly reminder to complete your daily Recovree' + herokuURL,
-    'Find a moment to reflect and complete your daily Recovree' + herokuURL,
-    'One day at a time. Find time to complete your daily Recovree' + herokuURL,
-    'Sobriety is a journey. A reminder to complete your daily Recovree' + herokuURL,
+var reminderMessage = ['This is a friendly reminder to complete your daily Recovree ' + herokuURL,
+    'Find a moment to reflect and complete your daily Recovree ' + herokuURL,
+    'One day at a time. Find time to complete your daily Recovree ' + herokuURL,
+    'Sobriety is a journey. A reminder to complete your daily Recovree ' + herokuURL,
 ];
 var randomIndex = Math.floor(Math.random() * reminderMessage.length);
 var randomomizeReminderMessage = reminderMessage[randomIndex];
@@ -47,17 +47,19 @@ function getPhoneNumbers() {
 }
 
 function sendSMS(phoneNumber, message) {
-    client.messages.create({ to: phoneNumber, from: twilioNumber, body: message },
-        function(err, data) {
-            if (err) {
-                console.log('Error Sending Message');
-            } else {
-                console.log('SMS SENT');
-            }
-        });
-}
+    // inactivated for Test Application
+    console.log('SMS will not be sent for Test App);
+        // client.messages.create({ to: phoneNumber, from: twilioNumber, body: message },
+        //     function(err, data) {
+        //         if (err) {
+        //             console.log('Error Sending Message');
+        //         } else {
+        //             console.log('SMS SENT');
+        //         }
+        //     });
+    }
 
 
 
 
-module.exports = sendSMS;
+    module.exports = sendSMS;
