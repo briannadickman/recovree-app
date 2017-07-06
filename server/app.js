@@ -19,7 +19,7 @@ var reflection = require('./routes/reflection');
 
 //modules
 var csvExport = require('./modules/csvExport');
-// var twilio = require('./modules/twilio.js');
+var twilio = require('./modules/twilio.js');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -45,7 +45,7 @@ app.use(passport.session());
 app.use(sslRedirect());
 
 // Routes
-// app.use('/twilio', twilio);
+app.use('/twilio', twilio);
 app.use('/csvExport', csvExport);
 app.use('/reflection', reflection);
 app.use('/register', register);

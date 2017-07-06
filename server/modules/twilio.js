@@ -45,18 +45,18 @@ function getPhoneNumbers() {
     });
 }
 
-// function sendSMS(phoneNumber, message) {
-//     // inactivated for Test Application
-//     console.log('SMS will not be sent for Test App);
-//         client.messages.create({ to: phoneNumber, from: twilioNumber, body: message },
-//            function(err, data) {
-//                 if (err) {
-//                     console.log('Error Sending Message');
-//                 } else {
-//                     console.log('SMS SENT');
-//                 }
-//             });
-//     }
+function sendSMS(phoneNumber, message) {
+    // inactivated for Test Application
+    console.log('SMS will not be sent for Test App');
+        client.messages.create({ to: phoneNumber, from: twilioNumber, body: message },
+           function(err, data) {
+                if (err) {
+                    console.log('Error Sending Message');
+                } else {
+                    console.log('SMS SENT');
+                }
+            });
+    }
 
 
 

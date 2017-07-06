@@ -5,7 +5,7 @@ var nodemailer = require('nodemailer');
 var Users = require('../models/user');
 var path = require('path');
 var Registration = require('../models/registration');
-// var twilio = require('../modules/twilio');
+var twilio = require('../modules/twilio');
 
 var mongoose = require("mongoose");
 
