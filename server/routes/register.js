@@ -46,6 +46,7 @@ var RegistrationSchema = mongoose.Schema({
     sobrietyDate: { type: Date },
     programPayment: { type: String },
     medication: { type: Boolean },
+    howHear: {type: String},
     termsAgreement: { type: Boolean },
     memberID: { type: Number }
 });
@@ -95,6 +96,7 @@ router.post("/registration", function(req, res) {
         sobrietyDate: registration.sobrietyDate,
         programPayment: registration.programPayment,
         medication: registration.medication,
+        howHear: registration.howHear,
         termsAgreement: registration.termsAgreement,
         memberID: registrationMemberId
     });
@@ -115,8 +117,8 @@ router.post('/', function(req, res, next) {
     var newUser = req.body;
 
     //send newUser welcome text
-    var herokuURL = ' https://recovreeapp.com/';
-    var welcomeMessage = 'Thank you for signing up with Recovree and inviting us to be a part of your personal health journey. You will receive a daily text message to help remind you to complete your reflection in Recovree. To access Recovree, visit' +
+    var herokuURL = ' www.recovreeapp.com/';
+    var welcomeMessage = 'Thank you for signing up with Recovree and inviting us to be a part of your personal health journey. You will receive a daily text message to help remind you to complete your reflection in Recovree. To access Recovree, visit ' +
         herokuURL;
     twilio(newUser.username, welcomeMessage);
 
