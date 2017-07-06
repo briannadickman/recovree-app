@@ -12,7 +12,7 @@ var UserModel = require('../models/user');
 var User = mongoose.model('users', UserModel.UserSchema);
 
 var moment = require('moment');
-var twilio = require('../modules/twilio');
+// var twilio = require('../modules/twilio');
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function(req, res) {
