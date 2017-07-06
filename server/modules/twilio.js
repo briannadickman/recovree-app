@@ -45,6 +45,7 @@ function getPhoneNumbers() {
     });
 }
 
+//comment out sendSMS code when pushing to recovree test app
 function sendSMS(phoneNumber, message) {
     client.messages.create({ to: phoneNumber, from: twilioNumber, body: message },
         function(err, data) {
