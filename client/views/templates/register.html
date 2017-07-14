@@ -58,15 +58,15 @@
                         </md-input-container>
                     </div>
 
-                    <div layout='row' style="padding: 0px; margin: 0px;">
-                        <md-input-container flex='50'>
-                            <label for="drugChoice">Drugs of Choice:</label>
-                            <md-select multiple ng-model="registration.drugChoice" required>
-                                <md-option ng-repeat="drug in drugs" value="{{drug.drug}}">
-                                    {{drug.drug}}
-                                </md-option>
-                            </md-select>
-                        </md-input-container>
+                  <div layout='row' style="padding: 0px; margin: 0px;">
+                    <md-input-container  flex='60'>
+                        <label for="drugChoice">Primary Substance Used:</label>
+                        <md-select multiple ng-model="registration.drugChoice" required>
+                            <md-option ng-repeat="drug in drugs" value="{{drug.drug}}">
+                              {{drug.drug}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
 
                         <md-input-container flex>
                             <label for="sobrietyDate">Sobriety Date:</label>

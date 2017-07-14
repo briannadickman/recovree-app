@@ -1,4 +1,3 @@
-var express = require('express');
 var cronJob = require('cron').CronJob;
 var Users = require('../models/user');
 var asyncMod = require('async');
@@ -56,8 +55,5 @@ function sendSMS(phoneNumber, message) {
             }
         });
 }
-
-
-
 
 module.exports = sendSMS;
