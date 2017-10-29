@@ -133,6 +133,7 @@ router.get('/session/', function(req, res) { //took out memberID
 router.post('/', function(req, res) {
     if (req.isAuthenticated()) {
         var memberID = req.user.memberID;
+        phoneNum = req.user.username;
         var reflection = req.body;
         var newReflection = new Reflection({
             id: req.user._id,
@@ -157,7 +158,8 @@ router.post('/', function(req, res) {
             gratitude: reflection.gratitude,
             peerSupport: reflection.peerSupport,
             counselor: reflection.counselor,
-            memberID: memberID
+            memberID: memberID,
+            phoneNum: phoneNum
         });
 
         newReflection.save(newReflection, function(err, savedReflection) {

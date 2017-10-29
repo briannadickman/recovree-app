@@ -14,7 +14,8 @@ var Reflection = require('../models/reflection');
 //Exports demographic info into a .CSV saved in the root directory
 router.get('/registration', function(req, res) {
     if (req.isAuthenticated() && req.user.userType == 1) {
-        var fields = ['state',
+        var fields = ['memberID',
+            'state',
             'county',
             'gender',
             'birthYear',
@@ -25,7 +26,8 @@ router.get('/registration', function(req, res) {
             'howHear',
             'termsAgreement'
         ];
-        var fieldNames = ['State',
+        var fieldNames = ['Member ID',
+            'State',
             'County',
             'Gender',
             'Birth Year',
@@ -54,7 +56,9 @@ router.get('/registration', function(req, res) {
 //Exports demographic info into a .CSV saved in the root directory
 router.get('/reflections', function(req, res) {
     if (req.isAuthenticated() && req.user.userType == 1) {
-        var fields = ['feelingsWhy',
+        var fields = ['phoneNum',
+            'memberID',
+            'feelingsWhy',
             'drugAlcoholIntake',
             'medication',
             'sleep',
@@ -112,7 +116,9 @@ router.get('/reflections', function(req, res) {
             'stressors[10].value',
             'stressors[11].value',
         ];
-        var fieldNames = ['Feelings Description',
+        var fieldNames = ['Phone Number',
+            'Member ID',
+            'Feelings Description',
             'Used Drugs/Alcohol?',
             'Took Medication?',
             'Sleep',
