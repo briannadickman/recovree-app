@@ -25,7 +25,8 @@ var ReflectionSchema = mongoose.Schema({
     counselor: { type: Boolean },
     streakCount: { type: Number, default: 0 },
     reflectionDate: { type: Date, default: Date.now },
-    memberID: { type: Number, ref: 'Registration' } //references Registration Schema
+    memberID: { type: Number, ref: 'Registration' }, //references Registration Schema
+    phoneNum: { type: String, ref: 'Users' } //references Users Schema
 });
 
 
