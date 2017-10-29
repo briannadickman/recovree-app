@@ -107,7 +107,7 @@ myApp.controller('LoginController', ['$scope', '$http', '$routeParams', '$locati
     });
 
     // Generate Program Payment Options
-    $scope.payments = ('Personal Financing,Insurance,Public Assistance,Treatment Program Scholarships').split(comma).map(function(payment) {
+    $scope.payments = ('Personal Financing,Insurance,Public Assistance,Treatment Program Scholarships,Not Applicable').split(comma).map(function(payment) {
         return { payment: payment };
     });
 

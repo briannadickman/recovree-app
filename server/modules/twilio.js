@@ -1,4 +1,3 @@
-var express = require('express');
 var cronJob = require('cron').CronJob;
 var Users = require('../models/user');
 var asyncMod = require('async');
@@ -46,6 +45,7 @@ function getPhoneNumbers() {
     });
 }
 
+//comment out sendSMS code when pushing to recovree test app
 function sendSMS(phoneNumber, message) {
     client.messages.create({ to: phoneNumber, from: twilioNumber, body: message },
         function(err, data) {
@@ -56,8 +56,5 @@ function sendSMS(phoneNumber, message) {
             }
         });
 }
-
-
-
 
 module.exports = sendSMS;

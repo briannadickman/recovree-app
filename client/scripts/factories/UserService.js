@@ -201,13 +201,13 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
     function streakGraph(sessionObject) {
         var streakGoal = 30;
         var streak = sessionObject.streak;
-        var goal = streakGoal - streak;
 
         //if streak is over 30 days, reset so it still increments
-        if (streak >= 30) {
+        if (streak > 30) {
             streak = streak % 30;
-            return streak;
         }
+
+        var goal = streakGoal - streak;
 
         var ctx3 = document.getElementById("streakDonughtChart");
         var streakDonughtChart = new Chart(ctx3, {
