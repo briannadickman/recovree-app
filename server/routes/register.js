@@ -48,7 +48,8 @@ var RegistrationSchema = mongoose.Schema({
     medication: { type: Boolean },
     howHear: {type: String},
     termsAgreement: { type: Boolean },
-    memberID: { type: Number }
+    memberID: { type: Number },
+    phoneNum: {type: Number}
 });
 
 var Registration = mongoose.model('registrations', RegistrationSchema, 'registrations');
@@ -87,6 +88,7 @@ router.get('/memberCount', function(req, res) {
 
 router.post("/registration", function(req, res) {
     var registration = req.body;
+    console.log('body in registation.js', req.body);
     var newForm = new Registration({
         state: registration.state,
         county: registration.county,
