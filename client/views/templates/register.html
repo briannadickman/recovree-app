@@ -85,6 +85,20 @@
                         </md-input-container>
                     </div>
 
+                    <div>
+                        <md-input-container layout='row'>
+                            <label for="recoverySpecialist">The first name of your peer recovery specialist</label>
+                            <input type="text" ng-model="registration.recoverySpecialist" required>
+                        </md-input-container>
+                    </div>
+
+                    <div>
+                        <md-input-container layout='row'>
+                            <label for="treatmentFacility">Treatment facility / organization where you're receiving care?</label>
+                            <input type="text" ng-model="registration.treatmentFacility" required>
+                        </md-input-container>
+                    </div>
+
                     <div layout='column' layout-align='center center'>
                         <p layout 'row'>Are you currently taking prescription medication?</p>
                         <md-radio-group ng-model="registration.medication" layout='row' required>
