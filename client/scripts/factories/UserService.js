@@ -69,6 +69,8 @@ myApp.factory('UserService', ['$http', '$location', function($http, $location) {
         registration.drugChoice = '';
         registration.sobrietyDate = '';
         registration.programPayment = '';
+        registration.recoverySpecialist = '',
+        registration.treatmentFacility = '',
         registration.medication = '';
         registration.howHear = '';
         registration.termsAgreement = false;
