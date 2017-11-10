@@ -9,6 +9,8 @@ var RegistrationSchema = mongoose.Schema({
   drugChoice: {type: String},
   sobrietyDate: {type: Date},
   programPayment: {type: String},
+  recoverySpecialist: {type: String},
+  treatmentFacility: {type: String},
   medication: {type: Boolean},
   howHear: {type: String},
   termsAgreement: {type: Boolean},
