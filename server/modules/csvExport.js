@@ -22,6 +22,8 @@ router.get('/registration', function(req, res) {
             'drugChoice',
             'sobrietyDate',
             'programPayment',
+            'recoverySpecialist',
+            'treatmentFacility',
             'medication',
             'howHear',
             'termsAgreement'
@@ -34,6 +36,8 @@ router.get('/registration', function(req, res) {
             'Drug(s) of Choice',
             'Sobriety Date',
             'Form of Program Payment',
+            'First name of your peer recovery specialist',
+            'Treatment facility/organization where you are receiving care',
             'Medication?',
             'How did you hear about Recovree?',
             'Terms of Agreement?'
